@@ -1,0 +1,17 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "editor.wordWrap": "on",
+  "editor.guides.bracketPairs": "active",
+  "editor.tabSize": 2,
+  "eslint.packageManager": "pnpm",
+  "npm.scriptExplorerAction": "open",
+  "npm.autoDetect": "on",
+  "npm.packageManager": "pnpm",
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

@@ -1,0 +1,40 @@
+{
+  "name": "thetvdb-ts",
+  "version": "1.0.0",
+  "description": "Fully typed TheTVDB API V4",
+  "main": "./dist/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint . --cache --cache-location \"./node_modules/.cache/eslint/\"",
+    "format": "prettier --cache -w .",
+    "clean": "rm -rf dist",
+    "prebuild": "pnpm run clean",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.2",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.4",
+    "tsx": "^3.12.5",
+    "typescript": "^4.9.5",
+    "undici": "^5.21.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=7"
+  }
+}
