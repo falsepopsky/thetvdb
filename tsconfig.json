@@ -14,10 +14,11 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
+    "noEmit": true,
     "skipLibCheck": true,
     "removeComments": true,
     "lib": ["ESNext"]
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts", "**/*.d.ts"]
+  "exclude": ["node_modules"]
 }
