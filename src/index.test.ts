@@ -43,12 +43,41 @@ describe('getArtwork method', () => {
   });
 
   test('does not throw an error when ID is provided', async () => {
-    await expect(client.getArtwork('175491')).resolves.not.toThrow();
+    await expect(client.getArtwork('63237874')).resolves.not.toThrow();
   });
 
   test('returns a successful response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const result = await tv.getArtwork('175491');
-    expect(result.resStatus).toBe(200);
+    const { resStatus, result } = await tv.getArtwork('63237874');
+    expect(resStatus).toBe(200);
+    expect(result.data.id).toBe(63237874);
+  });
+});
+
+describe('getCharacter method', () => {
+  let client: TheTVDB;
+
+  beforeEach(() => {
+    client = new TheTVDB('test-token');
+  });
+
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(client.getCharacter()).rejects.toThrow('Required character id');
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(client.getCharacter('')).rejects.toThrow('Required character id');
+  });
+
+  test('does not throw an error when ID is provided', async () => {
+    await expect(client.getCharacter('64140522')).resolves.not.toThrow();
+  });
+
+  test('returns a successful response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { resStatus, result } = await tv.getCharacter('64140522');
+    expect(resStatus).toBe(200);
+    expect(result.data.id).toBe(64140522);
   });
 });

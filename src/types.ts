@@ -52,8 +52,8 @@ interface Character extends BaseResult {
     peopleId: number;
     seriesId: number | null;
     series: {
-      image: string;
       name: string;
+      image: string;
       year: string;
     } | null;
     movie: {
