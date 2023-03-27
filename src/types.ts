@@ -46,7 +46,7 @@ interface ArtworkExtended extends ArtworkBase {
 }
 
 interface Character extends BaseResult {
-  data: Array<{
+  data: {
     id: number;
     name: string;
     peopleId: number;
@@ -83,7 +83,7 @@ interface Character extends BaseResult {
     personName: string;
     tagOptions: TagTypes;
     personImgURL: string | null;
-  }>;
+  };
 }
 
 interface Country extends BaseResult {

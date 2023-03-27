@@ -15,6 +15,7 @@
     "strict": true,
     "noImplicitAny": true,
     "noEmit": true,
+    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
     "removeComments": true,
     "lib": ["ESNext"]
