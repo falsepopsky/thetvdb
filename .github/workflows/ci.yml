@@ -1,11 +1,5 @@
 name: Node js CI
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 jobs:
   lint:
@@ -27,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Create .env file
+        run: echo "API_KEY=${{ secrets.API_KEY }}" > .env
       - uses: pnpm/action-setup@v2
         with:
           version: 7.29.3
