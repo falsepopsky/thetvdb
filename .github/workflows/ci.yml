@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Create .env file
-        run: echo "API_KEY=${{ secrets.API_KEY }}" > .env
+        run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" > .env
       - uses: pnpm/action-setup@v2
         with:
           version: 7.29.3
