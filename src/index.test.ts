@@ -52,6 +52,12 @@ describe('getArtwork method', () => {
     expect(resStatus).toBe(200);
     expect(result.data.id).toBe(63237874);
   });
+
+  test('returns extended data response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { result } = await tv.getArtwork('63237874', true);
+    expect(result.data.movieId).toBe(145830);
+  });
 });
 
 describe('getCharacter method', () => {
@@ -79,5 +85,37 @@ describe('getCharacter method', () => {
     const { resStatus, result } = await tv.getCharacter('64140522');
     expect(resStatus).toBe(200);
     expect(result.data.id).toBe(64140522);
+  });
+});
+
+describe('getContentRatings method', () => {
+  test('returns unauthorized status', async () => {
+    const tv = new TheTVDB('fake_token');
+    const { resStatus } = await tv.getContentRatings();
+    expect(resStatus).toBe(401);
+  });
+
+  test('returns a successful response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { resStatus, result } = await tv.getContentRatings();
+    expect(resStatus).toBe(200);
+    expect(Array.isArray(result.data)).toBe(true);
+    expect(result.data[0]?.name).toBe('ATP');
+  });
+});
+
+describe('getCountries method', () => {
+  test('returns unauthorized status', async () => {
+    const tv = new TheTVDB('fake_token');
+    const { resStatus } = await tv.getCountries();
+    expect(resStatus).toBe(401);
+  });
+
+  test('returns a successful response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { resStatus, result } = await tv.getCountries();
+    expect(resStatus).toBe(200);
+    expect(Array.isArray(result.data)).toBe(true);
+    expect(result.data[0]?.name).toBe('Aruba');
   });
 });
