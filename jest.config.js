@@ -10,9 +10,10 @@ export default {
     '^(\\.{1,2}/.*)\\.(m)?js$': '$1',
   },
   extensionsToTreatAsEsm: ['.ts'],
+  setupFiles: ['dotenv/config'],
   testMatch: ['**/?(*.)+(spec|test).+(ts|js)'],
   transform: {
     '^.+\\.m?[tj]s?$': '@swc/jest',
   },
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/**/types.ts'],
 };
