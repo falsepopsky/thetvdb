@@ -1,12 +1,4 @@
-import type {
-  Artwork,
-  Character,
-  ContentRating,
-  Country,
-  EntityType,
-  FetchResult,
-  Gender,
-} from './types.js';
+import type { Artwork, Character, ContentRating, Country, FetchResult } from './types.js';
 
 export class TheTVDB {
   private readonly token;
@@ -58,13 +50,6 @@ export class TheTVDB {
     return data;
   }
 
-  public async getCountries(): Promise<FetchResult<Country>> {
-    const endpoint = this.API + '/countries';
-    const data = await this.fetcher<Country>(endpoint);
-
-    return data;
-  }
-
   public async getContentRatings(): Promise<FetchResult<ContentRating>> {
     const endpoint = this.API + '/content/ratings';
     const data = await this.fetcher<ContentRating>(endpoint);
@@ -72,16 +57,9 @@ export class TheTVDB {
     return data;
   }
 
-  public async getEntities(): Promise<FetchResult<EntityType>> {
-    const endpoint = this.API + '/entities';
-    const data = await this.fetcher<EntityType>(endpoint);
-
-    return data;
-  }
-
-  public async getGenders(): Promise<FetchResult<Gender>> {
-    const endpoint = this.API + '/genders';
-    const data = await this.fetcher<Gender>(endpoint);
+  public async getCountries(): Promise<FetchResult<Country>> {
+    const endpoint = this.API + '/countries';
+    const data = await this.fetcher<Country>(endpoint);
 
     return data;
   }

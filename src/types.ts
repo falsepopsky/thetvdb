@@ -36,12 +36,15 @@ interface ArtworkExtended extends ArtworkBase {
     thumbnailWidth: number;
     thumbnailHeight: number;
     updatedAt: number;
-    seriesId: number;
+    seriesId?: number;
+    seriesPeopleId?: number;
+    movieId: number;
     status: {
       id: number;
       name: string | null;
     };
     tagOptions: TagTypes;
+    type?: number;
   };
 }
 
@@ -86,10 +89,6 @@ interface Character extends BaseResult {
   };
 }
 
-interface Country extends BaseResult {
-  data: Array<{ id: string; name: string; shortCode: string }>;
-}
-
 interface ContentRating extends BaseResult {
   data: Array<{
     id: number;
@@ -102,19 +101,8 @@ interface ContentRating extends BaseResult {
   }>;
 }
 
-interface EntityType extends BaseResult {
-  data: Array<{
-    id: number;
-    name: string;
-    hasSpecials: boolean;
-  }>;
+interface Country extends BaseResult {
+  data: Array<{ id: string; name: string; shortCode: string }>;
 }
 
-interface Gender extends BaseResult {
-  data: Array<{
-    id: number;
-    name: string;
-  }>;
-}
-
-export type { Artwork, FetchResult, Country, ContentRating, EntityType, Gender, Character };
+export type { Artwork, FetchResult, Country, ContentRating, Character };
