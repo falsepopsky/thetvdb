@@ -1,19 +1,17 @@
 import type { Artwork, Character, ContentRating, Country, FetchResult } from './types.js';
 
 export class TheTVDB {
-  private readonly token;
+  private readonly _TOKEN;
   private readonly API = 'https://api4.thetvdb.com/v4';
 
   constructor(token: string) {
-    if (typeof token !== 'string' || token.length === 0) {
-      throw new Error('Token is required');
-    }
-    this.token = token;
+    this.validateInput(token, 'Token is required');
+    this._TOKEN = token;
   }
 
   private async fetcher<T>(url: string | URL): Promise<FetchResult<T>> {
     const response = await fetch(url, {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.token}` },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this._TOKEN}` },
     });
 
     const resStatus = response.status;
@@ -22,13 +20,17 @@ export class TheTVDB {
     return { resStatus, result };
   }
 
+  private validateInput<T>(input: T, errorMessage: string): void {
+    if (typeof input !== 'string' || input.length === 0) {
+      throw new Error(errorMessage);
+    }
+  }
+
   public async getArtwork<T extends boolean = false>(
     id: string,
     extended: T = false as T
   ): Promise<FetchResult<Artwork<T>>> {
-    if (typeof id !== 'string' || id.length === 0) {
-      throw new Error('Required artwork id');
-    }
+    this.validateInput(id, 'Required artwork id');
 
     let endpoint = this.API + '/artwork/' + id;
 
@@ -40,9 +42,7 @@ export class TheTVDB {
   }
 
   public async getCharacter(id: string): Promise<FetchResult<Character>> {
-    if (typeof id !== 'string' || id.length === 0) {
-      throw new Error('Required character id');
-    }
+    this.validateInput(id, 'Required character id');
 
     const endpoint = this.API + '/characters/' + id;
     const data = await this.fetcher<Character>(endpoint);
@@ -59,6 +59,16 @@ export class TheTVDB {
 
   public async getCountries(): Promise<FetchResult<Country>> {
     const endpoint = this.API + '/countries';
+    const data = await this.fetcher<Country>(endpoint);
+
+    return data;
+  }
+
+  // 127396
+  public async getEpisodes(id: string): Promise<FetchResult<Country>> {
+    this.validateInput(id, 'Required episode id');
+
+    const endpoint = this.API + '/episodes/' + id;
     const data = await this.fetcher<Country>(endpoint);
 
     return data;
