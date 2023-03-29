@@ -1,7 +1,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      API_TOKEN: string;
+      TVDB_API_TOKEN: string;
     }
   }
 }

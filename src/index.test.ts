@@ -1,6 +1,6 @@
 import { TheTVDB } from './index.js';
 
-const TOKEN = process.env.API_TOKEN;
+const TOKEN = process.env.TVDB_API_TOKEN;
 
 describe('constructor token validation tests', () => {
   it('throws an error if no token is provided', () => {
