@@ -1,5 +1,5 @@
 interface FetchResult<T> {
-  resStatus: number;
+  status: number;
   result: T;
 }
 
@@ -89,20 +89,4 @@ interface Character extends BaseResult {
   };
 }
 
-interface ContentRating extends BaseResult {
-  data: Array<{
-    id: number;
-    name: string;
-    country: string;
-    description: string;
-    contentType: string;
-    order: number;
-    fullName: string;
-  }>;
-}
-
-interface Country extends BaseResult {
-  data: Array<{ id: string; name: string; shortCode: string }>;
-}
-
-export type { Artwork, FetchResult, Country, ContentRating, Character };
+export type { Artwork, FetchResult, BaseResult, Character };
