@@ -41,6 +41,10 @@ interface Update extends BaseResult {
   };
 }
 
+interface Language extends BaseResult {
+  data: Array<{ id: string; name: string; nativeName: string; shortCode: string | null }>;
+}
+
 type Entities =
   | 'artwork'
   | 'award_nominees'
@@ -122,6 +126,18 @@ export class TheTVDBExtended extends Base {
   public async getGenres(): Promise<FetchResult<Genre>> {
     const endpoint = this.api + '/v4/genres';
     const data = await this.fetcher<Genre>(endpoint);
+
+    return data;
+  }
+
+  /**
+   * Returns a list of languages records.
+   * @async
+   * @returns {Promise<FetchResult<Language>>} - A Promise that resolves with the response object.
+   */
+  public async getLanguages(): Promise<FetchResult<Language>> {
+    const endpoint = this.api + '/v4/languages';
+    const data = await this.fetcher<Language>(endpoint);
 
     return data;
   }

@@ -50,6 +50,22 @@ describe('getGenres method', () => {
   });
 });
 
+describe('getLanguages method', () => {
+  test('returns unauthorized status', async () => {
+    const client = new TheTVDBExtended('fake_token');
+    const { status } = await client.getLanguages();
+    expect(status).toBe(401);
+  });
+
+  test('returns a successful response', async () => {
+    const client = new TheTVDBExtended(TOKEN);
+    const { status, result } = await client.getLanguages();
+    expect(status).toBe(200);
+    expect(Array.isArray(result.data)).toBe(true);
+    expect(result.data[0]?.name).toBe('Afar');
+  });
+});
+
 describe('getUpdates method', () => {
   test('returns unauthorized status', async () => {
     const client = new TheTVDBExtended('fake_token');
