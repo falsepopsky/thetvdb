@@ -85,7 +85,16 @@ type optionsUpdate = {
   page?: string;
 };
 
+/**
+ * TheTVDBExtended class for making API requests to TheTVDB.
+ * @extends Base
+ */
 export class TheTVDBExtended extends Base {
+  /**
+   * Returns a list of content ratings records.
+   * @async
+   * @returns {Promise<FetchResult<ContentRating>>} - A Promise that resolves with the response object.
+   */
   public async getContentRatings(): Promise<FetchResult<ContentRating>> {
     const endpoint = this.api + '/v4/content/ratings';
     const data = await this.fetcher<ContentRating>(endpoint);
@@ -93,6 +102,11 @@ export class TheTVDBExtended extends Base {
     return data;
   }
 
+  /**
+   * Returns a list of countries records.
+   * @async
+   * @returns {Promise<FetchResult<Country>>} - A Promise that resolves with the response object.
+   */
   public async getCountries(): Promise<FetchResult<Country>> {
     const endpoint = this.api + '/v4/countries';
     const data = await this.fetcher<Country>(endpoint);
@@ -100,6 +114,11 @@ export class TheTVDBExtended extends Base {
     return data;
   }
 
+  /**
+   * Returns a list of genres records.
+   * @async
+   * @returns {Promise<FetchResult<Genre>>} - A Promise that resolves with the response object.
+   */
   public async getGenres(): Promise<FetchResult<Genre>> {
     const endpoint = this.api + '/v4/genres';
     const data = await this.fetcher<Genre>(endpoint);
@@ -107,7 +126,17 @@ export class TheTVDBExtended extends Base {
     return data;
   }
 
+  /**
+   * Returns a list of updates since the specified timestamp.
+   * @async
+   * @param {optionsUpdate} options - The options for the request.
+   * @param {string} options.since - The timestamp to get updates in epoch Unix format in seconds.
+   * @returns {Promise<FetchResult<Update>>} - A Promise that resolves with the response object.
+   * @throws {Error} - Throws an error if the `since` option is not provided or is invalid.
+   */
   public async getUpdates(options: optionsUpdate): Promise<FetchResult<Update>> {
+    this.validateInput(options.since, 'Required since option');
+
     const endpoint = this.createQuery('/v4/updates', options);
     const data = await this.fetcher<Update>(endpoint);
 
