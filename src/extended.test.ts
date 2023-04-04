@@ -57,6 +57,15 @@ describe('getUpdates method', () => {
     expect(status).toBe(401);
   });
 
+  it('should throw an error if since option is not provided', async () => {
+    const client = new TheTVDBExtended('fake_token');
+
+    await expect(async () => {
+      // @ts-expect-error: expect a parameter since
+      await client.getUpdates({ action: 'update' });
+    }).rejects.toThrow('Required since option');
+  });
+
   test('returns a successful response', async () => {
     const client = new TheTVDBExtended(TOKEN);
     const { status, result } = await client.getUpdates({
