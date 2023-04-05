@@ -1,5 +1,9 @@
 import { URL } from 'node:url';
-import type { FetchResult } from './types.js';
+
+export interface FetchResult<T> {
+  status: number;
+  result: T;
+}
 
 /**
  * Base class for TheTVDB.

@@ -1,5 +1,5 @@
-import { Base } from './core.js';
-import type { BaseResult, FetchResult } from './types.js';
+import { Base, type FetchResult } from './core.js';
+import type { BaseResult } from './types.js';
 
 interface ContentRating extends BaseResult {
   data: Array<{
