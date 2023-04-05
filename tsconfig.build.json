@@ -2,5 +2,5 @@
   "extends": "./tsconfig.json",
   "compilerOptions": { "noEmit": false },
   "include": ["src"],
-  "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts", "enviroment.d.ts"]
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts", "enviroment.d.ts", "playground.ts"]
 }
