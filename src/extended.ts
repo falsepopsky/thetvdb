@@ -26,7 +26,7 @@ interface Update {
   entityType: string;
 }
 
-interface ContentRating {
+export interface ContentRating {
   id: number;
   name: string;
   country: string;
