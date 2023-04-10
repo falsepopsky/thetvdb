@@ -1,7 +1,7 @@
 {
   "name": "@untidy/thetvdb",
   "description": "fully-typed client for accessing the TheTVDB API V4 for Node.js",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "type": "module",
   "exports": "./dist/index.js",
   "files": [
