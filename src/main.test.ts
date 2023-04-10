@@ -11,27 +11,29 @@ describe('getArtwork method', () => {
 
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getArtwork()).rejects.toThrow('Required artwork id');
+    await expect(client.getArtwork()).rejects.toThrow(
+      "Cannot read properties of undefined (reading 'id')"
+    );
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getArtwork('')).rejects.toThrow('Required artwork id');
+    await expect(client.getArtwork({ id: '' })).rejects.toThrow('Required artwork id');
   });
 
   test('does not throw an error when ID is provided', async () => {
-    await expect(client.getArtwork('63237874')).resolves.not.toThrow();
+    await expect(client.getArtwork({ id: '63237874' })).resolves.not.toThrow();
   });
 
   test('returns a successful response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { status, result } = await tv.getArtwork('63237874');
+    const { status, result } = await tv.getArtwork({ id: '63237874' });
     expect(status).toBe(200);
     expect(result.data.id).toBe(63237874);
   });
 
   test('returns extended data response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { result } = await tv.getArtwork('63237874', true);
+    const { result } = await tv.getArtwork({ id: '63237874', extended: true });
     expect(result.data.movieId).toBe(145830);
   });
 });

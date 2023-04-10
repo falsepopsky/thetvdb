@@ -154,7 +154,8 @@ interface Season {
 }
 
 type GetCharacter = BaseResponse<Character>;
-type Artwork<T extends boolean> = T extends true
+
+type GetArtwork<T extends boolean> = T extends true
   ? BaseResponse<ArtworkExtended>
   : BaseResponse<ArtworkBase>;
 
@@ -165,17 +166,17 @@ type GetEpisode<E extends boolean, M> = E extends true
   : BaseResponse<Episode>;
 
 export class TheTVDB extends Base {
-  public async getArtwork<T extends boolean = false>(
-    id: string,
-    extended: T = false as T
-  ): Promise<FetchResult<Artwork<T>>> {
-    this.validateInput(id, 'Required artwork id');
+  public async getArtwork<T extends boolean>(query: {
+    id: string;
+    extended?: T;
+  }): Promise<FetchResult<GetArtwork<T>>> {
+    this.validateInput(query.id, 'Required artwork id');
 
-    let endpoint = this.api + '/v4/artwork/' + id;
+    let endpoint = this.api + '/v4/artwork/' + query.id;
 
-    if (extended) endpoint += '/extended';
+    if (typeof query.extended === 'boolean' && query.extended) endpoint += '/extended';
 
-    const data = await this.fetcher<Artwork<T>>(endpoint);
+    const data = await this.fetcher<GetArtwork<T>>(endpoint);
 
     return data;
   }
