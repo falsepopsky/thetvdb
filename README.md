@@ -32,7 +32,7 @@ console.log(status, result);
 ## :page_facing_up: Docs
 
 - API
-- [Supported endpoints](./docs/endpoints.md)
+- [Supported endpoints](https://github.com/falsepopsky/thetvdb/blob/main/docs/endpoints.md)
 - Examples
 
 ## :scroll: License
