@@ -27,9 +27,6 @@ jobs:
           node-version: 18.x
           cache: pnpm
 
-      - name: add npm token to .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
