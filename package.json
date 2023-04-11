@@ -13,7 +13,7 @@
   "author": "falsepopsky",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "dev": "cd src/ && tsx playground.ts",
+    "dev": "tsx src/playground.ts",
     "format": "prettier --cache -w .",
     "lint": "eslint . --cache --cache-location \"./node_modules/.cache/eslint/\"",
     "clean:workspace": "rm -rf node_modules dist",
