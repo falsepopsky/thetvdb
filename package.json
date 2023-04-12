@@ -3,6 +3,7 @@
   "description": "fully-typed client for accessing the TheTVDB API V4 for Node.js",
   "version": "0.0.2",
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": "./dist/index.js",
   "files": [
     "dist"
