@@ -1,0 +1,14 @@
+{
+  "name": "thetvdb-js",
+  "description": "ESM JS TEMPLATE",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "falsepopsky",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@untidy/thetvdb": "latest"
+  }
+}
