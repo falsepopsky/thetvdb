@@ -15,11 +15,10 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8.2.0
+          version: 8.3.1
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -33,7 +32,8 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          title: 'Release new @untidy/thetvdb version'
+          title: 'chore(release): new @untidy/thetvdb version'
+          commit: 'chore(release): publish new version'
           publish: pnpm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
