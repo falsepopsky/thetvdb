@@ -105,3 +105,45 @@ describe('getEpisode method', () => {
     expect(data.translations.nameTranslations[0]?.name).toBe('Schwarzer Ritter');
   });
 });
+
+describe('getPeople method', () => {
+  let client: TheTVDB;
+
+  beforeEach(() => {
+    client = new TheTVDB('test-token');
+  });
+
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(client.getPeople()).rejects.toThrow(
+      "Cannot read properties of undefined (reading 'id')"
+    );
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(client.getPeople({ id: '' })).rejects.toThrow('Required people id');
+  });
+
+  test('does not throw an error when ID is provided', async () => {
+    await expect(client.getPeople({ id: '312388' })).resolves.not.toThrow();
+  });
+
+  test('returns a successful response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { status, data } = await tv.getPeople({ id: '312388' });
+    expect(status).toBe('success');
+    expect(data.id).toBe(312388);
+  });
+
+  test('returns a extended response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { data } = await tv.getPeople({ id: '312388', extended: true });
+    expect(data.gender).toBe(1);
+  });
+
+  test('returns a extended & meta response', async () => {
+    const tv = new TheTVDB(TOKEN);
+    const { data } = await tv.getPeople({ id: '312388', extended: true, meta: true });
+    expect(data.translations.nameTranslations[0]?.name).toBe('Chris Pratt');
+  });
+});
