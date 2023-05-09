@@ -2,4 +2,4 @@
 '@untidy/thetvdb': patch
 ---
 
-add js & ts setup examples
+chore: add js & ts setup examples
