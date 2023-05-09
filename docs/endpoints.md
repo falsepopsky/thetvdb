@@ -1,23 +1,76 @@
-# Endpoints
+# :satellite: Endpoints
 
-List of supported endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/)
+List of endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/), The status of each
+endpoint is indicated by the following emojis:
 
-## TheTVDB
+- :no_entry_sign: This will never be implemented
+- :soon: In progress
+- :interrobang: Being evaluated for implementation
+- :white_check_mark: Supported
 
-| Endpoint                  |     Supported      | Method                                            |
-| :------------------------ | :----------------: | :------------------------------------------------ |
-| `/artwork/{id}`           | :heavy_check_mark: | `getArtwork({ id: "63237874" })`                  |
-| `/artwork/{id}/extended`  | :heavy_check_mark: | `getArtwork({ id: "63237874", extended: true })`  |
-| `/characters/{id}`        | :heavy_check_mark: | `getCharacter("64140522")`                        |
-| `/episodes/{id}`          | :heavy_check_mark: | `getEpisodes({ id: "64140522" })`                 |
-| `/episodes/{id}/extended` | :heavy_check_mark: | `getEpisodes({ id: "64140522", extended: true })` |
-
-## TheTVDBExtended
-
-| Endpoint           |     Supported      | Method                                |
-| :----------------- | :----------------: | :------------------------------------ |
-| `/content/ratings` | :heavy_check_mark: | `getContentRatings()`                 |
-| `/countries`       | :heavy_check_mark: | `getCountries()`                      |
-| `/genres`          | :heavy_check_mark: | `getGenres()`                         |
-| `/languages`       | :heavy_check_mark: | `getLanguages()`                      |
-| `/updates`         | :heavy_check_mark: | `getUpdates({ since: '1677780034' })` |
+| Endpoint                                     |       Status       |
+| :------------------------------------------- | :----------------: |
+| `/login`                                     |  :no_entry_sign:   |
+| `/artwork/{id}`                              | :white_check_mark: |
+| `/artwork/{id}/extended`                     | :white_check_mark: |
+| `/artwork/statuses`                          |  :no_entry_sign:   |
+| `/awards`                                    |  :no_entry_sign:   |
+| `/awards/{id}`                               |  :no_entry_sign:   |
+| `/awards/{id}/extended`                      |  :no_entry_sign:   |
+| `/awards/categories/{id}`                    |  :no_entry_sign:   |
+| `/awards/categories/{id}/extended`           |   :interrobang:    |
+| `/characters/{id}`                           | :white_check_mark: |
+| `/companies`                                 |   :interrobang:    |
+| `/companies/types`                           |  :no_entry_sign:   |
+| `/companies/{id}`                            |   :interrobang:    |
+| `/content/ratings`                           | :white_check_mark: |
+| `/countries`                                 | :white_check_mark: |
+| `/entities`                                  |  :no_entry_sign:   |
+| `/episodes`                                  |  :no_entry_sign:   |
+| `/episodes/{id}`                             | :white_check_mark: |
+| `/episodes/{id}/extended`                    | :white_check_mark: |
+| `/episodes/{id}/translations/{language}`     |  :no_entry_sign:   |
+| `/genders`                                   |  :no_entry_sign:   |
+| `/genres`                                    | :white_check_mark: |
+| `/genres/{id}`                               |  :no_entry_sign:   |
+| `/inspiration/types`                         |  :no_entry_sign:   |
+| `/languages`                                 | :white_check_mark: |
+| `/lists`                                     |  :no_entry_sign:   |
+| `/lists/{id}`                                |  :no_entry_sign:   |
+| `/lists/slug/{slug}`                         |  :no_entry_sign:   |
+| `/lists/{id}/extended`                       |  :no_entry_sign:   |
+| `/lists/{id}/translations/{language}`        |  :no_entry_sign:   |
+| `/movies`                                    |   :interrobang:    |
+| `/movies/{id}`                               |       :soon:       |
+| `/movies/{id}/extended`                      |       :soon:       |
+| `/movies/filter`                             |       :soon:       |
+| `/movies/slug/{slug}`                        |  :no_entry_sign:   |
+| `/movies/{id}/translations/{language}`       |  :no_entry_sign:   |
+| `/movies/statuses`                           |  :no_entry_sign:   |
+| `/people`                                    |   :interrobang:    |
+| `/people/{id}`                               |       :soon:       |
+| `/people/{id}/extended`                      |       :soon:       |
+| `/people/{id}/translations/{language}`       |  :no_entry_sign:   |
+| `/people/types`                              |  :no_entry_sign:   |
+| `/search`                                    |       :soon:       |
+| `/search/remoteid/{remoteId}`                |  :no_entry_sign:   |
+| `/seasons`                                   |   :interrobang:    |
+| `/seasons/{id}`                              |       :soon:       |
+| `/seasons/{id}/extended`                     |       :soon:       |
+| `/seasons/types`                             |  :no_entry_sign:   |
+| `/seasons/{id}/translations/{language}`      |  :no_entry_sign:   |
+| `/series`                                    |   :interrobang:    |
+| `/series/{id}`                               |       :soon:       |
+| `/series/{id}/artworks`                      |   :interrobang:    |
+| `/series/{id}/nextAired`                     |   :interrobang:    |
+| `/series/{id}/extended`                      |   :interrobang:    |
+| `/series/{id}/episodes/{season-type}`        |   :interrobang:    |
+| `/series/{id}/episodes/{season-type}/{lang}` |   :interrobang:    |
+| `/series/filter`                             |   :interrobang:    |
+| `/series/slug/{slug}`                        |   :interrobang:    |
+| `/series/{id}/translations/{language}`       |   :interrobang:    |
+| `/sources/types`                             |  :no_entry_sign:   |
+| `/updates`                                   | :white_check_mark: |
+| `/user`                                      |  :no_entry_sign:   |
+| `/user/{id}`                                 |  :no_entry_sign:   |
+| `/user/favorites`                            |  :no_entry_sign:   |
