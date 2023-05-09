@@ -26,15 +26,14 @@ describe('getArtwork method', () => {
 
   test('returns a successful response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { status, result } = await tv.getArtwork({ id: '63237874' });
-    expect(status).toBe(200);
-    expect(result.data.id).toBe(63237874);
+    const { data } = await tv.getArtwork({ id: '63237874' });
+    expect(data.id).toBe(63237874);
   });
 
   test('returns extended data response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { result } = await tv.getArtwork({ id: '63237874', extended: true });
-    expect(result.data.movieId).toBe(145830);
+    const { data } = await tv.getArtwork({ id: '63237874', extended: true });
+    expect(data.movieId).toBe(145830);
   });
 });
 
@@ -60,13 +59,12 @@ describe('getCharacter method', () => {
 
   test('returns a successful response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { status, result } = await tv.getCharacter('64140522');
-    expect(status).toBe(200);
-    expect(result.data.id).toBe(64140522);
+    const { data } = await tv.getCharacter('64140522');
+    expect(data.id).toBe(64140522);
   });
 });
 
-describe('getEpisodes method', () => {
+describe('getEpisode method', () => {
   let client: TheTVDB;
 
   beforeEach(() => {
@@ -75,37 +73,35 @@ describe('getEpisodes method', () => {
 
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getEpisodes()).rejects.toThrow(
+    await expect(client.getEpisode()).rejects.toThrow(
       "Cannot read properties of undefined (reading 'id')"
     );
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getEpisodes({ id: '' })).rejects.toThrow('Required episode id');
+    await expect(client.getEpisode({ id: '' })).rejects.toThrow('Required episode id');
   });
 
   test('does not throw an error when ID is provided', async () => {
-    await expect(client.getEpisodes({ id: '127396' })).resolves.not.toThrow();
+    await expect(client.getEpisode({ id: '127396' })).resolves.not.toThrow();
   });
 
   test('returns a successful response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { status, result } = await tv.getEpisodes({ id: '127396' });
-    expect(status).toBe(200);
-    expect(result.data.id).toBe(127396);
+    const { status, data } = await tv.getEpisode({ id: '127396' });
+    expect(status).toBe('success');
+    expect(data.id).toBe(127396);
   });
 
   test('returns a extended response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { status, result } = await tv.getEpisodes({ id: '127396', extended: true });
-    expect(status).toBe(200);
-    expect(result.data.nominations).toBeNull();
+    const { data } = await tv.getEpisode({ id: '127396', extended: true });
+    expect(data.nominations).toBeNull();
   });
 
   test('returns a extended & meta response', async () => {
     const tv = new TheTVDB(TOKEN);
-    const { status, result } = await tv.getEpisodes({ id: '127396', extended: true, meta: true });
-    expect(status).toBe(200);
-    expect(result.data.translations.nameTranslations[0]?.name).toBe('Schwarzer Ritter');
+    const { data } = await tv.getEpisode({ id: '127396', extended: true, meta: true });
+    expect(data.translations.nameTranslations[0]?.name).toBe('Schwarzer Ritter');
   });
 });

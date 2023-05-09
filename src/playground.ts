@@ -11,6 +11,6 @@ dotenv.config({ path: ENVFILE });
 const TOKEN = process.env.TVDB_API_TOKEN;
 const clientExtended = new TheTVDBExtended(TOKEN);
 
-const { result } = await clientExtended.getLanguages();
+const { data } = await clientExtended.getLanguages();
 
-console.log(result);
+console.log(data);

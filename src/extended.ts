@@ -1,11 +1,8 @@
-import { Base, type FetchResult } from './core.js';
+import { Base } from './core.js';
 
-interface BaseResponse<T> {
+interface DataLink<T> {
   status: string;
   data: T;
-}
-
-interface ResponseWithLinks<T> extends BaseResponse<T> {
   links: {
     prev: string | null;
     self: string;
@@ -15,26 +12,19 @@ interface ResponseWithLinks<T> extends BaseResponse<T> {
   };
 }
 
-interface Update {
-  recordType: string;
-  recordId: number;
-  methodInt: number;
-  method: string;
-  extraInfo: string;
-  userId: number;
-  timeStamp: number;
-  entityType: string;
-}
+export type Data<T> = Omit<DataLink<T>, 'links'>;
 
-export interface ContentRating {
-  id: number;
-  name: string;
-  country: string;
-  description: string;
-  contentType: string;
-  order: number;
-  fullName: string;
-}
+type Update = {
+  [key in 'recordType' | 'method' | 'extraInfo' | 'entityType' | 'mergeToType']: string;
+} & {
+  [key in 'recordId' | 'methodInt' | 'userId' | 'timeStamp' | 'mergeToId' | 'seriesId']: number;
+};
+
+export type ContentRating = {
+  [key in 'name' | 'country' | 'description' | 'contentType' | 'fullName']: string;
+} & {
+  [key in 'id' | 'order']: number;
+};
 
 interface Genre {
   id: number;
@@ -42,24 +32,11 @@ interface Genre {
   slug: string;
 }
 
-interface Language {
-  id: string;
-  name: string;
-  nativeName: string;
-  shortCode: string | null;
-}
+type Language = {
+  [key in 'id' | 'name' | 'nativeName' | 'shortCode']: string;
+};
 
-interface Country {
-  id: string;
-  name: string;
-  shortCode: string;
-}
-
-type ContentRatings = BaseResponse<ContentRating[]>;
-type Countries = BaseResponse<Country[]>;
-type Genres = BaseResponse<Genre[]>;
-type Languages = BaseResponse<Language[]>;
-type UpdateWithLinks = ResponseWithLinks<Update[] | null[]>;
+type Country = Omit<Language, 'nativeName'>;
 
 type Entities =
   | 'artwork'
@@ -97,33 +74,31 @@ type Entities =
   | 'translatedseasons'
   | 'translatedserierk';
 
+type GetContentRatings = Data<ContentRating[]>;
+type GetCountries = Data<Country[]>;
+type GetGenres = Data<Genre[]>;
+type GetLanguages = Data<Language[]>;
+type GetUpdates = DataLink<Update[] | null[]>;
+
 export class TheTVDBExtended extends Base {
-  public async getContentRatings(): Promise<FetchResult<ContentRatings>> {
+  public async getContentRatings(): Promise<GetContentRatings> {
     const endpoint = this.api + '/v4/content/ratings';
-    const data = await this.fetcher<ContentRatings>(endpoint);
-
-    return data;
+    return await this.fetcher<GetContentRatings>(endpoint);
   }
 
-  public async getCountries(): Promise<FetchResult<Countries>> {
+  public async getCountries(): Promise<GetCountries> {
     const endpoint = this.api + '/v4/countries';
-    const data = await this.fetcher<Countries>(endpoint);
-
-    return data;
+    return await this.fetcher<GetCountries>(endpoint);
   }
 
-  public async getGenres(): Promise<FetchResult<Genres>> {
+  public async getGenres(): Promise<GetGenres> {
     const endpoint = this.api + '/v4/genres';
-    const data = await this.fetcher<Genres>(endpoint);
-
-    return data;
+    return await this.fetcher<GetGenres>(endpoint);
   }
 
-  public async getLanguages(): Promise<FetchResult<Languages>> {
+  public async getLanguages(): Promise<GetLanguages> {
     const endpoint = this.api + '/v4/languages';
-    const data = await this.fetcher<Languages>(endpoint);
-
-    return data;
+    return await this.fetcher<GetLanguages>(endpoint);
   }
 
   public async getUpdates(options: {
@@ -131,12 +106,10 @@ export class TheTVDBExtended extends Base {
     type?: Entities;
     action?: 'create' | 'delete' | 'update';
     page?: string;
-  }): Promise<FetchResult<UpdateWithLinks>> {
+  }): Promise<GetUpdates> {
     this.validateInput(options.since, 'Required since option');
 
     const endpoint = this.createQuery('/v4/updates', options);
-    const data = await this.fetcher<UpdateWithLinks>(endpoint);
-
-    return data;
+    return await this.fetcher<GetUpdates>(endpoint);
   }
 }
