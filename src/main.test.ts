@@ -147,3 +147,42 @@ describe('getPeople method', () => {
     expect(data.translations.nameTranslations[0]?.name).toBe('Chris Pratt');
   });
 });
+
+describe('getSearch method', () => {
+  let client: TheTVDB;
+
+  beforeEach(() => {
+    client = new TheTVDB(TOKEN);
+  });
+
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter query
+    await expect(client.getSearch()).rejects.toThrow(
+      "Cannot read properties of undefined (reading 'query')"
+    );
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(client.getSearch({ query: '' })).rejects.toThrow('Required search query');
+  });
+
+  test('does not throw an error when ID is provided', async () => {
+    await expect(client.getSearch({ query: 'saint seiya' })).resolves.not.toThrow();
+  });
+
+  test('returns a successful response', async () => {
+    const { status, data } = await client.getSearch({ query: 'saint seiya' });
+    expect(status).toBe('success');
+    expect(data[0]?.objectID).toBe('movie-11813');
+  });
+
+  test('returns a series type response', async () => {
+    const { data } = await client.getSearch({ query: 'saint seiya', type: 'series' });
+    expect(data[0]?.type).toBe('series');
+  });
+
+  test('limits the lenght with 1', async () => {
+    const { data } = await client.getSearch({ query: 'saint seiya', type: 'series', limit: '1' });
+    expect(data).toHaveLength(1);
+  });
+});
