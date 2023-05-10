@@ -26,7 +26,7 @@ endpoint is indicated by the following emojis:
 | `/content/ratings`                           | :white_check_mark: |
 | `/countries`                                 | :white_check_mark: |
 | `/entities`                                  |  :no_entry_sign:   |
-| `/episodes`                                  |  :no_entry_sign:   |
+| `/episodes`                                  |   :interrobang:    |
 | `/episodes/{id}`                             | :white_check_mark: |
 | `/episodes/{id}/extended`                    | :white_check_mark: |
 | `/episodes/{id}/translations/{language}`     |  :no_entry_sign:   |
@@ -35,7 +35,7 @@ endpoint is indicated by the following emojis:
 | `/genres/{id}`                               |  :no_entry_sign:   |
 | `/inspiration/types`                         |  :no_entry_sign:   |
 | `/languages`                                 | :white_check_mark: |
-| `/lists`                                     |  :no_entry_sign:   |
+| `/lists`                                     |   :interrobang:    |
 | `/lists/{id}`                                |  :no_entry_sign:   |
 | `/lists/slug/{slug}`                         |  :no_entry_sign:   |
 | `/lists/{id}/extended`                       |  :no_entry_sign:   |
@@ -48,11 +48,11 @@ endpoint is indicated by the following emojis:
 | `/movies/{id}/translations/{language}`       |  :no_entry_sign:   |
 | `/movies/statuses`                           |  :no_entry_sign:   |
 | `/people`                                    |   :interrobang:    |
-| `/people/{id}`                               |       :soon:       |
-| `/people/{id}/extended`                      |       :soon:       |
+| `/people/{id}`                               | :white_check_mark: |
+| `/people/{id}/extended`                      | :white_check_mark: |
 | `/people/{id}/translations/{language}`       |  :no_entry_sign:   |
 | `/people/types`                              |  :no_entry_sign:   |
-| `/search`                                    |       :soon:       |
+| `/search`                                    | :white_check_mark: |
 | `/search/remoteid/{remoteId}`                |  :no_entry_sign:   |
 | `/seasons`                                   |   :interrobang:    |
 | `/seasons/{id}`                              |       :soon:       |
