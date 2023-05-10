@@ -1,5 +1,11 @@
 # @untidy/thetvdb
 
+## 0.0.4
+
+### Patch Changes
+
+- d864df3: release missing patch version
+
 ## 0.0.3
 
 ### Patch Changes
