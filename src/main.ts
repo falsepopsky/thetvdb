@@ -1,5 +1,5 @@
 import { Base } from './core.js';
-import type { ContentRating, Data } from './extended.js';
+import type { ContentRating, Data, DataLink } from './extended.js';
 
 type NameImageYear = {
   [key in 'name' | 'image' | 'year']: string;
@@ -177,6 +177,57 @@ interface Season {
   year?: string;
 }
 
+type SearchKeys = {
+  [key in
+    | 'type'
+    | 'year'
+    | 'company'
+    | 'country'
+    | 'director'
+    | 'language'
+    | 'primaryType'
+    | 'network'
+    | 'remote_id'
+    | 'offset'
+    | 'limit']: string;
+};
+
+type SearchOptions = Partial<SearchKeys> & {
+  query: string;
+};
+
+type SearchStringKeys =
+  | 'country'
+  | 'director'
+  | 'extended_title'
+  | 'first_air_time'
+  | 'id'
+  | 'image_url'
+  | 'name'
+  | 'network'
+  | 'objectID'
+  | 'overview'
+  | 'primary_language'
+  | 'primary_type'
+  | 'status'
+  | 'slug'
+  | 'thumbnail'
+  | 'tvdb_id'
+  | 'type'
+  | 'year';
+
+type SearchArrayStringKeys = 'aliases' | 'genres' | 'studios';
+
+type Search = {
+  [key in SearchStringKeys]: string;
+} & {
+  [key in SearchArrayStringKeys]: string[];
+} & {
+  overviews: Record<string, string>;
+  translations: Record<string, string>;
+  remote_ids: RemoteId[];
+};
+
 type GetCharacter = Data<Character>;
 
 type GetArtwork<T extends boolean> = T extends true ? Data<ArtworkExtended> : Data<ArtworkBase>;
@@ -193,6 +244,8 @@ type GetPeople<E extends boolean, M> = E extends true
     : Data<PeopleExtended>
   : Data<People>;
 
+type GetSearch = DataLink<Search[]>;
+
 export class TheTVDB extends Base {
   public async getArtwork<T extends boolean>(options: {
     id: string;
@@ -208,8 +261,8 @@ export class TheTVDB extends Base {
 
   public async getCharacter(id: string): Promise<GetCharacter> {
     this.validateInput(id, 'Required character id');
-
     const endpoint = this.api + '/v4/characters/' + id;
+
     return await this.fetcher<GetCharacter>(endpoint);
   }
 
@@ -243,5 +296,12 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetPeople<E, M>>(endpoint);
+  }
+
+  public async getSearch(options: SearchOptions): Promise<GetSearch> {
+    this.validateInput(options.query, 'Required search query');
+    const endpoint = this.createQuery('/v4/search', options);
+
+    return await this.fetcher<GetSearch>(endpoint);
   }
 }

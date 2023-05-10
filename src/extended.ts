@@ -1,6 +1,6 @@
 import { Base } from './core.js';
 
-interface DataLink<T> {
+export interface DataLink<T> {
   status: string;
   data: T;
   links: {

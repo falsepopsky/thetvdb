@@ -51,9 +51,9 @@ import { TheTVDB } from '@untidy/thetvdb';
 
 const token = 'your secret jwt token';
 const client = new TheTVDB(token);
-const { status, result } = await client.getCharacter('64140522');
+const { data } = await client.getCharacter('64140522');
 
-console.log(status, result);
+console.log(data);
 ```
 
 ## :page_facing_up: Docs
