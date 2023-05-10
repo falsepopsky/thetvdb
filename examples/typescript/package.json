@@ -1,0 +1,18 @@
+{
+  "name": "thetvdb-ts",
+  "description": "TS TEMPLATE",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "falsepopsky",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "@untidy/thetvdb": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}

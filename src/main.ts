@@ -1,11 +1,9 @@
-import { Base, type FetchResult } from './core.js';
-import type { ContentRating } from './extended.js';
+import { Base } from './core.js';
+import type { ContentRating, Data } from './extended.js';
 
 type NameImageYear = {
-  name: string;
-  image: string;
-  year: string;
-} | null;
+  [key in 'name' | 'image' | 'year']: string;
+};
 
 interface SeasonType {
   id: number;
@@ -22,15 +20,26 @@ type TagTypes = Array<{
   helpText: string | null;
 } | null>;
 
+interface DefaultTranslation {
+  name: string;
+  overview: string;
+  language: string;
+  aliases?: string[];
+  isAlias?: boolean;
+  isPrimary?: boolean;
+  tagline?: string;
+}
+
+interface Translations {
+  nameTranslations: DefaultTranslation[];
+  overviewTranslations: DefaultTranslation[];
+  aliases: string[] | null;
+}
+
 interface RemoteId {
   id: string;
   type: number;
   sourceName: string;
-}
-
-interface BaseResponse<T> {
-  status: string;
-  data: T;
 }
 
 interface ArtworkBase {
@@ -64,10 +73,10 @@ interface Character {
   name: string | null;
   peopleId: number;
   seriesId: number | null;
-  series: NameImageYear;
-  movie: NameImageYear;
+  series: NameImageYear | null;
+  movie: NameImageYear | null;
   movieId: number | null;
-  episode?: NameImageYear;
+  episode?: NameImageYear | null;
   episodeId: number | null;
   type: number;
   image: string | null;
@@ -85,6 +94,26 @@ interface Character {
   tagOptions: TagTypes;
   personImgURL: string | null;
 }
+
+type PeopleKeys = 'id' | 'name' | 'image' | 'nameTranslations' | 'overviewTranslations' | 'aliases';
+
+type People = Pick<Character, PeopleKeys>;
+
+type PeopleTranslation = People & {
+  birth: string | null;
+  death: string | null;
+  birthPlace: string | null;
+  remoteIds: RemoteId[];
+  gender: number;
+  characters: Character[];
+  biographies: Array<{ biography: string; language: string } | null>;
+  awards: unknown;
+  tagOptions: TagTypes;
+  translations: Translations;
+  slug: string;
+};
+
+type PeopleExtended = Omit<PeopleTranslation, 'translations'>;
 
 interface Episode {
   id: number;
@@ -110,7 +139,7 @@ interface Episode {
   linkedMovie?: number;
 }
 
-interface EpisodeExtended extends Episode {
+interface EpisodeTranslation extends Episode {
   productionCode: string;
   nominations: unknown;
   characters: Character[];
@@ -122,15 +151,10 @@ interface EpisodeExtended extends Episode {
   studios: unknown;
   companies: unknown;
   awards: unknown;
+  translations: Translations;
 }
 
-interface EpisodeTranslation extends EpisodeExtended {
-  translations: {
-    nameTranslations: Array<{ name: string; language: string }>;
-    overviewTranslations: Array<{ overview: string; language: string }>;
-    aliases: string[] | null;
-  };
-}
+type EpisodeExtended = Omit<EpisodeTranslation, 'translations'>;
 
 interface Season {
   id: number;
@@ -153,58 +177,71 @@ interface Season {
   year?: string;
 }
 
-type GetCharacter = BaseResponse<Character>;
+type GetCharacter = Data<Character>;
 
-type GetArtwork<T extends boolean> = T extends true
-  ? BaseResponse<ArtworkExtended>
-  : BaseResponse<ArtworkBase>;
+type GetArtwork<T extends boolean> = T extends true ? Data<ArtworkExtended> : Data<ArtworkBase>;
 
 type GetEpisode<E extends boolean, M> = E extends true
   ? M extends true
-    ? BaseResponse<EpisodeTranslation>
-    : BaseResponse<EpisodeExtended>
-  : BaseResponse<Episode>;
+    ? Data<EpisodeTranslation>
+    : Data<EpisodeExtended>
+  : Data<Episode>;
+
+type GetPeople<E extends boolean, M> = E extends true
+  ? M extends true
+    ? Data<PeopleTranslation>
+    : Data<PeopleExtended>
+  : Data<People>;
 
 export class TheTVDB extends Base {
-  public async getArtwork<T extends boolean>(query: {
+  public async getArtwork<T extends boolean>(options: {
     id: string;
     extended?: T;
-  }): Promise<FetchResult<GetArtwork<T>>> {
-    this.validateInput(query.id, 'Required artwork id');
+  }): Promise<GetArtwork<T>> {
+    this.validateInput(options.id, 'Required artwork id');
+    let endpoint = this.api + '/v4/artwork/' + options.id;
 
-    let endpoint = this.api + '/v4/artwork/' + query.id;
+    if (typeof options.extended === 'boolean' && options.extended) endpoint += '/extended';
 
-    if (typeof query.extended === 'boolean' && query.extended) endpoint += '/extended';
-
-    const data = await this.fetcher<GetArtwork<T>>(endpoint);
-
-    return data;
+    return await this.fetcher<GetArtwork<T>>(endpoint);
   }
 
-  public async getCharacter(id: string): Promise<FetchResult<GetCharacter>> {
+  public async getCharacter(id: string): Promise<GetCharacter> {
     this.validateInput(id, 'Required character id');
 
     const endpoint = this.api + '/v4/characters/' + id;
-    const data = await this.fetcher<GetCharacter>(endpoint);
-
-    return data;
+    return await this.fetcher<GetCharacter>(endpoint);
   }
 
-  public async getEpisodes<E extends boolean, M extends boolean>(query: {
+  public async getEpisode<E extends boolean, M extends boolean>(options: {
     id: string;
     extended?: E;
     meta?: M;
-  }): Promise<FetchResult<GetEpisode<E, M>>> {
-    this.validateInput(query.id, 'Required episode id');
-    let endpoint = this.api + '/v4/episodes/' + query.id;
+  }): Promise<GetEpisode<E, M>> {
+    this.validateInput(options.id, 'Required episode id');
+    let endpoint = this.api + '/v4/episodes/' + options.id;
 
-    if (typeof query.extended === 'boolean' && query.extended) {
+    if (typeof options.extended === 'boolean' && options.extended) {
       endpoint += '/extended';
-      (query.meta ?? false) && (endpoint += '?meta=translations');
+      (options.meta ?? false) && (endpoint += '?meta=translations');
     }
 
-    const data = await this.fetcher<GetEpisode<E, M>>(endpoint);
+    return await this.fetcher<GetEpisode<E, M>>(endpoint);
+  }
 
-    return data;
+  public async getPeople<E extends boolean, M extends boolean>(options: {
+    id: string;
+    extended?: E;
+    meta?: M;
+  }): Promise<GetPeople<E, M>> {
+    this.validateInput(options.id, 'Required people id');
+    let endpoint = this.api + '/v4/people/' + options.id;
+
+    if (typeof options.extended === 'boolean' && options.extended) {
+      endpoint += '/extended';
+      (options.meta ?? false) && (endpoint += '?meta=translations');
+    }
+
+    return await this.fetcher<GetPeople<E, M>>(endpoint);
   }
 }
