@@ -1,7 +1,6 @@
 import { TheTVDB } from './index.js';
 
-const TOKEN = process.env.TVDB_API_TOKEN;
-const client = new TheTVDB(TOKEN);
+const client = new TheTVDB('fake token');
 
 describe('getArtwork method', () => {
   it('throws an error if no id is provided', async () => {
@@ -56,22 +55,20 @@ describe('getEpisode method', () => {
     await expect(client.getEpisode({ id: '' })).rejects.toThrow('Required episode id');
   });
 
-  test('returns a successful response', async () => {
+  it('returns a successful response', async () => {
     const { status, data } = await client.getEpisode({ id: '127396' });
     expect(status).toBe('success');
     expect(data.id).toBe(127396);
   });
 
-  test('returns a extended response', async () => {
-    const tv = new TheTVDB(TOKEN);
-    const { data } = await tv.getEpisode({ id: '127396', extended: true });
+  it('returns a extended response', async () => {
+    const { data } = await client.getEpisode({ id: '127396', extended: true });
     expect(data.nominations).toBeNull();
     expect(data.seriesId).toBe(73752);
   });
 
-  test('returns a extended & meta response', async () => {
-    const tv = new TheTVDB(TOKEN);
-    const { data } = await tv.getEpisode({ id: '127396', extended: true, meta: true });
+  it('returns a extended & meta response', async () => {
+    const { data } = await client.getEpisode({ id: '127396', extended: true, meta: true });
     expect(data.translations.nameTranslations[0]?.name).toBe('Schwarzer Ritter');
   });
 });
@@ -88,20 +85,19 @@ describe('getPeople method', () => {
     await expect(client.getPeople({ id: '' })).rejects.toThrow('Required people id');
   });
 
-  test('returns a successful response', async () => {
+  it('returns a successful response', async () => {
     const { status, data } = await client.getPeople({ id: '312388' });
     expect(status).toBe('success');
     expect(data.id).toBe(312388);
   });
 
-  test('returns a extended response', async () => {
+  it('returns a extended response', async () => {
     const { data } = await client.getPeople({ id: '312388', extended: true });
     expect(data.gender).toBe(1);
   });
 
-  test('returns a extended & meta response', async () => {
-    const tv = new TheTVDB(TOKEN);
-    const { data } = await tv.getPeople({ id: '312388', extended: true, meta: true });
+  it('returns a extended & meta response', async () => {
+    const { data } = await client.getPeople({ id: '312388', extended: true, meta: true });
     expect(data.translations.nameTranslations[0]?.name).toBe('Chris Pratt');
   });
 });
