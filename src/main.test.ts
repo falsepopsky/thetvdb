@@ -129,5 +129,6 @@ describe('getSearch method', () => {
   test('limits the lenght with 1', async () => {
     const { data } = await client.getSearch({ query: 'saint seiya', type: 'series', limit: '1' });
     expect(data).toHaveLength(1);
+    expect(data[0]?.country).toBe('jpn');
   });
 });
