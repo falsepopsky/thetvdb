@@ -34,9 +34,6 @@
       }
     }
   },
-  "rules": {
-    "import/no-unresolved": "error"
-  },
   "overrides": [
     {
       "env": { "jest": true },

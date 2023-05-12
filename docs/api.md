@@ -54,9 +54,29 @@ The main class for @untidy/thetvdb
 | name     | type      | Required | Description                                                                    |
 | -------- | --------- | :------: | ------------------------------------------------------------------------------ |
 | options  | `object`  |   Yes    | An object containing the parameters for the query.                             |
-| id       | `string`  |   Yes    | The `id` of the episode.                                                       |
+| id       | `string`  |   Yes    | The people `id`.                                                               |
 | extended | `boolean` | Optional | If true, returns the extended record.                                          |
 | meta     | `boolean` | Optional | If `extended` & `meta` is true, returns the extended record with translations. |
+
+### getSearch
+
+> Returns a query search record(s).
+
+| name        | type     | Required | Description                                        |
+| ----------- | -------- | :------: | -------------------------------------------------- |
+| options     | `object` |   Yes    | An object containing the parameters for the query. |
+| query       | `string` |   Yes    | The primary search.                                |
+| type        | `string` | Optional | Restrict results to a specific entity type.        |
+| year        | `string` | Optional | Restrict results to a specific year.               |
+| company     | `string` | Optional | Restrict results to a specific company.            |
+| country     | `string` | Optional | Restrict results to a specific country of origin.  |
+| director    | `string` | Optional | Restrict results to a specific director.           |
+| language    | `string` | Optional | Restrict results to a specific primary language.   |
+| primaryType | `string` | Optional | Restrict results to a specific type of company.    |
+| network     | `string` | Optional | Restrict results to a specific network.            |
+| remote_id   | `string` | Optional | Search for a specific remote id.                   |
+| offset      | `string` | Optional | Offset results.                                    |
+| limit       | `string` | Optional | Limit results.                                     |
 
 ---
 
@@ -95,5 +115,5 @@ The extended class for @untidy/thetvdb
 | options | `object` |   Yes    | An object containing the parameters for the query.            |
 | since   | `string` |   Yes    | The timestamp to get updates in epoch Unix format in seconds. |
 | type    | `string` | Optional | The type of entities to return.                               |
-| action  | `action` | Optional | The type of action to return.                                 |
+| action  | `string` | Optional | The type of action to return.                                 |
 | page    | `string` | Optional | Selects the page of the current query. Defaults to `0`.       |
