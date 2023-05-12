@@ -140,7 +140,6 @@ describe('getSearch method', () => {
 
   test('returns a series type response', async () => {
     const { data } = await client.getSearch({ query: 'saint seiya', type: 'series' });
-    console.log(data);
     expect(data[0]?.type).toBe('series');
   });
 

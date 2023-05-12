@@ -235,7 +235,6 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
       );
     }
   }),
-
   rest.get('https://api4.thetvdb.com/v4/people/:id', async (req, res, ctx) => {
     return await res(
       ctx.json({
