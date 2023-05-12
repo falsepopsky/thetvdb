@@ -1,19 +1,6 @@
 import { TheTVDBExtended } from './index.js';
-import { server } from './mocks/server.js';
 
 const client = new TheTVDBExtended('fake token');
-
-beforeAll(() => {
-  server.listen();
-});
-
-afterEach(() => {
-  server.resetHandlers();
-});
-
-afterAll(() => {
-  server.close();
-});
 
 describe('getContentRatings method', () => {
   test('returns a successful response', async () => {
@@ -76,5 +63,14 @@ describe('getUpdates method', () => {
     expect(links.next).toBe(
       'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=3'
     );
+  });
+
+  test('returns deleted updates', async () => {
+    const { data } = await client.getUpdates({
+      since: '1682899200',
+      action: 'delete',
+    });
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.method).toBe('delete');
   });
 });

@@ -1,20 +1,7 @@
 import { TheTVDB } from './index.js';
-import { server } from './mocks/server.js';
 
 const TOKEN = process.env.TVDB_API_TOKEN;
 const client = new TheTVDB(TOKEN);
-
-beforeAll(() => {
-  server.listen();
-});
-
-afterEach(() => {
-  server.resetHandlers();
-});
-
-afterAll(() => {
-  server.close();
-});
 
 describe('getArtwork method', () => {
   it('throws an error if no id is provided', async () => {

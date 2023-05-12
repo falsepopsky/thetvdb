@@ -11,6 +11,7 @@ export default {
   },
   extensionsToTreatAsEsm: ['.ts'],
   setupFiles: ['dotenv/config'],
+  setupFilesAfterEnv: ['./jest.setup.js'],
   testTimeout: 20000,
   testMatch: ['**/?(*.)+(spec|test).+(ts|js)'],
   transform: {

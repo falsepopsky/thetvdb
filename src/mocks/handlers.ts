@@ -1,134 +1,28 @@
 import type { DefaultBodyType, MockedRequest, RestHandler } from 'msw';
 import { rest } from 'msw';
+import { contentRatings, countries, genres, languages, updates, updatesFull } from './response.js';
 
 export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
   rest.get('https://api4.thetvdb.com/v4/content/ratings', async (_req, res, ctx) => {
-    return await res(
-      ctx.json({
-        status: 'success',
-        data: [
-          {
-            id: 1,
-            name: 'ATP',
-            country: 'arg',
-            description: 'Suitable for all audiences',
-            contentType: 'episode',
-            order: 0,
-            fullname: 'ATP',
-          },
-          {
-            id: 2,
-            name: 'SAM13',
-            country: 'arg',
-            description: 'Suitable for ages 13 and up',
-            contentType: 'episode',
-            order: 0,
-            fullname: 'SAM13',
-          },
-        ],
-      })
-    );
+    return await res(ctx.json(contentRatings));
   }),
   rest.get('https://api4.thetvdb.com/v4/countries', async (_req, res, ctx) => {
-    return await res(
-      ctx.json({
-        status: 'success',
-        data: [
-          {
-            id: 'abw',
-            name: 'Aruba',
-            shortCode: '',
-          },
-          {
-            id: 'afg',
-            name: 'Afghanistan',
-            shortCode: '',
-          },
-        ],
-      })
-    );
+    return await res(ctx.json(countries));
   }),
   rest.get('https://api4.thetvdb.com/v4/genres', async (_req, res, ctx) => {
-    return await res(
-      ctx.json({
-        status: 'success',
-        data: [
-          {
-            id: 1,
-            name: 'Soap',
-            slug: 'soap',
-          },
-          {
-            id: 2,
-            name: 'Science Fiction',
-            slug: 'science-fiction',
-          },
-        ],
-      })
-    );
+    return await res(ctx.json(genres));
   }),
   rest.get('https://api4.thetvdb.com/v4/languages', async (_req, res, ctx) => {
-    return await res(
-      ctx.json({
-        status: 'success',
-        data: [
-          {
-            id: 'aar',
-            name: 'Afar',
-            nativeName: 'Afaraf',
-            shortCode: null,
-          },
-          {
-            id: 'zul',
-            name: 'Zulu',
-            nativeName: 'isiZulu',
-            shortCode: null,
-          },
-        ],
-      })
-    );
+    return await res(ctx.json(languages));
   }),
   rest.get('https://api4.thetvdb.com/v4/updates', async (req, res, ctx) => {
     if (
       req.url.href ===
       'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2'
     ) {
-      return await res(
-        ctx.json({
-          status: 'success',
-          data: [
-            {
-              recordType: '',
-              recordId: 979483,
-              methodInt: 2,
-              method: 'update',
-              extraInfo: '',
-              userId: 0,
-              timeStamp: 1683141951,
-              entityType: 'artwork',
-            },
-            {
-              recordType: '',
-              recordId: 63281354,
-              methodInt: 2,
-              method: 'update',
-              extraInfo: '',
-              userId: 0,
-              timeStamp: 1683143122,
-              entityType: 'artwork',
-            },
-          ],
-          links: {
-            prev: 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=1',
-            self: 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2',
-            next: 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=3',
-            total_items: 24965,
-            page_size: 500,
-          },
-        })
-      );
+      return await res(ctx.json(updatesFull));
     } else {
-      return await res(ctx.status(401));
+      return await res(ctx.json(updates));
     }
   }),
   rest.get('https://api4.thetvdb.com/v4/artwork/:id/extended', async (req, res, ctx) => {
@@ -216,9 +110,6 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
               nameTranslations: [
                 {
                   name: 'Chris Pratt',
-                  overview:
-                    "Christopher Michael Pratt is an American actor known for starring in both television and action films. He rose to prominence for his television roles, particularly as Andy Dwyer in the NBC sitcom Parks and Recreation (2009–2015), for which he received critical acclaim and was nominated for the Critics' Choice Television Award for Best Supporting Actor in a Comedy Series in 2013.",
-                  language: 'eng',
                 },
               ],
             },
