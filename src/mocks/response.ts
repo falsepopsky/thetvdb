@@ -181,6 +181,65 @@ const search = {
   ],
 };
 
+// https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations&short=true
+const movieEMS = {
+  data: {
+    translations: {
+      nameTranslations: [
+        {
+          name: 'El caso Figo: El fichaje del siglo',
+        },
+      ],
+      overviewTranslations: [
+        {
+          language: 'spa',
+        },
+      ],
+    },
+    characters: null,
+    artworks: null,
+    trailers: null,
+  },
+};
+
+// https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations
+const movieEM = {
+  data: { translations: { ...movieEMS.data.translations } },
+};
+
+// https://api4.thetvdb.com/v4/movies/3646/extended?short=true
+const movieES = {
+  data: {
+    characters: null,
+    artworks: null,
+    trailers: null,
+  },
+};
+
+// https://api4.thetvdb.com/v4/movies/3646/extended
+const movieE = {
+  data: {
+    trailers: [
+      {
+        id: 143117,
+        language: 'spa',
+      },
+      {
+        id: 143118,
+        language: 'eng',
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/movies/12586
+const movie = {
+  data: {
+    id: 12586,
+    slug: 'macross-do-you-remember-love',
+  },
+};
+
 export {
   contentRatings,
   countries,
@@ -200,4 +259,9 @@ export {
   searchTL,
   searchT,
   search,
+  movie,
+  movieES,
+  movieE,
+  movieEMS,
+  movieEM,
 };
