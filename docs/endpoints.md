@@ -41,8 +41,8 @@ endpoint is indicated by the following emojis:
 | `/lists/{id}/extended`                       |  :no_entry_sign:   |
 | `/lists/{id}/translations/{language}`        |  :no_entry_sign:   |
 | `/movies`                                    |   :interrobang:    |
-| `/movies/{id}`                               |       :soon:       |
-| `/movies/{id}/extended`                      |       :soon:       |
+| `/movies/{id}`                               | :white_check_mark: |
+| `/movies/{id}/extended`                      | :white_check_mark: |
 | `/movies/filter`                             |       :soon:       |
 | `/movies/slug/{slug}`                        |  :no_entry_sign:   |
 | `/movies/{id}/translations/{language}`       |  :no_entry_sign:   |
