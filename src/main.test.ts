@@ -73,6 +73,58 @@ describe('getEpisode method', () => {
   });
 });
 
+describe('getMovie method', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter query
+    await expect(client.getMovie()).rejects.toThrow(
+      "Cannot read properties of undefined (reading 'id')"
+    );
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(client.getMovie({ id: '' })).rejects.toThrow('Required movie id');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovie({ id: '12586' });
+    expect(data.id).toBe(12586);
+    expect(data.slug).toBe('macross-do-you-remember-love');
+  });
+
+  it('returns a extended response', async () => {
+    const { data } = await client.getMovie({ id: '12586', extended: true });
+    expect(data.trailers).toHaveLength(2);
+    expect(data.trailers[0]?.id).toBe(143117);
+  });
+
+  it('returns a extended & meta response', async () => {
+    const { data } = await client.getMovie({ id: '3646', extended: true, meta: true });
+    expect(data.translations.nameTranslations).toHaveLength(1);
+    expect(data.translations.overviewTranslations[0].language).toBe('spa');
+  });
+
+  it('returns a extended & short response', async () => {
+    const { data } = await client.getMovie({ id: '3646', extended: true, short: true });
+    expect(data.characters).toBeNull();
+    expect(data.artworks).toBeNull();
+    expect(data.trailers).toBeNull();
+  });
+
+  it('returns a extended, meta & short response', async () => {
+    const { data } = await client.getMovie({
+      id: '3646',
+      extended: true,
+      meta: true,
+      short: true,
+    });
+    expect(data.translations.nameTranslations).toHaveLength(1);
+    expect(data.translations.overviewTranslations[0].language).toBe('spa');
+    expect(data.characters).toBeNull();
+    expect(data.artworks).toBeNull();
+    expect(data.trailers).toBeNull();
+  });
+});
+
 describe('getPeople method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
@@ -130,58 +182,5 @@ describe('getSearch method', () => {
     const { data } = await client.getSearch({ query: 'saint seiya', type: 'series', limit: '1' });
     expect(data).toHaveLength(1);
     expect(data[0]?.country).toBe('jpn');
-  });
-});
-
-describe('getMovie method', () => {
-  it('throws an error if no id is provided', async () => {
-    // @ts-expect-error: expect a parameter query
-    await expect(client.getMovie()).rejects.toThrow(
-      "Cannot read properties of undefined (reading 'id')"
-    );
-  });
-
-  it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getMovie({ id: '' })).rejects.toThrow('Required movie id');
-  });
-
-  it('returns a successful response', async () => {
-    const { data } = await client.getMovie({ id: '12586' });
-    expect(data.id).toBe(12586);
-    expect(data.slug).toBe('macross-do-you-remember-love');
-  });
-
-  it('returns a extended response', async () => {
-    const { data } = await client.getMovie({ id: '12586', extended: true });
-    expect(data.trailers).toHaveLength(2);
-    expect(data.trailers[0]?.id).toBe(143117);
-  });
-
-  it('returns a extended & meta response', async () => {
-    const { data } = await client.getMovie({ id: '3646', extended: true, meta: true });
-    console.log(data);
-    expect(data.translations.nameTranslations).toHaveLength(1);
-    expect(data.translations.overviewTranslations[0].language).toBe('spa');
-  });
-
-  it('returns a extended & short response', async () => {
-    const { data } = await client.getMovie({ id: '3646', extended: true, short: true });
-    expect(data.characters).toBeNull();
-    expect(data.artworks).toBeNull();
-    expect(data.trailers).toBeNull();
-  });
-
-  it('returns a extended, meta & short response', async () => {
-    const { data } = await client.getMovie({
-      id: '3646',
-      extended: true,
-      meta: true,
-      short: true,
-    });
-    expect(data.translations.nameTranslations).toHaveLength(1);
-    expect(data.translations.overviewTranslations[0].language).toBe('spa');
-    expect(data.characters).toBeNull();
-    expect(data.artworks).toBeNull();
-    expect(data.trailers).toBeNull();
   });
 });

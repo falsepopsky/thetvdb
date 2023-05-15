@@ -27,7 +27,7 @@ export class Base {
     return new URL(path, this.api);
   }
 
-  protected createQuery<T extends Record<string, string>>(target: URL, obj: T): string {
+  protected createQuery(target: URL, obj: object): string {
     for (const [key, value] of Object.entries(obj)) {
       if (typeof value === 'string' && value.length >= 1) {
         target.searchParams.set(key, value);
