@@ -60,9 +60,7 @@ describe('getUpdates method', () => {
     expect(Array.isArray(data)).toBe(true);
     expect(data[0]?.method).toBe('update');
     expect(data).toHaveLength(2);
-    expect(links.next).toBe(
-      'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=3'
-    );
+    expect(links.next).toBe('https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=3');
   });
 
   test('returns deleted updates', async () => {

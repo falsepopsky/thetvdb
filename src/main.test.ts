@@ -5,9 +5,7 @@ const client = new TheTVDB('fake token');
 describe('getArtwork method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getArtwork()).rejects.toThrow(
-      "Cannot read properties of undefined (reading 'id')"
-    );
+    await expect(client.getArtwork()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
@@ -46,9 +44,7 @@ describe('getCharacter method', () => {
 describe('getEpisode method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getEpisode()).rejects.toThrow(
-      "Cannot read properties of undefined (reading 'id')"
-    );
+    await expect(client.getEpisode()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
@@ -76,9 +72,7 @@ describe('getEpisode method', () => {
 describe('getMovie method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter query
-    await expect(client.getMovie()).rejects.toThrow(
-      "Cannot read properties of undefined (reading 'id')"
-    );
+    await expect(client.getMovie()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
@@ -128,9 +122,7 @@ describe('getMovie method', () => {
 describe('getPeople method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getPeople()).rejects.toThrow(
-      "Cannot read properties of undefined (reading 'id')"
-    );
+    await expect(client.getPeople()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
@@ -157,9 +149,7 @@ describe('getPeople method', () => {
 describe('getSearch method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter query
-    await expect(client.getSearch()).rejects.toThrow(
-      "Cannot read properties of undefined (reading 'query')"
-    );
+    await expect(client.getSearch()).rejects.toThrow("Cannot read properties of undefined (reading 'query')");
   });
 
   it('throws an error if an empty id "string" is provided', async () => {

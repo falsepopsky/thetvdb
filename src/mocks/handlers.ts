@@ -40,10 +40,7 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
     return await res(ctx.json(languages));
   }),
   rest.get('https://api4.thetvdb.com/v4/updates', async (req, res, ctx) => {
-    if (
-      req.url.href ===
-      'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2'
-    ) {
+    if (req.url.href === 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2') {
       return await res(ctx.json(updatesFull));
     } else {
       return await res(ctx.json(updates));
