@@ -47,17 +47,6 @@ The main class for @untidy/thetvdb
 | extended | `boolean` | Optional | Returns the extended record.                                       |
 | meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
 
-### getPeople
-
-> Returns a people base or extended record
-
-| name     | type      | Required | Description                                                        |
-| -------- | --------- | :------: | ------------------------------------------------------------------ |
-| options  | `object`  |   Yes    | An object containing the parameters for the query.                 |
-| id       | `string`  |   Yes    | The people `id`.                                                   |
-| extended | `boolean` | Optional | Returns the extended record.                                       |
-| meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
-
 ### getMovie
 
 > Returns a movie base or extended record
@@ -69,6 +58,17 @@ The main class for @untidy/thetvdb
 | extended | `boolean` | Optional | Returns the extended record.                                       |
 | meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
 | short    | `boolean` | Optional | Returns the short version of the record (Requires extended).       |
+
+### getPeople
+
+> Returns a people base or extended record
+
+| name     | type      | Required | Description                                                        |
+| -------- | --------- | :------: | ------------------------------------------------------------------ |
+| options  | `object`  |   Yes    | An object containing the parameters for the query.                 |
+| id       | `string`  |   Yes    | The people `id`.                                                   |
+| extended | `boolean` | Optional | Returns the extended record.                                       |
+| meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
 
 ### getSearch
 
