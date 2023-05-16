@@ -1,5 +1,5 @@
 import { Base } from './core.js';
-import type { ContentRating, Data, DataLink } from './extended.js';
+import type { ContentRating, Data, DataLink, Genre } from './extended.js';
 
 type Aliases = Record<'language' | 'name', string>;
 
@@ -158,7 +158,7 @@ interface Movie extends SharedProps {
   runtime: number;
   status: {
     id: number;
-    keepUpdated: true;
+    keepUpdated: boolean;
     name: string;
     recordType: string;
   };
@@ -168,13 +168,7 @@ interface Movie extends SharedProps {
 
 interface MovieExtended extends Movie {
   trailers: Trailer[];
-  genres: [
-    {
-      id: number;
-      name: string;
-      slug: string;
-    }
-  ];
+  genres: Genre[];
   releases: Array<Record<'country' | 'date' | 'detail', string>>;
   artworks: Artwork[];
   remoteIds: RemoteId[];
@@ -198,9 +192,9 @@ interface MovieExtended extends Movie {
   first_release: Record<'country' | 'date' | 'detail', string>;
 }
 
-type MovieExtendedMeta = MovieExtended & {
+interface MovieExtendedMeta extends MovieExtended {
   translations: Translations;
-};
+}
 
 interface MovieShort {
   characters: null;
@@ -221,8 +215,8 @@ type PeopleMeta = People & {
   remoteIds: RemoteId[];
   gender: number;
   characters: Character[];
-  biographies: Array<{ biography: string; language: string } | null>;
-  awards: unknown;
+  biographies: Array<Record<'biography' | 'language', string>>;
+  awards: AwardsHelper[];
   tagOptions: TagOptions[];
   translations: Translations;
   slug: string;
@@ -275,9 +269,9 @@ interface Options {
 
 type ArtworkOptions = Omit<Options, 'meta'>;
 
-type MovieOptions = Options & {
+interface MovieOptions extends Options {
   short?: boolean;
-};
+}
 
 interface SearchOptions {
   query: string;

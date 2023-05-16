@@ -14,29 +14,21 @@ export interface DataLink<T> {
 
 export type Data<T> = Omit<DataLink<T>, 'links'>;
 
-type Update = {
-  [key in 'recordType' | 'method' | 'extraInfo' | 'entityType' | 'mergeToType']: string;
-} & {
-  [key in 'recordId' | 'methodInt' | 'userId' | 'timeStamp' | 'mergeToId' | 'seriesId']: number;
-};
+export type ContentRating = Record<'name' | 'country' | 'description' | 'contentType' | 'fullName', string> &
+  Record<'id' | 'order', number>;
 
-export type ContentRating = {
-  [key in 'name' | 'country' | 'description' | 'contentType' | 'fullName']: string;
-} & {
-  [key in 'id' | 'order']: number;
-};
+type Country = Omit<Language, 'nativeName'>;
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
   slug: string;
 }
 
-type Language = {
-  [key in 'id' | 'name' | 'nativeName' | 'shortCode']: string;
-};
+type Language = Record<'id' | 'name' | 'nativeName' | 'shortCode', string>;
 
-type Country = Omit<Language, 'nativeName'>;
+type Update = Record<'recordType' | 'method' | 'extraInfo' | 'entityType' | 'mergeToType', string> &
+  Record<'recordId' | 'methodInt' | 'userId' | 'timeStamp' | 'mergeToId' | 'seriesId', number>;
 
 type Entities =
   | 'artwork'
