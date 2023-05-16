@@ -94,7 +94,7 @@ describe('getMovie method', () => {
   it('returns a extended & meta response', async () => {
     const { data } = await client.getMovie({ id: '3646', extended: true, meta: true });
     expect(data.translations.nameTranslations).toHaveLength(1);
-    expect(data.translations.overviewTranslations[0].language).toBe('spa');
+    expect(data.translations.overviewTranslations[0]?.language).toBe('spa');
   });
 
   it('returns a extended & short response', async () => {
@@ -112,7 +112,7 @@ describe('getMovie method', () => {
       short: true,
     });
     expect(data.translations.nameTranslations).toHaveLength(1);
-    expect(data.translations.overviewTranslations[0].language).toBe('spa');
+    expect(data.translations.overviewTranslations[0]?.language).toBe('spa');
     expect(data.characters).toBeNull();
     expect(data.artworks).toBeNull();
     expect(data.trailers).toBeNull();

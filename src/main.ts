@@ -1,9 +1,20 @@
 import { Base } from './core.js';
 import type { ContentRating, Data, DataLink } from './extended.js';
 
-type NameImageYear = {
-  [key in 'name' | 'image' | 'year']: string;
-};
+type Aliases = Record<'language' | 'name', string>;
+
+interface AwardsHelper {
+  id: number;
+  name: string;
+}
+
+type NameImageYear = Record<'name' | 'image' | 'year', string>;
+
+interface RemoteId {
+  id: string;
+  type: number;
+  sourceName: string;
+}
 
 interface SeasonType {
   id: number;
@@ -12,15 +23,29 @@ interface SeasonType {
   alternateName: string | null;
 }
 
-type TagTypes = Array<{
+interface StudiosHelper {
+  id: number;
+  name: string;
+  parentStudio: number;
+}
+
+interface TagOptions {
   id: number;
   tag: number;
   tagName: string;
   name: string;
   helpText: string | null;
-} | null>;
+}
 
-interface DefaultTranslation {
+interface Trailer {
+  id: number;
+  language: string;
+  name: string;
+  url: string;
+  runtime: number;
+}
+
+interface TranslationHelper {
   name: string;
   overview: string;
   language: string;
@@ -31,18 +56,20 @@ interface DefaultTranslation {
 }
 
 interface Translations {
-  nameTranslations: DefaultTranslation[];
-  overviewTranslations: DefaultTranslation[];
+  nameTranslations: TranslationHelper[];
+  overviewTranslations: TranslationHelper[];
   aliases: string[] | null;
 }
 
-interface RemoteId {
-  id: string;
-  type: number;
-  sourceName: string;
+interface SharedProps {
+  id: number;
+  name: string | null;
+  image: string | null;
+  nameTranslations: string[];
+  overviewTranslations: string[];
 }
 
-interface ArtworkBase {
+interface Artwork {
   id: number;
   image: string;
   thumbnail: string;
@@ -51,9 +78,10 @@ interface ArtworkBase {
   score: number;
   width: number;
   height: number;
+  includesText: boolean;
 }
 
-interface ArtworkExtended extends ArtworkBase {
+interface ArtworkExtended extends Artwork {
   thumbnailWidth: number;
   thumbnailHeight: number;
   updatedAt: number;
@@ -65,12 +93,10 @@ interface ArtworkExtended extends ArtworkBase {
     id: number;
     name: string | null;
   };
-  tagOptions: TagTypes;
+  tagOptions: TagOptions[];
 }
 
-interface Character {
-  id: number;
-  name: string | null;
+interface Character extends SharedProps {
   peopleId: number;
   seriesId: number | null;
   series: NameImageYear | null;
@@ -79,52 +105,21 @@ interface Character {
   episode?: NameImageYear | null;
   episodeId: number | null;
   type: number;
-  image: string | null;
   sort: number;
   isFeatured: boolean;
   url: string;
-  nameTranslations: Array<string | null>;
-  overviewTranslations: Array<string | null>;
-  aliases: Array<{
-    language: string;
-    name: string;
-  } | null>;
+  aliases: Aliases[];
   peopleType: string;
   personName: string;
-  tagOptions: TagTypes;
+  tagOptions: TagOptions[];
   personImgURL: string | null;
 }
 
-type PeopleKeys = 'id' | 'name' | 'image' | 'nameTranslations' | 'overviewTranslations' | 'aliases';
-
-type People = Pick<Character, PeopleKeys>;
-
-type PeopleTranslation = People & {
-  birth: string | null;
-  death: string | null;
-  birthPlace: string | null;
-  remoteIds: RemoteId[];
-  gender: number;
-  characters: Character[];
-  biographies: Array<{ biography: string; language: string } | null>;
-  awards: unknown;
-  tagOptions: TagTypes;
-  translations: Translations;
-  slug: string;
-};
-
-type PeopleExtended = Omit<PeopleTranslation, 'translations'>;
-
-interface Episode {
-  id: number;
+interface Episode extends SharedProps {
   seriesId: number;
-  name: string;
   aired: string | null;
   runtime: number | null;
-  nameTranslations: string[];
   overview: string | null;
-  overviewTranslations: string[] | null[];
-  image: string | null;
   imageType: number | null;
   isMovie: number;
   seasons: Season[];
@@ -139,124 +134,202 @@ interface Episode {
   linkedMovie?: number;
 }
 
-interface EpisodeTranslation extends Episode {
+interface EpisodeMeta extends Episode {
   productionCode: string;
   nominations: unknown;
   characters: Character[];
   contentRatings: ContentRating[];
   remoteIds: RemoteId[];
-  tagOptions: TagTypes;
-  trailers: unknown;
+  tagOptions: TagOptions[];
+  trailers: Trailer[];
   networks: unknown;
-  studios: unknown;
+  studios: StudiosHelper[];
   companies: unknown;
-  awards: unknown;
+  awards: AwardsHelper[];
   translations: Translations;
 }
 
-type EpisodeExtended = Omit<EpisodeTranslation, 'translations'>;
+type EpisodeExtended = Omit<EpisodeMeta, 'translations'>;
 
-interface Season {
-  id: number;
+interface Movie extends SharedProps {
+  slug: string;
+  aliases: Aliases[];
+  score: number;
+  runtime: number;
+  status: {
+    id: number;
+    keepUpdated: true;
+    name: string;
+    recordType: string;
+  };
+  lastUpdated: string;
+  year: string;
+}
+
+interface MovieExtended extends Movie {
+  trailers: Trailer[];
+  genres: [
+    {
+      id: number;
+      name: string;
+      slug: string;
+    }
+  ];
+  releases: Array<Record<'country' | 'date' | 'detail', string>>;
+  artworks: Artwork[];
+  remoteIds: RemoteId[];
+  characters: Character[];
+  budget: string;
+  boxOffice: string;
+  boxOfficeUS: string;
+  originalCountry: string;
+  originalLanguage: string;
+  audioLanguages: string[] | null;
+  subtitleLanguages: string[] | null;
+  studios: StudiosHelper[];
+  awards: AwardsHelper[];
+  tagOptions: TagOptions[];
+  lists: unknown;
+  contentRatings: ContentRating[];
+  companies: unknown;
+  production_countries: unknown;
+  inspirations: unknown;
+  spoken_languages: string[];
+  first_release: Record<'country' | 'date' | 'detail', string>;
+}
+
+type MovieExtendedMeta = MovieExtended & {
+  translations: Translations;
+};
+
+interface MovieShort {
+  characters: null;
+  artworks: null;
+  trailers: null;
+}
+
+type MovieExtendedShort = Omit<MovieExtended, 'characters' | 'artworks' | 'trailers'> & MovieShort;
+
+type MovieExtendedMetaShort = Omit<MovieExtendedMeta, 'characters' | 'artworks' | 'trailers'> & MovieShort;
+
+type People = Pick<Character, 'id' | 'name' | 'image' | 'nameTranslations' | 'overviewTranslations' | 'aliases'>;
+
+type PeopleMeta = People & {
+  birth: string | null;
+  death: string | null;
+  birthPlace: string | null;
+  remoteIds: RemoteId[];
+  gender: number;
+  characters: Character[];
+  biographies: Array<{ biography: string; language: string } | null>;
+  awards: unknown;
+  tagOptions: TagOptions[];
+  translations: Translations;
+  slug: string;
+};
+
+type PeopleExtended = Omit<PeopleMeta, 'translations'>;
+
+interface Season extends SharedProps {
   seriesId: number;
   type: SeasonType;
-  name: string;
   number: number;
-  nameTranslations: string[] | null;
-  overviewTranslations: string[] | null;
-  image: string;
   imageType: number;
-  companies: {
-    studio: null;
-    network: null;
-    production: null;
-    distributor: null;
-    special_effects: null;
-  };
+  companies: unknown;
   lastUpdated: string;
   year?: string;
 }
 
-type SearchKeys = {
-  [key in
-    | 'type'
-    | 'year'
-    | 'company'
-    | 'country'
-    | 'director'
-    | 'language'
-    | 'primaryType'
-    | 'network'
-    | 'remote_id'
-    | 'offset'
-    | 'limit']: string;
-};
-
-type SearchOptions = Partial<SearchKeys> & {
-  query: string;
-};
-
-type SearchStringKeys =
-  | 'country'
-  | 'director'
-  | 'extended_title'
-  | 'first_air_time'
-  | 'id'
-  | 'image_url'
-  | 'name'
-  | 'network'
-  | 'objectID'
-  | 'overview'
-  | 'primary_language'
-  | 'primary_type'
-  | 'status'
-  | 'slug'
-  | 'thumbnail'
-  | 'tvdb_id'
-  | 'type'
-  | 'year';
-
-type SearchArrayStringKeys = 'aliases' | 'genres' | 'studios';
-
-type Search = {
-  [key in SearchStringKeys]: string;
-} & {
-  [key in SearchArrayStringKeys]: string[];
-} & {
+interface Search {
+  country: string;
+  director: string;
+  extended_title: string;
+  first_air_time: string;
+  id: string;
+  image_url: string;
+  name: string;
+  network: string;
+  objectID: string;
+  overview: string;
+  primary_language: string;
+  primary_type: string;
+  status: string;
+  slug: string;
+  thumbnail: string;
+  tvdb_id: string;
+  type: string;
+  year: string;
+  aliases: string[];
+  genres: string[];
+  studios: string[];
   overviews: Record<string, string>;
   translations: Record<string, string>;
-  remote_ids: RemoteId[];
+  remote_ids: string[];
+}
+
+interface Options {
+  id: string;
+  extended?: boolean;
+  meta?: boolean;
+}
+
+type ArtworkOptions = Omit<Options, 'meta'>;
+
+type MovieOptions = Options & {
+  short?: boolean;
 };
+
+interface SearchOptions {
+  query: string;
+  type?: string;
+  year?: string;
+  company?: string;
+  country?: string;
+  director?: string;
+  language?: string;
+  primaryType?: string;
+  network?: string;
+  remote_id?: string;
+  offset?: string;
+  limit?: string;
+}
+
+type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
 
 type GetCharacter = Data<Character>;
 
-type GetArtwork<T extends boolean> = T extends true ? Data<ArtworkExtended> : Data<ArtworkBase>;
-
-type GetEpisode<E extends boolean, M> = E extends true
-  ? M extends true
-    ? Data<EpisodeTranslation>
+type GetEpisode<O extends Options> = O['extended'] extends true
+  ? O['meta'] extends true
+    ? Data<EpisodeMeta>
     : Data<EpisodeExtended>
   : Data<Episode>;
 
-type GetPeople<E extends boolean, M> = E extends true
-  ? M extends true
-    ? Data<PeopleTranslation>
+type GetMovie<O extends MovieOptions> = O['extended'] extends true
+  ? O['meta'] extends true
+    ? O['short'] extends true
+      ? Data<MovieExtendedMetaShort>
+      : Data<MovieExtendedMeta>
+    : O['short'] extends true
+    ? Data<MovieExtendedShort>
+    : Data<MovieExtended>
+  : Data<Movie>;
+
+type GetPeople<O extends Options> = O['extended'] extends true
+  ? O['meta'] extends true
+    ? Data<PeopleMeta>
     : Data<PeopleExtended>
   : Data<People>;
 
 type GetSearch = DataLink<Search[]>;
 
 export class TheTVDB extends Base {
-  public async getArtwork<T extends boolean>(options: {
-    id: string;
-    extended?: T;
-  }): Promise<GetArtwork<T>> {
+  public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
     this.validateInput(options.id, 'Required artwork id');
     let endpoint = this.api + '/v4/artwork/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) endpoint += '/extended';
 
-    return await this.fetcher<GetArtwork<T>>(endpoint);
+    return await this.fetcher<GetArtwork<O>>(endpoint);
   }
 
   public async getCharacter(id: string): Promise<GetCharacter> {
@@ -266,11 +339,7 @@ export class TheTVDB extends Base {
     return await this.fetcher<GetCharacter>(endpoint);
   }
 
-  public async getEpisode<E extends boolean, M extends boolean>(options: {
-    id: string;
-    extended?: E;
-    meta?: M;
-  }): Promise<GetEpisode<E, M>> {
+  public async getEpisode<O extends Options>(options: O): Promise<GetEpisode<O>> {
     this.validateInput(options.id, 'Required episode id');
     let endpoint = this.api + '/v4/episodes/' + options.id;
 
@@ -279,14 +348,29 @@ export class TheTVDB extends Base {
       (options.meta ?? false) && (endpoint += '?meta=translations');
     }
 
-    return await this.fetcher<GetEpisode<E, M>>(endpoint);
+    return await this.fetcher<GetEpisode<O>>(endpoint);
   }
 
-  public async getPeople<E extends boolean, M extends boolean>(options: {
-    id: string;
-    extended?: E;
-    meta?: M;
-  }): Promise<GetPeople<E, M>> {
+  public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {
+    this.validateInput(options.id, 'Required movie id');
+    const endpoint = this.createURL('/v4/movies/' + options.id);
+
+    if (typeof options.extended === 'boolean' && options.extended) {
+      endpoint.pathname += '/extended';
+
+      if (options.meta === true) {
+        endpoint.searchParams.set('meta', 'translations');
+      }
+
+      if (options.short === true) {
+        endpoint.searchParams.set('short', 'true');
+      }
+    }
+
+    return await this.fetcher<GetMovie<O>>(endpoint.href);
+  }
+
+  public async getPeople<O extends Options>(options: O): Promise<GetPeople<O>> {
     this.validateInput(options.id, 'Required people id');
     let endpoint = this.api + '/v4/people/' + options.id;
 
@@ -295,13 +379,14 @@ export class TheTVDB extends Base {
       (options.meta ?? false) && (endpoint += '?meta=translations');
     }
 
-    return await this.fetcher<GetPeople<E, M>>(endpoint);
+    return await this.fetcher<GetPeople<O>>(endpoint);
   }
 
   public async getSearch(options: SearchOptions): Promise<GetSearch> {
     this.validateInput(options.query, 'Required search query');
-    const endpoint = this.createQuery('/v4/search', options);
+    const endpoint = this.createURL('/v4/search');
+    const query = this.createQuery(endpoint, options);
 
-    return await this.fetcher<GetSearch>(endpoint);
+    return await this.fetcher<GetSearch>(query);
   }
 }
