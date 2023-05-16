@@ -1,7 +1,7 @@
 import { server } from './src/mocks/server.js';
 
 beforeAll(() => {
-  server.listen();
+  server.listen({ onUnhandledRequest: 'bypass' });
 });
 
 afterEach(() => {
