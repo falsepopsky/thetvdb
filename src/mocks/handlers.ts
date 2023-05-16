@@ -11,6 +11,11 @@ import {
   episodesET,
   genres,
   languages,
+  movie,
+  movieE,
+  movieEM,
+  movieEMS,
+  movieES,
   people,
   peopleE,
   peopleET,
@@ -35,10 +40,7 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
     return await res(ctx.json(languages));
   }),
   rest.get('https://api4.thetvdb.com/v4/updates', async (req, res, ctx) => {
-    if (
-      req.url.href ===
-      'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2'
-    ) {
+    if (req.url.href === 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2') {
       return await res(ctx.json(updatesFull));
     } else {
       return await res(ctx.json(updates));
@@ -60,7 +62,7 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
       return await res(ctx.json(episodesE));
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/episodes/:id', async (req, res, ctx) => {
+  rest.get('https://api4.thetvdb.com/v4/episodes/:id', async (_req, res, ctx) => {
     return await res(ctx.json(episodes));
   }),
   rest.get('https://api4.thetvdb.com/v4/people/:id/extended', async (req, res, ctx) => {
@@ -70,20 +72,32 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
       return await res(ctx.json(peopleE));
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/people/:id', async (req, res, ctx) => {
+  rest.get('https://api4.thetvdb.com/v4/people/:id', async (_req, res, ctx) => {
     return await res(ctx.json(people));
   }),
   rest.get('https://api4.thetvdb.com/v4/search', async (req, res, ctx) => {
-    if (
-      req.url.href === 'https://api4.thetvdb.com/v4/search?query=saint+seiya&type=series&limit=1'
-    ) {
-      return await res(ctx.json(searchTL));
-    } else if (
-      req.url.href === 'https://api4.thetvdb.com/v4/search?query=saint+seiya&type=series'
-    ) {
-      return await res(ctx.json(searchT));
-    } else {
-      return await res(ctx.json(search));
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/search?query=saint+seiya&type=series&limit=1':
+        return await res(ctx.json(searchTL));
+      case 'https://api4.thetvdb.com/v4/search?query=saint+seiya&type=series':
+        return await res(ctx.json(searchT));
+      default:
+        return await res(ctx.json(search));
     }
+  }),
+  rest.get('https://api4.thetvdb.com/v4/movies/:id/extended', async (req, res, ctx) => {
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations&short=true':
+        return await res(ctx.json(movieEMS));
+      case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations':
+        return await res(ctx.json(movieEM));
+      case 'https://api4.thetvdb.com/v4/movies/3646/extended?short=true':
+        return await res(ctx.json(movieES));
+      default:
+        return await res(ctx.json(movieE));
+    }
+  }),
+  rest.get('https://api4.thetvdb.com/v4/movies/:id', async (_req, res, ctx) => {
+    return await res(ctx.json(movie));
   }),
 ];

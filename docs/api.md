@@ -26,7 +26,7 @@ The main class for @untidy/thetvdb
 | -------- | --------- | :------: | -------------------------------------------------- |
 | options  | `object`  |   Yes    | An object containing the parameters for the query. |
 | id       | `string`  |   Yes    | The `id` of the artwork.                           |
-| extended | `boolean` | Optional | If true, returns the extended record.              |
+| extended | `boolean` | Optional | Returns the extended record.                       |
 
 ### getCharacter
 
@@ -40,23 +40,35 @@ The main class for @untidy/thetvdb
 
 > Returns an episode base or extended record
 
-| name     | type      | Required | Description                                                                    |
-| -------- | --------- | :------: | ------------------------------------------------------------------------------ |
-| options  | `object`  |   Yes    | An object containing the parameters for the query.                             |
-| id       | `string`  |   Yes    | The `id` of the episode.                                                       |
-| extended | `boolean` | Optional | If true, returns the extended record.                                          |
-| meta     | `boolean` | Optional | If `extended` & `meta` is true, returns the extended record with translations. |
+| name     | type      | Required | Description                                                        |
+| -------- | --------- | :------: | ------------------------------------------------------------------ |
+| options  | `object`  |   Yes    | An object containing the parameters for the query.                 |
+| id       | `string`  |   Yes    | The episode `id`.                                                  |
+| extended | `boolean` | Optional | Returns the extended record.                                       |
+| meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
+
+### getMovie
+
+> Returns a movie base or extended record
+
+| name     | type      | Required | Description                                                        |
+| -------- | --------- | :------: | ------------------------------------------------------------------ |
+| options  | `object`  |   Yes    | An object containing the parameters for the query.                 |
+| id       | `string`  |   Yes    | The movie `id`.                                                    |
+| extended | `boolean` | Optional | Returns the extended record.                                       |
+| meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
+| short    | `boolean` | Optional | Returns the short version of the record (Requires extended).       |
 
 ### getPeople
 
 > Returns a people base or extended record
 
-| name     | type      | Required | Description                                                                    |
-| -------- | --------- | :------: | ------------------------------------------------------------------------------ |
-| options  | `object`  |   Yes    | An object containing the parameters for the query.                             |
-| id       | `string`  |   Yes    | The people `id`.                                                               |
-| extended | `boolean` | Optional | If true, returns the extended record.                                          |
-| meta     | `boolean` | Optional | If `extended` & `meta` is true, returns the extended record with translations. |
+| name     | type      | Required | Description                                                        |
+| -------- | --------- | :------: | ------------------------------------------------------------------ |
+| options  | `object`  |   Yes    | An object containing the parameters for the query.                 |
+| id       | `string`  |   Yes    | The people `id`.                                                   |
+| extended | `boolean` | Optional | Returns the extended record.                                       |
+| meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
 
 ### getSearch
 

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { TheTVDBExtended } from './index.js';
+import { TheTVDB, TheTVDBExtended } from './index.js';
 
 const ROOT_DIR = resolve(fileURLToPath(import.meta.url), '../..');
 const ENVFILE = join(ROOT_DIR, '.env');
@@ -9,8 +9,11 @@ const ENVFILE = join(ROOT_DIR, '.env');
 dotenv.config({ path: ENVFILE });
 
 const TOKEN = process.env.TVDB_API_TOKEN;
+const client = new TheTVDB(TOKEN);
 const clientExtended = new TheTVDBExtended(TOKEN);
 
-const { data } = await clientExtended.getLanguages();
+const langs = await clientExtended.getLanguages();
+console.log(langs);
 
-console.log(data);
+const movie = await client.getMovie({ id: '12586' });
+console.log(movie);

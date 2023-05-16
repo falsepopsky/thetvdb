@@ -74,6 +74,13 @@ type Entities =
   | 'translatedseasons'
   | 'translatedserierk';
 
+interface updateO {
+  since: string;
+  type?: Entities;
+  action?: 'create' | 'delete' | 'update';
+  page?: string;
+}
+
 type GetContentRatings = Data<ContentRating[]>;
 type GetCountries = Data<Country[]>;
 type GetGenres = Data<Genre[]>;
@@ -101,15 +108,11 @@ export class TheTVDBExtended extends Base {
     return await this.fetcher<GetLanguages>(endpoint);
   }
 
-  public async getUpdates(options: {
-    since: string;
-    type?: Entities;
-    action?: 'create' | 'delete' | 'update';
-    page?: string;
-  }): Promise<GetUpdates> {
+  public async getUpdates(options: updateO): Promise<GetUpdates> {
     this.validateInput(options.since, 'Required since option');
+    const endpoint = this.createURL('/v4/updates');
+    const query = this.createQuery(endpoint, options);
 
-    const endpoint = this.createQuery('/v4/updates', options);
-    return await this.fetcher<GetUpdates>(endpoint);
+    return await this.fetcher<GetUpdates>(query);
   }
 }
