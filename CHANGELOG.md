@@ -1,5 +1,12 @@
 # @untidy/thetvdb
 
+## 0.0.5
+
+### Patch Changes
+
+- 2ddaf72: feat: add AbortController
+- cd75c61: feat: add getMovie method
+
 ## 0.0.4
 
 ### Patch Changes
