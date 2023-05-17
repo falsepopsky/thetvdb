@@ -8,15 +8,34 @@ details on their respective methods.
 > **Warning**  
 > All required parameters must be provided, otherwise an error will be thrown.
 
+## Shared Methods
+
+### getTime
+
+> This method retrieves the custom request timeout value in milliseconds.
+
+| type     | Description                                     |
+| -------- | ----------------------------------------------- |
+| `number` | The custom request timeout value currently set. |
+
+### setTime
+
+> This method allows setting a custom request timeout value in milliseconds.
+
+| name    | type     | Required | Description                                    |
+| ------- | -------- | :------: | ---------------------------------------------- |
+| timeout | `number` |   Yes    | The new request timeout value in milliseconds. |
+
 ## TheTVDB
 
 The main class for @untidy/thetvdb
 
 ### Constructor
 
-| name  | type     | Required | Description          |
-| ----- | -------- | :------: | -------------------- |
-| token | `string` |   Yes    | Your TVDB API token. |
+| name    | type     | Required | Description                                       |
+| ------- | -------- | :------: | ------------------------------------------------- |
+| token   | `string` |   Yes    | Your TVDB API token.                              |
+| timeout | `number` | optional | Request timeout in milliseconds. `Default: 5000`. |
 
 ### getArtwork
 
@@ -98,9 +117,10 @@ The extended class for @untidy/thetvdb
 
 ### Constructor
 
-| name  | type     | Required | Description          |
-| ----- | -------- | :------: | -------------------- |
-| token | `string` |   Yes    | Your TVDB API token. |
+| name    | type     | Required | Description                                       |
+| ------- | -------- | :------: | ------------------------------------------------- |
+| token   | `string` |   Yes    | Your TVDB API token.                              |
+| timeout | `number` | optional | Request timeout in milliseconds. `Default: 5000`. |
 
 ### getContentRatings
 
