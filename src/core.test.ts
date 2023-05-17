@@ -31,21 +31,21 @@ describe('constructor token validation tests', () => {
   });
 
   it('creates an instance when a valid token is provided', () => {
-    expect(() => new Base('valid_token')).not.toThrow();
+    expect(() => new Base('fake token')).not.toThrow();
   });
 
   it('returns the default custom timeout', () => {
-    const client = new Base('valid_token');
+    const client = new Base('fake token');
     expect(client.getTime()).toBe(5000);
   });
 
   it('returns the custom timeout set by the user', () => {
-    const client = new Base('valid_token', 500);
+    const client = new Base('fake token', 500);
     expect(client.getTime()).toBe(500);
   });
 
   it('returns the updated custom timeout after it is modified', () => {
-    const client = new Base('valid_token', 1000);
+    const client = new Base('fake token', 1000);
     expect(client.getTime()).toBe(1000);
 
     client.setTime(400);
@@ -53,7 +53,7 @@ describe('constructor token validation tests', () => {
   });
 
   it('sets the default timeout and allows updating it later', () => {
-    const client = new Base('valid_token');
+    const client = new Base('fake token');
     expect(client.getTime()).toBe(5000);
 
     client.setTime(100);
@@ -64,7 +64,7 @@ describe('constructor token validation tests', () => {
 describe('abort controller', () => {
   it('aborts the request when the timeout is reached', async () => {
     const abortSpy = jest.spyOn(global.AbortController.prototype, 'abort');
-    const client = new Base('valid_token', 1);
+    const client = new Base('fake token', 1);
 
     // @ts-expect-error: Property 'fetcher' is protected and only accessible within class 'Base' and its subclasses.
     await expect(async () => await client.fetcher('https://delay.com/delay')).rejects.toThrow(
