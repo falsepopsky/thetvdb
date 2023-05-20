@@ -109,6 +109,17 @@ The main class for @untidy/thetvdb
 | offset      | `string` | Optional | Offset results.                                    |
 | limit       | `string` | Optional | Limit results.                                     |
 
+### getSeason
+
+> Returns a season base or extended record
+
+| name     | type      | Required | Description                                                        |
+| -------- | --------- | :------: | ------------------------------------------------------------------ |
+| options  | `object`  |   Yes    | An object containing the parameters for the query.                 |
+| id       | `string`  |   Yes    | The season `id`.                                                   |
+| extended | `boolean` | Optional | Returns the extended record.                                       |
+| meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
+
 ---
 
 ## TheTVDBExtended

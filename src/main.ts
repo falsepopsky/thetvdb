@@ -234,6 +234,16 @@ interface Season extends SharedProps {
   year?: string;
 }
 
+interface SeasonExtendedMeta extends Season {
+  artworks: Artwork[];
+  episodes: Episode[];
+  trailers: Trailer[];
+  tagOptions: TagOptions[];
+  translations: Translations;
+}
+
+type SeasonExtended = Omit<SeasonExtendedMeta, 'translations'>;
+
 interface Search {
   country: string;
   director: string;
@@ -316,6 +326,12 @@ type GetPeople<O extends Options> = O['extended'] extends true
 
 type GetSearch = DataLink<Search[]>;
 
+type GetSeason<O extends Options> = O['extended'] extends true
+  ? O['meta'] extends true
+    ? Data<SeasonExtendedMeta>
+    : Data<SeasonExtended>
+  : Data<Season>;
+
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
     this.validateInput(options?.id, 'Required artwork id');
@@ -382,5 +398,17 @@ export class TheTVDB extends Base {
     const query = this.createQuery(endpoint, options);
 
     return await this.fetcher<GetSearch>(query);
+  }
+
+  public async getSeason<O extends Options>(options: O): Promise<GetSeason<O>> {
+    this.validateInput(options?.id, 'Required season id');
+    let endpoint = this.api + '/v4/seasons/' + options.id;
+
+    if (typeof options.extended === 'boolean' && options.extended) {
+      endpoint += '/extended';
+      (options.meta ?? false) && (endpoint += '?meta=translations');
+    }
+
+    return await this.fetcher<GetSeason<O>>(endpoint);
   }
 }

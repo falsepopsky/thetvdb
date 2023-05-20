@@ -174,3 +174,29 @@ describe('getSearch method', () => {
     expect(data[0]?.country).toBe('jpn');
   });
 });
+
+describe('getSeason method', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required search query
+    await expect(async () => await client.getSeason()).rejects.toThrow('Required season id');
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(async () => await client.getSeason({ id: '' })).rejects.toThrow('Required season id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getSeason({ id: '1698074' });
+    expect(data.seriesId).toBe(70350);
+  });
+
+  test('returns a extended response', async () => {
+    const { data } = await client.getSeason({ id: '6365', extended: true });
+    expect(data.image).toBe('https://artworks.thetvdb.com/banners/seasons/24394-1.jpg');
+  });
+
+  test('returns a extended & meta response', async () => {
+    const { data } = await client.getSeason({ id: '6365', extended: true, meta: true });
+    expect(data.translations.nameTranslations).toBeNull();
+  });
+});

@@ -55,8 +55,8 @@ endpoint is indicated by the following emojis:
 | `/search`                                    | :white_check_mark: |
 | `/search/remoteid/{remoteId}`                |  :no_entry_sign:   |
 | `/seasons`                                   |   :interrobang:    |
-| `/seasons/{id}`                              |       :soon:       |
-| `/seasons/{id}/extended`                     |       :soon:       |
+| `/seasons/{id}`                              | :white_check_mark: |
+| `/seasons/{id}/extended`                     | :white_check_mark: |
 | `/seasons/types`                             |  :no_entry_sign:   |
 | `/seasons/{id}/translations/{language}`      |  :no_entry_sign:   |
 | `/series`                                    |   :interrobang:    |
