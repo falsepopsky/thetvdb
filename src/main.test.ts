@@ -5,11 +5,11 @@ const client = new TheTVDB('fake token');
 describe('getArtwork method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getArtwork()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
+    await expect(async () => await client.getArtwork()).rejects.toThrow('Required artwork id');
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getArtwork({ id: '' })).rejects.toThrow('Required artwork id');
+    await expect(async () => await client.getArtwork({ id: '' })).rejects.toThrow('Required artwork id');
   });
 
   test('returns a successful response', async () => {
@@ -27,11 +27,11 @@ describe('getArtwork method', () => {
 describe('getCharacter method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getCharacter()).rejects.toThrow('Required character id');
+    await expect(async () => await client.getCharacter()).rejects.toThrow('Required character id');
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getCharacter('')).rejects.toThrow('Required character id');
+    await expect(async () => await client.getCharacter('')).rejects.toThrow('Required character id');
   });
 
   test('returns a successful response', async () => {
@@ -44,11 +44,11 @@ describe('getCharacter method', () => {
 describe('getEpisode method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getEpisode()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
+    await expect(async () => await client.getEpisode()).rejects.toThrow('Required episode id');
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getEpisode({ id: '' })).rejects.toThrow('Required episode id');
+    await expect(async () => await client.getEpisode({ id: '' })).rejects.toThrow('Required episode id');
   });
 
   it('returns a successful response', async () => {
@@ -72,11 +72,11 @@ describe('getEpisode method', () => {
 describe('getMovie method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter query
-    await expect(client.getMovie()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
+    await expect(async () => await client.getMovie()).rejects.toThrow('Required movie id');
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getMovie({ id: '' })).rejects.toThrow('Required movie id');
+    await expect(async () => await client.getMovie({ id: '' })).rejects.toThrow('Required movie id');
   });
 
   it('returns a successful response', async () => {
@@ -122,11 +122,11 @@ describe('getMovie method', () => {
 describe('getPeople method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(client.getPeople()).rejects.toThrow("Cannot read properties of undefined (reading 'id')");
+    await expect(async () => await client.getPeople()).rejects.toThrow('Required people id');
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getPeople({ id: '' })).rejects.toThrow('Required people id');
+    await expect(async () => await client.getPeople({ id: '' })).rejects.toThrow('Required people id');
   });
 
   it('returns a successful response', async () => {
@@ -148,12 +148,12 @@ describe('getPeople method', () => {
 
 describe('getSearch method', () => {
   it('throws an error if no id is provided', async () => {
-    // @ts-expect-error: expect a parameter query
-    await expect(client.getSearch()).rejects.toThrow("Cannot read properties of undefined (reading 'query')");
+    // @ts-expect-error: Required search query
+    await expect(async () => await client.getSearch()).rejects.toThrow('Required search query');
   });
 
   it('throws an error if an empty id "string" is provided', async () => {
-    await expect(client.getSearch({ query: '' })).rejects.toThrow('Required search query');
+    await expect(async () => await client.getSearch({ query: '' })).rejects.toThrow('Required search query');
   });
 
   test('returns a successful response', async () => {
@@ -172,5 +172,31 @@ describe('getSearch method', () => {
     const { data } = await client.getSearch({ query: 'saint seiya', type: 'series', limit: '1' });
     expect(data).toHaveLength(1);
     expect(data[0]?.country).toBe('jpn');
+  });
+});
+
+describe('getSeason method', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required search query
+    await expect(async () => await client.getSeason()).rejects.toThrow('Required season id');
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(async () => await client.getSeason({ id: '' })).rejects.toThrow('Required season id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getSeason({ id: '1698074' });
+    expect(data.seriesId).toBe(70350);
+  });
+
+  test('returns a extended response', async () => {
+    const { data } = await client.getSeason({ id: '6365', extended: true });
+    expect(data.image).toBe('https://artworks.thetvdb.com/banners/seasons/24394-1.jpg');
+  });
+
+  test('returns a extended & meta response', async () => {
+    const { data } = await client.getSeason({ id: '6365', extended: true, meta: true });
+    expect(data.translations.nameTranslations).toBeNull();
   });
 });

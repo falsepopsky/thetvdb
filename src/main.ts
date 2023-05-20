@@ -234,6 +234,16 @@ interface Season extends SharedProps {
   year?: string;
 }
 
+interface SeasonExtendedMeta extends Season {
+  artworks: Artwork[];
+  episodes: Episode[];
+  trailers: Trailer[];
+  tagOptions: TagOptions[];
+  translations: Translations;
+}
+
+type SeasonExtended = Omit<SeasonExtendedMeta, 'translations'>;
+
 interface Search {
   country: string;
   director: string;
@@ -316,9 +326,15 @@ type GetPeople<O extends Options> = O['extended'] extends true
 
 type GetSearch = DataLink<Search[]>;
 
+type GetSeason<O extends Options> = O['extended'] extends true
+  ? O['meta'] extends true
+    ? Data<SeasonExtendedMeta>
+    : Data<SeasonExtended>
+  : Data<Season>;
+
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
-    this.validateInput(options.id, 'Required artwork id');
+    this.validateInput(options?.id, 'Required artwork id');
     let endpoint = this.api + '/v4/artwork/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) endpoint += '/extended';
@@ -334,7 +350,7 @@ export class TheTVDB extends Base {
   }
 
   public async getEpisode<O extends Options>(options: O): Promise<GetEpisode<O>> {
-    this.validateInput(options.id, 'Required episode id');
+    this.validateInput(options?.id, 'Required episode id');
     let endpoint = this.api + '/v4/episodes/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) {
@@ -346,7 +362,7 @@ export class TheTVDB extends Base {
   }
 
   public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {
-    this.validateInput(options.id, 'Required movie id');
+    this.validateInput(options?.id, 'Required movie id');
     const endpoint = this.createURL('/v4/movies/' + options.id);
 
     if (typeof options.extended === 'boolean' && options.extended) {
@@ -365,7 +381,7 @@ export class TheTVDB extends Base {
   }
 
   public async getPeople<O extends Options>(options: O): Promise<GetPeople<O>> {
-    this.validateInput(options.id, 'Required people id');
+    this.validateInput(options?.id, 'Required people id');
     let endpoint = this.api + '/v4/people/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) {
@@ -377,10 +393,22 @@ export class TheTVDB extends Base {
   }
 
   public async getSearch(options: SearchOptions): Promise<GetSearch> {
-    this.validateInput(options.query, 'Required search query');
+    this.validateInput(options?.query, 'Required search query');
     const endpoint = this.createURL('/v4/search');
     const query = this.createQuery(endpoint, options);
 
     return await this.fetcher<GetSearch>(query);
+  }
+
+  public async getSeason<O extends Options>(options: O): Promise<GetSeason<O>> {
+    this.validateInput(options?.id, 'Required season id');
+    let endpoint = this.api + '/v4/seasons/' + options.id;
+
+    if (typeof options.extended === 'boolean' && options.extended) {
+      endpoint += '/extended';
+      (options.meta ?? false) && (endpoint += '?meta=translations');
+    }
+
+    return await this.fetcher<GetSeason<O>>(endpoint);
   }
 }

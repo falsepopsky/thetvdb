@@ -22,6 +22,9 @@ import {
   search,
   searchT,
   searchTL,
+  season,
+  seasonE,
+  seasonEM,
   updates,
   updatesFull,
 } from './response.js';
@@ -99,5 +102,17 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
   }),
   rest.get('https://api4.thetvdb.com/v4/movies/:id', async (_req, res, ctx) => {
     return await res(ctx.json(movie));
+  }),
+
+  rest.get('https://api4.thetvdb.com/v4/seasons/:id/extended', async (req, res, ctx) => {
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations':
+        return await res(ctx.json(seasonEM));
+      default:
+        return await res(ctx.json(seasonE));
+    }
+  }),
+  rest.get('https://api4.thetvdb.com/v4/seasons/:id', async (_req, res, ctx) => {
+    return await res(ctx.json(season));
   }),
 ];

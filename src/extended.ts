@@ -101,7 +101,7 @@ export class TheTVDBExtended extends Base {
   }
 
   public async getUpdates(options: updateO): Promise<GetUpdates> {
-    this.validateInput(options.since, 'Required since option');
+    this.validateInput(options?.since, 'Required since option');
     const endpoint = this.createURL('/v4/updates');
     const query = this.createQuery(endpoint, options);
 

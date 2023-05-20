@@ -240,6 +240,29 @@ const movie = {
   },
 };
 
+// https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations
+const seasonEM = {
+  data: {
+    translations: {
+      nameTranslations: null,
+    },
+  },
+};
+
+// https://api4.thetvdb.com/v4/seasons/6365/extended
+const seasonE = {
+  data: {
+    image: 'https://artworks.thetvdb.com/banners/seasons/24394-1.jpg',
+  },
+};
+
+// https://api4.thetvdb.com/v4/seasons/1698074
+const season = {
+  data: {
+    seriesId: 70350,
+  },
+};
+
 export {
   contentRatings,
   countries,
@@ -259,6 +282,9 @@ export {
   searchTL,
   searchT,
   search,
+  seasonEM,
+  seasonE,
+  season,
   movie,
   movieES,
   movieE,
