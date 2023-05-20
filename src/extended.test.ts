@@ -42,7 +42,14 @@ describe('getLanguages method', () => {
 });
 
 describe('getUpdates method', () => {
-  it('should throw an error if since option is not provided', async () => {
+  it('throws an error if since option is not provided', async () => {
+    await expect(async () => {
+      // @ts-expect-error: expect a parameter since
+      await client.getUpdates();
+    }).rejects.toThrow('Required since option');
+  });
+
+  it('should throw an error if since option is missing in the object', async () => {
     await expect(async () => {
       // @ts-expect-error: expect a parameter since
       await client.getUpdates({ action: 'update' });

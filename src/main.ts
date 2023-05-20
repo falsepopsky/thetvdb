@@ -318,7 +318,7 @@ type GetSearch = DataLink<Search[]>;
 
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
-    this.validateInput(options.id, 'Required artwork id');
+    this.validateInput(options?.id, 'Required artwork id');
     let endpoint = this.api + '/v4/artwork/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) endpoint += '/extended';
@@ -334,7 +334,7 @@ export class TheTVDB extends Base {
   }
 
   public async getEpisode<O extends Options>(options: O): Promise<GetEpisode<O>> {
-    this.validateInput(options.id, 'Required episode id');
+    this.validateInput(options?.id, 'Required episode id');
     let endpoint = this.api + '/v4/episodes/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) {
@@ -346,7 +346,7 @@ export class TheTVDB extends Base {
   }
 
   public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {
-    this.validateInput(options.id, 'Required movie id');
+    this.validateInput(options?.id, 'Required movie id');
     const endpoint = this.createURL('/v4/movies/' + options.id);
 
     if (typeof options.extended === 'boolean' && options.extended) {
@@ -365,7 +365,7 @@ export class TheTVDB extends Base {
   }
 
   public async getPeople<O extends Options>(options: O): Promise<GetPeople<O>> {
-    this.validateInput(options.id, 'Required people id');
+    this.validateInput(options?.id, 'Required people id');
     let endpoint = this.api + '/v4/people/' + options.id;
 
     if (typeof options.extended === 'boolean' && options.extended) {
@@ -377,7 +377,7 @@ export class TheTVDB extends Base {
   }
 
   public async getSearch(options: SearchOptions): Promise<GetSearch> {
-    this.validateInput(options.query, 'Required search query');
+    this.validateInput(options?.query, 'Required search query');
     const endpoint = this.createURL('/v4/search');
     const query = this.createQuery(endpoint, options);
 
