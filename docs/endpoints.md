@@ -43,7 +43,7 @@ endpoint is indicated by the following emojis:
 | `/movies`                                    |   :interrobang:    |
 | `/movies/{id}`                               | :white_check_mark: |
 | `/movies/{id}/extended`                      | :white_check_mark: |
-| `/movies/filter`                             |       :soon:       |
+| `/movies/filter`                             | :white_check_mark: |
 | `/movies/slug/{slug}`                        |  :no_entry_sign:   |
 | `/movies/{id}/translations/{language}`       |  :no_entry_sign:   |
 | `/movies/statuses`                           |  :no_entry_sign:   |

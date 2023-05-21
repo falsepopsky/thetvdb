@@ -263,6 +263,22 @@ const season = {
   },
 };
 
+// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name
+const filterMovieS = {
+  data: [{ name: '-Ship: A Visual Poem' }],
+};
+
+// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&year=2023
+const filterMovieY = {
+  data: [{ year: '2023' }],
+};
+
+// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng
+const filterMovie = {
+  status: 'success',
+  data: [{ name: 'The Fortress' }],
+};
+
 export {
   contentRatings,
   countries,
@@ -290,4 +306,7 @@ export {
   movieE,
   movieEMS,
   movieEM,
+  filterMovieS,
+  filterMovieY,
+  filterMovie,
 };
