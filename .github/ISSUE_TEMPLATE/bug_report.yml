@@ -1,7 +1,7 @@
 name: Bug report
 description: File a bug report.
 title: '[Bug]: '
-labels: ['type: bug 🐛']
+labels: ['bug 🐛']
 assignees: 'falsepopsky'
 body:
   - type: markdown
@@ -18,8 +18,7 @@ body:
   - type: textarea
     attributes:
       label: Description
-      description: 'Explain what you expected to happen and what actually happened.'
-      placeholder: Clearly describe the issue you encountered, providing as much detail as possible.
+      description: 'Clearly describe the issue you encountered, providing as much detail as possible.'
     validations:
       required: true
   - type: input
