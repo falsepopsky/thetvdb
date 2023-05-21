@@ -367,7 +367,6 @@ export class TheTVDB extends Base {
     this.validateInput(options?.lang, 'Required language');
     const endpoint = this.createURL('/v4/movies/filter');
     const query = this.createQuery(endpoint, options);
-    console.log(query)
 
     return await this.fetcher<GetFilteredMovie>(query);
   }
