@@ -47,6 +47,22 @@ The main class for @untidy/thetvdb
 | id       | `string`  |   Yes    | The `id` of the artwork.                           |
 | extended | `boolean` | Optional | Returns the extended record.                       |
 
+### getFilteredMovie
+
+> Returns a search movies based on filter parameters
+
+| name          | type     | Required | Description                                        |
+| ------------- | -------- | :------: | -------------------------------------------------- |
+| options       | `object` |   Yes    | An object containing the parameters for the query. |
+| country       | `string` |   Yes    | Country of origin.                                 |
+| lang          | `string` |   Yes    | Original language.                                 |
+| company       | `string` | Optional | Production company id.                             |
+| contentRating | `string` | Optional | Content rating id.                                 |
+| genre         | `string` | Optional | Genre id.                                          |
+| sort          | `string` | Optional | Sort by results.                                   |
+| status        | `string` | Optional | Status of the record.                              |
+| year          | `string` | Optional | Release year.                                      |
+
 ### getCharacter
 
 > Returns a character base record

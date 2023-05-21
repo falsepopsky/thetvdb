@@ -277,6 +277,17 @@ interface Options {
   meta?: boolean;
 }
 
+interface FilterOptions {
+  country: string;
+  lang: string;
+  company?: string;
+  contentRating?: string;
+  genre?: string;
+  sort?: 'score' | 'firstAired' | 'name';
+  status?: '1' | '2' | '3';
+  year?: string;
+}
+
 type ArtworkOptions = Omit<Options, 'meta'>;
 
 interface MovieOptions extends Options {
@@ -301,6 +312,8 @@ interface SearchOptions {
 type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
 
 type GetCharacter = Data<Character>;
+
+type GetFilteredMovie = DataLink<Movie[]>;
 
 type GetEpisode<O extends Options> = O['extended'] extends true
   ? O['meta'] extends true
@@ -347,6 +360,16 @@ export class TheTVDB extends Base {
     const endpoint = this.api + '/v4/characters/' + id;
 
     return await this.fetcher<GetCharacter>(endpoint);
+  }
+
+  public async getFilteredMovie(options: FilterOptions): Promise<GetFilteredMovie> {
+    this.validateInput(options?.country, 'Required country of origin');
+    this.validateInput(options?.lang, 'Required language');
+    const endpoint = this.createURL('/v4/movies/filter');
+    const query = this.createQuery(endpoint, options);
+    console.log(query)
+
+    return await this.fetcher<GetFilteredMovie>(query);
   }
 
   public async getEpisode<O extends Options>(options: O): Promise<GetEpisode<O>> {

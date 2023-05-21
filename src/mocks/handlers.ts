@@ -9,6 +9,9 @@ import {
   episodes,
   episodesE,
   episodesET,
+  filterMovie,
+  filterMovieS,
+  filterMovieY,
   genres,
   languages,
   movie,
@@ -88,6 +91,16 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
         return await res(ctx.json(search));
     }
   }),
+  rest.get('https://api4.thetvdb.com/v4/movies/filter', async (req, res, ctx) => {
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name':
+        return await res(ctx.json(filterMovieS));
+      case 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&year=2023':
+        return await res(ctx.json(filterMovieY));
+      default:
+        return await res(ctx.json(filterMovie));
+    }
+  }),
   rest.get('https://api4.thetvdb.com/v4/movies/:id/extended', async (req, res, ctx) => {
     switch (req.url.href) {
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations&short=true':
@@ -103,7 +116,6 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
   rest.get('https://api4.thetvdb.com/v4/movies/:id', async (_req, res, ctx) => {
     return await res(ctx.json(movie));
   }),
-
   rest.get('https://api4.thetvdb.com/v4/seasons/:id/extended', async (req, res, ctx) => {
     switch (req.url.href) {
       case 'https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations':
