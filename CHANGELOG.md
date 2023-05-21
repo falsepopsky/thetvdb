@@ -1,5 +1,12 @@
 # @untidy/thetvdb
 
+## 0.0.6
+
+### Patch Changes
+
+- 78da041: feat: add getSeason
+- 1883e31: feat: add filtered movie
+
 ## 0.0.5
 
 ### Patch Changes
