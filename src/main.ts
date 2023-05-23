@@ -208,7 +208,7 @@ type MovieExtendedMetaShort = Omit<MovieExtendedMeta, 'characters' | 'artworks' 
 
 type People = Pick<Character, 'id' | 'name' | 'image' | 'nameTranslations' | 'overviewTranslations' | 'aliases'>;
 
-type PeopleMeta = People & {
+interface PeopleMeta extends People {
   birth: string | null;
   death: string | null;
   birthPlace: string | null;
@@ -220,7 +220,7 @@ type PeopleMeta = People & {
   tagOptions: TagOptions[];
   translations: Translations;
   slug: string;
-};
+}
 
 type PeopleExtended = Omit<PeopleMeta, 'translations'>;
 
@@ -271,6 +271,19 @@ interface Search {
   remote_ids: string[];
 }
 
+interface Serie extends Omit<Movie, 'runtime'> {
+  averageRuntime: number;
+  country: string;
+  defaultSeasonType: number;
+  episodes: Episode[];
+  firstAired: string;
+  isOrderRandomized: boolean;
+  lastAired: string;
+  nextAired: string;
+  originalCountry: string;
+  originalLanguage: string;
+}
+
 interface Options {
   id: string;
   extended?: boolean;
@@ -286,6 +299,11 @@ interface FilterOptions {
   sort?: 'score' | 'firstAired' | 'name';
   status?: '1' | '2' | '3';
   year?: string;
+}
+
+interface FilterSeriesOptions extends Omit<FilterOptions, 'sort'> {
+  sort?: 'score' | 'firstAired' | 'name' | 'lastAired';
+  sortType?: 'asc' | 'desc';
 }
 
 type ArtworkOptions = Omit<Options, 'meta'>;
@@ -314,6 +332,8 @@ type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<Ar
 type GetCharacter = Data<Character>;
 
 type GetFilteredMovie = DataLink<Movie[]>;
+
+type GetFilteredSeries = DataLink<Serie[]>;
 
 type GetEpisode<O extends Options> = O['extended'] extends true
   ? O['meta'] extends true
@@ -369,6 +389,15 @@ export class TheTVDB extends Base {
     const query = this.createQuery(endpoint, options);
 
     return await this.fetcher<GetFilteredMovie>(query);
+  }
+
+  public async getFilteredSeries(options: FilterSeriesOptions): Promise<GetFilteredSeries> {
+    this.validateInput(options?.country, 'Required country of origin');
+    this.validateInput(options?.lang, 'Required language');
+    const endpoint = this.createURL('/v4/series/filter');
+    const query = this.createQuery(endpoint, options);
+
+    return await this.fetcher<GetFilteredSeries>(query);
   }
 
   public async getEpisode<O extends Options>(options: O): Promise<GetEpisode<O>> {

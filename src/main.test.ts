@@ -99,6 +99,36 @@ describe('getFilteredMovie method', () => {
   });
 });
 
+describe('getFilteredSeries method', () => {
+  it('throws an error if no country is provided', async () => {
+    // @ts-expect-error: Required search query
+    await expect(async () => await client.getFilteredSeries()).rejects.toThrow('Required country of origin');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getFilteredSeries({ country: 'eng' })).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { status, data } = await client.getFilteredSeries({ country: 'usa', lang: 'eng' });
+    expect(status).toBe('success');
+    expect(data[0]?.name).toBe('Made In Hollywood');
+    expect(Array.isArray(data)).toBe(true);
+  });
+
+  it('returns records filtered by year', async () => {
+    const { data } = await client.getFilteredSeries({ country: 'usa', lang: 'eng', year: '2023' });
+    expect(data[0]?.year).toBe('2023');
+  });
+
+  test('returns records sorted by name', async () => {
+    const { data } = await client.getFilteredSeries({ country: 'usa', lang: 'eng', sort: 'name' });
+    expect(data).toHaveLength(1);
+    expect(data[0]?.name).toBe('Adriana Gaming');
+  });
+});
+
 describe('getMovie method', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter query

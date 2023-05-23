@@ -49,7 +49,7 @@ The main class for @untidy/thetvdb
 
 ### getFilteredMovie
 
-> Returns a search movies based on filter parameters
+> Returns a search movies records based on filter parameters
 
 | name          | type     | Required | Description                                        |
 | ------------- | -------- | :------: | -------------------------------------------------- |
@@ -60,6 +60,23 @@ The main class for @untidy/thetvdb
 | contentRating | `string` | Optional | Content rating id.                                 |
 | genre         | `string` | Optional | Genre id.                                          |
 | sort          | `string` | Optional | Sort by results.                                   |
+| status        | `string` | Optional | Status of the record.                              |
+| year          | `string` | Optional | Release year.                                      |
+
+### getFilteredSeries
+
+> Returns a search series records based on filter parameters
+
+| name          | type     | Required | Description                                        |
+| ------------- | -------- | :------: | -------------------------------------------------- |
+| options       | `object` |   Yes    | An object containing the parameters for the query. |
+| country       | `string` |   Yes    | Country of origin.                                 |
+| lang          | `string` |   Yes    | Original language.                                 |
+| company       | `string` | Optional | Production company id.                             |
+| contentRating | `string` | Optional | Content rating id.                                 |
+| genre         | `string` | Optional | Genre id.                                          |
+| sort          | `string` | Optional | Sort by results.                                   |
+| sortType      | `string` | Optional | Sort by ascending or descending.                   |
 | status        | `string` | Optional | Status of the record.                              |
 | year          | `string` | Optional | Release year.                                      |
 

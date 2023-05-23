@@ -279,6 +279,22 @@ const filterMovie = {
   data: [{ name: 'The Fortress' }],
 };
 
+// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name
+const filterSerieS = {
+  data: [{ name: 'Adriana Gaming' }],
+};
+
+// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023
+const filterSerieY = {
+  data: [{ year: '2023' }],
+};
+
+// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng
+const filterSerie = {
+  status: 'success',
+  data: [{ name: 'Made In Hollywood' }],
+};
+
 export {
   contentRatings,
   countries,
@@ -309,4 +325,7 @@ export {
   filterMovieS,
   filterMovieY,
   filterMovie,
+  filterSerieS,
+  filterSerieY,
+  filterSerie,
 };

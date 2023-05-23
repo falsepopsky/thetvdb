@@ -8,11 +8,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        Welcome! Thank you for using our package and considering to ask a question. We're here to help!
-        Please note that this issue tracker is specifically for questions and discussions related to the package itself.
-        If you have questions about the underlying API or services beyond our control, we recommend reaching out to the appropriate support channels for those services.
-        When asking your question, please provide as much relevant detail as possible to help us understand and assist you better.
-        We appreciate your engagement and look forward to addressing your question!.
+        Please note that this issue tracker is specifically for questions and discussions related to the package itself. If you have questions about the underlying API or services beyond our control, we recommend reaching out to the appropriate support channels for those services.
+        When asking your question, please provide as much relevant detail as possible to help us understand and assist you better. We appreciate your engagement and look forward to addressing your question!.
   - type: textarea
     id: question-summary
     attributes:

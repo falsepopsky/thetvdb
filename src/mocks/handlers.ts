@@ -12,6 +12,9 @@ import {
   filterMovie,
   filterMovieS,
   filterMovieY,
+  filterSerie,
+  filterSerieS,
+  filterSerieY,
   genres,
   languages,
   movie,
@@ -126,5 +129,15 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
   }),
   rest.get('https://api4.thetvdb.com/v4/seasons/:id', async (_req, res, ctx) => {
     return await res(ctx.json(season));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/series/filter', async (req, res, ctx) => {
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name':
+        return await res(ctx.json(filterSerieS));
+      case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023':
+        return await res(ctx.json(filterSerieY));
+      default:
+        return await res(ctx.json(filterSerie));
+    }
   }),
 ];
