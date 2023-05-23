@@ -63,10 +63,10 @@ endpoint is indicated by the following emojis:
 | `/series/{id}`                               |       :soon:       |
 | `/series/{id}/artworks`                      |   :interrobang:    |
 | `/series/{id}/nextAired`                     |   :interrobang:    |
-| `/series/{id}/extended`                      |   :interrobang:    |
+| `/series/{id}/extended`                      |       :soon:       |
 | `/series/{id}/episodes/{season-type}`        |   :interrobang:    |
 | `/series/{id}/episodes/{season-type}/{lang}` |   :interrobang:    |
-| `/series/filter`                             |   :interrobang:    |
+| `/series/filter`                             | :white_check_mark: |
 | `/series/slug/{slug}`                        |   :interrobang:    |
 | `/series/{id}/translations/{language}`       |   :interrobang:    |
 | `/sources/types`                             |  :no_entry_sign:   |

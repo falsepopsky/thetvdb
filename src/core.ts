@@ -1,7 +1,7 @@
 import { clearTimeout, setTimeout } from 'node:timers';
 import { URL } from 'node:url';
 
-export class Base {
+export abstract class Base {
   private readonly _token;
   protected readonly api = 'https://api4.thetvdb.com';
   private _timeout: number;

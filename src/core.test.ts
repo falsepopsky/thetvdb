@@ -1,11 +1,10 @@
+// @ts-nocheck
+
 import { Base } from './core.js';
 
 describe('constructor token validation tests', () => {
   it('throws an error if no token is provided', () => {
-    expect(
-      // @ts-expect-error: expect a parameter token
-      () => new Base()
-    ).toThrow('Token is required');
+    expect(() => new Base()).toThrow('Token is required');
   });
 
   it('throws an error if an empty string is provided', () => {
@@ -13,17 +12,11 @@ describe('constructor token validation tests', () => {
   });
 
   it('throws error when non-string token is provided', () => {
-    expect(
-      // @ts-expect-error: expect a parameter token with type 'string'
-      () => new Base(1234)
-    ).toThrow('Token is required');
+    expect(() => new Base(1234)).toThrow('Token is required');
   });
 
   it('throws error when non-string timeout is provided', () => {
-    expect(
-      // @ts-expect-error: expect a parameter token with type 'string'
-      () => new Base('fake token', 'lala')
-    ).toThrow('timeout must be of type number');
+    expect(() => new Base('fake token', 'lala')).toThrow('timeout must be of type number');
   });
 
   it('throws error when the timeout provided is 0', () => {
@@ -64,13 +57,12 @@ describe('constructor token validation tests', () => {
 describe('abort controller', () => {
   it('aborts the request when the timeout is reached', async () => {
     const abortSpy = jest.spyOn(global.AbortController.prototype, 'abort');
+
     const client = new Base('fake token', 1);
 
-    // @ts-expect-error: Property 'fetcher' is protected and only accessible within class 'Base' and its subclasses.
     await expect(async () => await client.fetcher('https://delay.com/delay')).rejects.toThrow(
       'This operation was aborted'
     );
-    // Verify that the abort method was called
     expect(abortSpy).toHaveBeenCalled();
   });
 });
