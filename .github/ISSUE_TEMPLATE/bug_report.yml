@@ -1,5 +1,5 @@
-name: Bug report
-description: File a bug report.
+name: Bug report 🐛
+description: Did you encounter any unexpected behavior?
 title: '[Bug]: '
 labels: ['bug 🐛']
 assignees: 'falsepopsky'
