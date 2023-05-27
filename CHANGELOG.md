@@ -1,5 +1,12 @@
 # @untidy/thetvdb
 
+## 0.0.7
+
+### Patch Changes
+
+- 4eb973e: feat: add getSerie method, covers /series/{id}/extended & /series/{id} endpoints
+- 0aeb382: feat: add getFilteredSeries method
+
 ## 0.0.6
 
 ### Patch Changes
