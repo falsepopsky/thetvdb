@@ -1,5 +1,4 @@
-import type { DefaultBodyType, MockedRequest, RestHandler } from 'msw';
-import { rest } from 'msw';
+import { rest, type RestHandler } from 'msw';
 import {
   artwork,
   artworkExtended,
@@ -31,11 +30,18 @@ import {
   season,
   seasonE,
   seasonEM,
+  series,
+  seriesE,
+  seriesEE,
+  seriesEES,
+  seriesES,
+  seriesET,
+  seriesETS,
   updates,
   updatesFull,
 } from './response.js';
 
-export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
+export const handlers: RestHandler[] = [
   rest.get('https://api4.thetvdb.com/v4/content/ratings', async (_req, res, ctx) => {
     return await res(ctx.json(contentRatings));
   }),
@@ -139,5 +145,24 @@ export const handlers: Array<RestHandler<MockedRequest<DefaultBodyType>>> = [
       default:
         return await res(ctx.json(filterSerie));
     }
+  }),
+  rest.get('https://api4.thetvdb.com/v4/series/:id/extended', async (req, res, ctx) => {
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations&short=true':
+        return await res(ctx.json(seriesETS));
+      case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes&short=true':
+        return await res(ctx.json(seriesEES));
+      case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations':
+        return await res(ctx.json(seriesET));
+      case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes':
+        return await res(ctx.json(seriesEE));
+      case 'https://api4.thetvdb.com/v4/series/78878/extended?short=true':
+        return await res(ctx.json(seriesES));
+      default:
+        return await res(ctx.json(seriesE));
+    }
+  }),
+  rest.get('https://api4.thetvdb.com/v4/series/:id', async (_req, res, ctx) => {
+    return await res(ctx.json(series));
   }),
 ];

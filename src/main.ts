@@ -275,13 +275,55 @@ interface Serie extends Omit<Movie, 'runtime'> {
   averageRuntime: number;
   country: string;
   defaultSeasonType: number;
-  episodes: Episode[];
+  episodes: null;
   firstAired: string;
   isOrderRandomized: boolean;
   lastAired: string;
   nextAired: string;
   originalCountry: string;
   originalLanguage: string;
+}
+
+interface SerieExtended extends Serie {
+  overview: string;
+  artworks: Artwork[];
+  companies: unknown;
+  originalNetwork: unknown;
+  latestNetwork: unknown;
+  genres: Genre[];
+  trailers: Trailer[];
+  lists: unknown;
+  remoteIds: RemoteId[];
+  characters: Character[];
+  airsDays: Record<string, boolean>;
+  airsTime: string;
+  seasons: Season[];
+  tags: TagOptions[];
+  contentRatings: ContentRating[];
+  seasonTypes: SeasonType[];
+}
+
+interface SerieExtendedShort extends Omit<SerieExtended, 'artworks' | 'characters'> {
+  characters: null;
+  artworks: null;
+}
+
+interface SerieExtendedTranslations extends SerieExtended {
+  translations: Translations;
+}
+
+interface SerieExtendedTranslationsShort extends Omit<SerieExtendedTranslations, 'artworks' | 'characters'> {
+  characters: null;
+  artworks: null;
+}
+
+interface SerieExtendedEpisodes extends Omit<SerieExtended, 'episodes'> {
+  episodes: Episode[];
+}
+
+interface SerieExtendedEpisodesShort extends Omit<SerieExtendedEpisodes, 'artworks' | 'characters'> {
+  characters: null;
+  artworks: null;
 }
 
 interface Options {
@@ -327,6 +369,11 @@ interface SearchOptions {
   limit?: string;
 }
 
+interface SeriesOptions extends Omit<Options, 'meta'> {
+  meta?: 'translations' | 'episodes';
+  short?: boolean;
+}
+
 type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
 
 type GetCharacter = Data<Character>;
@@ -364,6 +411,20 @@ type GetSeason<O extends Options> = O['extended'] extends true
     ? Data<SeasonExtendedMeta>
     : Data<SeasonExtended>
   : Data<Season>;
+
+type GetSerie<O extends SeriesOptions> = O['extended'] extends true
+  ? O['meta'] extends 'translations'
+    ? O['short'] extends true
+      ? Data<SerieExtendedTranslationsShort>
+      : Data<SerieExtendedTranslations>
+    : O['meta'] extends 'episodes'
+    ? O['short'] extends true
+      ? Data<SerieExtendedEpisodesShort>
+      : Data<SerieExtendedEpisodes>
+    : O['short'] extends true
+    ? Data<SerieExtendedShort>
+    : Data<SerieExtended>
+  : Data<Serie>;
 
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
@@ -461,5 +522,24 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetSeason<O>>(endpoint);
+  }
+
+  public async getSerie<O extends SeriesOptions>(options: O): Promise<GetSerie<O>> {
+    this.validateInput(options?.id, 'Required series id');
+    const endpoint = this.createURL('/v4/series/' + options.id);
+
+    if (typeof options.extended === 'boolean' && options.extended) {
+      endpoint.pathname += '/extended';
+
+      if (typeof options.meta === 'string') {
+        endpoint.searchParams.set('meta', options.meta);
+      }
+
+      if (options.short === true) {
+        endpoint.searchParams.set('short', 'true');
+      }
+    }
+
+    return await this.fetcher<GetSerie<O>>(endpoint.href);
   }
 }

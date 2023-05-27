@@ -153,6 +153,17 @@ The main class for @untidy/thetvdb
 | extended | `boolean` | Optional | Returns the extended record.                                       |
 | meta     | `boolean` | Optional | Returns the extended record with translations (Requires extended). |
 
+### getSerie
+
+> Returns a serie base or extended record
+
+| name     | type      | Required | Description                                                                    |
+| -------- | --------- | :------: | ------------------------------------------------------------------------------ |
+| options  | `object`  |   Yes    | An object containing the parameters for the query.                             |
+| id       | `string`  |   Yes    | The serie `id`.                                                                |
+| extended | `boolean` | Optional | Returns the extended record.                                                   |
+| meta     | `string`  | Optional | Returns the extended record with translations or episodes (Requires extended). |
+
 ---
 
 ## TheTVDBExtended

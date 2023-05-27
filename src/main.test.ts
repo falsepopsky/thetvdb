@@ -2,7 +2,7 @@ import { TheTVDB } from './index.js';
 
 const client = new TheTVDB('fake token');
 
-describe('getArtwork method', () => {
+describe('getArtwork()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.getArtwork()).rejects.toThrow('Required artwork id');
@@ -24,7 +24,7 @@ describe('getArtwork method', () => {
   });
 });
 
-describe('getCharacter method', () => {
+describe('getCharacter()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.getCharacter()).rejects.toThrow('Required character id');
@@ -41,7 +41,7 @@ describe('getCharacter method', () => {
   });
 });
 
-describe('getEpisode method', () => {
+describe('getEpisode()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.getEpisode()).rejects.toThrow('Required episode id');
@@ -69,7 +69,7 @@ describe('getEpisode method', () => {
   });
 });
 
-describe('getFilteredMovie method', () => {
+describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query
     await expect(async () => await client.getFilteredMovie()).rejects.toThrow('Required country of origin');
@@ -99,7 +99,7 @@ describe('getFilteredMovie method', () => {
   });
 });
 
-describe('getFilteredSeries method', () => {
+describe('getFilteredSeries()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query
     await expect(async () => await client.getFilteredSeries()).rejects.toThrow('Required country of origin');
@@ -129,7 +129,7 @@ describe('getFilteredSeries method', () => {
   });
 });
 
-describe('getMovie method', () => {
+describe('getMovie()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter query
     await expect(async () => await client.getMovie()).rejects.toThrow('Required movie id');
@@ -179,7 +179,7 @@ describe('getMovie method', () => {
   });
 });
 
-describe('getPeople method', () => {
+describe('getPeople()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.getPeople()).rejects.toThrow('Required people id');
@@ -206,7 +206,7 @@ describe('getPeople method', () => {
   });
 });
 
-describe('getSearch method', () => {
+describe('getSearch()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required search query
     await expect(async () => await client.getSearch()).rejects.toThrow('Required search query');
@@ -235,7 +235,7 @@ describe('getSearch method', () => {
   });
 });
 
-describe('getSeason method', () => {
+describe('getSeason()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required search query
     await expect(async () => await client.getSeason()).rejects.toThrow('Required season id');
@@ -258,5 +258,64 @@ describe('getSeason method', () => {
   test('returns a extended & meta response', async () => {
     const { data } = await client.getSeason({ id: '6365', extended: true, meta: true });
     expect(data.translations.nameTranslations).toBeNull();
+  });
+});
+
+describe('getSeries()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required series id
+    await expect(async () => await client.getSerie()).rejects.toThrow('Required series id');
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(async () => await client.getSerie({ id: '' })).rejects.toThrow('Required series id');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerie({ id: '78878' });
+    expect(data.id).toBe(78878);
+  });
+
+  it('returns a extended response', async () => {
+    const { data } = await client.getSerie({ id: '78878', extended: true });
+    expect(Array.isArray(data.artworks)).toBe(true);
+    expect(data.artworks[0]?.id).toBe(686641);
+  });
+
+  it('returns a extended & short response', async () => {
+    const { data } = await client.getSerie({ id: '78878', extended: true, short: true });
+    expect(data.characters).toBeNull();
+  });
+
+  it('returns a extended and translations response', async () => {
+    const { data } = await client.getSerie({ id: '78878', extended: true, meta: 'translations' });
+
+    expect(Array.isArray(data.artworks)).toBe(true);
+    expect(data.artworks[0]?.id).toBe(686641);
+    expect(data.translations.nameTranslations[0]?.language).toBe('spa');
+  });
+
+  it('returns a extended, translations and short response', async () => {
+    const { data } = await client.getSerie({ id: '78878', extended: true, meta: 'translations', short: true });
+
+    expect(data.characters).toBeNull();
+    expect(Array.isArray(data.translations.nameTranslations)).toBe(true);
+    expect(data.translations.nameTranslations[0]?.name).toBe('Fooly Cooly (FLCL)');
+  });
+
+  it('returns a extended and meta episodes response', async () => {
+    const { data } = await client.getSerie({ id: '78878', extended: true, meta: 'episodes' });
+
+    expect(Array.isArray(data.artworks)).toBe(true);
+    expect(data.artworks[0]?.id).toBe(686641);
+    expect(data.episodes[0]?.name).toBe('フリクリ プログレ');
+  });
+
+  it('returns a extended, episodes and short response', async () => {
+    const { data } = await client.getSerie({ id: '78878', extended: true, meta: 'episodes', short: true });
+
+    expect(data.artworks).toBeNull();
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes[0]?.aired).toBe('2018-09-28');
   });
 });

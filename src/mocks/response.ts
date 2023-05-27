@@ -295,6 +295,91 @@ const filterSerie = {
   data: [{ name: 'Made In Hollywood' }],
 };
 
+// https://api4.thetvdb.com/v4/series/78878
+const series = {
+  data: {
+    id: 78878,
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/extended
+const seriesE = {
+  data: {
+    artworks: [
+      {
+        id: 686641,
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/extended?short=true
+const seriesES = {
+  data: {
+    characters: null,
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/extended?meta=translations&short=true
+const seriesETS = {
+  data: {
+    characters: null,
+    translations: {
+      nameTranslations: [
+        {
+          name: 'Fooly Cooly (FLCL)',
+        },
+      ],
+    },
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/extended?meta=translations
+const seriesET = {
+  data: {
+    artworks: [
+      {
+        id: 686641,
+      },
+    ],
+    translations: {
+      nameTranslations: [
+        {
+          language: 'spa',
+        },
+      ],
+    },
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes&short=true
+const seriesEES = {
+  data: {
+    artworks: null,
+    episodes: [
+      {
+        aired: '2018-09-28',
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes
+const seriesEE = {
+  data: {
+    artworks: [
+      {
+        id: 686641,
+      },
+    ],
+    episodes: [
+      {
+        name: 'フリクリ プログレ',
+      },
+    ],
+  },
+};
+
 export {
   contentRatings,
   countries,
@@ -317,6 +402,13 @@ export {
   seasonEM,
   seasonE,
   season,
+  series,
+  seriesE,
+  seriesES,
+  seriesETS,
+  seriesET,
+  seriesEES,
+  seriesEE,
   movie,
   movieES,
   movieE,
