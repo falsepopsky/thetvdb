@@ -102,7 +102,8 @@
     "@typescript-eslint/promise-function-async": "error",
     "@typescript-eslint/require-array-sort-compare": ["error", { "ignoreStringArrays": true }],
     "@typescript-eslint/strict-boolean-expressions": "error",
-    "@typescript-eslint/array-type": ["error", { "default": "array-simple" }]
+    "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
+    "@typescript-eslint/no-import-type-side-effects": "error"
   },
   "ignorePatterns": ["/*", "!/src"]
 }
