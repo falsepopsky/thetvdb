@@ -9,7 +9,6 @@
   "editor.wordWrap": "on",
   "editor.guides.bracketPairs": "active",
   "editor.tabSize": 2,
-  "eslint.packageManager": "pnpm",
   "npm.scriptExplorerAction": "open",
   "npm.autoDetect": "on",
   "npm.packageManager": "pnpm",
