@@ -9,6 +9,7 @@ on:
 
 jobs:
   lint:
+    name: ⬣ Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -17,7 +18,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8.6.5
+          version: 8.6.7
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -30,6 +31,7 @@ jobs:
       - name: Run lint
         run: pnpm lint
   test:
+    name: 🧪 Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -38,7 +40,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8.6.5
+          version: 8.6.7
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -53,6 +55,7 @@ jobs:
       - name: Run tests
         run: pnpm test
   build:
+    name: 🏗️ build
     runs-on: ubuntu-latest
     needs: [lint, test]
     steps:
@@ -62,7 +65,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8.6.5
+          version: 8.6.7
 
       - name: Setup Node
         uses: actions/setup-node@v3
