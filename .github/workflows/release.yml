@@ -10,6 +10,7 @@ on:
 
 jobs:
   release:
+    name: 🚀 Release
     if: ${{ (github.event.workflow_run.conclusion == 'success') && (github.repository == 'falsepopsky/thetvdb') }}
     runs-on: ubuntu-latest
     permissions:
@@ -22,7 +23,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8.6.5
+          version: 8.6.7
 
       - name: Setup Node
         uses: actions/setup-node@v3

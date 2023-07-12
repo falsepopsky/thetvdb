@@ -7,9 +7,8 @@
   "plugins": ["@typescript-eslint", "promise"],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:@typescript-eslint/strict",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:import/recommended",
     "plugin:import/typescript",
     "plugin:n/recommended",
@@ -38,7 +37,7 @@
       "env": { "jest": true },
       "plugins": ["jest"],
       "extends": ["plugin:jest/recommended", "plugin:jest/style"],
-      "files": ["**/*.test.ts", "**/*.spec.ts"],
+      "files": ["**/*.test.ts"],
       "rules": {
         "@typescript-eslint/no-unsafe-call": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
@@ -105,5 +104,5 @@
     "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
     "@typescript-eslint/no-import-type-side-effects": "error"
   },
-  "ignorePatterns": ["/*", "!/src"]
+  "ignorePatterns": ["/*", "!/src", "!/tests"]
 }
