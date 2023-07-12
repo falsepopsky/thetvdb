@@ -1,4 +1,4 @@
-import { TheTVDBExtended } from './index.js';
+import { TheTVDBExtended } from '../src/index.js';
 
 const client = new TheTVDBExtended('fake token');
 

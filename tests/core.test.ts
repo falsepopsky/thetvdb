@@ -1,4 +1,4 @@
-import { Base } from './core.js';
+import { Base } from '../src/core.js';
 
 describe('constructor token validation tests', () => {
   it('throws an error if no token is provided', () => {
