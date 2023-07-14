@@ -1,0 +1,31 @@
+:root {
+  --vp-button-brand-border: #18181b;
+  --vp-button-brand-text: rgb(255, 255, 255);
+  --vp-button-brand-bg: #18181b;
+
+  --vp-custom-block-tip-bg: #c8ffc8;
+
+  --vp-button-brand-hover-border: rgb(63, 63, 70);
+  --vp-button-brand-hover-text: var(--vp-button-brand-text);
+  --vp-button-brand-hover-bg: rgb(63, 63, 70);
+}
+
+.dark {
+  --vp-c-gutter: #242424;
+  --vp-c-bg: #171717;
+  --vp-c-bg-soft: #131313;
+  --vp-button-brand-border: rgba(52, 211, 153, 0.2);
+  --vp-button-brand-text: rgb(52, 211, 153);
+  --vp-button-brand-bg: rgba(52, 211, 153, 0.1);
+  --vp-button-brand-hover-border: rgb(78, 211, 162);
+  --vp-button-brand-hover-text: var(--vp-button-brand-text);
+  --vp-button-brand-hover-bg: var(--vp-button-brand-bg);
+
+  --vp-sidebar-bg-color: #111;
+  --vp-code-block-bg: hsla(0, 0%, 100%, 0.025);
+  --vp-code-tab-divider: #404040;
+
+  --vp-custom-block-tip-border: var(--vp-button-brand-border);
+  --vp-custom-block-tip-text: var(--vp-button-brand-text);
+  --vp-custom-block-tip-bg: var(--vp-button-brand-bg);
+}
