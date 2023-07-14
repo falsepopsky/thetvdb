@@ -22,7 +22,7 @@ features:
     details:
       It uses the native <b>fetch</b> and <b>URL</b> modules from Node.js to make HTTP requests and
       handle the creation of URL targets
-  - title: Endpoints
+  - title: Support Multiple Endpoints
     icon:
       <svg height="32" width="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0
       0 32 32" aria-hidden="true"><path
@@ -33,7 +33,8 @@ features:
       00-1.3339.6782 9.9566 9.9566 0 00-.5127 11.95L6.2793 28H2v2H30V28zM10.68 10.0938L21.9058
       21.32A8.0011 8.0011 0 0110.68 10.0938zM14 28H8.3875l1.8757-5.627A9.9894 9.9894 0 0014
       24.5435z"></path></svg>
-    details: Simple and intuitive interface for querying multiple API endpoints
+    details:
+      Interact with and query multiple API endpoints effortlessly using a user-friendly interface
   - title: TypeScript
     icon:
       <svg height="32" width="32" viewBox="0 0 27 26" xmlns="http://www.w3.org/2000/svg"
@@ -53,5 +54,5 @@ features:
       1.0146.4298.3134.1405.5842.2865.8124.4378.2282.1514.4083.3162.5403.4946s.198.3811.198.6082c0
       .1676-.0413.323-.1238.4662-.0825.1433-.2076.2676-.3753.373s-.3766.1879-.6268.2473c-.2502.0595-.5431.0892-.8785.0892-.5719
       0-1.1383-.0986-1.6992-.2959-.5608-.1973-1.0805-.4933-1.5589-.8879z"></path></svg>
-    details: Built with TypeScript for full typing support
+    details: Utilizes TypeScript to enhance development with strong typing capabilities
 ---

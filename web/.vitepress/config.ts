@@ -5,6 +5,7 @@ export default defineConfig({
   title: '@untidy/thetvdb',
   description: 'fully-typed client for accessing the TheTVDB API',
   head: [['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }]],
+  cleanUrls: true,
   themeConfig: {
     logo: '/favicon.png',
     nav: [
