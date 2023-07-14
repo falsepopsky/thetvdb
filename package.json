@@ -25,6 +25,7 @@
   ],
   "author": "falsepopsky",
   "license": "GPL-3.0",
+  "homepage": "https://untidy-thetvdb.netlify.app/",
   "scripts": {
     "dev": "tsx src/playground.ts",
     "format": "prettier --cache -w .",
