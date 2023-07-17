@@ -93,4 +93,4 @@ const data = await client.getCharacter('64140522');
 :::
 
 That's it! You have now made your first request. For more documentation, please check the
-[API](/api/) section.
+[API](/api) section.

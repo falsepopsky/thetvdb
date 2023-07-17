@@ -41,7 +41,7 @@ export default defineConfig({
         text: 'API',
         collapsed: false,
         items: [
-          { text: 'Introduction', link: '/api/' },
+          { text: 'Introduction', link: '/api' },
           { text: 'TheTVDB', link: '/api/thetvdb' },
           { text: 'TheTVDBExtended', link: '/api/thetvdb-extended' },
         ],
