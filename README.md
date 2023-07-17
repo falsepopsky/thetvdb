@@ -58,9 +58,10 @@ console.log(data);
 
 ## :page_facing_up: Docs
 
-- [API](https://github.com/falsepopsky/thetvdb/blob/main/docs/api.md)
-- [Supported endpoints](https://github.com/falsepopsky/thetvdb/blob/main/docs/endpoints.md)
-- [Examples](https://github.com/falsepopsky/thetvdb/blob/main/docs/examples.md)
+- [API](https://untidy-thetvdb.netlify.app/api)
+- [Supported endpoints](https://untidy-thetvdb.netlify.app/guide/supported-endpoints)
+- [TheTVDB Examples](https://untidy-thetvdb.netlify.app/api/thetvdb)
+- [TheTVDBExtended Examples](https://untidy-thetvdb.netlify.app/api/thetvdb-extended)
 
 ## :scroll: License
 

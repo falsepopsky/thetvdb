@@ -2,13 +2,5 @@
   "extends": "./tsconfig.json",
   "compilerOptions": { "rootDir": "./src", "outDir": "./dist", "noEmit": false },
   "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "tests",
-    "./src/mocks",
-    "**/*.test.ts",
-    "**/*.spec.ts",
-    "enviroment.d.ts",
-    "./src/playground.ts"
-  ]
+  "exclude": ["node_modules", "tests", "**/*.test.ts", "enviroment.d.ts", "./src/playground.ts"]
 }
