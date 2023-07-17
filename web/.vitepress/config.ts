@@ -26,14 +26,14 @@ export default defineConfig({
     ],
     sidebar: [
       {
-        text: 'Introduction',
+        text: 'Guide',
         collapsed: false,
         items: [
           {
             text: 'Getting Started',
             link: '/guide/getting-started',
           },
-          { text: 'About', link: '/guide/about' },
+          { text: 'Supported Endpoints', link: '/guide/supported-endpoints' },
           { text: 'FAQ', link: '/guide/faq' },
         ],
       },
@@ -41,11 +41,15 @@ export default defineConfig({
         text: 'API',
         collapsed: false,
         items: [
-          { text: 'Markdown Extensions', link: '/api/markdown-examples' },
-          { text: 'API Examples', link: '/api/api-examples' },
+          { text: 'Introduction', link: '/api/' },
+          { text: 'TheTVDB', link: '/api/thetvdb' },
+          { text: 'TheTVDBExtended', link: '/api/thetvdb-extended' },
         ],
       },
     ],
     socialLinks: [{ icon: 'github', link: 'https://github.com/falsepopsky/thetvdb' }],
+    search: {
+      provider: 'local',
+    },
   },
 });

@@ -2,12 +2,15 @@
   --vp-button-brand-border: #18181b;
   --vp-button-brand-text: rgb(255, 255, 255);
   --vp-button-brand-bg: #18181b;
-
   --vp-custom-block-tip-bg: #c8ffc8;
-
   --vp-button-brand-hover-border: rgb(63, 63, 70);
   --vp-button-brand-hover-text: var(--vp-button-brand-text);
   --vp-button-brand-hover-bg: rgb(63, 63, 70);
+  --vp-custom-block-info-border: rgba(0, 175, 253, 0.3);
+  --vp-custom-block-info-text: rgb(2, 116, 166);
+  --vp-custom-block-info-bg: rgba(23, 159, 219, 0.1);
+  --vp-custom-block-danger-text: rgb(215, 39, 39);
+  --vp-custom-block-danger-bg: rgb(255, 241, 242);
 }
 
 .dark {
@@ -20,12 +23,18 @@
   --vp-button-brand-hover-border: rgb(78, 211, 162);
   --vp-button-brand-hover-text: var(--vp-button-brand-text);
   --vp-button-brand-hover-bg: var(--vp-button-brand-bg);
-
   --vp-sidebar-bg-color: #111;
   --vp-code-block-bg: hsla(0, 0%, 100%, 0.025);
   --vp-code-tab-divider: #404040;
-
   --vp-custom-block-tip-border: var(--vp-button-brand-border);
   --vp-custom-block-tip-text: var(--vp-button-brand-text);
   --vp-custom-block-tip-bg: var(--vp-button-brand-bg);
+  --vp-custom-block-danger-text: rgb(251, 113, 133);
+  --vp-custom-block-danger-bg: rgba(251, 113, 133, 0.1);
+  --vp-custom-block-info-border: rgba(56, 189, 248, 0.3);
+  --vp-custom-block-info-text: rgb(56, 189, 248);
+  --vp-custom-block-info-bg: rgba(56, 189, 248, 0.1);
+  --vp-badge-info-border: rgba(56, 189, 248, 0.3);
+  --vp-badge-info-text: rgb(56, 189, 248);
+  --vp-badge-info-bg: rgba(56, 189, 248, 0.1);
 }

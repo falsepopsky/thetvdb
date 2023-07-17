@@ -2,6 +2,22 @@
 
 [[toc]]
 
+## Prerequisites
+
+To successfully utilize this package, users must meet the following prerequisites:
+
+- **Node.js:** The user must have [Node.js](https://nodejs.org) installed on their system with a
+  minimum version of 18.
+
+- **TheTVDB Token:** Use the token provided by the `login` endpoint from TheTVDB.
+
+::: tip INFO
+
+To obtain your token, you first need an API Key from TheTVDB. Then, make a request to the `login`
+endpoint to create an authentication token. The token is valid for one month.
+
+:::
+
 ## Installation
 
 Use your preferred package manager
@@ -22,25 +38,59 @@ pnpm add @untidy/thetvdb
 
 :::
 
-## Prerequisites
+## Making your first API request
 
-To successfully utilize this package, users must meet the following prerequisites:
+To get started, simply create an instance of the class with your API token:
 
-- **Node.js:** The user must have [Node.js](https://nodejs.org) installed on their system with a
-  minimum version of 18.
+```js
+import { TheTVDB } from '@untidy/thetvdb';
 
-- **TheTVDB API Token:** In addition to Node.js, users must possess an API token to access the
-  required functionalities of this package. The API token serves as an authentication mechanism and
-  allows the package to interact with external services or APIs. Please ensure you have obtained a
-  valid API token before proceeding with the package setup.
+const client = new TheTVDB('your token');
+```
 
-::: tip INFO
+Then, call any of the available methods to retrieve data from TheTVDB API. In this case, we retrieve
+specific character information:
 
-If you are unsure how to obtain an API token, refer to the documentation or contact the service
-provider or administrator responsible for issuing the token.
+```js
+const data = await client.getCharacter('64140522');
+```
+
+::: details OUTPUT
+
+```js
+
+{
+  status: 'success',
+  data: {
+    id: 64140522,
+    name: 'Spike Spiegel',
+    peopleId: 7916957,
+    seriesId: 76885,
+    series: {
+      name: 'カウボーイビバップ',
+      image: 'https://artworks.thetvdb.com/https://artworks.thetvdb.com/banners/posters/76885-3.jpg',
+      year: '1998'
+    },
+    movie: null,
+    movieId: null,
+    episodeId: null,
+    type: 3,
+    image: 'https://artworks.thetvdb.com/banners/person/7916957/62110430.jpg',
+    sort: 1,
+    isFeatured: true,
+    url: 'https://thetvdb.com/people/7916957-kouichi-yamadera',
+    nameTranslations: [],
+    overviewTranslations: [],
+    aliases: [],
+    peopleType: 'Actor',
+    personName: 'Kouichi Yamadera',
+    tagOptions: [],
+    personImgURL: 'https://artworks.thetvdb.com/banners/v4/actor/7916957/photo/61ff8d2552665.jpg'
+  }
+}
+```
 
 :::
 
-## Making your first API request
-
-something good
+That's it! You have now made your first request. For more documentation, please check the
+[API](/api/) section.

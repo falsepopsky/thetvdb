@@ -1,4 +1,8 @@
-# FAQ
+# Frequently asked questions
+
+If you have a question that is not addressed in this FAQ section, we encourage you to reach out to
+us by opening an [issue](https://github.com/falsepopsky/thetvdb/issues/new/choose) in our GitHub
+repository.
 
 [[toc]]
 
