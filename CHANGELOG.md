@@ -4,8 +4,8 @@
 
 ### Minor Changes
 
-- 90be039: - feat: add homepage for docs
-  - fix: don't use main fallback for old node versions
+- feat: add homepage for docs
+- fix: don't use main fallback for old node versions
 
 ## 0.0.7
 
