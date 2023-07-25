@@ -3,4 +3,3 @@
 [build]
   publish = "web/.vitepress/dist"
   command = "pnpm docs:build"
-  ignore = "bash ./build-ignore.sh"
