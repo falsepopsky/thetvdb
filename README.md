@@ -66,5 +66,5 @@ console.log(data);
 ## :scroll: License
 
 `@untidy/thetvdb` is licensed under the
-[GPL-3.0-or-later](https://github.com/falsepopsky/thetvdb/blob/main/LICENSE) license - © 2023
+[Apache-2.0](https://github.com/falsepopsky/thetvdb/blob/main/LICENSE) license - © 2023
 [falsepopsky](https://github.com/falsepopsky).
