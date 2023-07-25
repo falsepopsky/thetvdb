@@ -2,6 +2,8 @@ import { rest, type RestHandler } from 'msw';
 import {
   artwork,
   artworkExtended,
+  artworkStatuses,
+  artworkTypes,
   character,
   contentRatings,
   countries,
@@ -65,7 +67,14 @@ export const handlers: RestHandler[] = [
     return await res(ctx.json(artworkExtended));
   }),
   rest.get('https://api4.thetvdb.com/v4/artwork/:id', async (req, res, ctx) => {
-    return await res(ctx.json(artwork));
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/artwork/types':
+        return await res(ctx.json(artworkTypes));
+      case 'https://api4.thetvdb.com/v4/artwork/statuses':
+        return await res(ctx.json(artworkStatuses));
+      default:
+        return await res(ctx.json(artwork));
+    }
   }),
   rest.get('https://api4.thetvdb.com/v4/characters/:id', async (req, res, ctx) => {
     return await res(ctx.json(character));

@@ -3,4 +3,4 @@
 [build]
   publish = "web/.vitepress/dist"
   command = "pnpm docs:build"
-  ignore = "node ignoreNetlify.cjs"
+  ignore = "bash ./build-ignore.sh"

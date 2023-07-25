@@ -73,13 +73,37 @@ interface updateO {
   page?: string;
 }
 
+interface ArtworkType {
+  id: number;
+  name: string;
+  recordType: string;
+  slug: string;
+  imageFormat: string;
+  width: number;
+  height: number;
+  thumbWidth: number;
+  thumbHeight: number;
+}
+
 type GetContentRatings = Data<ContentRating[]>;
 type GetCountries = Data<Country[]>;
 type GetGenres = Data<Genre[]>;
 type GetLanguages = Data<Language[]>;
 type GetUpdates = DataLink<Update[] | null[]>;
+type GetArtworkStatuses = Data<Array<{ id: number; name: string }>>;
+type GetArtworkTypes = Data<ArtworkType[]>;
 
 export class TheTVDBExtended extends Base {
+  public async getArtworkStatuses(): Promise<GetArtworkStatuses> {
+    const endpoint = this.api + '/v4/artwork/statuses';
+    return await this.fetcher<GetArtworkStatuses>(endpoint);
+  }
+
+  public async getArtworkTypes(): Promise<GetArtworkTypes> {
+    const endpoint = this.api + '/v4/artwork/types';
+    return await this.fetcher<GetArtworkTypes>(endpoint);
+  }
+
   public async getContentRatings(): Promise<GetContentRatings> {
     const endpoint = this.api + '/v4/content/ratings';
     return await this.fetcher<GetContentRatings>(endpoint);

@@ -87,6 +87,26 @@ const artwork = {
   },
 };
 
+// https://api4.thetvdb.com/v4/artwork/statuses
+const artworkStatuses = {
+  status: 'success',
+  data: [{ name: 'Low Quality' }, { id: 2 }],
+};
+
+// https://api4.thetvdb.com/v4/artwork/types
+const artworkTypes = {
+  status: 'success',
+  data: [
+    {
+      thumbHeight: 140,
+    },
+    {
+      id: 2,
+      imageFormat: 'JPG',
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/characters/64140522
 const character = {
   data: {
@@ -381,43 +401,45 @@ const seriesEE = {
 };
 
 export {
+  artwork,
+  artworkExtended,
+  artworkStatuses,
+  artworkTypes,
+  character,
   contentRatings,
   countries,
   episodes,
-  episodesET,
   episodesE,
-  character,
-  genres,
-  languages,
-  updatesFull,
-  updates,
-  artworkExtended,
-  artwork,
-  people,
-  peopleET,
-  peopleE,
-  searchTL,
-  searchT,
-  search,
-  seasonEM,
-  seasonE,
-  season,
-  series,
-  seriesE,
-  seriesES,
-  seriesETS,
-  seriesET,
-  seriesEES,
-  seriesEE,
-  movie,
-  movieES,
-  movieE,
-  movieEMS,
-  movieEM,
+  episodesET,
+  filterMovie,
   filterMovieS,
   filterMovieY,
-  filterMovie,
+  filterSerie,
   filterSerieS,
   filterSerieY,
-  filterSerie,
+  genres,
+  languages,
+  movie,
+  movieE,
+  movieEM,
+  movieEMS,
+  movieES,
+  people,
+  peopleE,
+  peopleET,
+  search,
+  searchT,
+  searchTL,
+  season,
+  seasonE,
+  seasonEM,
+  series,
+  seriesE,
+  seriesEE,
+  seriesEES,
+  seriesES,
+  seriesET,
+  seriesETS,
+  updates,
+  updatesFull,
 };

@@ -1,0 +1,9 @@
+'📚 docs':
+  - 'web/**/*'
+  - 'README.md'
+'🧪 tests':
+  - 'tests/**/*'
+'⚙️ configs':
+  - '.prettierrc'
+  - 'jest.config.js'
+  - '.eslintrc.json'
