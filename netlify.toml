@@ -3,5 +3,4 @@
 [build]
   publish = "web/.vitepress/dist"
   command = "pnpm docs:build"
-[context.branch-deploy]
   ignore = "bash ./build-ignore.sh"
