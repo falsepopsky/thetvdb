@@ -2,7 +2,28 @@ import { TheTVDBExtended } from '../src/index.js';
 
 const client = new TheTVDBExtended('fake token');
 
-describe('getContentRatings method', () => {
+describe('getArtworkStatuses()', () => {
+  test('returns a successful response', async () => {
+    const { status, data } = await client.getArtworkStatuses();
+    expect(status).toBe('success');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.name).toBe('Low Quality');
+    expect(data[1]?.id).toBe(2);
+  });
+});
+
+describe('getArtworkTypes()', () => {
+  test('returns a successful response', async () => {
+    const { status, data } = await client.getArtworkTypes();
+    expect(status).toBe('success');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.thumbHeight).toBe(140);
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.imageFormat).toBe('JPG');
+  });
+});
+
+describe('getContentRatings()', () => {
   test('returns a successful response', async () => {
     const { status, data } = await client.getContentRatings();
     expect(status).toBe('success');
@@ -11,7 +32,7 @@ describe('getContentRatings method', () => {
   });
 });
 
-describe('getCountries method', () => {
+describe('getCountries()', () => {
   test('returns a successful response', async () => {
     const { status, data } = await client.getCountries();
     expect(status).toBe('success');
@@ -21,7 +42,7 @@ describe('getCountries method', () => {
   });
 });
 
-describe('getGenres method', () => {
+describe('getGenres()', () => {
   test('returns a successful response', async () => {
     const { status, data } = await client.getGenres();
     expect(status).toBe('success');
@@ -31,7 +52,7 @@ describe('getGenres method', () => {
   });
 });
 
-describe('getLanguages method', () => {
+describe('getLanguages()', () => {
   test('returns a successful response', async () => {
     const { status, data } = await client.getLanguages();
     expect(status).toBe('success');
@@ -41,7 +62,7 @@ describe('getLanguages method', () => {
   });
 });
 
-describe('getUpdates method', () => {
+describe('getUpdates()', () => {
   it('throws an error if since option is not provided', async () => {
     await expect(async () => {
       // @ts-expect-error: expect a parameter since
