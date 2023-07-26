@@ -3,4 +3,4 @@
 [build]
   publish = "web/.vitepress/dist"
   command = "pnpm docs:build"
-  ignore = "bash ./build-ignore.sh"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ./web/"
