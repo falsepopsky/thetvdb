@@ -1,5 +1,15 @@
 # @untidy/thetvdb
 
+## 0.2.0
+
+### Minor Changes
+
+- c2d7133: feat: support artwork api statuses and types
+
+### Patch Changes
+
+- d20458a: chore: Remove GPL-3.0 and use Apache License instead
+
 ## 0.1.0
 
 ### Minor Changes
