@@ -43,6 +43,102 @@ await client.getArtwork({ id: '63237874' });
 await client.getArtwork({ id: '63237874', extended: true });
 ```
 
+## getAwards
+
+Returns a list of awards base records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint  |
+| ------------------------------- | --------- |
+| <Badge type="tip" text="GET" /> | `/awards` |
+
+### List of awards records <Badge type="info" text="example" />
+
+```js
+await client.getAwards();
+```
+
+## getAwardsById
+
+Returns a single Award record
+
+| params | type     | Required | Description            |
+| ------ | -------- | :------: | ---------------------- |
+| id     | `string` |   Yes    | The `id` of the Award. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint      |
+| ------------------------------- | ------------- |
+| <Badge type="tip" text="GET" /> | `/awards/:id` |
+
+### Single award record <Badge type="info" text="example" />
+
+```js
+await client.getAwardsById('2');
+```
+
+## getAwardsByIdExtended
+
+Returns a single Award extended record
+
+| params | type     | Required | Description            |
+| ------ | -------- | :------: | ---------------------- |
+| id     | `string` |   Yes    | The `id` of the Award. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint               |
+| ------------------------------- | ---------------------- |
+| <Badge type="tip" text="GET" /> | `/awards/:id/extended` |
+
+### Single award extended record <Badge type="info" text="example" />
+
+```js
+await client.getAwardsByIdExtended('2');
+```
+
+## getAwardsCategoriesById
+
+Returns a single award category record
+
+| params | type     | Required | Description                     |
+| ------ | -------- | :------: | ------------------------------- |
+| id     | `string` |   Yes    | The `id` of the award category. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint                 |
+| ------------------------------- | ------------------------ |
+| <Badge type="tip" text="GET" /> | `/awards/categories/:id` |
+
+### Single award extended record <Badge type="info" text="example" />
+
+```js
+await client.getAwardsCategoriesById('2');
+```
+
+## getAwardsCategoriesByIdExtended
+
+Returns a single award category extended record
+
+| params | type     | Required | Description                     |
+| ------ | -------- | :------: | ------------------------------- |
+| id     | `string` |   Yes    | The `id` of the award category. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint                          |
+| ------------------------------- | --------------------------------- |
+| <Badge type="tip" text="GET" /> | `/awards/categories/:id/extended` |
+
+### Single award extended record <Badge type="info" text="example" />
+
+```js
+await client.getAwardsCategoriesByIdExtended('2');
+```
+
 ## getFilteredMovie
 
 Returns a search movies records based on filter parameters
