@@ -85,12 +85,17 @@ interface ArtworkType {
   thumbHeight: number;
 }
 
+interface Shared {
+  id: number;
+  name: string;
+}
+
 type GetContentRatings = Data<ContentRating[]>;
 type GetCountries = Data<Country[]>;
 type GetGenres = Data<Genre[]>;
 type GetLanguages = Data<Language[]>;
 type GetUpdates = DataLink<Update[] | null[]>;
-type GetArtworkStatuses = Data<Array<{ id: number; name: string }>>;
+type GetArtworkStatuses = Data<Shared[]>;
 type GetArtworkTypes = Data<ArtworkType[]>;
 
 export class TheTVDBExtended extends Base {
