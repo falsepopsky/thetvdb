@@ -14,6 +14,38 @@ const client = new TheTVDBExtended('your token');
 
 [[toc]]
 
+## getArtworkStatuses
+
+This method returns a list of artwork status records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint            |
+| ------------------------------- | ------------------- |
+| <Badge type="tip" text="GET" /> | `/artwork/statuses` |
+
+### List of content rating records <Badge type="info" text="example" />
+
+```js
+await client.getArtworkStatuses();
+```
+
+## getArtworkTypes
+
+This method returns a list of artwork types records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint         |
+| ------------------------------- | ---------------- |
+| <Badge type="tip" text="GET" /> | `/artwork/types` |
+
+### List of content rating records <Badge type="info" text="example" />
+
+```js
+await client.getArtworkTypes();
+```
+
 ## getContentRatings
 
 This method returns a list of content rating records and does not require any parameters.
