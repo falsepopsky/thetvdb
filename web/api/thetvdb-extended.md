@@ -24,7 +24,7 @@ This method returns a list of artwork status records and does not require any pa
 | ------------------------------- | ------------------- |
 | <Badge type="tip" text="GET" /> | `/artwork/statuses` |
 
-### List of content rating records <Badge type="info" text="example" />
+### List of artwork status records <Badge type="info" text="example" />
 
 ```js
 await client.getArtworkStatuses();
@@ -40,7 +40,7 @@ This method returns a list of artwork types records and does not require any par
 | ------------------------------- | ---------------- |
 | <Badge type="tip" text="GET" /> | `/artwork/types` |
 
-### List of content rating records <Badge type="info" text="example" />
+### List of artwork types records <Badge type="info" text="example" />
 
 ```js
 await client.getArtworkTypes();
@@ -72,7 +72,7 @@ This method returns a list of country records and does not require any parameter
 | ------------------------------- | ------------ |
 | <Badge type="tip" text="GET" /> | `/countries` |
 
-### List of content rating records<Badge type="info" text="example" />
+### List of country records<Badge type="info" text="example" />
 
 ```js
 await client.getCountries();
