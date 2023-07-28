@@ -61,7 +61,7 @@ await client.getAwards();
 
 ## getAwardsById
 
-Returns a single Award record
+Returns a single award record
 
 | params | type     | Required | Description            |
 | ------ | -------- | :------: | ---------------------- |
@@ -81,7 +81,7 @@ await client.getAwardsById('2');
 
 ## getAwardsByIdExtended
 
-Returns a single Award extended record
+Returns a single award extended record
 
 | params | type     | Required | Description            |
 | ------ | -------- | :------: | ---------------------- |
