@@ -1,77 +1,3 @@
-// https://api4.thetvdb.com/v4/content/ratings
-const contentRatings = {
-  status: 'success',
-  data: [
-    {
-      name: 'ATP',
-    },
-  ],
-};
-
-// https://api4.thetvdb.com/v4/countries
-const countries = {
-  status: 'success',
-  data: [
-    {
-      name: 'Aruba',
-    },
-    {
-      id: 'afg',
-    },
-  ],
-};
-
-// https://api4.thetvdb.com/v4/genres
-const genres = {
-  status: 'success',
-  data: [
-    {
-      name: 'Soap',
-    },
-    {
-      id: 2,
-    },
-  ],
-};
-
-// https://api4.thetvdb.com/v4/languages
-const languages = {
-  status: 'success',
-  data: [
-    {
-      name: 'Afar',
-    },
-    {
-      nativeName: 'isiZulu',
-    },
-  ],
-};
-
-// https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2
-const updatesFull = {
-  status: 'success',
-  data: [
-    {
-      method: 'update',
-    },
-    {
-      entityType: 'artwork',
-    },
-  ],
-  links: {
-    next: 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=3',
-  },
-};
-
-// https://api4.thetvdb.com/v4/updates?since=1682899200&action=delete
-const updates = {
-  data: [
-    {
-      method: 'delete',
-    },
-  ],
-};
-
 // https://api4.thetvdb.com/v4/artwork/63237874/extended
 const artworkExtended = {
   data: {
@@ -107,12 +33,86 @@ const artworkTypes = {
   ],
 };
 
+// https://api4.thetvdb.com/v4/awards
+const awards = {
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'Academy Awards',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/awards/1
+const awardsId = {
+  data: {
+    id: 1,
+    name: 'Academy Awards',
+  },
+};
+
+// https://api4.thetvdb.com/v4/awards/1/extended
+const awardsIdExtended = {
+  data: {
+    categories: [
+      {
+        id: 1,
+        name: 'Best Picture',
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/awards/categories/42
+const awardsCategoryId = {
+  data: {
+    id: 42,
+    name: 'Best Actor in a Television Series – Drama',
+  },
+};
+
+// https://api4.thetvdb.com/v4/awards/categories/42/extended
+const awardsCategoryIdExtended = {
+  data: {
+    nominees: [
+      {
+        id: 6352,
+        isWinner: true,
+      },
+    ],
+  },
+};
+
 // https://api4.thetvdb.com/v4/characters/64140522
 const character = {
   data: {
     id: 64140522,
     name: 'Spike Spiegel',
   },
+};
+
+// https://api4.thetvdb.com/v4/content/ratings
+const contentRatings = {
+  status: 'success',
+  data: [
+    {
+      name: 'ATP',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/countries
+const countries = {
+  status: 'success',
+  data: [
+    {
+      name: 'Aruba',
+    },
+    {
+      id: 'afg',
+    },
+  ],
 };
 
 // https://api4.thetvdb.com/v4/episodes/127396/extended?meta=translations
@@ -142,6 +142,64 @@ const episodes = {
   data: {
     id: 127396,
   },
+};
+
+// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name
+const filterMovieS = {
+  data: [{ name: '-Ship: A Visual Poem' }],
+};
+
+// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&year=2023
+const filterMovieY = {
+  data: [{ year: '2023' }],
+};
+
+// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng
+const filterMovie = {
+  status: 'success',
+  data: [{ name: 'The Fortress' }],
+};
+
+// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name
+const filterSerieS = {
+  data: [{ name: 'Adriana Gaming' }],
+};
+
+// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023
+const filterSerieY = {
+  data: [{ year: '2023' }],
+};
+
+// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng
+const filterSerie = {
+  status: 'success',
+  data: [{ name: 'Made In Hollywood' }],
+};
+
+// https://api4.thetvdb.com/v4/genres
+const genres = {
+  status: 'success',
+  data: [
+    {
+      name: 'Soap',
+    },
+    {
+      id: 2,
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/languages
+const languages = {
+  status: 'success',
+  data: [
+    {
+      name: 'Afar',
+    },
+    {
+      nativeName: 'isiZulu',
+    },
+  ],
 };
 
 // https://api4.thetvdb.com/v4/people/312388/extended?meta=translations
@@ -197,6 +255,31 @@ const search = {
     {
       objectID: 'series-426391',
       country: 'jpn',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2
+const updatesFull = {
+  status: 'success',
+  data: [
+    {
+      method: 'update',
+    },
+    {
+      entityType: 'artwork',
+    },
+  ],
+  links: {
+    next: 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=3',
+  },
+};
+
+// https://api4.thetvdb.com/v4/updates?since=1682899200&action=delete
+const updates = {
+  data: [
+    {
+      method: 'delete',
     },
   ],
 };
@@ -281,38 +364,6 @@ const season = {
   data: {
     seriesId: 70350,
   },
-};
-
-// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name
-const filterMovieS = {
-  data: [{ name: '-Ship: A Visual Poem' }],
-};
-
-// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&year=2023
-const filterMovieY = {
-  data: [{ year: '2023' }],
-};
-
-// https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng
-const filterMovie = {
-  status: 'success',
-  data: [{ name: 'The Fortress' }],
-};
-
-// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name
-const filterSerieS = {
-  data: [{ name: 'Adriana Gaming' }],
-};
-
-// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023
-const filterSerieY = {
-  data: [{ year: '2023' }],
-};
-
-// https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng
-const filterSerie = {
-  status: 'success',
-  data: [{ name: 'Made In Hollywood' }],
 };
 
 // https://api4.thetvdb.com/v4/series/78878
@@ -405,6 +456,11 @@ export {
   artworkExtended,
   artworkStatuses,
   artworkTypes,
+  awards,
+  awardsCategoryId,
+  awardsCategoryIdExtended,
+  awardsId,
+  awardsIdExtended,
   character,
   contentRatings,
   countries,
