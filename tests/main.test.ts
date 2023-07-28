@@ -24,6 +24,50 @@ describe('getArtwork()', () => {
   });
 });
 
+describe('getAwards()', () => {
+  test('returns a successful response', async () => {
+    const { data, status } = await client.getAwards();
+    expect(status).toBe('success');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Academy Awards');
+  });
+});
+
+describe('getAwardsById()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getAwardsById('1');
+    expect(data.id).toBe(1);
+    expect(data.name).toBe('Academy Awards');
+  });
+});
+
+describe('getAwardsByIdExtended()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getAwardsByIdExtended('1');
+    expect(Array.isArray(data.categories)).toBe(true);
+    expect(data.categories[0]?.id).toBe(1);
+    expect(data.categories[0]?.name).toBe('Best Picture');
+  });
+});
+
+describe('getAwardsCategoriesById()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getAwardsCategoriesById('42');
+    expect(data.id).toBe(42);
+    expect(data.name).toBe('Best Actor in a Television Series – Drama');
+  });
+});
+
+describe('getAwardsCategoriesByIdExtended()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getAwardsCategoriesByIdExtended('42');
+    expect(Array.isArray(data.nominees)).toBe(true);
+    expect(data.nominees[0]?.id).toBe(6352);
+    expect(data.nominees[0]?.isWinner).toBe(true);
+  });
+});
+
 describe('getCharacter()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id

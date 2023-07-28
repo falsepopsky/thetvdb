@@ -4,6 +4,11 @@ import {
   artworkExtended,
   artworkStatuses,
   artworkTypes,
+  awards,
+  awardsCategoryId,
+  awardsCategoryIdExtended,
+  awardsId,
+  awardsIdExtended,
   character,
   contentRatings,
   countries,
@@ -44,6 +49,21 @@ import {
 } from './response.js';
 
 export const handlers: RestHandler[] = [
+  rest.get('https://api4.thetvdb.com/v4/awards/categories/:id/extended', async (_req, res, ctx) => {
+    return await res(ctx.json(awardsCategoryIdExtended));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/awards/categories/:id', async (_req, res, ctx) => {
+    return await res(ctx.json(awardsCategoryId));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/awards/:id/extended', async (_req, res, ctx) => {
+    return await res(ctx.json(awardsIdExtended));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/awards/:id', async (_req, res, ctx) => {
+    return await res(ctx.json(awardsId));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/awards', async (_req, res, ctx) => {
+    return await res(ctx.json(awards));
+  }),
   rest.get('https://api4.thetvdb.com/v4/content/ratings', async (_req, res, ctx) => {
     return await res(ctx.json(contentRatings));
   }),
@@ -63,7 +83,7 @@ export const handlers: RestHandler[] = [
       return await res(ctx.json(updates));
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/artwork/:id/extended', async (req, res, ctx) => {
+  rest.get('https://api4.thetvdb.com/v4/artwork/:id/extended', async (_req, res, ctx) => {
     return await res(ctx.json(artworkExtended));
   }),
   rest.get('https://api4.thetvdb.com/v4/artwork/:id', async (req, res, ctx) => {

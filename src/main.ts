@@ -7,6 +7,33 @@ interface AwardsHelper {
   id: number;
   name: string;
 }
+interface AwardCategory {
+  id: number;
+  name: string;
+  allowCoNominees: boolean;
+  forSeries: boolean;
+  forMovies: boolean;
+  award: AwardsHelper;
+}
+
+interface AwardExtended extends AwardsHelper {
+  categories: AwardCategory[];
+}
+
+interface AwardCategoryExtended extends AwardCategory {
+  nominees: Array<{
+    character: Character;
+    details: string;
+    episode: Episode;
+    id: number;
+    isWinner: boolean;
+    movie: Movie;
+    series: Serie;
+    year: string;
+    category: string;
+    name: string;
+  }>;
+}
 
 type NameImageYear = Record<'name' | 'image' | 'year', string>;
 
@@ -376,6 +403,12 @@ interface SeriesOptions extends Omit<Options, 'meta'> {
 
 type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
 
+type GetAwards = Data<AwardsHelper[]>;
+type GetAwardsById = Data<AwardsHelper>;
+type GetAwardsByIdExtended = Data<AwardExtended>;
+type GetAwardsCategoriesById = Data<AwardCategory>;
+type GetAwardsCategoriesByIdExtended = Data<AwardCategoryExtended>;
+
 type GetCharacter = Data<Character>;
 
 type GetFilteredMovie = DataLink<Movie[]>;
@@ -434,6 +467,39 @@ export class TheTVDB extends Base {
     if (typeof options.extended === 'boolean' && options.extended) endpoint += '/extended';
 
     return await this.fetcher<GetArtwork<O>>(endpoint);
+  }
+
+  public async getAwards(): Promise<GetAwards> {
+    const endpoint = this.api + '/v4/awards';
+    return await this.fetcher<GetAwards>(endpoint);
+  }
+
+  public async getAwardsById(id: string): Promise<GetAwardsById> {
+    this.validateInput(id, 'Required id');
+    const endpoint = `${this.api}/v4/awards/${id}`;
+
+    return await this.fetcher<GetAwardsById>(endpoint);
+  }
+
+  public async getAwardsByIdExtended(id: string): Promise<GetAwardsByIdExtended> {
+    this.validateInput(id, 'Required id');
+    const endpoint = `${this.api}/v4/awards/${id}/extended`;
+
+    return await this.fetcher<GetAwardsByIdExtended>(endpoint);
+  }
+
+  public async getAwardsCategoriesById(id: string): Promise<GetAwardsCategoriesById> {
+    this.validateInput(id, 'Required id');
+    const endpoint = `${this.api}/v4/awards/categories/${id}`;
+
+    return await this.fetcher<GetAwardsCategoriesById>(endpoint);
+  }
+
+  public async getAwardsCategoriesByIdExtended(id: string): Promise<GetAwardsCategoriesByIdExtended> {
+    this.validateInput(id, 'Required id');
+    const endpoint = `${this.api}/v4/awards/categories/${id}/extended`;
+
+    return await this.fetcher<GetAwardsCategoriesByIdExtended>(endpoint);
   }
 
   public async getCharacter(id: string): Promise<GetCharacter> {
