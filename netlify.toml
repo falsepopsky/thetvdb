@@ -1,6 +1,6 @@
 [build.environment]
   NODE_VERSION = "18"
 [build]
-  publish = "web/.vitepress/dist"
+  publish = "docs/.vitepress/dist"
   command = "pnpm docs:build"
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ./web/"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ./docs/"
