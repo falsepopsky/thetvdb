@@ -1,5 +1,11 @@
 # @untidy/thetvdb
 
+## 0.3.0
+
+### Minor Changes
+
+- 102b3db: feat: support awards api
+
 ## 0.2.0
 
 ### Minor Changes
