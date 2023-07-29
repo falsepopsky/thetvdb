@@ -1,6 +1,6 @@
 # @untidy/thetvdb
 
-![thetvdb logo](https://github.com/falsepopsky/thetvdb/tree/main/docs/public/favicon.png)
+![thetvdb logo](https://github.com/falsepopsky/thetvdb/blob/main/docs/public/favicon.png)
 
 ## :information_source: About
 
