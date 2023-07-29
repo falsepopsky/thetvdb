@@ -1,5 +1,7 @@
+'📦 core':
+  - 'src/**'
 '📚 docs':
-  - 'web/**/*'
+  - 'docs/**/*'
   - 'README.md'
 '🧪 tests':
   - 'tests/**/*'
