@@ -18,7 +18,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
         with:
-          version: 8.6.10
+          version: 8.6.12
 
       - name: Setup Node
         uses: actions/setup-node@v3.7.0
@@ -27,7 +27,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Run lint
         run: pnpm lint
   test:
@@ -40,7 +40,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
         with:
-          version: 8.6.10
+          version: 8.6.12
 
       - name: Setup Node
         uses: actions/setup-node@v3.7.0
@@ -49,11 +49,11 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Run tests
         run: pnpm test
   build:
-    name: 🏗️ build
+    name: 🏗️ Build
     runs-on: ubuntu-latest
     needs: [lint, test]
     steps:
@@ -63,7 +63,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.4.0
         with:
-          version: 8.6.10
+          version: 8.6.12
 
       - name: Setup Node
         uses: actions/setup-node@v3.7.0
@@ -72,6 +72,6 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Run build
         run: pnpm build

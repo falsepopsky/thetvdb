@@ -1,10 +1,10 @@
 '📦 core':
   - 'src/**'
 '📚 docs':
-  - 'docs/**/*'
+  - 'docs/**'
   - 'README.md'
 '🧪 tests':
-  - 'tests/**/*'
+  - 'tests/**'
 '⚙️ configs':
   - '.prettierrc'
   - 'jest.config.js'
