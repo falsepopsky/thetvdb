@@ -24,7 +24,7 @@ This method returns a list of artwork status records and does not require any pa
 | ------------------------------- | ------------------- |
 | <Badge type="tip" text="GET" /> | `/artwork/statuses` |
 
-### List of artwork status records <Badge type="info" text="example" />
+### List of artwork status records <Badge type="tip" text="example" />
 
 ```js
 await client.getArtworkStatuses();
@@ -40,7 +40,7 @@ This method returns a list of artwork types records and does not require any par
 | ------------------------------- | ---------------- |
 | <Badge type="tip" text="GET" /> | `/artwork/types` |
 
-### List of artwork types records <Badge type="info" text="example" />
+### List of artwork types records <Badge type="tip" text="example" />
 
 ```js
 await client.getArtworkTypes();
@@ -56,7 +56,7 @@ This method returns a list of content rating records and does not require any pa
 | ------------------------------- | ------------------ |
 | <Badge type="tip" text="GET" /> | `/content/ratings` |
 
-### List of content rating records <Badge type="info" text="example" />
+### List of content rating records <Badge type="tip" text="example" />
 
 ```js
 await client.getContentRatings();
@@ -72,7 +72,7 @@ This method returns a list of country records and does not require any parameter
 | ------------------------------- | ------------ |
 | <Badge type="tip" text="GET" /> | `/countries` |
 
-### List of country records<Badge type="info" text="example" />
+### List of country records<Badge type="tip" text="example" />
 
 ```js
 await client.getCountries();
@@ -88,7 +88,7 @@ This method returns a list of genre records and does not require any parameters.
 | ------------------------------- | --------- |
 | <Badge type="tip" text="GET" /> | `/genres` |
 
-### List of genre records <Badge type="info" text="example" />
+### List of genre records <Badge type="tip" text="example" />
 
 ```js
 await client.getGenres();
@@ -104,7 +104,7 @@ This method returns a list of language records and does not require any paramete
 | ------------------------------- | ------------ |
 | <Badge type="tip" text="GET" /> | `/languages` |
 
-### List of language records <Badge type="info" text="example" />
+### List of language records <Badge type="tip" text="example" />
 
 ```js
 await cient.getLanguages();
@@ -128,19 +128,19 @@ Returns updated entities.
 | ------------------------------- | ---------- |
 | <Badge type="tip" text="GET" /> | `/updates` |
 
-### Created entities <Badge type="info" text="example" />
+### Created entities <Badge type="tip" text="example" />
 
 ```js
 await client.getUpdates({ since: '1682899200', action: 'create' });
 ```
 
-### Updated entities <Badge type="info" text="example" />
+### Updated entities <Badge type="tip" text="example" />
 
 ```js
 await client.getUpdates({ since: '1682899200', action: 'update' });
 ```
 
-### Deleted entities <Badge type="info" text="example" />
+### Deleted entities <Badge type="tip" text="example" />
 
 ```js
 await client.getUpdates({ since: '1682899200', action: 'delete' });

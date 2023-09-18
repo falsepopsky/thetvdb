@@ -28,7 +28,7 @@ All required parameters must be provided, otherwise an error will be thrown.
 
 :::
 
-### Set token <Badge type="info" text="example" />
+### Set token <Badge type="tip" text="example" />
 
 ```js
 import { TheTVDBExtended } from '@untidy/thetvdb';
@@ -36,7 +36,7 @@ import { TheTVDBExtended } from '@untidy/thetvdb';
 new TheTVDBExtended('your token');
 ```
 
-### Set token and timeout <Badge type="info" text="example" />
+### Set token and timeout <Badge type="tip" text="example" />
 
 ```js
 import { TheTVDBExtended } from '@untidy/thetvdb';

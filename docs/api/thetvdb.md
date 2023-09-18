@@ -31,13 +31,13 @@ Returns a single artwork base or extended record
 | <Badge type="tip" text="GET" /> | `/artwork/:id`          |
 | <Badge type="tip" text="GET" /> | `/artwork/:id/extended` |
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getArtwork({ id: '63237874' });
 ```
 
-### Extended record <Badge type="info" text="example" />
+### Extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getArtwork({ id: '63237874', extended: true });
@@ -53,7 +53,7 @@ Returns a list of awards base records and does not require any parameters.
 | ------------------------------- | --------- |
 | <Badge type="tip" text="GET" /> | `/awards` |
 
-### List of awards records <Badge type="info" text="example" />
+### List of awards records <Badge type="tip" text="example" />
 
 ```js
 await client.getAwards();
@@ -73,7 +73,7 @@ Returns a single award record
 | ------------------------------- | ------------- |
 | <Badge type="tip" text="GET" /> | `/awards/:id` |
 
-### Single award record <Badge type="info" text="example" />
+### Single award record <Badge type="tip" text="example" />
 
 ```js
 await client.getAwardsById('2');
@@ -93,7 +93,7 @@ Returns a single award extended record
 | ------------------------------- | ---------------------- |
 | <Badge type="tip" text="GET" /> | `/awards/:id/extended` |
 
-### Single award extended record <Badge type="info" text="example" />
+### Single award extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getAwardsByIdExtended('2');
@@ -113,7 +113,7 @@ Returns a single award category record
 | ------------------------------- | ------------------------ |
 | <Badge type="tip" text="GET" /> | `/awards/categories/:id` |
 
-### Single award extended record <Badge type="info" text="example" />
+### Single award extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getAwardsCategoriesById('2');
@@ -133,7 +133,7 @@ Returns a single award category extended record
 | ------------------------------- | --------------------------------- |
 | <Badge type="tip" text="GET" /> | `/awards/categories/:id/extended` |
 
-### Single award extended record <Badge type="info" text="example" />
+### Single award extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getAwardsCategoriesByIdExtended('2');
@@ -161,7 +161,7 @@ Returns a search movies records based on filter parameters
 | ------------------------------- | ---------------- |
 | <Badge type="tip" text="GET" /> | `/movies/filter` |
 
-### Search movies based on USA with english language <Badge type="info" text="example" />
+### Search movies based on USA with english language <Badge type="tip" text="example" />
 
 ```js
 await client.getFilteredMovie({ country: 'usa', lang: 'eng' });
@@ -190,7 +190,7 @@ Returns a search series records based on filter parameters
 | ------------------------------- | ---------------- |
 | <Badge type="tip" text="GET" /> | `/series/filter` |
 
-### Search Series with USA Country and English Language <Badge type="info" text="example" />
+### Search Series with USA Country and English Language <Badge type="tip" text="example" />
 
 ```js
 await client.getFilteredSeries({ country: 'usa', lang: 'eng' });
@@ -210,7 +210,7 @@ Returns a character base record
 | ------------------------------- | ----------------- |
 | <Badge type="tip" text="GET" /> | `/characters/:id` |
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getCharacter('64140522');
@@ -234,19 +234,19 @@ Returns an episode base or extended record
 | <Badge type="tip" text="GET" /> | `/episodes/:id`          |
 | <Badge type="tip" text="GET" /> | `/episodes/:id/extended` |
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getEpisode({ id: '127396' });
 ```
 
-### Extended record <Badge type="info" text="example" />
+### Extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getEpisode({ id: '127396', extended: true });
 ```
 
-### Extended record with translations <Badge type="info" text="example" />
+### Extended record with translations <Badge type="tip" text="example" />
 
 ```js
 await client.getEpisode({ id: '127396', extended: true, meta: true });
@@ -269,31 +269,31 @@ Returns a movie base or extended record
 - <Badge type="tip" text="GET" /> `/movies/:id`
 - <Badge type="tip" text="GET" /> `/movies/:id/extended`
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getMovie({ id: '3646' });
 ```
 
-### Extended record <Badge type="info" text="example" />
+### Extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getMovie({ id: '3646', extended: true });
 ```
 
-### Extended record with translations <Badge type="info" text="example" />
+### Extended record with translations <Badge type="tip" text="example" />
 
 ```js
 await client.getMovie({ id: '3646', extended: true, meta: true });
 ```
 
-### Extended record without characters, artworks and trailers <Badge type="info" text="example" />
+### Extended record without characters, artworks and trailers <Badge type="tip" text="example" />
 
 ```js
 await client.getMovie({ id: '3646', extended: true, short: true });
 ```
 
-### Extended record with translations and short payload <Badge type="info" text="example" />
+### Extended record with translations and short payload <Badge type="tip" text="example" />
 
 ```js
 await client.getMovie({ id: '3646', extended: true, meta: true, short: true });
@@ -317,19 +317,19 @@ Returns a people base or extended record
 | <Badge type="tip" text="GET" /> | `/people/:id`          |
 | <Badge type="tip" text="GET" /> | `/people/:id/extended` |
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getPeople({ id: '312388' });
 ```
 
-### Extended record <Badge type="info" text="example" />
+### Extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getPeople({ id: '312388', extended: true });
 ```
 
-### Extended record with translations <Badge type="info" text="example" />
+### Extended record with translations <Badge type="tip" text="example" />
 
 ```js
 await client.getPeople({ id: '312388', extended: true, meta: true });
@@ -361,13 +361,13 @@ Returns a query search record(s).
 | ------------------------------- | --------- |
 | <Badge type="tip" text="GET" /> | `/search` |
 
-### Search for a Specific Title <Badge type="info" text="example" />
+### Search for a Specific Title <Badge type="tip" text="example" />
 
 ```js
 await client.getSearch({ query: 'saint seiya' });
 ```
 
-### Search for Series Title <Badge type="info" text="example" />
+### Search for Series Title <Badge type="tip" text="example" />
 
 ```js
 await client.getSearch({ query: 'saint seiya', type: 'series' });
@@ -389,19 +389,19 @@ Returns a season base or extended record
 - <Badge type="tip" text="GET" /> `/seasons/:id`
 - <Badge type="tip" text="GET" /> `/seasons/:id/extended`
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getSeason({ id: '6365', extended: true, meta: true });
 ```
 
-### Extended record <Badge type="info" text="example" />
+### Extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getSeason({ id: '6365', extended: true });
 ```
 
-### Extended record with translations <Badge type="info" text="example" />
+### Extended record with translations <Badge type="tip" text="example" />
 
 ```js
 await client.getSeason({ id: '6365', extended: true, meta: true });
@@ -423,43 +423,43 @@ Returns a serie base or extended record
 - <Badge type="tip" text="GET" /> `/series/:id`
 - <Badge type="tip" text="GET" /> `/series/:id/extended`
 
-### Single record <Badge type="info" text="example" />
+### Single record <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878' });
 ```
 
-### Extended record <Badge type="info" text="example" />
+### Extended record <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878', extended: true });
 ```
 
-### Extended record with translations <Badge type="info" text="example" />
+### Extended record with translations <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878', extended: true, meta: 'translations' });
 ```
 
-### Extended record with episodes <Badge type="info" text="example" />
+### Extended record with episodes <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878', extended: true, meta: 'episodes' });
 ```
 
-### Extended record without characters and artworks <Badge type="info" text="example" />
+### Extended record without characters and artworks <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878', extended: true, short: true });
 ```
 
-### Extended record with translations and short payload <Badge type="info" text="example" />
+### Extended record with translations and short payload <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878', extended: true, meta: 'translations', short: true });
 ```
 
-### Extended record with episodes and short payload <Badge type="info" text="example" />
+### Extended record with episodes and short payload <Badge type="tip" text="example" />
 
 ```js
 await client.getSerie({ id: '78878', extended: true, meta: 'episodes', short: true });
