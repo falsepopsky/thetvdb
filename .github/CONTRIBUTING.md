@@ -61,7 +61,7 @@ quality and benefit the community.
 ## Licensing
 
 By contributing to `@untidy/thetvdb`, you agree that your contributions will be licensed under the
-`GPL-3.0-or-later`.
+`Apache-2.0`.
 
 ## Acknowledgment
 
