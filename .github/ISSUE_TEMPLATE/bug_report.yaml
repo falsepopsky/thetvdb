@@ -1,8 +1,8 @@
 name: Bug report 🐛
 description: Did you encounter any unexpected behavior?
-title: '[Bug]: '
-labels: ['bug 🐛']
-assignees: 'falsepopsky'
+title: "[Bug]: "
+labels: ["bug 🐛"]
+assignees: "falsepopsky"
 body:
   - type: markdown
     attributes:
@@ -11,14 +11,14 @@ body:
   - type: input
     attributes:
       label: Package version
-      description: 'Which version are you using?'
+      description: "Which version are you using?"
       placeholder: e.g. v0.0.6
     validations:
       required: true
   - type: textarea
     attributes:
       label: Description
-      description: 'Clearly describe the issue you encountered, providing as much detail as possible.'
+      description: "Clearly describe the issue you encountered, providing as much detail as possible."
     validations:
       required: true
   - type: input
@@ -31,6 +31,6 @@ body:
   - type: textarea
     attributes:
       label: Steps to reproduce
-      description: 'Describe the general steps to reproduce the error or problem. Include any necessary context or prerequisites.'
+      description: "Describe the general steps to reproduce the error or problem. Include any necessary context or prerequisites."
     validations:
       required: true
