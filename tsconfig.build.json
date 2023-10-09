@@ -2,5 +2,5 @@
   "extends": "./tsconfig.json",
   "compilerOptions": { "rootDir": "./src", "outDir": "./dist", "noEmit": false },
   "include": ["src"],
-  "exclude": ["node_modules", "tests", "**/*.test.ts", "enviroment.d.ts", "./src/playground.ts"]
+  "exclude": ["node_modules", "tests", "**/*.test.ts", "./src/environment.d.ts", "./src/playground.ts"]
 }

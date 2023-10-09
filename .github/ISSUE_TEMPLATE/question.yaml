@@ -1,8 +1,8 @@
 name: Question ❓
 description: Usage question or discussion about the package.
-title: '[Question]: '
-labels: ['question ❓']
-assignees: 'falsepopsky'
+title: "[Question]: "
+labels: ["question ❓"]
+assignees: "falsepopsky"
 
 body:
   - type: markdown
@@ -14,6 +14,6 @@ body:
     id: question-summary
     attributes:
       label: Question for @untidy/thetvdb
-      description: 'Let us know how we can assist you!'
+      description: "Let us know how we can assist you!"
     validations:
       required: true
