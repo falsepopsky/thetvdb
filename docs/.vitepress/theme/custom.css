@@ -18,6 +18,4 @@
   --vp-button-brand-hover-text: var(--vp-button-brand-text);
   --vp-button-brand-hover-bg: var(--vp-button-brand-bg);
   --vp-sidebar-bg-color: #111;
-  --vp-code-block-bg: hsla(0, 0%, 100%, 0.025);
-  --vp-code-tab-divider: #404040;
 }
