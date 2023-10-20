@@ -216,6 +216,68 @@ Returns a character base record
 await client.getCharacter('64140522');
 ```
 
+## getCompanies
+
+Returns a paginated list of companies records
+
+| params | type     | Required | Description                          |
+| ------ | -------- | :------: | ------------------------------------ |
+| page   | `string` | Optional | The `page` of the Companies records. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint     |
+| ------------------------------- | ------------ |
+| <Badge type="tip" text="GET" /> | `/companies` |
+
+### First 500 Companies records <Badge type="tip" text="example" />
+
+```js
+await client.getCompanies();
+```
+
+### Companies records for the page 94 <Badge type="tip" text="example" />
+
+```js
+await client.getCompanies('94');
+```
+
+## getCompaniesTypes
+
+This method returns a list of companies records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint           |
+| ------------------------------- | ------------------ |
+| <Badge type="tip" text="GET" /> | `/companies/types` |
+
+### Companies types records <Badge type="tip" text="example" />
+
+```js
+await client.getCompaniesTypes();
+```
+
+## getCompanyById
+
+Returns a company record
+
+| params | type     | Required | Description              |
+| ------ | -------- | :------: | ------------------------ |
+| id     | `string` |   Yes    | The `id` of the Company. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint         |
+| ------------------------------- | ---------------- |
+| <Badge type="tip" text="GET" /> | `/companies/:id` |
+
+### Single company record <Badge type="tip" text="example" />
+
+```js
+await client.getCompanyById('4');
+```
+
 ## getEpisode
 
 Returns an episode base or extended record

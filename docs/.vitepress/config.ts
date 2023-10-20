@@ -11,7 +11,7 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       {
-        text: '0.3.0',
+        text: '0.4.0',
         items: [
           {
             text: 'Changelog',
