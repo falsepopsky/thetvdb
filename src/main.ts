@@ -142,6 +142,29 @@ interface Character extends SharedProps {
   personImgURL: string | null;
 }
 
+interface Company extends Omit<SharedProps, 'image'> {
+  activeDate: string;
+  aliases: Aliases[];
+  country: string;
+  inactiveDate: string;
+  primaryCompanyType: number;
+  slug: string;
+  parentCompany: {
+    id: number;
+    name: string;
+    relation: {
+      id: number;
+      typeName: string;
+    };
+  };
+  tagOptions: TagOptions[];
+}
+
+interface CompanyType {
+  companyTypeId: number;
+  companyTypeName: string;
+}
+
 interface Episode extends SharedProps {
   seriesId: number;
   aired: string | null;
@@ -410,6 +433,9 @@ type GetAwardsCategoriesById = Data<AwardCategory>;
 type GetAwardsCategoriesByIdExtended = Data<AwardCategoryExtended>;
 
 type GetCharacter = Data<Character>;
+type GetCompanies = DataLink<Company[]>;
+type GetCompaniesTypes = Data<CompanyType[]>;
+type GetCompanyById = Data<Company>;
 
 type GetFilteredMovie = DataLink<Movie[]>;
 
@@ -507,6 +533,24 @@ export class TheTVDB extends Base {
     const endpoint = this.api + '/v4/characters/' + id;
 
     return await this.fetcher<GetCharacter>(endpoint);
+  }
+
+  public async getCompanies(page?: string): Promise<GetCompanies> {
+    let endpoint = this.api + '/v4/companies';
+    if (typeof page === 'string' && page.length > 0 && page.length < 3) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetCompanies>(endpoint);
+  }
+
+  public async getCompaniesTypes(): Promise<GetCompaniesTypes> {
+    return await this.fetcher<GetCompaniesTypes>(this.api + '/v4/companies/types');
+  }
+
+  public async getCompanyById(id: string): Promise<GetCompanyById> {
+    this.validateInput(id, 'Required company id');
+
+    return await this.fetcher<GetCompanyById>(`${this.api}/v4/companies/${id}`);
   }
 
   public async getFilteredMovie(options: FilterOptions): Promise<GetFilteredMovie> {

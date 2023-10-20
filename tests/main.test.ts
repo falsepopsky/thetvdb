@@ -85,6 +85,49 @@ describe('getCharacter()', () => {
   });
 });
 
+describe('getCompanies()', () => {
+  test('returns a successful response without a page', async () => {
+    const { data } = await client.getCompanies();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(48649);
+    expect(data[0]?.name).toBe('Ananey');
+  });
+
+  test('returns a successful response with page', async () => {
+    const { data } = await client.getCompanies('94');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(48646);
+    expect(data[1]?.name).toBe('New Group Productions');
+  });
+});
+
+describe('getCompaniesTypes()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getCompaniesTypes();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.companyTypeId).toBe(1);
+    expect(data[1]?.companyTypeName).toBe('Studio');
+  });
+});
+
+describe('getCompanyById()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getCompanyById()).rejects.toThrow('Required company id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getCompanyById('4');
+
+    expect(data.id).toBe(4);
+    expect(data.name).toBe('Aaj TV');
+    expect(data.country).toBe('pak');
+  });
+});
+
 describe('getEpisode()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id

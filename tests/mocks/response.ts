@@ -1,16 +1,12 @@
 // https://api4.thetvdb.com/v4/artwork/63237874/extended
 const artworkExtended = {
-  data: {
-    movieId: 145830,
-  },
+  data: { movieId: 145830 },
 };
 
 // https://api4.thetvdb.com/v4/artwork/63237874
 const artwork = {
   status: 'success',
-  data: {
-    id: 63237874,
-  },
+  data: { id: 63237874 },
 };
 
 // https://api4.thetvdb.com/v4/artwork/statuses
@@ -22,84 +18,82 @@ const artworkStatuses = {
 // https://api4.thetvdb.com/v4/artwork/types
 const artworkTypes = {
   status: 'success',
-  data: [
-    {
-      thumbHeight: 140,
-    },
-    {
-      id: 2,
-      imageFormat: 'JPG',
-    },
-  ],
+  data: [{ thumbHeight: 140 }, { id: 2, imageFormat: 'JPG' }],
 };
 
 // https://api4.thetvdb.com/v4/awards
 const awards = {
   status: 'success',
-  data: [
-    {
-      id: 1,
-      name: 'Academy Awards',
-    },
-  ],
+  data: [{ id: 1, name: 'Academy Awards' }],
 };
 
 // https://api4.thetvdb.com/v4/awards/1
 const awardsId = {
-  data: {
-    id: 1,
-    name: 'Academy Awards',
-  },
+  data: { id: 1, name: 'Academy Awards' },
 };
 
 // https://api4.thetvdb.com/v4/awards/1/extended
 const awardsIdExtended = {
   data: {
-    categories: [
-      {
-        id: 1,
-        name: 'Best Picture',
-      },
-    ],
+    categories: [{ id: 1, name: 'Best Picture' }],
   },
 };
 
 // https://api4.thetvdb.com/v4/awards/categories/42
 const awardsCategoryId = {
-  data: {
-    id: 42,
-    name: 'Best Actor in a Television Series – Drama',
-  },
+  data: { id: 42, name: 'Best Actor in a Television Series – Drama' },
 };
 
 // https://api4.thetvdb.com/v4/awards/categories/42/extended
 const awardsCategoryIdExtended = {
   data: {
-    nominees: [
-      {
-        id: 6352,
-        isWinner: true,
-      },
-    ],
+    nominees: [{ id: 6352, isWinner: true }],
   },
 };
 
 // https://api4.thetvdb.com/v4/characters/64140522
 const character = {
-  data: {
-    id: 64140522,
-    name: 'Spike Spiegel',
-  },
+  data: { id: 64140522, name: 'Spike Spiegel' },
+};
+
+// https://api4.thetvdb.com/v4/companies
+const companies = {
+  data: [{ id: 48649, name: 'Ananey' }],
+};
+
+// https://api4.thetvdb.com/v4/companies?page=94
+const companiesPage = {
+  data: [
+    {
+      id: 48646,
+    },
+    {
+      name: 'New Group Productions',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/companies/types
+const companiesTypes = {
+  data: [
+    {
+      companyTypeId: 1,
+    },
+    {
+      companyTypeName: 'Studio',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/companies/4
+const companyId = {
+  data: { id: 4, name: 'Aaj TV', country: 'pak' },
 };
 
 // https://api4.thetvdb.com/v4/content/ratings
 const contentRatings = {
   status: 'success',
-  data: [
-    {
-      name: 'ATP',
-    },
-  ],
+  data: [{ name: 'ATP' }],
 };
 
 // https://api4.thetvdb.com/v4/countries
@@ -312,35 +306,22 @@ const movieEM = {
 
 // https://api4.thetvdb.com/v4/movies/3646/extended?short=true
 const movieES = {
-  data: {
-    characters: null,
-    artworks: null,
-    trailers: null,
-  },
+  data: { characters: null, artworks: null, trailers: null },
 };
 
 // https://api4.thetvdb.com/v4/movies/3646/extended
 const movieE = {
   data: {
     trailers: [
-      {
-        id: 143117,
-        language: 'spa',
-      },
-      {
-        id: 143118,
-        language: 'eng',
-      },
+      { id: 143117, language: 'spa' },
+      { id: 143118, language: 'eng' },
     ],
   },
 };
 
 // https://api4.thetvdb.com/v4/movies/12586
 const movie = {
-  data: {
-    id: 12586,
-    slug: 'macross-do-you-remember-love',
-  },
+  data: { id: 12586, slug: 'macross-do-you-remember-love' },
 };
 
 // https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations
@@ -462,6 +443,10 @@ export {
   awardsId,
   awardsIdExtended,
   character,
+  companies,
+  companiesPage,
+  companiesTypes,
+  companyId,
   contentRatings,
   countries,
   episodes,

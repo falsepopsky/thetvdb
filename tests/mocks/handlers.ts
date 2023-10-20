@@ -10,6 +10,10 @@ import {
   awardsId,
   awardsIdExtended,
   character,
+  companies,
+  companiesPage,
+  companiesTypes,
+  companyId,
   contentRatings,
   countries,
   episodes,
@@ -63,6 +67,21 @@ export const handlers: RestHandler[] = [
   }),
   rest.get('https://api4.thetvdb.com/v4/awards', async (_req, res, ctx) => {
     return await res(ctx.json(awards));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/companies', async (req, res, ctx) => {
+    if (req.url.href === 'https://api4.thetvdb.com/v4/companies?page=94') {
+      return await res(ctx.json(companiesPage));
+    } else {
+      return await res(ctx.json(companies));
+    }
+  }),
+  rest.get('https://api4.thetvdb.com/v4/companies/:path', async (req, res, ctx) => {
+    switch (req.url.href) {
+      case 'https://api4.thetvdb.com/v4/companies/types':
+        return await res(ctx.json(companiesTypes));
+      default:
+        return await res(ctx.json(companyId));
+    }
   }),
   rest.get('https://api4.thetvdb.com/v4/content/ratings', async (_req, res, ctx) => {
     return await res(ctx.json(contentRatings));
