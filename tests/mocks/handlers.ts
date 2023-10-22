@@ -16,6 +16,7 @@ import {
   companyId,
   contentRatings,
   countries,
+  entities,
   episodes,
   episodesE,
   episodesET,
@@ -88,6 +89,9 @@ export const handlers: RestHandler[] = [
   }),
   rest.get('https://api4.thetvdb.com/v4/countries', async (_req, res, ctx) => {
     return await res(ctx.json(countries));
+  }),
+  rest.get('https://api4.thetvdb.com/v4/entities', async (_req, res, ctx) => {
+    return await res(ctx.json(entities));
   }),
   rest.get('https://api4.thetvdb.com/v4/genres', async (_req, res, ctx) => {
     return await res(ctx.json(genres));
