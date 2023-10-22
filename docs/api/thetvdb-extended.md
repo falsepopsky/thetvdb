@@ -78,6 +78,22 @@ This method returns a list of country records and does not require any parameter
 await client.getCountries();
 ```
 
+## getEntities
+
+This method returns a list of active entity types records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint    |
+| ------------------------------- | ----------- |
+| <Badge type="tip" text="GET" /> | `/entities` |
+
+### List of active entity types records<Badge type="tip" text="example" />
+
+```js
+await client.getEntities();
+```
+
 ## getGenres
 
 This method returns a list of genre records and does not require any parameters.

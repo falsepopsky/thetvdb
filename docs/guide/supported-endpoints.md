@@ -28,7 +28,7 @@ List of endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/).
 | `/companies/{id}`                            | :white_check_mark: |
 | `/content/ratings`                           | :white_check_mark: |
 | `/countries`                                 | :white_check_mark: |
-| `/entities`                                  |   :interrobang:    |
+| `/entities`                                  | :white_check_mark: |
 | `/episodes`                                  |   :interrobang:    |
 | `/episodes/{id}`                             | :white_check_mark: |
 | `/episodes/{id}/extended`                    | :white_check_mark: |
