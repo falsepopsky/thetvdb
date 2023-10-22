@@ -42,6 +42,15 @@ describe('getCountries()', () => {
   });
 });
 
+describe('getEntities()', () => {
+  test('returns a successful response', async () => {
+    const { status, data } = await client.getEntities();
+    expect(status).toBe('success');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.name).toBe('series');
+  });
+});
+
 describe('getGenres()', () => {
   test('returns a successful response', async () => {
     const { status, data } = await client.getGenres();

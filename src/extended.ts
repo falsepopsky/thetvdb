@@ -85,6 +85,12 @@ interface ArtworkType {
   thumbHeight: number;
 }
 
+interface Entity {
+  id: number;
+  name: string;
+  hasSpecials: boolean;
+}
+
 interface Shared {
   id: number;
   name: string;
@@ -92,6 +98,7 @@ interface Shared {
 
 type GetContentRatings = Data<ContentRating[]>;
 type GetCountries = Data<Country[]>;
+type GetEntities = Data<Entity[]>;
 type GetGenres = Data<Genre[]>;
 type GetLanguages = Data<Language[]>;
 type GetUpdates = DataLink<Update[] | null[]>;
@@ -117,6 +124,10 @@ export class TheTVDBExtended extends Base {
   public async getCountries(): Promise<GetCountries> {
     const endpoint = this.api + '/v4/countries';
     return await this.fetcher<GetCountries>(endpoint);
+  }
+
+  public async getEntities(): Promise<GetEntities> {
+    return await this.fetcher<GetEntities>(this.api + '/v4/entities')
   }
 
   public async getGenres(): Promise<GetGenres> {

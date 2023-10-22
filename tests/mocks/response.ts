@@ -109,6 +109,16 @@ const countries = {
   ],
 };
 
+// https://api4.thetvdb.com/v4/entities
+const entities = {
+  status: 'success',
+  data: [
+    {
+      name: "series",
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/episodes/127396/extended?meta=translations
 const episodesET = {
   data: {
@@ -449,6 +459,7 @@ export {
   companyId,
   contentRatings,
   countries,
+  entities,
   episodes,
   episodesE,
   episodesET,
@@ -482,5 +493,6 @@ export {
   seriesET,
   seriesETS,
   updates,
-  updatesFull,
+  updatesFull
 };
+
