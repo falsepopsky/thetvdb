@@ -114,7 +114,7 @@ const entities = {
   status: 'success',
   data: [
     {
-      name: "series",
+      name: 'series',
     },
   ],
 };
@@ -493,6 +493,5 @@ export {
   seriesET,
   seriesETS,
   updates,
-  updatesFull
+  updatesFull,
 };
-

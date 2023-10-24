@@ -127,7 +127,7 @@ export class TheTVDBExtended extends Base {
   }
 
   public async getEntities(): Promise<GetEntities> {
-    return await this.fetcher<GetEntities>(this.api + '/v4/entities')
+    return await this.fetcher<GetEntities>(this.api + '/v4/entities');
   }
 
   public async getGenres(): Promise<GetGenres> {
