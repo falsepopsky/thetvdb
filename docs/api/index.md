@@ -17,10 +17,9 @@ future updates.
 
 ## Constructor
 
-| params  | type     | Required | Description                                       |
-| ------- | -------- | :------: | ------------------------------------------------- |
-| token   | `string` |   Yes    | Your TVDB API token.                              |
-| timeout | `number` | optional | Request timeout in milliseconds. `Default: 5000`. |
+| params | type     | Required | Description          |
+| ------ | -------- | :------: | -------------------- |
+| token  | `string` |   Yes    | Your TVDB API token. |
 
 ::: danger WARNING
 
@@ -35,53 +34,3 @@ import { TheTVDBExtended } from '@untidy/thetvdb';
 
 new TheTVDBExtended('your token');
 ```
-
-### Set token and timeout <Badge type="tip" text="example" />
-
-```js
-import { TheTVDBExtended } from '@untidy/thetvdb';
-
-new TheTVDBExtended('your token', 10000);
-```
-
-## Advanced
-
-### getTime
-
-This method retrieves the custom request timeout value in milliseconds.
-
-| type     | Description                                     |
-| -------- | ----------------------------------------------- |
-| `number` | The custom request timeout value currently set. |
-
-::: details Example
-
-```js
-import { TheTVDB } from '@untidy/thetvdb';
-
-const client = new TheTVDB('your token');
-
-client.getTime();
-```
-
-:::
-
-### setTime
-
-This method allows setting a custom request timeout value in milliseconds.
-
-| param   | type     | Required | Description                                    |
-| ------- | -------- | :------: | ---------------------------------------------- |
-| timeout | `number` |   Yes    | The new request timeout value in milliseconds. |
-
-::: details Example
-
-```js
-import { TheTVDBExtended } from '@untidy/thetvdb';
-
-const client = new TheTVDBExtended('your token');
-
-client.setTime(10000);
-```
-
-:::
