@@ -1,4 +1,4 @@
-import { rest, type RestHandler } from 'msw';
+import { HttpResponse, http, type HttpHandler } from 'msw';
 import {
   artwork,
   artworkExtended,
@@ -53,168 +53,186 @@ import {
   updatesFull,
 } from './response.js';
 
-export const handlers: RestHandler[] = [
-  rest.get('https://api4.thetvdb.com/v4/awards/categories/:id/extended', async (_req, res, ctx) => {
-    return await res(ctx.json(awardsCategoryIdExtended));
+export const handlers: HttpHandler[] = [
+  http.get('https://api4.thetvdb.com/v4/awards/categories/:id/extended', () => {
+    return HttpResponse.json(awardsCategoryIdExtended)
   }),
-  rest.get('https://api4.thetvdb.com/v4/awards/categories/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(awardsCategoryId));
+  http.get('https://api4.thetvdb.com/v4/awards/categories/:id', () => {
+    return HttpResponse.json(awardsCategoryId)
   }),
-  rest.get('https://api4.thetvdb.com/v4/awards/:id/extended', async (_req, res, ctx) => {
-    return await res(ctx.json(awardsIdExtended));
+  http.get('https://api4.thetvdb.com/v4/awards/:id/extended', () => {
+    return HttpResponse.json(awardsIdExtended)
   }),
-  rest.get('https://api4.thetvdb.com/v4/awards/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(awardsId));
+  http.get('https://api4.thetvdb.com/v4/awards/:id', () => {
+    return HttpResponse.json(awardsId)
+
   }),
-  rest.get('https://api4.thetvdb.com/v4/awards', async (_req, res, ctx) => {
-    return await res(ctx.json(awards));
+  http.get('https://api4.thetvdb.com/v4/awards', () => {
+    return HttpResponse.json(awards)
   }),
-  rest.get('https://api4.thetvdb.com/v4/companies', async (req, res, ctx) => {
-    if (req.url.href === 'https://api4.thetvdb.com/v4/companies?page=94') {
-      return await res(ctx.json(companiesPage));
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/companies', ({ request }) => {
+    if (request.url === 'https://api4.thetvdb.com/v4/companies?page=94') {
+      return HttpResponse.json(companiesPage)
     } else {
-      return await res(ctx.json(companies));
+      return HttpResponse.json(companies)
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/companies/:path', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/companies/:path', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/companies/types':
-        return await res(ctx.json(companiesTypes));
+        return HttpResponse.json(companiesTypes)
       default:
-        return await res(ctx.json(companyId));
+        return HttpResponse.json(companyId)
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/content/ratings', async (_req, res, ctx) => {
-    return await res(ctx.json(contentRatings));
+  http.get('https://api4.thetvdb.com/v4/content/ratings', () => {
+    return HttpResponse.json(contentRatings)
   }),
-  rest.get('https://api4.thetvdb.com/v4/countries', async (_req, res, ctx) => {
-    return await res(ctx.json(countries));
+  http.get('https://api4.thetvdb.com/v4/countries', () => {
+    return HttpResponse.json(countries)
+
   }),
-  rest.get('https://api4.thetvdb.com/v4/entities', async (_req, res, ctx) => {
-    return await res(ctx.json(entities));
+  http.get('https://api4.thetvdb.com/v4/entities', () => {
+    return HttpResponse.json(entities)
   }),
-  rest.get('https://api4.thetvdb.com/v4/genres', async (_req, res, ctx) => {
-    return await res(ctx.json(genres));
+  http.get('https://api4.thetvdb.com/v4/genres', () => {
+    return HttpResponse.json(genres)
   }),
-  rest.get('https://api4.thetvdb.com/v4/languages', async (_req, res, ctx) => {
-    return await res(ctx.json(languages));
+  http.get('https://api4.thetvdb.com/v4/languages', () => {
+    return HttpResponse.json(languages)
   }),
-  rest.get('https://api4.thetvdb.com/v4/updates', async (req, res, ctx) => {
-    if (req.url.href === 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2') {
-      return await res(ctx.json(updatesFull));
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/updates', ({ request }) => {
+    if (request.url === 'https://api4.thetvdb.com/v4/updates?since=1682899200&type=artwork&action=update&page=2') {
+      return HttpResponse.json(updatesFull);
     } else {
-      return await res(ctx.json(updates));
+      return HttpResponse.json(updates);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/artwork/:id/extended', async (_req, res, ctx) => {
-    return await res(ctx.json(artworkExtended));
+  http.get('https://api4.thetvdb.com/v4/artwork/:id/extended', () => {
+    return HttpResponse.json(artworkExtended)
   }),
-  rest.get('https://api4.thetvdb.com/v4/artwork/:id', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/artwork/:id', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/artwork/types':
-        return await res(ctx.json(artworkTypes));
+        return HttpResponse.json(artworkTypes);
       case 'https://api4.thetvdb.com/v4/artwork/statuses':
-        return await res(ctx.json(artworkStatuses));
+        return HttpResponse.json(artworkStatuses);
       default:
-        return await res(ctx.json(artwork));
+        return HttpResponse.json(artwork);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/characters/:id', async (req, res, ctx) => {
-    return await res(ctx.json(character));
+  http.get('https://api4.thetvdb.com/v4/characters/:id', () => {
+    return HttpResponse.json(character)
   }),
-  rest.get('https://api4.thetvdb.com/v4/episodes/:id/extended', async (req, res, ctx) => {
-    if (req.url.href === 'https://api4.thetvdb.com/v4/episodes/127396/extended?meta=translations') {
-      return await res(ctx.json(episodesET));
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/episodes/:id/extended', ({ request }) => {
+    if (request.url === 'https://api4.thetvdb.com/v4/episodes/127396/extended?meta=translations') {
+      return HttpResponse.json(episodesET);
     } else {
-      return await res(ctx.json(episodesE));
+      return HttpResponse.json(episodesE);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/episodes/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(episodes));
+  http.get('https://api4.thetvdb.com/v4/episodes/:id', () => {
+    return HttpResponse.json(episodes)
+
   }),
-  rest.get('https://api4.thetvdb.com/v4/people/:id/extended', async (req, res, ctx) => {
-    if (req.url.href === 'https://api4.thetvdb.com/v4/people/312388/extended?meta=translations') {
-      return await res(ctx.json(peopleET));
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/people/:id/extended', ({ request }) => {
+    if (request.url === 'https://api4.thetvdb.com/v4/people/312388/extended?meta=translations') {
+      return HttpResponse.json(peopleET);
     } else {
-      return await res(ctx.json(peopleE));
+      return HttpResponse.json(peopleE);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/people/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(people));
+  http.get('https://api4.thetvdb.com/v4/people/:id', () => {
+    return HttpResponse.json(people)
+
   }),
-  rest.get('https://api4.thetvdb.com/v4/search', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/search', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/search?query=saint+seiya&type=series&limit=1':
-        return await res(ctx.json(searchTL));
+        return HttpResponse.json(searchTL);
       case 'https://api4.thetvdb.com/v4/search?query=saint+seiya&type=series':
-        return await res(ctx.json(searchT));
+        return HttpResponse.json(searchT);
       default:
-        return await res(ctx.json(search));
+        return HttpResponse.json(search);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/movies/filter', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/movies/filter', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name':
-        return await res(ctx.json(filterMovieS));
+        return HttpResponse.json(filterMovieS);
       case 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&year=2023':
-        return await res(ctx.json(filterMovieY));
+        return HttpResponse.json(filterMovieY);
       default:
-        return await res(ctx.json(filterMovie));
+        return HttpResponse.json(filterMovie);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/movies/:id/extended', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/movies/:id/extended', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations&short=true':
-        return await res(ctx.json(movieEMS));
+        return HttpResponse.json(movieEMS);
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations':
-        return await res(ctx.json(movieEM));
+        return HttpResponse.json(movieEM);
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?short=true':
-        return await res(ctx.json(movieES));
+        return HttpResponse.json(movieES);
       default:
-        return await res(ctx.json(movieE));
+        return HttpResponse.json(movieE);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/movies/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(movie));
+  http.get('https://api4.thetvdb.com/v4/movies/:id', () => {
+    return HttpResponse.json(movie)
+
   }),
-  rest.get('https://api4.thetvdb.com/v4/seasons/:id/extended', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/seasons/:id/extended', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations':
-        return await res(ctx.json(seasonEM));
+        return HttpResponse.json(seasonEM);
       default:
-        return await res(ctx.json(seasonE));
+        return HttpResponse.json(seasonE);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/seasons/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(season));
+  http.get('https://api4.thetvdb.com/v4/seasons/:id', () => {
+    return HttpResponse.json(season)
+
   }),
-  rest.get('https://api4.thetvdb.com/v4/series/filter', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/series/filter', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name':
-        return await res(ctx.json(filterSerieS));
+        return HttpResponse.json(filterSerieS);
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023':
-        return await res(ctx.json(filterSerieY));
+        return HttpResponse.json(filterSerieY);
       default:
-        return await res(ctx.json(filterSerie));
+        return HttpResponse.json(filterSerie);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/series/:id/extended', async (req, res, ctx) => {
-    switch (req.url.href) {
+  // @ts-expect-error: DefaultBodyType doesn't expect undefined
+  http.get('https://api4.thetvdb.com/v4/series/:id/extended', ({ request }) => {
+    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations&short=true':
-        return await res(ctx.json(seriesETS));
+        return HttpResponse.json(seriesETS);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes&short=true':
-        return await res(ctx.json(seriesEES));
+        return HttpResponse.json(seriesEES);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations':
-        return await res(ctx.json(seriesET));
+        return HttpResponse.json(seriesET);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes':
-        return await res(ctx.json(seriesEE));
+        return HttpResponse.json(seriesEE);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?short=true':
-        return await res(ctx.json(seriesES));
+        return HttpResponse.json(seriesES);
       default:
-        return await res(ctx.json(seriesE));
+        return HttpResponse.json(seriesE);
     }
   }),
-  rest.get('https://api4.thetvdb.com/v4/series/:id', async (_req, res, ctx) => {
-    return await res(ctx.json(series));
+  http.get('https://api4.thetvdb.com/v4/series/:id', () => {
+    return HttpResponse.json(series)
   }),
 ];
