@@ -1,5 +1,14 @@
 # @untidy/thetvdb
 
+## 0.4.0
+
+### Minor Changes
+
+- d9fc667: feat: support `entities` endpoint
+- 4e632dd: feat: temporarily remove signal, possibly due to a memory leak.
+- 047df33: feat: support `/inspiration/types` and `/genders` endpoints
+- 6e8850e: feat: support `/companies` endpoint
+
 ## 0.3.0
 
 ### Minor Changes
