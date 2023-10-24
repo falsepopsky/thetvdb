@@ -36,6 +36,9 @@ jobs:
   test:
     name: 🧪 Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["18.18.2", "20.9.0"]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4.1.1
@@ -48,7 +51,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3.8.1
         with:
-          node-version-file: ".nvmrc"
+          node-version: ${{ matrix.node-version }}
           cache: pnpm
 
       - name: Install dependencies
