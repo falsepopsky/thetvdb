@@ -94,6 +94,22 @@ This method returns a list of active entity types records and does not require a
 await client.getEntities();
 ```
 
+## getGenders
+
+This method returns a list of genders records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint   |
+| ------------------------------- | ---------- |
+| <Badge type="tip" text="GET" /> | `/genders` |
+
+### List of genre records <Badge type="tip" text="example" />
+
+```js
+await client.getGenders();
+```
+
 ## getGenres
 
 This method returns a list of genre records and does not require any parameters.
@@ -108,6 +124,22 @@ This method returns a list of genre records and does not require any parameters.
 
 ```js
 await client.getGenres();
+```
+
+## getInspirationTypes
+
+This method returns a list of inspiration types records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint             |
+| ------------------------------- | -------------------- |
+| <Badge type="tip" text="GET" /> | `/inspiration/types` |
+
+### List of genre records <Badge type="tip" text="example" />
+
+```js
+await client.getInspirationTypes();
 ```
 
 ## getLanguages

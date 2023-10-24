@@ -114,7 +114,7 @@ const entities = {
   status: 'success',
   data: [
     {
-      name: "series",
+      name: 'series',
     },
   ],
 };
@@ -180,6 +180,20 @@ const filterSerie = {
   data: [{ name: 'Made In Hollywood' }],
 };
 
+// https://api4.thetvdb.com/v4/genders
+const genders = {
+  data: [
+    {
+      id: 1,
+      name: 'Male',
+    },
+    {
+      id: 2,
+      name: 'Female',
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/genres
 const genres = {
   status: 'success',
@@ -189,6 +203,22 @@ const genres = {
     },
     {
       id: 2,
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/inspiration/types
+const inspirationTypes = {
+  data: [
+    {
+      id: 1,
+      name: 'Historical Event',
+      reference_name: 'Wikipedia',
+    },
+    {
+      id: 2,
+      name: 'Book Series',
+      reference_name: 'Goodreads',
     },
   ],
 };
@@ -469,7 +499,9 @@ export {
   filterSerie,
   filterSerieS,
   filterSerieY,
+  genders,
   genres,
+  inspirationTypes,
   languages,
   movie,
   movieE,
@@ -493,6 +525,5 @@ export {
   seriesET,
   seriesETS,
   updates,
-  updatesFull
+  updatesFull,
 };
-

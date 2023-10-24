@@ -96,10 +96,18 @@ interface Shared {
   name: string;
 }
 
+interface Inspiration extends Shared {
+  description: string;
+  reference_name: string;
+  url: string;
+}
+
 type GetContentRatings = Data<ContentRating[]>;
 type GetCountries = Data<Country[]>;
 type GetEntities = Data<Entity[]>;
+type GetGenders = Data<Shared[]>;
 type GetGenres = Data<Genre[]>;
+type GetInspirationTypes = Data<Inspiration[]>;
 type GetLanguages = Data<Language[]>;
 type GetUpdates = DataLink<Update[] | null[]>;
 type GetArtworkStatuses = Data<Shared[]>;
@@ -107,37 +115,39 @@ type GetArtworkTypes = Data<ArtworkType[]>;
 
 export class TheTVDBExtended extends Base {
   public async getArtworkStatuses(): Promise<GetArtworkStatuses> {
-    const endpoint = this.api + '/v4/artwork/statuses';
-    return await this.fetcher<GetArtworkStatuses>(endpoint);
+    return await this.fetcher<GetArtworkStatuses>(this.api + '/v4/artwork/statuses');
   }
 
   public async getArtworkTypes(): Promise<GetArtworkTypes> {
-    const endpoint = this.api + '/v4/artwork/types';
-    return await this.fetcher<GetArtworkTypes>(endpoint);
+    return await this.fetcher<GetArtworkTypes>(this.api + '/v4/artwork/types');
   }
 
   public async getContentRatings(): Promise<GetContentRatings> {
-    const endpoint = this.api + '/v4/content/ratings';
-    return await this.fetcher<GetContentRatings>(endpoint);
+    return await this.fetcher<GetContentRatings>(this.api + '/v4/content/ratings');
   }
 
   public async getCountries(): Promise<GetCountries> {
-    const endpoint = this.api + '/v4/countries';
-    return await this.fetcher<GetCountries>(endpoint);
+    return await this.fetcher<GetCountries>(this.api + '/v4/countries');
   }
 
   public async getEntities(): Promise<GetEntities> {
-    return await this.fetcher<GetEntities>(this.api + '/v4/entities')
+    return await this.fetcher<GetEntities>(this.api + '/v4/entities');
+  }
+
+  public async getGenders(): Promise<GetGenders> {
+    return await this.fetcher<GetGenders>(this.api + '/v4/genders');
   }
 
   public async getGenres(): Promise<GetGenres> {
-    const endpoint = this.api + '/v4/genres';
-    return await this.fetcher<GetGenres>(endpoint);
+    return await this.fetcher<GetGenres>(this.api + '/v4/genres');
+  }
+
+  public async getInspirationTypes(): Promise<GetInspirationTypes> {
+    return await this.fetcher<GetInspirationTypes>(this.api + '/v4/inspiration/types');
   }
 
   public async getLanguages(): Promise<GetLanguages> {
-    const endpoint = this.api + '/v4/languages';
-    return await this.fetcher<GetLanguages>(endpoint);
+    return await this.fetcher<GetLanguages>(this.api + '/v4/languages');
   }
 
   public async getUpdates(options: updateO): Promise<GetUpdates> {

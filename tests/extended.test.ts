@@ -61,6 +61,26 @@ describe('getGenres()', () => {
   });
 });
 
+describe('getGenders()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getGenders();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.name).toBe('Male');
+    expect(data[1]?.id).toBe(2);
+  });
+});
+
+describe('getInspirationTypes()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getInspirationTypes();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.name).toBe('Historical Event');
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.reference_name).toBe('Goodreads');
+  });
+});
+
 describe('getLanguages()', () => {
   test('returns a successful response', async () => {
     const { status, data } = await client.getLanguages();

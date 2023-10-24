@@ -26,7 +26,9 @@ import {
   filterSerie,
   filterSerieS,
   filterSerieY,
+  genders,
   genres,
+  inspirationTypes,
   languages,
   movie,
   movieE,
@@ -55,53 +57,57 @@ import {
 
 export const handlers: HttpHandler[] = [
   http.get('https://api4.thetvdb.com/v4/awards/categories/:id/extended', () => {
-    return HttpResponse.json(awardsCategoryIdExtended)
+    return HttpResponse.json(awardsCategoryIdExtended);
   }),
   http.get('https://api4.thetvdb.com/v4/awards/categories/:id', () => {
-    return HttpResponse.json(awardsCategoryId)
+    return HttpResponse.json(awardsCategoryId);
   }),
   http.get('https://api4.thetvdb.com/v4/awards/:id/extended', () => {
-    return HttpResponse.json(awardsIdExtended)
+    return HttpResponse.json(awardsIdExtended);
   }),
   http.get('https://api4.thetvdb.com/v4/awards/:id', () => {
-    return HttpResponse.json(awardsId)
-
+    return HttpResponse.json(awardsId);
   }),
   http.get('https://api4.thetvdb.com/v4/awards', () => {
-    return HttpResponse.json(awards)
+    return HttpResponse.json(awards);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/companies', ({ request }) => {
     if (request.url === 'https://api4.thetvdb.com/v4/companies?page=94') {
-      return HttpResponse.json(companiesPage)
+      return HttpResponse.json(companiesPage);
     } else {
-      return HttpResponse.json(companies)
+      return HttpResponse.json(companies);
     }
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/companies/:path', ({ request }) => {
     switch (request.url) {
       case 'https://api4.thetvdb.com/v4/companies/types':
-        return HttpResponse.json(companiesTypes)
+        return HttpResponse.json(companiesTypes);
       default:
-        return HttpResponse.json(companyId)
+        return HttpResponse.json(companyId);
     }
   }),
   http.get('https://api4.thetvdb.com/v4/content/ratings', () => {
-    return HttpResponse.json(contentRatings)
+    return HttpResponse.json(contentRatings);
   }),
   http.get('https://api4.thetvdb.com/v4/countries', () => {
-    return HttpResponse.json(countries)
-
+    return HttpResponse.json(countries);
   }),
   http.get('https://api4.thetvdb.com/v4/entities', () => {
-    return HttpResponse.json(entities)
+    return HttpResponse.json(entities);
+  }),
+  http.get('https://api4.thetvdb.com/v4/genders', () => {
+    return HttpResponse.json(genders);
   }),
   http.get('https://api4.thetvdb.com/v4/genres', () => {
-    return HttpResponse.json(genres)
+    return HttpResponse.json(genres);
+  }),
+  http.get('https://api4.thetvdb.com/v4/inspiration/types', () => {
+    return HttpResponse.json(inspirationTypes);
   }),
   http.get('https://api4.thetvdb.com/v4/languages', () => {
-    return HttpResponse.json(languages)
+    return HttpResponse.json(languages);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/updates', ({ request }) => {
@@ -112,7 +118,7 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/artwork/:id/extended', () => {
-    return HttpResponse.json(artworkExtended)
+    return HttpResponse.json(artworkExtended);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/artwork/:id', ({ request }) => {
@@ -126,7 +132,7 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/characters/:id', () => {
-    return HttpResponse.json(character)
+    return HttpResponse.json(character);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/episodes/:id/extended', ({ request }) => {
@@ -137,8 +143,7 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/episodes/:id', () => {
-    return HttpResponse.json(episodes)
-
+    return HttpResponse.json(episodes);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/people/:id/extended', ({ request }) => {
@@ -149,8 +154,7 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/people/:id', () => {
-    return HttpResponse.json(people)
-
+    return HttpResponse.json(people);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/search', ({ request }) => {
@@ -188,8 +192,7 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/movies/:id', () => {
-    return HttpResponse.json(movie)
-
+    return HttpResponse.json(movie);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/seasons/:id/extended', ({ request }) => {
@@ -201,8 +204,7 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/seasons/:id', () => {
-    return HttpResponse.json(season)
-
+    return HttpResponse.json(season);
   }),
   // @ts-expect-error: DefaultBodyType doesn't expect undefined
   http.get('https://api4.thetvdb.com/v4/series/filter', ({ request }) => {
@@ -233,6 +235,6 @@ export const handlers: HttpHandler[] = [
     }
   }),
   http.get('https://api4.thetvdb.com/v4/series/:id', () => {
-    return HttpResponse.json(series)
+    return HttpResponse.json(series);
   }),
 ];
