@@ -33,10 +33,10 @@ List of endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/).
 | `/episodes/{id}`                             | :white_check_mark: |
 | `/episodes/{id}/extended`                    | :white_check_mark: |
 | `/episodes/{id}/translations/{language}`     |   :interrobang:    |
-| `/genders`                                   |   :interrobang:    |
+| `/genders`                                   | :white_check_mark: |
 | `/genres`                                    | :white_check_mark: |
 | `/genres/{id}`                               |   :interrobang:    |
-| `/inspiration/types`                         |   :interrobang:    |
+| `/inspiration/types`                         | :white_check_mark: |
 | `/languages`                                 | :white_check_mark: |
 | `/lists`                                     |   :interrobang:    |
 | `/lists/{id}`                                |   :interrobang:    |

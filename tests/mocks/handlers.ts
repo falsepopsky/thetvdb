@@ -26,7 +26,9 @@ import {
   filterSerie,
   filterSerieS,
   filterSerieY,
+  genders,
   genres,
+  inspirationTypes,
   languages,
   movie,
   movieE,
@@ -95,8 +97,14 @@ export const handlers: HttpHandler[] = [
   http.get('https://api4.thetvdb.com/v4/entities', () => {
     return HttpResponse.json(entities);
   }),
+  http.get('https://api4.thetvdb.com/v4/genders', () => {
+    return HttpResponse.json(genders);
+  }),
   http.get('https://api4.thetvdb.com/v4/genres', () => {
     return HttpResponse.json(genres);
+  }),
+  http.get('https://api4.thetvdb.com/v4/inspiration/types', () => {
+    return HttpResponse.json(inspirationTypes);
   }),
   http.get('https://api4.thetvdb.com/v4/languages', () => {
     return HttpResponse.json(languages);
