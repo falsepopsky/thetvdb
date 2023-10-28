@@ -7,7 +7,7 @@
 To successfully utilize this package, users must meet the following prerequisites:
 
 - **Node.js:** The user must have [Node.js](https://nodejs.org) installed on their system with a
-  minimum version of 18.
+  minimum version of 18.16.1.
 
 - **TheTVDB Token:** Use the token provided by the `login` endpoint from TheTVDB.
 

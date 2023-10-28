@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  PNPM_VERSION: 8.9.2
+  PNPM_VERSION: 8.10.0
 
 jobs:
   lint:
@@ -21,7 +21,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@v4.0.0
         with:
           node-version-file: ".nvmrc"
           cache: pnpm
@@ -46,7 +46,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@v4.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
@@ -69,7 +69,7 @@ jobs:
           version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@v4.0.0
         with:
           node-version-file: ".nvmrc"
           cache: pnpm

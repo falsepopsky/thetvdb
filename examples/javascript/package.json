@@ -1,10 +1,8 @@
 {
   "name": "thetvdb-js",
-  "description": "ESM JS TEMPLATE",
-  "version": "1.0.0",
+  "description": "@untidy/thetvdb example using javascript",
   "private": true,
   "type": "module",
-  "author": "falsepopsky",
   "scripts": {
     "start": "node index.js"
   },
