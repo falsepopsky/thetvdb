@@ -24,15 +24,18 @@ const season = {
 };
 
 export const seasonHandlers: HttpHandler[] = [
-  http.get<never>('https://api4.thetvdb.com/v4/seasons/:id/extended', ({ request }) => {
-    switch (request.url) {
-      case 'https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations':
-        return HttpResponse.json(seasonEM);
-      default:
-        return HttpResponse.json(seasonE);
+  http.get<never>('https://api4.thetvdb.com/v4/seasons/*', ({ request }) => {
+    const url = new URL(request.url);
+    const meta = url.searchParams.get('meta');
+
+    if (meta === 'translations') {
+      return HttpResponse.json(seasonEM);
     }
-  }),
-  http.get('https://api4.thetvdb.com/v4/seasons/:id', () => {
-    return HttpResponse.json(season);
+
+    if (request.url === 'https://api4.thetvdb.com/v4/seasons/6365/extended') {
+      return HttpResponse.json(seasonE);
+    } else {
+      return HttpResponse.json(season);
+    }
   }),
 ];

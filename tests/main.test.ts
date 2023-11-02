@@ -233,7 +233,7 @@ describe('getMovie()', () => {
   });
 
   it('returns a extended response', async () => {
-    const { data } = await client.getMovie({ id: '12586', extended: true });
+    const { data } = await client.getMovie({ id: '3646', extended: true });
     expect(data.trailers).toHaveLength(2);
     expect(data.trailers[0]?.id).toBe(143117);
   });
