@@ -46,6 +46,14 @@ const genders = {
   ],
 };
 
+// https://api4.thetvdb.com/v4/genres/1
+const genreId = {
+  data: {
+    id: 1,
+    name: 'Soap',
+  },
+};
+
 // https://api4.thetvdb.com/v4/genres
 const genres = {
   status: 'success',
@@ -88,4 +96,4 @@ const languages = {
   ],
 };
 
-export { character, contentRatings, countries, entities, genders, genres, inspirationTypes, languages };
+export { character, contentRatings, countries, entities, genders, genreId, genres, inspirationTypes, languages };

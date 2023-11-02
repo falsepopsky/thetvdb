@@ -107,6 +107,7 @@ type GetCountries = Data<Country[]>;
 type GetEntities = Data<Entity[]>;
 type GetGenders = Data<Shared[]>;
 type GetGenres = Data<Genre[]>;
+type GetGenreById = Data<Genre>;
 type GetInspirationTypes = Data<Inspiration[]>;
 type GetLanguages = Data<Language[]>;
 type GetUpdates = DataLink<Update[] | null[]>;
@@ -140,6 +141,12 @@ export class TheTVDBExtended extends Base {
 
   public async getGenres(): Promise<GetGenres> {
     return await this.fetcher<GetGenres>(this.api + '/v4/genres');
+  }
+
+  public async getGenreById(id: string): Promise<GetGenreById> {
+    this.validateInput(id, 'Required genre id');
+
+    return await this.fetcher<GetGenreById>(this.api + '/v4/genres/' + id);
   }
 
   public async getInspirationTypes(): Promise<GetInspirationTypes> {

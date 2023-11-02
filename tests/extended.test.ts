@@ -61,6 +61,23 @@ describe('getGenres()', () => {
   });
 });
 
+describe('getGenreById()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getGenreById()).rejects.toThrow('Required genre id');
+  });
+
+  it('throws an error if an empty id "string" is provided', async () => {
+    await expect(async () => await client.getGenreById('')).rejects.toThrow('Required genre id');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getGenreById('1');
+    expect(data.id).toBe(1);
+    expect(data.name).toBe('Soap');
+  });
+});
+
 describe('getGenders()', () => {
   test('returns a successful response', async () => {
     const { data } = await client.getGenders();
