@@ -50,6 +50,13 @@ interface SeasonType {
   alternateName: string | null;
 }
 
+interface StatusHelper {
+  id: number;
+  keepUpdated: boolean;
+  name: string;
+  recordType: string;
+}
+
 interface StudiosHelper {
   id: number;
   name: string;
@@ -206,12 +213,7 @@ interface Movie extends SharedProps {
   aliases: Aliases[];
   score: number;
   runtime: number;
-  status: {
-    id: number;
-    keepUpdated: boolean;
-    name: string;
-    recordType: string;
-  };
+  status: StatusHelper;
   lastUpdated: string;
   year: string;
 }
@@ -467,6 +469,8 @@ type GetMovieByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'la
 
 type GetMovieBySlug = Data<Movie>;
 
+type GetMovieStatus = DataLink<StatusHelper[]>;
+
 type GetPeople<O extends Options> = O['extended'] extends true
   ? O['meta'] extends true
     ? Data<PeopleMeta>
@@ -638,6 +642,10 @@ export class TheTVDB extends Base {
   public async getMovieBySlug(slug: string): Promise<GetMovieBySlug> {
     this.validateInput(slug, 'Required slug');
     return await this.fetcher<GetMovieBySlug>(this.api + '/v4/movies/slug/' + slug);
+  }
+
+  public async getMovieStatus(): Promise<GetMovieStatus> {
+    return await this.fetcher<GetMovieStatus>(this.api + '/v4/movies/statuses');
   }
 
   public async getPeople<O extends Options>(options: O): Promise<GetPeople<O>> {

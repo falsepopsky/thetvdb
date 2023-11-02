@@ -79,6 +79,20 @@ const movie = {
   data: { id: 12586, slug: 'macross-do-you-remember-love' },
 };
 
+// https://api4.thetvdb.com/v4/movies/statuses
+const movieStatus = {
+  data: [
+    {
+      id: 1,
+      name: 'Announced',
+    },
+    {
+      id: 2,
+      name: 'Pre-Production',
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/movies?page=674
 const moviesPage = {
   data: [
@@ -126,6 +140,8 @@ export const moviesHandlers: HttpHandler[] = [
         return HttpResponse.json(movieES);
       case 'https://api4.thetvdb.com/v4/movies/3646/extended':
         return HttpResponse.json(movieE);
+      case 'https://api4.thetvdb.com/v4/movies/statuses':
+        return HttpResponse.json(movieStatus);
       default:
         return HttpResponse.json(movie);
     }

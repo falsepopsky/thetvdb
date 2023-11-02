@@ -356,6 +356,18 @@ describe('getMoviesByPage()', () => {
   });
 });
 
+describe('getMovieStatus()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovieStatus();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Announced');
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.name).toBe('Pre-Production');
+  });
+});
+
 describe('getPeople()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
