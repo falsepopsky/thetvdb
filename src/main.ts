@@ -447,6 +447,8 @@ type GetEpisode<O extends Options> = O['extended'] extends true
     : Data<EpisodeExtended>
   : Data<Episode>;
 
+type GetEpisodesByPage = DataLink<Episode[]>;
+
 type GetMovie<O extends MovieOptions> = O['extended'] extends true
   ? O['meta'] extends true
     ? O['short'] extends true
@@ -583,6 +585,14 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetEpisode<O>>(endpoint);
+  }
+
+  public async getEpisodesByPage(page?: string): Promise<GetEpisodesByPage> {
+    let endpoint = this.api + '/v4/episodes';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 5) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetEpisodesByPage>(endpoint);
   }
 
   public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {

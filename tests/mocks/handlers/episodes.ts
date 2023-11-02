@@ -14,7 +14,7 @@ const episodesEM = {
 };
 
 // https://api4.thetvdb.com/v4/episodes/127396/extended
-const episodesE = {
+const episodeE = {
   data: {
     seriesId: 73752,
     nominations: null,
@@ -22,11 +22,35 @@ const episodesE = {
 };
 
 // https://api4.thetvdb.com/v4/episodes/127396
-const episodes = {
+const episode = {
   status: 'success',
   data: {
     id: 127396,
   },
+};
+
+// https://api4.thetvdb.com/v4/episodes?page=11890
+const episodesPage = {
+  data: [
+    {
+      id: 10124498,
+      seriesId: 415404,
+    },
+    {
+      id: 10124499,
+      seriesId: 415404,
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/episodes
+const episodes = {
+  data: [
+    {
+      id: 502,
+      seriesId: 70328,
+    },
+  ],
 };
 
 export const episodesHandlers: HttpHandler[] = [
@@ -38,9 +62,20 @@ export const episodesHandlers: HttpHandler[] = [
       return HttpResponse.json(episodesEM);
     }
     if (request.url === 'https://api4.thetvdb.com/v4/episodes/127396/extended') {
-      return HttpResponse.json(episodesE);
+      return HttpResponse.json(episodeE);
     } else {
-      return HttpResponse.json(episodes);
+      return HttpResponse.json(episode);
+    }
+  }),
+
+  http.get<never>('https://api4.thetvdb.com/v4/episodes', ({ request }) => {
+    const url = new URL(request.url);
+
+    switch (url.href) {
+      case 'https://api4.thetvdb.com/v4/episodes?page=11890':
+        return HttpResponse.json(episodesPage);
+      default:
+        return HttpResponse.json(episodes);
     }
   }),
 ];
