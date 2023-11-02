@@ -156,6 +156,24 @@ describe('getEpisode()', () => {
   });
 });
 
+describe('getEpisodeByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getEpisodeByLanguage()).rejects.toThrow('Required episode id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getEpisodeByLanguage('40')).rejects.toThrow('Required language id');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getEpisodeByLanguage('40', 'spa');
+    expect(data.name).toBe('El Baile');
+    expect(data.language).toBe('spa');
+  });
+});
+
 describe('getEpisodesByPage()', () => {
   it('returns a successful response', async () => {
     const { data } = await client.getEpisodesByPage();
