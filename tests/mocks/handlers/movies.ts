@@ -62,6 +62,30 @@ const movie = {
   data: { id: 12586, slug: 'macross-do-you-remember-love' },
 };
 
+// https://api4.thetvdb.com/v4/movies?page=674
+const moviesPage = {
+  data: [
+    {
+      id: 351048,
+      slug: '351048-movie',
+    },
+    {
+      id: 351049,
+      slug: 'rekni-to-psem',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/movies
+const movies = {
+  data: [
+    {
+      id: 351047,
+      year: '2023',
+    },
+  ],
+};
+
 export const moviesHandlers: HttpHandler[] = [
   http.get<never>('https://api4.thetvdb.com/v4/movies/*', ({ request }) => {
     const url = new URL(request.url);
@@ -83,6 +107,17 @@ export const moviesHandlers: HttpHandler[] = [
         return HttpResponse.json(movieE);
       default:
         return HttpResponse.json(movie);
+    }
+  }),
+
+  http.get<never>('https://api4.thetvdb.com/v4/movies', ({ request }) => {
+    const url = new URL(request.url);
+
+    switch (url.href) {
+      case 'https://api4.thetvdb.com/v4/movies?page=674':
+        return HttpResponse.json(moviesPage);
+      default:
+        return HttpResponse.json(movies);
     }
   }),
 ];

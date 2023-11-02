@@ -266,6 +266,26 @@ describe('getMovie()', () => {
   });
 });
 
+describe('getMoviesByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getMoviesByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(351047);
+    expect(data[0]?.year).toBe('2023');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getMoviesByPage('674');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(351048);
+    expect(data[0]?.slug).toBe('351048-movie');
+    expect(data[1]?.id).toBe(351049);
+    expect(data[1]?.slug).toBe('rekni-to-psem');
+  });
+});
+
 describe('getPeople()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id

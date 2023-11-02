@@ -457,6 +457,8 @@ type GetMovie<O extends MovieOptions> = O['extended'] extends true
     : Data<MovieExtended>
   : Data<Movie>;
 
+type GetMoviesByPage = DataLink<Movie[]>;
+
 type GetPeople<O extends Options> = O['extended'] extends true
   ? O['meta'] extends true
     ? Data<PeopleMeta>
@@ -600,6 +602,14 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetMovie<O>>(endpoint.href);
+  }
+
+  public async getMoviesByPage(page?: string): Promise<GetMoviesByPage> {
+    let endpoint = this.api + '/v4/movies';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 3) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetMoviesByPage>(endpoint);
   }
 
   public async getPeople<O extends Options>(options: O): Promise<GetPeople<O>> {
