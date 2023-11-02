@@ -463,6 +463,8 @@ type GetMovie<O extends MovieOptions> = O['extended'] extends true
 
 type GetMoviesByPage = DataLink<Movie[]>;
 
+type GetMovieByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
+
 type GetMovieBySlug = Data<Movie>;
 
 type GetPeople<O extends Options> = O['extended'] extends true
@@ -587,7 +589,7 @@ export class TheTVDB extends Base {
 
   public async getEpisodeByLanguage(id: string, language: string): Promise<GetEpisodeByLanguage> {
     this.validateInput(id, 'Required episode id');
-    this.validateInput(language, 'Required language id');
+    this.validateInput(language, 'Required language');
 
     return await this.fetcher<GetEpisodeByLanguage>(this.api + '/v4/episodes/' + id + '/translations/' + language);
   }
@@ -625,6 +627,12 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetMoviesByPage>(endpoint);
+  }
+
+  public async getMovieByLanguage(id: string, language: string): Promise<GetMovieByLanguage> {
+    this.validateInput(id, 'Required movie id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetMovieByLanguage>(this.api + '/v4/movies/' + id + '/translations/' + language);
   }
 
   public async getMovieBySlug(slug: string): Promise<GetMovieBySlug> {

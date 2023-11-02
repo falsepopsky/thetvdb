@@ -164,7 +164,7 @@ describe('getEpisodeByLanguage()', () => {
 
   it('throws an error if no language is provided', async () => {
     // @ts-expect-error: Required language
-    await expect(async () => await client.getEpisodeByLanguage('40')).rejects.toThrow('Required language id');
+    await expect(async () => await client.getEpisodeByLanguage('40')).rejects.toThrow('Required language');
   });
 
   it('returns a successful response', async () => {
@@ -301,6 +301,24 @@ describe('getMovie()', () => {
     expect(data.characters).toBeNull();
     expect(data.artworks).toBeNull();
     expect(data.trailers).toBeNull();
+  });
+});
+
+describe('getMovieByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getMovieByLanguage()).rejects.toThrow('Required movie id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getMovieByLanguage('12586')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovieByLanguage('12586', 'spa');
+    expect(data.name).toBe('Macross: ¿Recuerdas el amor?');
+    expect(data.language).toBe('spa');
   });
 });
 

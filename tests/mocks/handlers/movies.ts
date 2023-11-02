@@ -57,6 +57,14 @@ const movieE = {
   },
 };
 
+// https://api4.thetvdb.com/v4/movies/12586/translations/spa
+const movieLanguage = {
+  data: {
+    name: 'Macross: ¿Recuerdas el amor?',
+    language: 'spa',
+  },
+};
+
 // https://api4.thetvdb.com/v4/movies/slug/macross-do-you-remember-love
 const movieSlug = {
   data: {
@@ -106,6 +114,8 @@ export const moviesHandlers: HttpHandler[] = [
         return HttpResponse.json(movieFilterYear);
       case 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng':
         return HttpResponse.json(movieFilterCountryLang);
+      case 'https://api4.thetvdb.com/v4/movies/12586/translations/spa':
+        return HttpResponse.json(movieLanguage);
       case 'https://api4.thetvdb.com/v4/movies/slug/macross-do-you-remember-love':
         return HttpResponse.json(movieSlug);
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations&short=true':
