@@ -57,6 +57,15 @@ const movieE = {
   },
 };
 
+// https://api4.thetvdb.com/v4/movies/slug/macross-do-you-remember-love
+const movieSlug = {
+  data: {
+    score: 483,
+    runtime: 114,
+    year: '1984',
+  },
+};
+
 // https://api4.thetvdb.com/v4/movies/12586
 const movie = {
   data: { id: 12586, slug: 'macross-do-you-remember-love' },
@@ -97,6 +106,8 @@ export const moviesHandlers: HttpHandler[] = [
         return HttpResponse.json(movieFilterYear);
       case 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng':
         return HttpResponse.json(movieFilterCountryLang);
+      case 'https://api4.thetvdb.com/v4/movies/slug/macross-do-you-remember-love':
+        return HttpResponse.json(movieSlug);
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations&short=true':
         return HttpResponse.json(movieEMS);
       case 'https://api4.thetvdb.com/v4/movies/3646/extended?meta=translations':

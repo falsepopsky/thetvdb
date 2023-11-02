@@ -304,6 +304,20 @@ describe('getMovie()', () => {
   });
 });
 
+describe('getMovieBySlug()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter slug
+    await expect(async () => await client.getMovieBySlug()).rejects.toThrow('Required slug');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovieBySlug('macross-do-you-remember-love');
+    expect(data.score).toBe(483);
+    expect(data.runtime).toBe(114);
+    expect(data.year).toBe('1984');
+  });
+});
+
 describe('getMoviesByPage()', () => {
   it('returns a successful response', async () => {
     const { data } = await client.getMoviesByPage();

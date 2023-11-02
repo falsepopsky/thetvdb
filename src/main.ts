@@ -463,6 +463,8 @@ type GetMovie<O extends MovieOptions> = O['extended'] extends true
 
 type GetMoviesByPage = DataLink<Movie[]>;
 
+type GetMovieBySlug = Data<Movie>;
+
 type GetPeople<O extends Options> = O['extended'] extends true
   ? O['meta'] extends true
     ? Data<PeopleMeta>
@@ -502,43 +504,37 @@ export class TheTVDB extends Base {
   }
 
   public async getAwards(): Promise<GetAwards> {
-    const endpoint = this.api + '/v4/awards';
-    return await this.fetcher<GetAwards>(endpoint);
+    return await this.fetcher<GetAwards>(this.api + '/v4/awards');
   }
 
   public async getAwardsById(id: string): Promise<GetAwardsById> {
     this.validateInput(id, 'Required id');
-    const endpoint = `${this.api}/v4/awards/${id}`;
 
-    return await this.fetcher<GetAwardsById>(endpoint);
+    return await this.fetcher<GetAwardsById>(`${this.api}/v4/awards/${id}`);
   }
 
   public async getAwardsByIdExtended(id: string): Promise<GetAwardsByIdExtended> {
     this.validateInput(id, 'Required id');
-    const endpoint = `${this.api}/v4/awards/${id}/extended`;
 
-    return await this.fetcher<GetAwardsByIdExtended>(endpoint);
+    return await this.fetcher<GetAwardsByIdExtended>(`${this.api}/v4/awards/${id}/extended`);
   }
 
   public async getAwardsCategoriesById(id: string): Promise<GetAwardsCategoriesById> {
     this.validateInput(id, 'Required id');
-    const endpoint = `${this.api}/v4/awards/categories/${id}`;
 
-    return await this.fetcher<GetAwardsCategoriesById>(endpoint);
+    return await this.fetcher<GetAwardsCategoriesById>(`${this.api}/v4/awards/categories/${id}`);
   }
 
   public async getAwardsCategoriesByIdExtended(id: string): Promise<GetAwardsCategoriesByIdExtended> {
     this.validateInput(id, 'Required id');
-    const endpoint = `${this.api}/v4/awards/categories/${id}/extended`;
 
-    return await this.fetcher<GetAwardsCategoriesByIdExtended>(endpoint);
+    return await this.fetcher<GetAwardsCategoriesByIdExtended>(`${this.api}/v4/awards/categories/${id}/extended`);
   }
 
   public async getCharacter(id: string): Promise<GetCharacter> {
     this.validateInput(id, 'Required character id');
-    const endpoint = this.api + '/v4/characters/' + id;
 
-    return await this.fetcher<GetCharacter>(endpoint);
+    return await this.fetcher<GetCharacter>(this.api + '/v4/characters/' + id);
   }
 
   public async getCompanies(page?: string): Promise<GetCompanies> {
@@ -593,9 +589,7 @@ export class TheTVDB extends Base {
     this.validateInput(id, 'Required episode id');
     this.validateInput(language, 'Required language id');
 
-    const endpoint = this.api + '/v4/episodes/' + id + '/translations/' + language;
-
-    return await this.fetcher<GetEpisodeByLanguage>(endpoint);
+    return await this.fetcher<GetEpisodeByLanguage>(this.api + '/v4/episodes/' + id + '/translations/' + language);
   }
 
   public async getEpisodesByPage(page?: string): Promise<GetEpisodesByPage> {
@@ -631,6 +625,11 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetMoviesByPage>(endpoint);
+  }
+
+  public async getMovieBySlug(slug: string): Promise<GetMovieBySlug> {
+    this.validateInput(slug, 'Required slug');
+    return await this.fetcher<GetMovieBySlug>(this.api + '/v4/movies/slug/' + slug);
   }
 
   public async getPeople<O extends Options>(options: O): Promise<GetPeople<O>> {
