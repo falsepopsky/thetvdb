@@ -102,18 +102,16 @@ const seriesEE = {
 };
 
 export const seriesHandlers: HttpHandler[] = [
-  http.get<never>('https://api4.thetvdb.com/v4/series/filter', ({ request }) => {
-    switch (request.url) {
+  http.get<never>('https://api4.thetvdb.com/v4/series/*', ({ request }) => {
+    const url = new URL(request.url);
+
+    switch (url.href) {
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name':
         return HttpResponse.json(seriesFilterSort);
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023':
         return HttpResponse.json(seriesFilterYear);
-      default:
+      case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng':
         return HttpResponse.json(seriesFilterCountryLang);
-    }
-  }),
-  http.get<never>('https://api4.thetvdb.com/v4/series/:id/extended', ({ request }) => {
-    switch (request.url) {
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations&short=true':
         return HttpResponse.json(seriesETS);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes&short=true':
@@ -124,11 +122,10 @@ export const seriesHandlers: HttpHandler[] = [
         return HttpResponse.json(seriesEE);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?short=true':
         return HttpResponse.json(seriesES);
-      default:
+      case 'https://api4.thetvdb.com/v4/series/78878/extended':
         return HttpResponse.json(seriesE);
+      default:
+        return HttpResponse.json(series);
     }
-  }),
-  http.get('https://api4.thetvdb.com/v4/series/:id', () => {
-    return HttpResponse.json(series);
   }),
 ];

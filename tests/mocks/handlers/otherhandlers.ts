@@ -5,6 +5,7 @@ import {
   countries,
   entities,
   genders,
+  genreId,
   genres,
   inspirationTypes,
   languages,
@@ -22,6 +23,9 @@ export const handlers: HttpHandler[] = [
   }),
   http.get('https://api4.thetvdb.com/v4/genders', () => {
     return HttpResponse.json(genders);
+  }),
+  http.get('https://api4.thetvdb.com/v4/genres/:id', () => {
+    return HttpResponse.json(genreId);
   }),
   http.get('https://api4.thetvdb.com/v4/genres', () => {
     return HttpResponse.json(genres);

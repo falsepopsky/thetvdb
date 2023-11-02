@@ -156,6 +156,44 @@ describe('getEpisode()', () => {
   });
 });
 
+describe('getEpisodeByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getEpisodeByLanguage()).rejects.toThrow('Required episode id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getEpisodeByLanguage('40')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getEpisodeByLanguage('40', 'spa');
+    expect(data.name).toBe('El Baile');
+    expect(data.language).toBe('spa');
+  });
+});
+
+describe('getEpisodesByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getEpisodesByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(502);
+    expect(data[0]?.seriesId).toBe(70328);
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getEpisodesByPage('11890');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(10124498);
+    expect(data[0]?.seriesId).toBe(415404);
+    expect(data[1]?.id).toBe(10124499);
+    expect(data[1]?.seriesId).toBe(415404);
+  });
+});
+
 describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query
@@ -233,7 +271,7 @@ describe('getMovie()', () => {
   });
 
   it('returns a extended response', async () => {
-    const { data } = await client.getMovie({ id: '12586', extended: true });
+    const { data } = await client.getMovie({ id: '3646', extended: true });
     expect(data.trailers).toHaveLength(2);
     expect(data.trailers[0]?.id).toBe(143117);
   });
@@ -263,6 +301,70 @@ describe('getMovie()', () => {
     expect(data.characters).toBeNull();
     expect(data.artworks).toBeNull();
     expect(data.trailers).toBeNull();
+  });
+});
+
+describe('getMovieByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getMovieByLanguage()).rejects.toThrow('Required movie id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getMovieByLanguage('12586')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovieByLanguage('12586', 'spa');
+    expect(data.name).toBe('Macross: ¿Recuerdas el amor?');
+    expect(data.language).toBe('spa');
+  });
+});
+
+describe('getMovieBySlug()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter slug
+    await expect(async () => await client.getMovieBySlug()).rejects.toThrow('Required slug');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovieBySlug('macross-do-you-remember-love');
+    expect(data.score).toBe(483);
+    expect(data.runtime).toBe(114);
+    expect(data.year).toBe('1984');
+  });
+});
+
+describe('getMoviesByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getMoviesByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(351047);
+    expect(data[0]?.year).toBe('2023');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getMoviesByPage('674');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(351048);
+    expect(data[0]?.slug).toBe('351048-movie');
+    expect(data[1]?.id).toBe(351049);
+    expect(data[1]?.slug).toBe('rekni-to-psem');
+  });
+});
+
+describe('getMovieStatus()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getMovieStatus();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Announced');
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.name).toBe('Pre-Production');
   });
 });
 
