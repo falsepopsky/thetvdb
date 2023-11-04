@@ -314,6 +314,49 @@ await client.getEpisode({ id: '127396', extended: true });
 await client.getEpisode({ id: '127396', extended: true, meta: true });
 ```
 
+## getEpisodeByLanguage
+
+Returns a translated episode record
+
+| params   | type     | Required | Description             |
+| -------- | -------- | :------: | ----------------------- |
+| id       | `string` |   Yes    | The episode `id`.       |
+| language | `string` |   Yes    | The episode `language`. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/episodes/:id/translations/:language`
+
+### Get a translated episode record <Badge type="tip" text="example" />
+
+```js
+await client.getEpisodeByLanguage('40', 'spa');
+```
+
+## getEpisodesByPage
+
+Returns a list of episodes records
+
+| params | type     | Required | Description                       |
+| ------ | -------- | :------: | --------------------------------- |
+| page   | `string` | Optional | Get episodes for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/episodes`
+
+### Get episodes <Badge type="tip" text="example" />
+
+```js
+await client.getEpisodesByPage();
+```
+
+### Get episodes from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getEpisodesByPage('11890');
+```
+
 ## getMovie
 
 Returns a movie base or extended record
@@ -359,6 +402,81 @@ await client.getMovie({ id: '3646', extended: true, short: true });
 
 ```js
 await client.getMovie({ id: '3646', extended: true, meta: true, short: true });
+```
+
+## getMovieByLanguage
+
+Returns a translated movie record
+
+| params   | type     | Required | Description             |
+| -------- | -------- | :------: | ----------------------- |
+| id       | `string` |   Yes    | The episode `id`.       |
+| language | `string` |   Yes    | The episode `language`. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/movies/:id/translations/:language`
+
+### Get a translated movie record <Badge type="tip" text="example" />
+
+```js
+await client.getMovieByLanguage('12586', 'spa');
+```
+
+## getMovieBySlug
+
+Returns a movie record
+
+| params | type     | Required | Description       |
+| ------ | -------- | :------: | ----------------- |
+| slug   | `string` |   Yes    | The movie `slug`. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/movies/slug/:slug`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getMovieBySlug('macross-do-you-remember-love');
+```
+
+## getMovieStatus
+
+This method returns a list of movies status records and does not require any parameters.
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/movies/statuses`
+
+### List of movies status records <Badge type="tip" text="example" />
+
+```js
+await client.getMovieStatus();
+```
+
+## getMoviesByPage
+
+Returns a list of movies records
+
+| params | type     | Required | Description                     |
+| ------ | -------- | :------: | ------------------------------- |
+| page   | `string` | Optional | Get movies for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/movies`
+
+### Get movies <Badge type="tip" text="example" />
+
+```js
+await client.getMoviesByPage();
+```
+
+### Get movies from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getMoviesByPage('7');
 ```
 
 ## getPeople
