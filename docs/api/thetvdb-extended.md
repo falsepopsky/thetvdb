@@ -126,6 +126,26 @@ This method returns a list of genre records and does not require any parameters.
 await client.getGenres();
 ```
 
+## getGenreById
+
+Returns a Genre record
+
+| params | type     | Required | Description                   |
+| ------ | -------- | :------: | ----------------------------- |
+| id     | `string` |   Yes    | The `id` of the Genre record. |
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint      |
+| ------------------------------- | ------------- |
+| <Badge type="tip" text="GET" /> | `/genres/:id` |
+
+### Single genre record <Badge type="tip" text="example" />
+
+```js
+await client.getGenreById('1');
+```
+
 ## getInspirationTypes
 
 This method returns a list of inspiration types records and does not require any parameters.
