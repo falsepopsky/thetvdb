@@ -587,6 +587,63 @@ await client.getSeason({ id: '6365', extended: true });
 await client.getSeason({ id: '6365', extended: true, meta: true });
 ```
 
+## getSeasonByLanguage
+
+Returns a translated season record
+
+| params   | type     | Required | Description            |
+| -------- | -------- | :------: | ---------------------- |
+| id       | `string` |   Yes    | The season `id`.       |
+| language | `string` |   Yes    | The season `language`. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/seasons/:id/translations/:language`
+
+### Get a translated season record <Badge type="tip" text="example" />
+
+```js
+await client.getSeasonByLanguage('6365', 'rus');
+```
+
+## getSeasonTypes
+
+This method returns a list of season types records and does not require any parameters.
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/seasons/types`
+
+### List of season types records <Badge type="tip" text="example" />
+
+```js
+await client.getSeasonTypes();
+```
+
+## getSeasonsByPage
+
+Returns a list of seasons records
+
+| params | type     | Required | Description                      |
+| ------ | -------- | :------: | -------------------------------- |
+| page   | `string` | Optional | Get seasons for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/seasons`
+
+### Get seasons <Badge type="tip" text="example" />
+
+```js
+await client.getSeasonsByPage();
+```
+
+### Get seasons from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getSeasonsByPage('7');
+```
+
 ## getSerie
 
 Returns a serie base or extended record
