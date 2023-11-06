@@ -485,6 +485,10 @@ type GetSeason<O extends Options> = O['extended'] extends true
     : Data<SeasonExtended>
   : Data<Season>;
 
+type GetSeasonByLanguage = Data<TranslationHelper>;
+type GetSeasonTypes = DataLink<SeasonType[]>;
+type GetSeasonsByPage = DataLink<Season[]>;
+
 type GetSerie<O extends SeriesOptions> = O['extended'] extends true
   ? O['meta'] extends 'translations'
     ? O['short'] extends true
@@ -678,6 +682,24 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetSeason<O>>(endpoint);
+  }
+
+  public async getSeasonByLanguage(id: string, language: string): Promise<GetSeasonByLanguage> {
+    this.validateInput(id, 'Required season id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetSeasonByLanguage>(this.api + '/v4/seasons/' + id + '/translations/' + language);
+  }
+
+  public async getSeasonTypes(): Promise<GetSeasonTypes> {
+    return await this.fetcher<GetSeasonTypes>(this.api + '/v4/seasons/types');
+  }
+
+  public async getSeasonsByPage(page?: string): Promise<GetSeasonsByPage> {
+    let endpoint = this.api + '/v4/seasons';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 4) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetSeasonsByPage>(endpoint);
   }
 
   public async getSerie<O extends SeriesOptions>(options: O): Promise<GetSerie<O>> {
