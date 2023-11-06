@@ -480,6 +480,25 @@ describe('getSeasonTypes()', () => {
   });
 });
 
+describe('getSeasonsByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getSeasonsByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.lastUpdated).toBe('2021-11-04 21:03:34');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getSeasonsByPage('1264');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1965685);
+    expect(data[0]?.seriesId).toBe(77294);
+    expect(data[1]?.id).toBe(1965686);
+    expect(data[1]?.seriesId).toBe(77294);
+  });
+});
+
 describe('getSeries()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required series id

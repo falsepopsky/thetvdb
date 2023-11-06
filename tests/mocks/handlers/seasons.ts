@@ -1,5 +1,28 @@
 import { HttpResponse, http, type HttpHandler } from 'msw';
 
+// https://api4.thetvdb.com/v4/seasons?page=1264
+const seasonsPage = {
+  data: [
+    {
+      id: 1965685,
+      seriesId: 77294,
+    },
+    {
+      id: 1965686,
+      seriesId: 77294,
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/seasons
+const seasons = {
+  data: [
+    {
+      lastUpdated: '2021-11-04 21:03:34',
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/seasons/6365/translations/rus
 const seasonT = {
   data: {
@@ -60,6 +83,14 @@ export const seasonHandlers: HttpHandler[] = [
         return HttpResponse.json(seasonTypes);
       default:
         return HttpResponse.json(season);
+    }
+  }),
+
+  http.get<never>('https://api4.thetvdb.com/v4/seasons', ({ request }) => {
+    if (request.url === 'https://api4.thetvdb.com/v4/seasons?page=1264') {
+      return HttpResponse.json(seasonsPage);
+    } else {
+      return HttpResponse.json(seasons);
     }
   }),
 ];
