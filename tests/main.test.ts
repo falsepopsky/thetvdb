@@ -450,6 +450,36 @@ describe('getSeason()', () => {
   });
 });
 
+describe('getSeasonByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSeasonByLanguage()).rejects.toThrow('Required season id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getSeasonByLanguage('12586')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSeasonByLanguage('6365', 'rus');
+    expect(data.overview).toBe('Через');
+    expect(data.language).toBe('rus');
+  });
+});
+
+describe('getSeasonTypes()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getSeasonTypes();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Aired Order');
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.type).toBe('dvd');
+  });
+});
+
 describe('getSeries()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required series id

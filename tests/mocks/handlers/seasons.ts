@@ -1,5 +1,27 @@
 import { HttpResponse, http, type HttpHandler } from 'msw';
 
+// https://api4.thetvdb.com/v4/seasons/6365/translations/rus
+const seasonT = {
+  data: {
+    overview: 'Через',
+    language: 'rus',
+  },
+};
+
+// https://api4.thetvdb.com/v4/seasons/types
+const seasonTypes = {
+  data: [
+    {
+      id: 1,
+      name: 'Aired Order',
+    },
+    {
+      id: 2,
+      type: 'dvd',
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations
 const seasonEM = {
   data: {
@@ -26,16 +48,18 @@ const season = {
 export const seasonHandlers: HttpHandler[] = [
   http.get<never>('https://api4.thetvdb.com/v4/seasons/*', ({ request }) => {
     const url = new URL(request.url);
-    const meta = url.searchParams.get('meta');
 
-    if (meta === 'translations') {
-      return HttpResponse.json(seasonEM);
-    }
-
-    if (request.url === 'https://api4.thetvdb.com/v4/seasons/6365/extended') {
-      return HttpResponse.json(seasonE);
-    } else {
-      return HttpResponse.json(season);
+    switch (url.href) {
+      case 'https://api4.thetvdb.com/v4/seasons/6365/translations/rus':
+        return HttpResponse.json(seasonT);
+      case 'https://api4.thetvdb.com/v4/seasons/6365/extended?meta=translations':
+        return HttpResponse.json(seasonEM);
+      case 'https://api4.thetvdb.com/v4/seasons/6365/extended':
+        return HttpResponse.json(seasonE);
+      case 'https://api4.thetvdb.com/v4/seasons/types':
+        return HttpResponse.json(seasonTypes);
+      default:
+        return HttpResponse.json(season);
     }
   }),
 ];
