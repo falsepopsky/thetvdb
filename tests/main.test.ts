@@ -607,3 +607,23 @@ describe('getSeries()', () => {
     expect(data.episodes[0]?.aired).toBe('2018-09-28');
   });
 });
+
+describe('getSeriesByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getSeriesByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(70327);
+    expect(data[0]?.name).toBe('Buffy the Vampire Slayer');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getSeriesByPage('294');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(441532);
+    expect(data[0]?.name).toBe('Geddy Lee Asks: Are Bass Players Human Too?');
+    expect(data[1]?.id).toBe(441533);
+    expect(data[1]?.name).toBe('LEGO DUPLO Nursery Rhymes');
+  });
+});

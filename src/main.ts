@@ -510,6 +510,8 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     : Data<SerieExtended>
   : Data<Serie>;
 
+type GetSeriesByPage = DataLink<Serie[]>;
+
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
     this.validateInput(options?.id, 'Required artwork id');
@@ -744,5 +746,13 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetSerie<O>>(endpoint.href);
+  }
+
+  public async getSeriesByPage(page?: string): Promise<GetSeriesByPage> {
+    let endpoint = this.api + '/v4/series';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 3) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetSeriesByPage>(endpoint);
   }
 }
