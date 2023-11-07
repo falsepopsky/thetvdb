@@ -108,6 +108,18 @@ describe('getLanguages()', () => {
   });
 });
 
+describe('getSourceTypes()', () => {
+  test('returns a successful response', async () => {
+    const { data } = await client.getSourceTypes();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(2);
+    expect(data[0]?.name).toBe('IMDB');
+    expect(data[1]?.id).toBe(3);
+    expect(data[1]?.name).toBe('TMS (Zap2It)');
+  });
+});
+
 describe('getUpdates()', () => {
   it('throws an error if since option is not provided', async () => {
     await expect(async () => {

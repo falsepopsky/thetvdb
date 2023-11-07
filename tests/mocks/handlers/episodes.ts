@@ -76,7 +76,6 @@ export const episodesHandlers: HttpHandler[] = [
         return HttpResponse.json(episode);
     }
   }),
-
   http.get<never>('https://api4.thetvdb.com/v4/episodes', ({ request }) => {
     const url = new URL(request.url);
 

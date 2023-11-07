@@ -96,6 +96,12 @@ interface Shared {
   name: string;
 }
 
+interface Source extends Genre {
+  postfix: string;
+  prefix: string;
+  sort: number;
+}
+
 interface Inspiration extends Shared {
   description: string;
   reference_name: string;
@@ -113,6 +119,7 @@ type GetLanguages = Data<Language[]>;
 type GetUpdates = DataLink<Update[] | null[]>;
 type GetArtworkStatuses = Data<Shared[]>;
 type GetArtworkTypes = Data<ArtworkType[]>;
+type GetSourceTypes = Data<Source[]>;
 
 export class TheTVDBExtended extends Base {
   public async getArtworkStatuses(): Promise<GetArtworkStatuses> {
@@ -155,6 +162,10 @@ export class TheTVDBExtended extends Base {
 
   public async getLanguages(): Promise<GetLanguages> {
     return await this.fetcher<GetLanguages>(this.api + '/v4/languages');
+  }
+
+  public async getSourceTypes(): Promise<GetSourceTypes> {
+    return await this.fetcher<GetSourceTypes>(this.api + '/v4/sources/types');
   }
 
   public async getUpdates(options: updateO): Promise<GetUpdates> {

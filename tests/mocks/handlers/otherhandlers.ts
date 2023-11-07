@@ -9,6 +9,7 @@ import {
   genres,
   inspirationTypes,
   languages,
+  sourceTypes,
 } from '../response.js';
 
 export const handlers: HttpHandler[] = [
@@ -36,8 +37,10 @@ export const handlers: HttpHandler[] = [
   http.get('https://api4.thetvdb.com/v4/languages', () => {
     return HttpResponse.json(languages);
   }),
-
   http.get('https://api4.thetvdb.com/v4/characters/:id', () => {
     return HttpResponse.json(character);
+  }),
+  http.get('https://api4.thetvdb.com/v4/sources/types', () => {
+    return HttpResponse.json(sourceTypes);
   }),
 ];

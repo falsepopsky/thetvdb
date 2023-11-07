@@ -96,4 +96,29 @@ const languages = {
   ],
 };
 
-export { character, contentRatings, countries, entities, genders, genreId, genres, inspirationTypes, languages };
+// https://api4.thetvdb.com/v4/sources/types
+const sourceTypes = {
+  data: [
+    {
+      id: 2,
+      name: 'IMDB',
+    },
+    {
+      id: 3,
+      name: 'TMS (Zap2It)',
+    },
+  ],
+};
+
+export {
+  character,
+  contentRatings,
+  countries,
+  entities,
+  genders,
+  genreId,
+  genres,
+  inspirationTypes,
+  languages,
+  sourceTypes,
+};
