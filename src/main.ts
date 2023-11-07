@@ -477,6 +477,9 @@ type GetPeople<O extends Options> = O['extended'] extends true
     : Data<PeopleExtended>
   : Data<People>;
 
+type GetPeopleByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
+type GetPeopleTypes = DataLink<AwardsHelper[]>;
+
 type GetSearch = DataLink<Search[]>;
 
 type GetSeason<O extends Options> = O['extended'] extends true
@@ -662,6 +665,16 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetPeople<O>>(endpoint);
+  }
+
+  public async getPeopleByLanguage(id: string, language: string): Promise<GetPeopleByLanguage> {
+    this.validateInput(id, 'Required people id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetPeopleByLanguage>(this.api + '/v4/people/' + id + '/translations/' + language);
+  }
+
+  public async getPeopleTypes(): Promise<GetPeopleTypes> {
+    return await this.fetcher<GetPeopleTypes>(this.api + '/v4/people/types');
   }
 
   public async getSearch(options: SearchOptions): Promise<GetSearch> {

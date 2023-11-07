@@ -395,6 +395,36 @@ describe('getPeople()', () => {
   });
 });
 
+describe('getPeopleByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getPeopleByLanguage()).rejects.toThrow('Required people id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getPeopleByLanguage('312388')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getPeopleByLanguage('312388', 'spa');
+    expect(data.name).toBe('Chris Pratt');
+    expect(data.language).toBe('spa');
+  });
+});
+
+describe('getPeopleTypes()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getPeopleTypes();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(3);
+    expect(data[0]?.name).toBe('Actor');
+    expect(data[1]?.id).toBe(6);
+    expect(data[1]?.name).toBe('Creator');
+  });
+});
+
 describe('getSearch()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required search query
