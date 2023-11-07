@@ -758,3 +758,27 @@ await client.getSerie({ id: '78878', extended: true, meta: 'translations', short
 ```js
 await client.getSerie({ id: '78878', extended: true, meta: 'episodes', short: true });
 ```
+
+## getSeriesByPage
+
+Returns a list of series records
+
+| params | type     | Required | Description                     |
+| ------ | -------- | :------: | ------------------------------- |
+| page   | `string` | Optional | Get series for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series`
+
+### Get series <Badge type="tip" text="example" />
+
+```js
+await client.getSeriesByPage();
+```
+
+### Get series from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getSeriesByPage('7');
+```

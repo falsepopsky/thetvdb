@@ -62,7 +62,7 @@ List of endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/).
 | `/seasons/{id}/extended`                     | :white_check_mark: |
 | `/seasons/types`                             | :white_check_mark: |
 | `/seasons/{id}/translations/{language}`      | :white_check_mark: |
-| `/series`                                    |       :soon:       |
+| `/series`                                    | :white_check_mark: |
 | `/series/{id}`                               | :white_check_mark: |
 | `/series/{id}/artworks`                      |       :soon:       |
 | `/series/{id}/nextAired`                     |       :soon:       |
@@ -73,7 +73,7 @@ List of endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/).
 | `/series/slug/{slug}`                        |       :soon:       |
 | `/series/{id}/translations/{language}`       |       :soon:       |
 | `/series/statuses`                           |       :soon:       |
-| `/sources/types`                             |       :soon:       |
+| `/sources/types`                             | :white_check_mark: |
 | `/updates`                                   | :white_check_mark: |
 | `/user`                                      |  :no_entry_sign:   |
 | `/user/{id}`                                 |  :no_entry_sign:   |
