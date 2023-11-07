@@ -395,6 +395,56 @@ describe('getPeople()', () => {
   });
 });
 
+describe('getPeopleByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getPeopleByLanguage()).rejects.toThrow('Required people id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getPeopleByLanguage('312388')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getPeopleByLanguage('312388', 'spa');
+    expect(data.name).toBe('Chris Pratt');
+    expect(data.language).toBe('spa');
+  });
+});
+
+describe('getPeopleByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getPeopleByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(247831);
+    expect(data[0]?.name).toBe('Michelle Fairley');
+    expect(data[1]?.id).toBe(247832);
+    expect(data[1]?.name).toBe('Gethin Anthony');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getPeopleByPage('2648');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(9119375);
+    expect(data[0]?.name).toBe('Isabela Boscov');
+  });
+});
+
+describe('getPeopleTypes()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getPeopleTypes();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(3);
+    expect(data[0]?.name).toBe('Actor');
+    expect(data[1]?.id).toBe(6);
+    expect(data[1]?.name).toBe('Creator');
+  });
+});
+
 describe('getSearch()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required search query
@@ -555,5 +605,25 @@ describe('getSeries()', () => {
     expect(data.artworks).toBeNull();
     expect(Array.isArray(data.episodes)).toBe(true);
     expect(data.episodes[0]?.aired).toBe('2018-09-28');
+  });
+});
+
+describe('getSeriesByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getSeriesByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(70327);
+    expect(data[0]?.name).toBe('Buffy the Vampire Slayer');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getSeriesByPage('294');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(441532);
+    expect(data[0]?.name).toBe('Geddy Lee Asks: Are Bass Players Human Too?');
+    expect(data[1]?.id).toBe(441533);
+    expect(data[1]?.name).toBe('LEGO DUPLO Nursery Rhymes');
   });
 });

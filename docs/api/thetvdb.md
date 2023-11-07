@@ -515,6 +515,63 @@ await client.getPeople({ id: '312388', extended: true });
 await client.getPeople({ id: '312388', extended: true, meta: true });
 ```
 
+## getPeopleByLanguage
+
+Returns a translated people record
+
+| params   | type     | Required | Description            |
+| -------- | -------- | :------: | ---------------------- |
+| id       | `string` |   Yes    | The people `id`.       |
+| language | `string` |   Yes    | The people `language`. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/people/:id/translations/:language`
+
+### Get a translated people record <Badge type="tip" text="example" />
+
+```js
+await client.getPeopleByLanguage('312388', 'spa');
+```
+
+## getPeopleByPage
+
+Returns a list of people records
+
+| params | type     | Required | Description                     |
+| ------ | -------- | :------: | ------------------------------- |
+| page   | `string` | Optional | Get people for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/people`
+
+### Get peoples <Badge type="tip" text="example" />
+
+```js
+await client.getPeopleByPage();
+```
+
+### Get peoples from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getPeopleByPage('7');
+```
+
+## getPeopleTypes
+
+This method returns a list of people types records and does not require any parameters.
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/people/types`
+
+### List of season types records <Badge type="tip" text="example" />
+
+```js
+await client.getPeopleTypes();
+```
+
 ## getSearch
 
 Returns a query search record(s).
@@ -700,4 +757,28 @@ await client.getSerie({ id: '78878', extended: true, meta: 'translations', short
 
 ```js
 await client.getSerie({ id: '78878', extended: true, meta: 'episodes', short: true });
+```
+
+## getSeriesByPage
+
+Returns a list of series records
+
+| params | type     | Required | Description                     |
+| ------ | -------- | :------: | ------------------------------- |
+| page   | `string` | Optional | Get series for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series`
+
+### Get series <Badge type="tip" text="example" />
+
+```js
+await client.getSeriesByPage();
+```
+
+### Get series from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getSeriesByPage('7');
 ```

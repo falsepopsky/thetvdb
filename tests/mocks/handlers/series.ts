@@ -17,7 +17,7 @@ const seriesFilterCountryLang = {
 };
 
 // https://api4.thetvdb.com/v4/series/78878
-const series = {
+const serie = {
   data: {
     id: 78878,
   },
@@ -101,6 +101,30 @@ const seriesEE = {
   },
 };
 
+// https://api4.thetvdb.com/v4/series?page=294
+const seriesPage = {
+  data: [
+    {
+      id: 441532,
+      name: 'Geddy Lee Asks: Are Bass Players Human Too?',
+    },
+    {
+      id: 441533,
+      name: 'LEGO DUPLO Nursery Rhymes',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/series
+const series = {
+  data: [
+    {
+      id: 70327,
+      name: 'Buffy the Vampire Slayer',
+    },
+  ],
+};
+
 export const seriesHandlers: HttpHandler[] = [
   http.get<never>('https://api4.thetvdb.com/v4/series/*', ({ request }) => {
     const url = new URL(request.url);
@@ -124,6 +148,16 @@ export const seriesHandlers: HttpHandler[] = [
         return HttpResponse.json(seriesES);
       case 'https://api4.thetvdb.com/v4/series/78878/extended':
         return HttpResponse.json(seriesE);
+      default:
+        return HttpResponse.json(serie);
+    }
+  }),
+  http.get<never>('https://api4.thetvdb.com/v4/series', ({ request }) => {
+    const url = new URL(request.url);
+
+    switch (url.href) {
+      case 'https://api4.thetvdb.com/v4/series?page=294':
+        return HttpResponse.json(seriesPage);
       default:
         return HttpResponse.json(series);
     }

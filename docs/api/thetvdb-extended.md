@@ -178,6 +178,22 @@ This method returns a list of language records and does not require any paramete
 await cient.getLanguages();
 ```
 
+## getSourceTypes
+
+This method returns a list of source types records and does not require any parameters.
+
+### Supported endpoint <Badge type="warning" text="endpoint" />
+
+| method                          | endpoint         |
+| ------------------------------- | ---------------- |
+| <Badge type="tip" text="GET" /> | `/sources/types` |
+
+### List of source types records <Badge type="tip" text="example" />
+
+```js
+await cient.getSourceTypes();
+```
+
 ## getUpdates
 
 Returns updated entities.

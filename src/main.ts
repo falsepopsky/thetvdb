@@ -258,7 +258,10 @@ type MovieExtendedShort = Omit<MovieExtended, 'characters' | 'artworks' | 'trail
 
 type MovieExtendedMetaShort = Omit<MovieExtendedMeta, 'characters' | 'artworks' | 'trailers'> & MovieShort;
 
-type People = Pick<Character, 'id' | 'name' | 'image' | 'nameTranslations' | 'overviewTranslations' | 'aliases'>;
+interface People extends SharedProps {
+  aliases: Aliases[];
+  lastUpdated: string;
+}
 
 interface PeopleMeta extends People {
   birth: string | null;
@@ -477,6 +480,10 @@ type GetPeople<O extends Options> = O['extended'] extends true
     : Data<PeopleExtended>
   : Data<People>;
 
+type GetPeopleByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
+type GetPeopleByPage = DataLink<People[]>;
+type GetPeopleTypes = DataLink<AwardsHelper[]>;
+
 type GetSearch = DataLink<Search[]>;
 
 type GetSeason<O extends Options> = O['extended'] extends true
@@ -502,6 +509,8 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     ? Data<SerieExtendedShort>
     : Data<SerieExtended>
   : Data<Serie>;
+
+type GetSeriesByPage = DataLink<Serie[]>;
 
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
@@ -664,6 +673,24 @@ export class TheTVDB extends Base {
     return await this.fetcher<GetPeople<O>>(endpoint);
   }
 
+  public async getPeopleByLanguage(id: string, language: string): Promise<GetPeopleByLanguage> {
+    this.validateInput(id, 'Required people id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetPeopleByLanguage>(this.api + '/v4/people/' + id + '/translations/' + language);
+  }
+
+  public async getPeopleByPage(page?: string): Promise<GetPeopleByPage> {
+    let endpoint = this.api + '/v4/people';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 4) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetPeopleByPage>(endpoint);
+  }
+
+  public async getPeopleTypes(): Promise<GetPeopleTypes> {
+    return await this.fetcher<GetPeopleTypes>(this.api + '/v4/people/types');
+  }
+
   public async getSearch(options: SearchOptions): Promise<GetSearch> {
     this.validateInput(options?.query, 'Required search query');
     const endpoint = this.createURL('/v4/search');
@@ -719,5 +746,13 @@ export class TheTVDB extends Base {
     }
 
     return await this.fetcher<GetSerie<O>>(endpoint.href);
+  }
+
+  public async getSeriesByPage(page?: string): Promise<GetSeriesByPage> {
+    let endpoint = this.api + '/v4/series';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 3) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetSeriesByPage>(endpoint);
   }
 }
