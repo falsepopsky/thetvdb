@@ -413,6 +413,26 @@ describe('getPeopleByLanguage()', () => {
   });
 });
 
+describe('getPeopleByPage()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getPeopleByPage();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(247831);
+    expect(data[0]?.name).toBe('Michelle Fairley');
+    expect(data[1]?.id).toBe(247832);
+    expect(data[1]?.name).toBe('Gethin Anthony');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getPeopleByPage('2648');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(1);
+    expect(data[0]?.id).toBe(9119375);
+    expect(data[0]?.name).toBe('Isabela Boscov');
+  });
+});
+
 describe('getPeopleTypes()', () => {
   it('returns a successful response', async () => {
     const { data } = await client.getPeopleTypes();

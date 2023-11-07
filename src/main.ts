@@ -258,7 +258,10 @@ type MovieExtendedShort = Omit<MovieExtended, 'characters' | 'artworks' | 'trail
 
 type MovieExtendedMetaShort = Omit<MovieExtendedMeta, 'characters' | 'artworks' | 'trailers'> & MovieShort;
 
-type People = Pick<Character, 'id' | 'name' | 'image' | 'nameTranslations' | 'overviewTranslations' | 'aliases'>;
+interface People extends SharedProps {
+  aliases: Aliases[];
+  lastUpdated: string;
+}
 
 interface PeopleMeta extends People {
   birth: string | null;
@@ -478,6 +481,7 @@ type GetPeople<O extends Options> = O['extended'] extends true
   : Data<People>;
 
 type GetPeopleByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
+type GetPeopleByPage = DataLink<People[]>;
 type GetPeopleTypes = DataLink<AwardsHelper[]>;
 
 type GetSearch = DataLink<Search[]>;
@@ -671,6 +675,14 @@ export class TheTVDB extends Base {
     this.validateInput(id, 'Required people id');
     this.validateInput(language, 'Required language');
     return await this.fetcher<GetPeopleByLanguage>(this.api + '/v4/people/' + id + '/translations/' + language);
+  }
+
+  public async getPeopleByPage(page?: string): Promise<GetPeopleByPage> {
+    let endpoint = this.api + '/v4/people';
+    if (typeof page === 'string' && page.length > 0 && page.length <= 4) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetPeopleByPage>(endpoint);
   }
 
   public async getPeopleTypes(): Promise<GetPeopleTypes> {

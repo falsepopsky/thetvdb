@@ -50,6 +50,30 @@ const peopleTypes = {
   ],
 };
 
+// https://api4.thetvdb.com/v4/people?page=2648
+const peoplesPage = {
+  data: [
+    {
+      id: 9119375,
+      name: 'Isabela Boscov',
+    },
+  ],
+};
+
+// https://api4.thetvdb.com/v4/people
+const peoples = {
+  data: [
+    {
+      id: 247831,
+      name: 'Michelle Fairley',
+    },
+    {
+      id: 247832,
+      name: 'Gethin Anthony',
+    },
+  ],
+};
+
 export const peopleHandlers: HttpHandler[] = [
   http.get<never>('https://api4.thetvdb.com/v4/people/*', ({ request }) => {
     const url = new URL(request.url);
@@ -65,6 +89,14 @@ export const peopleHandlers: HttpHandler[] = [
         return HttpResponse.json(peopleTypes);
       default:
         return HttpResponse.json(people);
+    }
+  }),
+
+  http.get<never>('https://api4.thetvdb.com/v4/people', ({ request }) => {
+    if (request.url === 'https://api4.thetvdb.com/v4/people?page=2648') {
+      return HttpResponse.json(peoplesPage);
+    } else {
+      return HttpResponse.json(peoples);
     }
   }),
 ];
