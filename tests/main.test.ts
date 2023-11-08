@@ -627,3 +627,48 @@ describe('getSeriesByPage()', () => {
     expect(data[1]?.name).toBe('LEGO DUPLO Nursery Rhymes');
   });
 });
+
+describe('getSerieBySlug()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter slug
+    await expect(async () => await client.getSerieBySlug()).rejects.toThrow('Required slug');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieBySlug('flcl');
+    expect(data.originalCountry).toBe('jpn');
+    expect(data.originalLanguage).toBe('jpn');
+  });
+});
+
+describe('getSerieByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSerieByLanguage()).rejects.toThrow('Required serie id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getSerieByLanguage('78878')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieByLanguage('78878', 'eng');
+    expect(data.name).toBe('FLCL');
+    expect(data.language).toBe('eng');
+    expect(Array.isArray(data.aliases)).toBe(true);
+    expect(data.aliases).toHaveLength(2);
+  });
+});
+
+describe('getSerieStatus()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieStatus();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Continuing');
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.name).toBe('Ended');
+  });
+});

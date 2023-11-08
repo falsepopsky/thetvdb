@@ -511,6 +511,9 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
   : Data<Serie>;
 
 type GetSeriesByPage = DataLink<Serie[]>;
+type GetSerieBySlug = Data<Serie>;
+type GetSerieByLanguage = Data<TranslationHelper>;
+type GetSerieStatus = DataLink<StatusHelper[]>;
 
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
@@ -754,5 +757,20 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetSeriesByPage>(endpoint);
+  }
+
+  public async getSerieBySlug(slug: string): Promise<GetSerieBySlug> {
+    this.validateInput(slug, 'Required slug');
+    return await this.fetcher<GetSerieBySlug>(this.api + '/v4/series/slug/' + slug);
+  }
+
+  public async getSerieByLanguage(id: string, language: string): Promise<GetSerieByLanguage> {
+    this.validateInput(id, 'Required serie id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetSerieByLanguage>(this.api + '/v4/series/' + id + '/translations/' + language);
+  }
+
+  public async getSerieStatus(): Promise<GetSerieStatus> {
+    return await this.fetcher<GetSerieStatus>(this.api + '/v4/series/statuses');
   }
 }

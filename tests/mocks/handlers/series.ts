@@ -101,6 +101,37 @@ const seriesEE = {
   },
 };
 
+// https://api4.thetvdb.com/v4/series/78878/translations/eng
+const serieTranslations = {
+  data: {
+    name: 'FLCL',
+    language: 'eng',
+    aliases: ['Fooly Cooly', 'FLCL: Progressive'],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/slug/flcl
+const serieSlug = {
+  data: {
+    originalCountry: 'jpn',
+    originalLanguage: 'jpn',
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/statuses
+const seriesStatus = {
+  data: [
+    {
+      id: 1,
+      name: 'Continuing',
+    },
+    {
+      id: 2,
+      name: 'Ended',
+    },
+  ],
+};
+
 // https://api4.thetvdb.com/v4/series?page=294
 const seriesPage = {
   data: [
@@ -136,6 +167,10 @@ export const seriesHandlers: HttpHandler[] = [
         return HttpResponse.json(seriesFilterYear);
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng':
         return HttpResponse.json(seriesFilterCountryLang);
+      case 'https://api4.thetvdb.com/v4/series/78878/translations/eng':
+        return HttpResponse.json(serieTranslations);
+      case 'https://api4.thetvdb.com/v4/series/slug/flcl':
+        return HttpResponse.json(serieSlug);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations&short=true':
         return HttpResponse.json(seriesETS);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes&short=true':
@@ -148,6 +183,8 @@ export const seriesHandlers: HttpHandler[] = [
         return HttpResponse.json(seriesES);
       case 'https://api4.thetvdb.com/v4/series/78878/extended':
         return HttpResponse.json(seriesE);
+      case 'https://api4.thetvdb.com/v4/series/statuses':
+        return HttpResponse.json(seriesStatus);
       default:
         return HttpResponse.json(serie);
     }
