@@ -23,6 +23,14 @@ const serie = {
   },
 };
 
+// https://api4.thetvdb.com/v4/series/78878/nextAired
+const serieNextAired = {
+  data: {
+    firstAired: '2000-04-26',
+    lastAired: '2023-10-15',
+  },
+};
+
 // https://api4.thetvdb.com/v4/series/78878/extended
 const seriesE = {
   data: {
@@ -183,6 +191,8 @@ export const seriesHandlers: HttpHandler[] = [
         return HttpResponse.json(seriesES);
       case 'https://api4.thetvdb.com/v4/series/78878/extended':
         return HttpResponse.json(seriesE);
+      case 'https://api4.thetvdb.com/v4/series/78878/nextAired':
+        return HttpResponse.json(serieNextAired);
       case 'https://api4.thetvdb.com/v4/series/statuses':
         return HttpResponse.json(seriesStatus);
       default:

@@ -510,6 +510,7 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     : Data<SerieExtended>
   : Data<Serie>;
 
+type GetSerieNextAired = Data<Serie>;
 type GetSeriesByPage = DataLink<Serie[]>;
 type GetSerieBySlug = Data<Serie>;
 type GetSerieByLanguage = Data<TranslationHelper>;
@@ -768,6 +769,11 @@ export class TheTVDB extends Base {
     this.validateInput(id, 'Required serie id');
     this.validateInput(language, 'Required language');
     return await this.fetcher<GetSerieByLanguage>(this.api + '/v4/series/' + id + '/translations/' + language);
+  }
+
+  public async getSerieNextAired(id: string): Promise<GetSerieNextAired> {
+    this.validateInput(id, 'Required serie id');
+    return await this.fetcher<GetSerieNextAired>(this.api + '/v4/series/' + id + '/nextAired');
   }
 
   public async getSerieStatus(): Promise<GetSerieStatus> {

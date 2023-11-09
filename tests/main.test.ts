@@ -661,6 +661,20 @@ describe('getSerieByLanguage()', () => {
   });
 });
 
+describe('getSerieNextAired()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieNextAired()).rejects.toThrow('Required serie id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getSerieNextAired('78878');
+
+    expect(data.firstAired).toBe('2000-04-26');
+    expect(data.lastAired).toBe('2023-10-15');
+  });
+});
+
 describe('getSerieStatus()', () => {
   it('returns a successful response', async () => {
     const { data } = await client.getSerieStatus();
