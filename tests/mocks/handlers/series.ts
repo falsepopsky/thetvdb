@@ -1,5 +1,41 @@
 import { HttpResponse, http, type HttpHandler } from 'msw';
 
+// https://api4.thetvdb.com/v4/series/71663/episodes/official/eng?page=1
+const serieSeasonTypeLanguagePage = {
+  data: {
+    episodes: [
+      {
+        id: 420653,
+        seriesId: 71663,
+        name: 'In the Name of the Grandfather',
+      },
+      {
+        id: 420654,
+        seriesId: 71663,
+        name: 'Wedding for Disaster',
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/78878/episodes/official/eng
+const serieSeasonTypeLanguage = {
+  data: {
+    episodes: [
+      {
+        id: 8051162,
+        seriesId: 78878,
+        name: 'FLCL Progressive',
+      },
+      {
+        id: 8051167,
+        seriesId: 78878,
+        name: 'FLCL Alternative',
+      },
+    ],
+  },
+};
+
 // https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name
 const seriesFilterSort = {
   data: [{ name: 'Adriana Gaming' }],
@@ -181,6 +217,10 @@ export const seriesHandlers: HttpHandler[] = [
     const url = new URL(request.url);
 
     switch (url.href) {
+      case 'https://api4.thetvdb.com/v4/series/71663/episodes/official/eng?page=1':
+        return HttpResponse.json(serieSeasonTypeLanguagePage);
+      case 'https://api4.thetvdb.com/v4/series/78878/episodes/official/eng':
+        return HttpResponse.json(serieSeasonTypeLanguage);
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=name':
         return HttpResponse.json(seriesFilterSort);
       case 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&year=2023':

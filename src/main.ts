@@ -337,10 +337,14 @@ interface Serie extends Omit<Movie, 'runtime'> {
   nextAired: string;
   originalCountry: string;
   originalLanguage: string;
+  overview: string;
+}
+
+interface SerieLanguage extends Omit<Serie, 'episodes'> {
+  episodes: Episode[];
 }
 
 interface SerieArtworks extends Serie {
-  overview: string;
   artworks: Artwork[];
   companies: null;
   genres: null;
@@ -355,7 +359,6 @@ interface SerieArtworks extends Serie {
 }
 
 interface SerieExtended extends Serie {
-  overview: string;
   artworks: Artwork[];
   companies: unknown;
   originalNetwork: unknown;
@@ -444,6 +447,13 @@ interface SeriesOptions extends Omit<Options, 'meta'> {
   short?: boolean;
 }
 
+interface SerieEpisodesLanguage {
+  id: string;
+  type: string;
+  language: string;
+  page?: string;
+}
+
 type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
 
 type GetAwards = Data<AwardsHelper[]>;
@@ -525,6 +535,7 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     : Data<SerieExtended>
   : Data<Serie>;
 
+type getSerieEpisodesWithLanguage = DataLink<SerieLanguage>;
 type GetSerieArtworks = Data<SerieArtworks>;
 type GetSerieNextAired = Data<Serie>;
 type GetSeriesByPage = DataLink<Serie[]>;
@@ -797,6 +808,19 @@ export class TheTVDB extends Base {
     this.validateInput(id, 'Required serie id');
     this.validateInput(language, 'Required language');
     return await this.fetcher<GetSerieByLanguage>(this.api + '/v4/series/' + id + '/translations/' + language);
+  }
+
+  public async getSerieEpisodesWithLanguage(options: SerieEpisodesLanguage): Promise<getSerieEpisodesWithLanguage> {
+    this.validateInput(options?.id, 'Required serie id');
+    this.validateInput(options?.type, 'Required season type');
+    this.validateInput(options?.language, 'Required language');
+
+    let endpoint = this.api + '/v4/series/' + options.id + '/episodes/' + options.type + '/' + options.language;
+    if (typeof options.page === 'string' && options.page.length > 0 && options.page.length <= 3) {
+      endpoint += `?page=${options.page}`;
+    }
+
+    return await this.fetcher<getSerieEpisodesWithLanguage>(endpoint);
   }
 
   public async getSerieNextAired(id: string): Promise<GetSerieNextAired> {

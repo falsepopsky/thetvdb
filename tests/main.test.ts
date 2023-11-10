@@ -683,6 +683,56 @@ describe('getSerieByLanguage()', () => {
   });
 });
 
+describe('getSerieEpisodesWithLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSerieEpisodesWithLanguage()).rejects.toThrow('Required serie id');
+  });
+
+  it('throws an error if no season type is provided', async () => {
+    // @ts-expect-error: Required season type
+    await expect(async () => await client.getSerieEpisodesWithLanguage({ id: '78878' })).rejects.toThrow(
+      'Required season type'
+    );
+  });
+
+  it('throws an error if no language is provided', async () => {
+    await expect(
+      // @ts-expect-error: Required language
+      async () => await client.getSerieEpisodesWithLanguage({ id: '78878', type: 'official' })
+    ).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieEpisodesWithLanguage({ id: '78878', type: 'official', language: 'eng' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(2);
+    expect(data.episodes[0]?.id).toBe(8051162);
+    expect(data.episodes[0]?.seriesId).toBe(78878);
+    expect(data.episodes[0]?.name).toBe('FLCL Progressive');
+    expect(data.episodes[1]?.id).toBe(8051167);
+    expect(data.episodes[1]?.seriesId).toBe(78878);
+    expect(data.episodes[1]?.name).toBe('FLCL Alternative');
+  });
+
+  it('returns a successful response with page', async () => {
+    const { data } = await client.getSerieEpisodesWithLanguage({
+      id: '71663',
+      type: 'official',
+      language: 'eng',
+      page: '1',
+    });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(2);
+    expect(data.episodes[0]?.id).toBe(420653);
+    expect(data.episodes[0]?.seriesId).toBe(71663);
+    expect(data.episodes[0]?.name).toBe('In the Name of the Grandfather');
+    expect(data.episodes[1]?.id).toBe(420654);
+    expect(data.episodes[1]?.seriesId).toBe(71663);
+    expect(data.episodes[1]?.name).toBe('Wedding for Disaster');
+  });
+});
+
 describe('getSerieNextAired()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
