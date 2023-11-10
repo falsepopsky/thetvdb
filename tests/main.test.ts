@@ -608,6 +608,28 @@ describe('getSeries()', () => {
   });
 });
 
+describe('getSerieArtworks()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieArtworks()).rejects.toThrow('Required id serie');
+  });
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieArtworks('78878')).rejects.toThrow('Required language');
+  });
+  it('throws an error if no type is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieArtworks('78878', 'jpn')).rejects.toThrow('Required type of artwork');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieArtworks('78878', 'jpn', '3');
+    expect(Array.isArray(data.artworks)).toBe(true);
+    expect(data.artworks[0]?.id).toBe(686641);
+    expect(data.artworks[0]?.language).toBe('jpn');
+  });
+});
+
 describe('getSeriesByPage()', () => {
   it('returns a successful response', async () => {
     const { data } = await client.getSeriesByPage();

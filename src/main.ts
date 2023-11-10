@@ -339,6 +339,21 @@ interface Serie extends Omit<Movie, 'runtime'> {
   originalLanguage: string;
 }
 
+interface SerieArtworks extends Serie {
+  overview: string;
+  artworks: Artwork[];
+  companies: null;
+  genres: null;
+  trailers: null;
+  lists: null;
+  remoteIds: null;
+  characters: null;
+  airsTime: null;
+  seasons: null;
+  tags: null;
+  contentRatings: null;
+}
+
 interface SerieExtended extends Serie {
   overview: string;
   artworks: Artwork[];
@@ -510,6 +525,7 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     : Data<SerieExtended>
   : Data<Serie>;
 
+type GetSerieArtworks = Data<SerieArtworks>;
 type GetSerieNextAired = Data<Serie>;
 type GetSeriesByPage = DataLink<Serie[]>;
 type GetSerieBySlug = Data<Serie>;
@@ -758,6 +774,18 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetSeriesByPage>(endpoint);
+  }
+
+  public async getSerieArtworks(id: string, language: string, type: string): Promise<GetSerieArtworks> {
+    this.validateInput(id, 'Required id serie');
+    this.validateInput(language, 'Required language');
+    this.validateInput(type, 'Required type of artwork');
+
+    const endpoint = this.createURL(`/v4/series/${id}/artworks`);
+    endpoint.searchParams.set('lang', language);
+    endpoint.searchParams.set('type', type);
+
+    return await this.fetcher<GetSerieArtworks>(endpoint.href);
   }
 
   public async getSerieBySlug(slug: string): Promise<GetSerieBySlug> {

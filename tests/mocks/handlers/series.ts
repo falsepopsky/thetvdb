@@ -23,6 +23,18 @@ const serie = {
   },
 };
 
+// https://api4.thetvdb.com/v4/series/78878/artworks?lang=jpn&type=3
+const serieArtworks = {
+  data: {
+    artworks: [
+      {
+        id: 686641,
+        language: 'jpn',
+      },
+    ],
+  },
+};
+
 // https://api4.thetvdb.com/v4/series/78878/nextAired
 const serieNextAired = {
   data: {
@@ -32,7 +44,7 @@ const serieNextAired = {
 };
 
 // https://api4.thetvdb.com/v4/series/78878/extended
-const seriesE = {
+const serieExtended = {
   data: {
     artworks: [
       {
@@ -179,6 +191,8 @@ export const seriesHandlers: HttpHandler[] = [
         return HttpResponse.json(serieTranslations);
       case 'https://api4.thetvdb.com/v4/series/slug/flcl':
         return HttpResponse.json(serieSlug);
+      case 'https://api4.thetvdb.com/v4/series/78878/artworks?lang=jpn&type=3':
+        return HttpResponse.json(serieArtworks);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=translations&short=true':
         return HttpResponse.json(seriesETS);
       case 'https://api4.thetvdb.com/v4/series/78878/extended?meta=episodes&short=true':
@@ -190,7 +204,7 @@ export const seriesHandlers: HttpHandler[] = [
       case 'https://api4.thetvdb.com/v4/series/78878/extended?short=true':
         return HttpResponse.json(seriesES);
       case 'https://api4.thetvdb.com/v4/series/78878/extended':
-        return HttpResponse.json(seriesE);
+        return HttpResponse.json(serieExtended);
       case 'https://api4.thetvdb.com/v4/series/78878/nextAired':
         return HttpResponse.json(serieNextAired);
       case 'https://api4.thetvdb.com/v4/series/statuses':
