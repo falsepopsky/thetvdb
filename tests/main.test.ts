@@ -608,6 +608,28 @@ describe('getSeries()', () => {
   });
 });
 
+describe('getSerieArtworks()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieArtworks()).rejects.toThrow('Required id serie');
+  });
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieArtworks('78878')).rejects.toThrow('Required language');
+  });
+  it('throws an error if no type is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieArtworks('78878', 'jpn')).rejects.toThrow('Required type of artwork');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieArtworks('78878', 'jpn', '3');
+    expect(Array.isArray(data.artworks)).toBe(true);
+    expect(data.artworks[0]?.id).toBe(686641);
+    expect(data.artworks[0]?.language).toBe('jpn');
+  });
+});
+
 describe('getSeriesByPage()', () => {
   it('returns a successful response', async () => {
     const { data } = await client.getSeriesByPage();
@@ -625,5 +647,161 @@ describe('getSeriesByPage()', () => {
     expect(data[0]?.name).toBe('Geddy Lee Asks: Are Bass Players Human Too?');
     expect(data[1]?.id).toBe(441533);
     expect(data[1]?.name).toBe('LEGO DUPLO Nursery Rhymes');
+  });
+});
+
+describe('getSerieBySlug()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter slug
+    await expect(async () => await client.getSerieBySlug()).rejects.toThrow('Required slug');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieBySlug('flcl');
+    expect(data.originalCountry).toBe('jpn');
+    expect(data.originalLanguage).toBe('jpn');
+  });
+});
+
+describe('getSerieByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSerieByLanguage()).rejects.toThrow('Required serie id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getSerieByLanguage('78878')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieByLanguage('78878', 'eng');
+    expect(data.name).toBe('FLCL');
+    expect(data.language).toBe('eng');
+    expect(Array.isArray(data.aliases)).toBe(true);
+    expect(data.aliases).toHaveLength(2);
+  });
+});
+
+describe('getSerieEpisodes()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSerieEpisodes()).rejects.toThrow('Required serie id');
+  });
+
+  it('throws an error if no season type is provided', async () => {
+    // @ts-expect-error: Required season type
+    await expect(async () => await client.getSerieEpisodes({ id: '78878' })).rejects.toThrow('Required season type');
+  });
+
+  it('returns a successful response without querys', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '75978', type: 'default' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(1);
+    expect(data.episodes[0]?.id).toBe(181165);
+    expect(data.episodes[0]?.seriesId).toBe(75978);
+  });
+
+  it('returns a successful response with airDate', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '75978', type: 'default', airDate: '2006-05-21' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(1);
+    expect(data.episodes[0]?.name).toBe('Stewie Griffin: The Untold Story');
+    expect(data.episodes[0]?.aired).toBe('2006-05-21');
+  });
+
+  it('returns a successful response with season and episodeNumber', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '81189', type: 'dvd', season: '0', episodeNumber: '1' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(1);
+    expect(data.episodes[0]?.id).toBe(3859781);
+    expect(data.episodes[0]?.seriesId).toBe(81189);
+    expect(data.episodes[0]?.name).toBe('Good Cop / Bad Cop');
+  });
+
+  it('returns a successful response with page', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '81797', type: 'default', page: '1' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(2);
+    expect(data.episodes[0]?.id).toBe(7911257);
+    expect(data.episodes[0]?.aired).toBe('2020-11-15');
+    expect(data.episodes[1]?.id).toBe(7911259);
+    expect(data.episodes[1]?.aired).toBe('2020-11-22');
+  });
+});
+
+describe('getSerieEpisodesWithLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSerieEpisodesWithLanguage()).rejects.toThrow('Required serie id');
+  });
+
+  it('throws an error if no season type is provided', async () => {
+    // @ts-expect-error: Required season type
+    await expect(async () => await client.getSerieEpisodesWithLanguage({ id: '78878' })).rejects.toThrow(
+      'Required season type'
+    );
+  });
+
+  it('throws an error if no language is provided', async () => {
+    await expect(
+      // @ts-expect-error: Required language
+      async () => await client.getSerieEpisodesWithLanguage({ id: '78878', type: 'official' })
+    ).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieEpisodesWithLanguage({ id: '78878', type: 'official', language: 'eng' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(2);
+    expect(data.episodes[0]?.id).toBe(8051162);
+    expect(data.episodes[0]?.seriesId).toBe(78878);
+    expect(data.episodes[0]?.name).toBe('FLCL Progressive');
+    expect(data.episodes[1]?.id).toBe(8051167);
+    expect(data.episodes[1]?.seriesId).toBe(78878);
+    expect(data.episodes[1]?.name).toBe('FLCL Alternative');
+  });
+
+  it('returns a successful response with page', async () => {
+    const { data } = await client.getSerieEpisodesWithLanguage({
+      id: '71663',
+      type: 'official',
+      language: 'eng',
+      page: '1',
+    });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(2);
+    expect(data.episodes[0]?.id).toBe(420653);
+    expect(data.episodes[0]?.seriesId).toBe(71663);
+    expect(data.episodes[0]?.name).toBe('In the Name of the Grandfather');
+    expect(data.episodes[1]?.id).toBe(420654);
+    expect(data.episodes[1]?.seriesId).toBe(71663);
+    expect(data.episodes[1]?.name).toBe('Wedding for Disaster');
+  });
+});
+
+describe('getSerieNextAired()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getSerieNextAired()).rejects.toThrow('Required serie id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getSerieNextAired('78878');
+
+    expect(data.firstAired).toBe('2000-04-26');
+    expect(data.lastAired).toBe('2023-10-15');
+  });
+});
+
+describe('getSerieStatus()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getSerieStatus();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Continuing');
+    expect(data[1]?.id).toBe(2);
+    expect(data[1]?.name).toBe('Ended');
   });
 });

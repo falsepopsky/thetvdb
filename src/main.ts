@@ -337,10 +337,28 @@ interface Serie extends Omit<Movie, 'runtime'> {
   nextAired: string;
   originalCountry: string;
   originalLanguage: string;
+  overview: string;
+}
+
+interface SerieLanguage extends Omit<Serie, 'episodes'> {
+  episodes: Episode[];
+}
+
+interface SerieArtworks extends Serie {
+  artworks: Artwork[];
+  companies: null;
+  genres: null;
+  trailers: null;
+  lists: null;
+  remoteIds: null;
+  characters: null;
+  airsTime: null;
+  seasons: null;
+  tags: null;
+  contentRatings: null;
 }
 
 interface SerieExtended extends Serie {
-  overview: string;
   artworks: Artwork[];
   companies: unknown;
   originalNetwork: unknown;
@@ -379,6 +397,11 @@ interface SerieExtendedEpisodes extends Omit<SerieExtended, 'episodes'> {
 interface SerieExtendedEpisodesShort extends Omit<SerieExtendedEpisodes, 'artworks' | 'characters'> {
   characters: null;
   artworks: null;
+}
+
+interface SerieEpisodesSeasonType {
+  series: Serie;
+  episodes: Episode[];
 }
 
 interface Options {
@@ -427,6 +450,22 @@ interface SearchOptions {
 interface SeriesOptions extends Omit<Options, 'meta'> {
   meta?: 'translations' | 'episodes';
   short?: boolean;
+}
+
+interface SerieEpisodesLanguage {
+  id: string;
+  type: string;
+  language: string;
+  page?: string;
+}
+
+interface SerieEpisodes {
+  id: string;
+  type: string;
+  page?: string;
+  season?: string;
+  episodeNumber?: string;
+  airDate?: string;
 }
 
 type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
@@ -510,7 +549,14 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     : Data<SerieExtended>
   : Data<Serie>;
 
+type getSerieEpisodes = DataLink<SerieEpisodesSeasonType>;
+type getSerieEpisodesWithLanguage = DataLink<SerieLanguage>;
+type GetSerieArtworks = Data<SerieArtworks>;
+type GetSerieNextAired = Data<Serie>;
 type GetSeriesByPage = DataLink<Serie[]>;
+type GetSerieBySlug = Data<Serie>;
+type GetSerieByLanguage = Data<TranslationHelper>;
+type GetSerieStatus = DataLink<StatusHelper[]>;
 
 export class TheTVDB extends Base {
   public async getArtwork<O extends ArtworkOptions>(options: O): Promise<GetArtwork<O>> {
@@ -754,5 +800,72 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetSeriesByPage>(endpoint);
+  }
+
+  public async getSerieArtworks(id: string, language: string, type: string): Promise<GetSerieArtworks> {
+    this.validateInput(id, 'Required id serie');
+    this.validateInput(language, 'Required language');
+    this.validateInput(type, 'Required type of artwork');
+
+    const endpoint = this.createURL(`/v4/series/${id}/artworks`);
+    endpoint.searchParams.set('lang', language);
+    endpoint.searchParams.set('type', type);
+
+    return await this.fetcher<GetSerieArtworks>(endpoint.href);
+  }
+
+  public async getSerieBySlug(slug: string): Promise<GetSerieBySlug> {
+    this.validateInput(slug, 'Required slug');
+    return await this.fetcher<GetSerieBySlug>(this.api + '/v4/series/slug/' + slug);
+  }
+
+  public async getSerieByLanguage(id: string, language: string): Promise<GetSerieByLanguage> {
+    this.validateInput(id, 'Required serie id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetSerieByLanguage>(this.api + '/v4/series/' + id + '/translations/' + language);
+  }
+
+  public async getSerieEpisodes(options: SerieEpisodes): Promise<getSerieEpisodes> {
+    this.validateInput(options?.id, 'Required serie id');
+    this.validateInput(options?.type, 'Required season type');
+
+    const endpoint = this.createURL(`/v4/series/${options.id}/episodes/${options.type}`);
+
+    if (typeof options.page === 'string' && options.page.length > 0 && options.page.length <= 3) {
+      endpoint.searchParams.set('page', options.page);
+    }
+    if (typeof options.season === 'string' && options.season.length > 0) {
+      endpoint.searchParams.set('season', options.season);
+    }
+    if (typeof options.episodeNumber === 'string' && options.episodeNumber.length > 0) {
+      endpoint.searchParams.set('episodeNumber', options.episodeNumber);
+    }
+    if (typeof options.airDate === 'string' && options.airDate.length > 0) {
+      endpoint.searchParams.set('airDate', options.airDate);
+    }
+
+    return await this.fetcher<getSerieEpisodes>(endpoint.href);
+  }
+
+  public async getSerieEpisodesWithLanguage(options: SerieEpisodesLanguage): Promise<getSerieEpisodesWithLanguage> {
+    this.validateInput(options?.id, 'Required serie id');
+    this.validateInput(options?.type, 'Required season type');
+    this.validateInput(options?.language, 'Required language');
+
+    let endpoint = this.api + '/v4/series/' + options.id + '/episodes/' + options.type + '/' + options.language;
+    if (typeof options.page === 'string' && options.page.length > 0 && options.page.length <= 3) {
+      endpoint += `?page=${options.page}`;
+    }
+
+    return await this.fetcher<getSerieEpisodesWithLanguage>(endpoint);
+  }
+
+  public async getSerieNextAired(id: string): Promise<GetSerieNextAired> {
+    this.validateInput(id, 'Required serie id');
+    return await this.fetcher<GetSerieNextAired>(this.api + '/v4/series/' + id + '/nextAired');
+  }
+
+  public async getSerieStatus(): Promise<GetSerieStatus> {
+    return await this.fetcher<GetSerieStatus>(this.api + '/v4/series/statuses');
   }
 }
