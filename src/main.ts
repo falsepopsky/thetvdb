@@ -399,6 +399,11 @@ interface SerieExtendedEpisodesShort extends Omit<SerieExtendedEpisodes, 'artwor
   artworks: null;
 }
 
+interface SerieEpisodesSeasonType {
+  series: Serie;
+  episodes: Episode[];
+}
+
 interface Options {
   id: string;
   extended?: boolean;
@@ -452,6 +457,15 @@ interface SerieEpisodesLanguage {
   type: string;
   language: string;
   page?: string;
+}
+
+interface SerieEpisodes {
+  id: string;
+  type: string;
+  page?: string;
+  season?: string;
+  episodeNumber?: string;
+  airDate?: string;
 }
 
 type GetArtwork<O extends ArtworkOptions> = O['extended'] extends true ? Data<ArtworkExtended> : Data<Artwork>;
@@ -535,6 +549,7 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
     : Data<SerieExtended>
   : Data<Serie>;
 
+type getSerieEpisodes = DataLink<SerieEpisodesSeasonType>;
 type getSerieEpisodesWithLanguage = DataLink<SerieLanguage>;
 type GetSerieArtworks = Data<SerieArtworks>;
 type GetSerieNextAired = Data<Serie>;
@@ -808,6 +823,28 @@ export class TheTVDB extends Base {
     this.validateInput(id, 'Required serie id');
     this.validateInput(language, 'Required language');
     return await this.fetcher<GetSerieByLanguage>(this.api + '/v4/series/' + id + '/translations/' + language);
+  }
+
+  public async getSerieEpisodes(options: SerieEpisodes): Promise<getSerieEpisodes> {
+    this.validateInput(options?.id, 'Required serie id');
+    this.validateInput(options?.type, 'Required season type');
+
+    const endpoint = this.createURL(`/v4/series/${options.id}/episodes/${options.type}`);
+
+    if (typeof options.page === 'string' && options.page.length > 0 && options.page.length <= 3) {
+      endpoint.searchParams.set('page', options.page);
+    }
+    if (typeof options.season === 'string' && options.season.length > 0) {
+      endpoint.searchParams.set('season', options.season);
+    }
+    if (typeof options.episodeNumber === 'string' && options.episodeNumber.length > 0) {
+      endpoint.searchParams.set('episodeNumber', options.episodeNumber);
+    }
+    if (typeof options.airDate === 'string' && options.airDate.length > 0) {
+      endpoint.searchParams.set('airDate', options.airDate);
+    }
+
+    return await this.fetcher<getSerieEpisodes>(endpoint.href);
   }
 
   public async getSerieEpisodesWithLanguage(options: SerieEpisodesLanguage): Promise<getSerieEpisodesWithLanguage> {

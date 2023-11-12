@@ -1,5 +1,52 @@
 import { HttpResponse, http, type HttpHandler } from 'msw';
 
+// https://api4.thetvdb.com/v4/series/81797/episodes/default?page=1
+const serieSeasonTypePage = {
+  data: {
+    episodes: [
+      { id: 7911257, aired: '2020-11-15' },
+      { id: 7911259, aired: '2020-11-22' },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/81189/episodes/dvd?season=0&episodeNumber=1
+const serieSeasonTypeSeasonAndEpisodeNumber = {
+  data: {
+    episodes: [
+      {
+        id: 3859781,
+        seriesId: 81189,
+        name: 'Good Cop / Bad Cop',
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/75978/episodes/default?airDate=2006-05-21
+const serieSeasonTypeAirDate = {
+  data: {
+    episodes: [
+      {
+        name: 'Stewie Griffin: The Untold Story',
+        aired: '2006-05-21',
+      },
+    ],
+  },
+};
+
+// https://api4.thetvdb.com/v4/series/75978/episodes/default
+const serieSeasonType = {
+  data: {
+    episodes: [
+      {
+        id: 181165,
+        seriesId: 75978,
+      },
+    ],
+  },
+};
+
 // https://api4.thetvdb.com/v4/series/71663/episodes/official/eng?page=1
 const serieSeasonTypeLanguagePage = {
   data: {
@@ -217,6 +264,14 @@ export const seriesHandlers: HttpHandler[] = [
     const url = new URL(request.url);
 
     switch (url.href) {
+      case 'https://api4.thetvdb.com/v4/series/81189/episodes/dvd?season=0&episodeNumber=1':
+        return HttpResponse.json(serieSeasonTypeSeasonAndEpisodeNumber);
+      case 'https://api4.thetvdb.com/v4/series/75978/episodes/default?airDate=2006-05-21':
+        return HttpResponse.json(serieSeasonTypeAirDate);
+      case 'https://api4.thetvdb.com/v4/series/81797/episodes/default?page=1':
+        return HttpResponse.json(serieSeasonTypePage);
+      case 'https://api4.thetvdb.com/v4/series/75978/episodes/default':
+        return HttpResponse.json(serieSeasonType);
       case 'https://api4.thetvdb.com/v4/series/71663/episodes/official/eng?page=1':
         return HttpResponse.json(serieSeasonTypeLanguagePage);
       case 'https://api4.thetvdb.com/v4/series/78878/episodes/official/eng':

@@ -683,6 +683,53 @@ describe('getSerieByLanguage()', () => {
   });
 });
 
+describe('getSerieEpisodes()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getSerieEpisodes()).rejects.toThrow('Required serie id');
+  });
+
+  it('throws an error if no season type is provided', async () => {
+    // @ts-expect-error: Required season type
+    await expect(async () => await client.getSerieEpisodes({ id: '78878' })).rejects.toThrow('Required season type');
+  });
+
+  it('returns a successful response without querys', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '75978', type: 'default' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(1);
+    expect(data.episodes[0]?.id).toBe(181165);
+    expect(data.episodes[0]?.seriesId).toBe(75978);
+  });
+
+  it('returns a successful response with airDate', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '75978', type: 'default', airDate: '2006-05-21' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(1);
+    expect(data.episodes[0]?.name).toBe('Stewie Griffin: The Untold Story');
+    expect(data.episodes[0]?.aired).toBe('2006-05-21');
+  });
+
+  it('returns a successful response with season and episodeNumber', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '81189', type: 'dvd', season: '0', episodeNumber: '1' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(1);
+    expect(data.episodes[0]?.id).toBe(3859781);
+    expect(data.episodes[0]?.seriesId).toBe(81189);
+    expect(data.episodes[0]?.name).toBe('Good Cop / Bad Cop');
+  });
+
+  it('returns a successful response with page', async () => {
+    const { data } = await client.getSerieEpisodes({ id: '81797', type: 'default', page: '1' });
+    expect(Array.isArray(data.episodes)).toBe(true);
+    expect(data.episodes).toHaveLength(2);
+    expect(data.episodes[0]?.id).toBe(7911257);
+    expect(data.episodes[0]?.aired).toBe('2020-11-15');
+    expect(data.episodes[1]?.id).toBe(7911259);
+    expect(data.episodes[1]?.aired).toBe('2020-11-22');
+  });
+});
+
 describe('getSerieEpisodesWithLanguage()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: Required id
