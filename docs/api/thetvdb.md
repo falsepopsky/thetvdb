@@ -438,7 +438,7 @@ await client.getListByLanguage('17', 'spa');
 
 ## getListBySlug
 
-Returns a single list with translation record
+Returns a single list record by slug
 
 | params | type     | Required | Description             |
 | ------ | -------- | :------: | ----------------------- |
@@ -878,4 +878,139 @@ await client.getSeriesByPage();
 
 ```js
 await client.getSeriesByPage('7');
+```
+
+## getSerieArtworks
+
+Returns a serie record with artworks
+
+| params   | type     | Required | Description                  |
+| -------- | -------- | :------: | ---------------------------- |
+| id       | `string` |   Yes    | The `id` of the serie.       |
+| language | `string` |   Yes    | The `language` of the serie. |
+| type     | `string` |   Yes    | The type of artwork.         |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/:id/artworks`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieArtworks('78878', 'jpn', '3');
+```
+
+## getSerieBySlug
+
+Returns a single serie record by slug
+
+| params | type     | Required | Description              |
+| ------ | -------- | :------: | ------------------------ |
+| slug   | `string` |   Yes    | The `slug` of the serie. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/slug/:slug`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieBySlug('flcl');
+```
+
+## getSerieByLanguage
+
+Returns a single serie translation record
+
+| params   | type     | Required | Description                  |
+| -------- | -------- | :------: | ---------------------------- |
+| id       | `string` |   Yes    | The `id` of the serie.       |
+| language | `string` |   Yes    | The `language` of the serie. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/:id/translations/:language`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieByLanguage('78878', 'eng');
+```
+
+## getSerieEpisodes
+
+Returns a serie episodes from the specified season type.
+
+| params                | type     | Required | Description                                               |
+| --------------------- | -------- | :------: | --------------------------------------------------------- |
+| options               | `object` |   Yes    | An object containing the parameters for the query.        |
+| options.id            | `string` |   Yes    | The serie `id`.                                           |
+| options.type          | `string` |   Yes    | The serie `type`.                                         |
+| options.airDate       | `string` | Optional | The `airDate` of the episode (yyyy-mm-dd).                |
+| options.episodeNumber | `string` | Optional | Restrict results to a specific episode (requires season). |
+| options.page          | `string` | Optional | Restrict results to a specific page.                      |
+| options.season        | `string` | Optional | Restrict results to a specific season.                    |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/:id/episodes/:season-type`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieEpisodes({ id: '75978', type: 'default', airDate: '2006-05-21' });
+```
+
+## getSerieEpisodesWithLanguage
+
+Returns a serie record with episodes from the specified season type and language.
+
+| params           | type     | Required | Description                                        |
+| ---------------- | -------- | :------: | -------------------------------------------------- |
+| options          | `object` |   Yes    | An object containing the parameters for the query. |
+| options.id       | `string` |   Yes    | The serie `id`.                                    |
+| options.type     | `string` |   Yes    | The serie `type`.                                  |
+| options.language | `string` |   Yes    | The serie `language`.                              |
+| options.page     | `string` | Optional | Restrict results to a specific page.               |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/:id/episodes/:season-type/:language`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieEpisodesWithLanguage({ id: '78878', type: 'official', language: 'eng' });
+```
+
+## getSerieNextAired
+
+Returns a single serie record including the nextAired field.
+
+| params | type     | Required | Description            |
+| ------ | -------- | :------: | ---------------------- |
+| id     | `string` |   Yes    | The `id` of the serie. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/:id/nextAired`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieNextAired('78878');
+```
+
+## getSerieStatus
+
+Returns a list of series status and does not require any parameters.
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/series/statuses`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getSerieStatus();
 ```
