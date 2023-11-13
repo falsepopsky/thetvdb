@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": { "rootDir": "./src", "outDir": "./dist", "noEmit": false },
+  "compilerOptions": { "rootDir": "./src", "outDir": "./dist", "noEmit": false, "removeComments": true },
   "include": ["src"],
   "exclude": ["node_modules", "tests", "**/*.test.ts", "./src/environment.d.ts", "./src/playground.ts"]
 }
