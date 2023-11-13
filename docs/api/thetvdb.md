@@ -357,6 +357,103 @@ await client.getEpisodesByPage();
 await client.getEpisodesByPage('11890');
 ```
 
+## getLists
+
+Returns a list of lists records
+
+| params | type     | Required | Description                    |
+| ------ | -------- | :------: | ------------------------------ |
+| page   | `string` | Optional | Get lists for a specific page. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/lists`
+
+### Get lists <Badge type="tip" text="example" />
+
+```js
+await client.getLists();
+```
+
+### Get lists from a specific page <Badge type="tip" text="example" />
+
+```js
+await client.getLists('7');
+```
+
+## getListById
+
+Returns a single list record
+
+| params | type     | Required | Description           |
+| ------ | -------- | :------: | --------------------- |
+| id     | `string` |   Yes    | The `id` of the list. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/lists/:id`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getListById('1');
+```
+
+## getListByIdExtended
+
+Returns a single list extended record
+
+| params | type     | Required | Description           |
+| ------ | -------- | :------: | --------------------- |
+| id     | `string` |   Yes    | The `id` of the list. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/lists/:id/extended`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getListByIdExtended('1');
+```
+
+## getListByLanguage
+
+Returns a single list with translation record
+
+| params   | type     | Required | Description                 |
+| -------- | -------- | :------: | --------------------------- |
+| id       | `string` |   Yes    | The `id` of the list.       |
+| language | `string` |   Yes    | The `language` of the list. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/lists/:id/translations/:language`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getListByLanguage('17', 'spa');
+```
+
+## getListBySlug
+
+Returns a single list with translation record
+
+| params | type     | Required | Description             |
+| ------ | -------- | :------: | ----------------------- |
+| slug   | `string` |   Yes    | The `slug` of the list. |
+
+### Supports the following endpoints <Badge type="warning" text="endpoint" />
+
+- <Badge type="tip" text="GET" /> `/lists/slug/:slug`
+
+### Single record <Badge type="tip" text="example" />
+
+```js
+await client.getListBySlug('1001');
+```
+
 ## getMovie
 
 Returns a movie base or extended record
