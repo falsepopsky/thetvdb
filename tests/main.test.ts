@@ -228,6 +228,29 @@ describe('getListById()', () => {
   });
 });
 
+describe('getListByIdExtended()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getListByIdExtended()).rejects.toThrow('Required list id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getListByIdExtended('1');
+    expect(Array.isArray(data.tags)).toBe(true);
+    expect(data.tags).toHaveLength(2);
+    expect(data.tags[0]?.id).toBe(4397);
+    expect(data.tags[0]?.tag).toBe(3782);
+    expect(data.tags[1]?.id).toBe(4398);
+    expect(data.tags[1]?.tag).toBe(3782);
+    expect(Array.isArray(data.entities)).toBe(true);
+    expect(data.entities).toHaveLength(2);
+    expect(data.entities[0]?.order).toBe(1);
+    expect(data.entities[0]?.seriesId).toBe(78260);
+    expect(data.entities[1]?.order).toBe(2);
+    expect(data.entities[1]?.seriesId).toBe(75661);
+  });
+});
+
 describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query

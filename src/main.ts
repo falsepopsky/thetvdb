@@ -219,6 +219,11 @@ interface List extends SharedProps {
   tags: null;
 }
 
+interface ListExtended extends Omit<List, 'tags'> {
+  tags: TagOptions[];
+  entities: Array<Record<'order' | 'seriesId' | 'movieId', number | null>>;
+}
+
 interface Movie extends SharedProps {
   slug: string;
   aliases: Aliases[];
@@ -508,6 +513,7 @@ type GetEpisodesByPage = DataLink<Episode[]>;
 
 type GetLists = DataLink<List[]>;
 type GetListById = Data<List>;
+type GetListByIdExtended = Data<ListExtended>;
 
 type GetMovie<O extends MovieOptions> = O['extended'] extends true
   ? O['meta'] extends true
@@ -690,6 +696,11 @@ export class TheTVDB extends Base {
   public async getListById(id: string): Promise<GetListById> {
     this.validateInput(id, 'Required list id');
     return await this.fetcher<GetListById>(this.api + '/v4/lists/' + id);
+  }
+
+  public async getListByIdExtended(id: string): Promise<GetListByIdExtended> {
+    this.validateInput(id, 'Required list id');
+    return await this.fetcher<GetListByIdExtended>(this.api + '/v4/lists/' + id + '/extended');
   }
 
   public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {
