@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: `/sources/types` endpoint
+feat: `/lists/:id` endpoint

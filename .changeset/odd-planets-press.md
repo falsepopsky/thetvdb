@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: support `/seasons` endpoint
+feat: `/seasons` endpoint

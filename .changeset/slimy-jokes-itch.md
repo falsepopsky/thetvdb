@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: support `/movies/:id/translations/:language` endpoint
+feat: `/movies/:id/translations/:language` endpoint

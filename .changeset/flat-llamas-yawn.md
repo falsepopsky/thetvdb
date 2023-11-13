@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: support `/series/:id/nextAired` endpoint
+feat: `/series/:id/nextAired` endpoint

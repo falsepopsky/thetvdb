@@ -208,6 +208,22 @@ interface EpisodeMeta extends Episode {
 
 type EpisodeExtended = Omit<EpisodeMeta, 'translations'>;
 
+interface List extends SharedProps {
+  overview: string;
+  url: string;
+  isOfficial: boolean;
+  aliases: Aliases[];
+  score: number;
+  imageIsFallback: boolean;
+  remoteIds: null;
+  tags: null;
+}
+
+interface ListExtended extends Omit<List, 'tags'> {
+  tags: TagOptions[];
+  entities: Array<Record<'order' | 'seriesId' | 'movieId', number | null>>;
+}
+
 interface Movie extends SharedProps {
   slug: string;
   aliases: Aliases[];
@@ -491,9 +507,15 @@ type GetEpisode<O extends Options> = O['extended'] extends true
     : Data<EpisodeExtended>
   : Data<Episode>;
 
-type GetEpisodeByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
+type GetEpisodeByLanguage = Data<TranslationHelper>;
 
 type GetEpisodesByPage = DataLink<Episode[]>;
+
+type GetLists = DataLink<List[]>;
+type GetListById = Data<List>;
+type GetListByIdExtended = Data<ListExtended>;
+type GetListByLanguage = Data<TranslationHelper[]>;
+type GetListBySlug = Data<List>;
 
 type GetMovie<O extends MovieOptions> = O['extended'] extends true
   ? O['meta'] extends true
@@ -663,6 +685,35 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetEpisodesByPage>(endpoint);
+  }
+
+  public async getLists(page?: string): Promise<GetLists> {
+    let endpoint = this.api + '/v4/lists';
+    if (typeof page === 'string' && page.length > 0 && page.length < 3) {
+      endpoint += `?page=${page}`;
+    }
+    return await this.fetcher<GetLists>(endpoint);
+  }
+
+  public async getListById(id: string): Promise<GetListById> {
+    this.validateInput(id, 'Required list id');
+    return await this.fetcher<GetListById>(this.api + '/v4/lists/' + id);
+  }
+
+  public async getListByIdExtended(id: string): Promise<GetListByIdExtended> {
+    this.validateInput(id, 'Required list id');
+    return await this.fetcher<GetListByIdExtended>(this.api + '/v4/lists/' + id + '/extended');
+  }
+
+  public async getListByLanguage(id: string, language: string): Promise<GetListByLanguage> {
+    this.validateInput(id, 'Required list id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetListByLanguage>(`${this.api}/v4/lists/${id}/translations/${language}`);
+  }
+
+  public async getListBySlug(slug: string): Promise<GetListBySlug> {
+    this.validateInput(slug, 'Required list slug');
+    return await this.fetcher<GetListBySlug>(this.api + '/v4/lists/slug/' + slug);
   }
 
   public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {

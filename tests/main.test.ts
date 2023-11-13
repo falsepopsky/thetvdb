@@ -194,6 +194,96 @@ describe('getEpisodesByPage()', () => {
   });
 });
 
+describe('getLists()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getLists();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Scooby-Doo');
+    expect(data[1]?.id).toBe(6);
+    expect(data[1]?.name).toBe('Hermitcraft');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getLists('7');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(14372);
+    expect(data[0]?.url).toBe('14372');
+    expect(data[1]?.id).toBe(14373);
+    expect(data[1]?.url).toBe('14373');
+  });
+});
+
+describe('getListById()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getListById()).rejects.toThrow('Required list id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getListById('1');
+    expect(data.overview).toBe('The following');
+  });
+});
+
+describe('getListByIdExtended()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getListByIdExtended()).rejects.toThrow('Required list id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getListByIdExtended('1');
+    expect(Array.isArray(data.tags)).toBe(true);
+    expect(data.tags).toHaveLength(2);
+    expect(data.tags[0]?.id).toBe(4397);
+    expect(data.tags[0]?.tag).toBe(3782);
+    expect(data.tags[1]?.id).toBe(4398);
+    expect(data.tags[1]?.tag).toBe(3782);
+    expect(Array.isArray(data.entities)).toBe(true);
+    expect(data.entities).toHaveLength(2);
+    expect(data.entities[0]?.order).toBe(1);
+    expect(data.entities[0]?.seriesId).toBe(78260);
+    expect(data.entities[1]?.order).toBe(2);
+    expect(data.entities[1]?.seriesId).toBe(75661);
+  });
+});
+
+describe('getListByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getListByLanguage()).rejects.toThrow('Required list id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getListByLanguage('17')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getListByLanguage('17', 'spa');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.name).toBe('Star Wars - Colección');
+    expect(data[0]?.overview).toBe('Star Wars');
+    expect(data[0]?.language).toBe('spa');
+  });
+});
+
+describe('getListBySlug()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getListBySlug()).rejects.toThrow('Required list slug');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getListBySlug('1001');
+    expect(data.score).toBe(2193819);
+    expect(data.imageIsFallback).toBe(false);
+  });
+});
+
 describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query
