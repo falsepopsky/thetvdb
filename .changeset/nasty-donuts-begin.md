@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: support `/genres/:id` endpoint
+feat: `/genres/:id` endpoint

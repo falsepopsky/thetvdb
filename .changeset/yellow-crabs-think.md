@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: support `/movies` endpoint
+feat: `/movies` endpoint

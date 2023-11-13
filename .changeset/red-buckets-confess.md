@@ -2,4 +2,4 @@
 '@untidy/thetvdb': minor
 ---
 
-feat: support `/seasons/types` and `/seasons/:id/translations/:language` endpoints
+feat: `/seasons/types` and `/seasons/:id/translations/:language` endpoints
