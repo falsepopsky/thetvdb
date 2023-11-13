@@ -251,6 +251,19 @@ describe('getListByIdExtended()', () => {
   });
 });
 
+describe('getListBySlug()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getListBySlug()).rejects.toThrow('Required list slug');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getListBySlug('1001');
+    expect(data.score).toBe(2193819);
+    expect(data.imageIsFallback).toBe(false);
+  });
+});
+
 describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query
