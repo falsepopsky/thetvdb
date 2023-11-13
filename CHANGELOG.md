@@ -4,34 +4,47 @@
 
 ### Minor Changes
 
-- da275c8: feat: `/lists` endpoint
-- d7cd014: feat: `/series/:id/episodes/:season-type/:language` endpoint
-- 21c4fca: feat: `/sources/types` endpoint
-- 1b50957: feat: `/lists/slug/:slug` endpoint
-- 3acfaaf: feat: `/lists/:id` endpoint
-- 34e775b: feat: `/movies/statuses` endpoint
-- 464792e: feat: `/people` endpoint
-- 0da7078: feat: `/series/:id/nextAired` endpoint
-- c3d2bd3: feat: `/lists/:id/translations/:language` endpoint
-- ef12d4d: Support the following `/series` endpoints:
+- `/lists` endpoints:
 
-  - `/series/:id/translations/:language`
-  - `/series/slug/:slug`
-  - `/series/statuses`
+  - da275c8: `/lists`
+  - 3acfaaf: `/lists/:id`
+  - c3d2bd3: `/lists/:id/translations/:language`
+  - 1b50957: `/lists/slug/:slug`
+  - 8f76b81: `/lists/:id/extended`
 
-- 3602ab2: feat: `/series/:id/episodes/:season-type` endpoint
-- 979b815: feat: `/episodes` endpoint
-- d9f13d9: feat: `/genres/:id` endpoint
-- c3040e8: feat: `/seasons` endpoint
-- b1499ec: feat: `/series/:id/artworks` endpoint
-- 3b7cbca: feat: `/seasons/types` and `/seasons/:id/translations/:language` endpoints
-- 8e7f5ad: feat: `/episodes/:id/translations/:language` endpoint
-- 96d0537: feat: `/people/types` and `/people/:id/translations/:language` endpoints
-- f3ab2d9: feat: `/movies/:id/translations/:language` endpoint
-- 8f76b81: feat: `/lists/:id/extended` endpoint
-- ee55cb4: feat: `/series` endpoint
-- ef4802a: feat: `/movies/slug/:slug` endpoint
-- f855e0e: feat: `/movies` endpoint
+- `/series` endpoints:
+
+  - ee55cb4: `/series`
+  - b1499ec: `/series/:id/artworks`
+  - ef12d4d: `/series/:id/translations/:language`
+  - 3602ab2: `/series/:id/episodes/:season-type`
+  - d7cd014: `/series/:id/episodes/:season-type/:language`
+  - 0da7078: `/series/:id/nextAired`
+  - ef12d4d: `/series/slug/:slug`
+  - ef12d4d: `/series/statuses`
+
+- `/seasons` endpoints:
+
+  - c3040e8: `/seasons`
+  - 3b7cbca: `/seasons/types`
+  - 3b7cbca: `/seasons/:id/translations/:language`
+
+- `/movies` endpoints:
+
+  - f855e0e: `/movies`
+  - ef4802a: `/movies/slug/:slug`
+  - f3ab2d9: `/movies/:id/translations/:language`
+  - 34e775b: `/movies/statuses`
+
+- Other supported endpoints:
+
+  - 21c4fca: `/sources/types`
+  - 979b815: `/episodes`
+  - 8e7f5ad: `/episodes/:id/translations/:language`
+  - d9f13d9: `/genres/:id`
+  - 464792e: `/people`
+  - 96d0537: `/people/types`
+  - 96d0537: `/people/:id/translations/:language`
 
 ## 0.4.0
 
