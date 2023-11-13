@@ -523,8 +523,8 @@ type GetMovie<O extends MovieOptions> = O['extended'] extends true
       ? Data<MovieExtendedMetaShort>
       : Data<MovieExtendedMeta>
     : O['short'] extends true
-    ? Data<MovieExtendedShort>
-    : Data<MovieExtended>
+      ? Data<MovieExtendedShort>
+      : Data<MovieExtended>
   : Data<Movie>;
 
 type GetMoviesByPage = DataLink<Movie[]>;
@@ -563,16 +563,16 @@ type GetSerie<O extends SeriesOptions> = O['extended'] extends true
       ? Data<SerieExtendedTranslationsShort>
       : Data<SerieExtendedTranslations>
     : O['meta'] extends 'episodes'
-    ? O['short'] extends true
-      ? Data<SerieExtendedEpisodesShort>
-      : Data<SerieExtendedEpisodes>
-    : O['short'] extends true
-    ? Data<SerieExtendedShort>
-    : Data<SerieExtended>
+      ? O['short'] extends true
+        ? Data<SerieExtendedEpisodesShort>
+        : Data<SerieExtendedEpisodes>
+      : O['short'] extends true
+        ? Data<SerieExtendedShort>
+        : Data<SerieExtended>
   : Data<Serie>;
 
-type getSerieEpisodes = DataLink<SerieEpisodesSeasonType>;
-type getSerieEpisodesWithLanguage = DataLink<SerieLanguage>;
+type GetSerieEpisodes = DataLink<SerieEpisodesSeasonType>;
+type GetSerieEpisodesWithLanguage = DataLink<SerieLanguage>;
 type GetSerieArtworks = Data<SerieArtworks>;
 type GetSerieNextAired = Data<Serie>;
 type GetSeriesByPage = DataLink<Serie[]>;
@@ -853,6 +853,7 @@ export class TheTVDB extends Base {
     return await this.fetcher<GetSeriesByPage>(endpoint);
   }
 
+  // TODO: in version 1.0.0, make language and type optional
   public async getSerieArtworks(id: string, language: string, type: string): Promise<GetSerieArtworks> {
     this.validateInput(id, 'Required id serie');
     this.validateInput(language, 'Required language');
@@ -876,7 +877,7 @@ export class TheTVDB extends Base {
     return await this.fetcher<GetSerieByLanguage>(this.api + '/v4/series/' + id + '/translations/' + language);
   }
 
-  public async getSerieEpisodes(options: SerieEpisodes): Promise<getSerieEpisodes> {
+  public async getSerieEpisodes(options: SerieEpisodes): Promise<GetSerieEpisodes> {
     this.validateInput(options?.id, 'Required serie id');
     this.validateInput(options?.type, 'Required season type');
 
@@ -895,10 +896,10 @@ export class TheTVDB extends Base {
       endpoint.searchParams.set('airDate', options.airDate);
     }
 
-    return await this.fetcher<getSerieEpisodes>(endpoint.href);
+    return await this.fetcher<GetSerieEpisodes>(endpoint.href);
   }
 
-  public async getSerieEpisodesWithLanguage(options: SerieEpisodesLanguage): Promise<getSerieEpisodesWithLanguage> {
+  public async getSerieEpisodesWithLanguage(options: SerieEpisodesLanguage): Promise<GetSerieEpisodesWithLanguage> {
     this.validateInput(options?.id, 'Required serie id');
     this.validateInput(options?.type, 'Required season type');
     this.validateInput(options?.language, 'Required language');
@@ -908,7 +909,7 @@ export class TheTVDB extends Base {
       endpoint += `?page=${options.page}`;
     }
 
-    return await this.fetcher<getSerieEpisodesWithLanguage>(endpoint);
+    return await this.fetcher<GetSerieEpisodesWithLanguage>(endpoint);
   }
 
   public async getSerieNextAired(id: string): Promise<GetSerieNextAired> {
