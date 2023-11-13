@@ -2,11 +2,13 @@ import { HttpResponse, http, type HttpHandler } from 'msw';
 
 // https://api4.thetvdb.com/v4/lists/17/translations/spa
 const listTranslations = {
-  data: {
-    name: 'Star Wars - Colección',
-    overview: 'Star Wars',
-    language: 'spa',
-  },
+  data: [
+    {
+      name: 'Star Wars - Colección',
+      overview: 'Star Wars',
+      language: 'spa',
+    },
+  ],
 };
 
 // https://api4.thetvdb.com/v4/lists/slug/1001

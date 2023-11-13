@@ -251,6 +251,26 @@ describe('getListByIdExtended()', () => {
   });
 });
 
+describe('getListByLanguage()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: Required id
+    await expect(async () => await client.getListByLanguage()).rejects.toThrow('Required list id');
+  });
+
+  it('throws an error if no language is provided', async () => {
+    // @ts-expect-error: Required language
+    await expect(async () => await client.getListByLanguage('17')).rejects.toThrow('Required language');
+  });
+
+  it('returns a successful response', async () => {
+    const { data } = await client.getListByLanguage('17', 'spa');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data[0]?.name).toBe('Star Wars - Colección');
+    expect(data[0]?.overview).toBe('Star Wars');
+    expect(data[0]?.language).toBe('spa');
+  });
+});
+
 describe('getListBySlug()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id

@@ -507,13 +507,14 @@ type GetEpisode<O extends Options> = O['extended'] extends true
     : Data<EpisodeExtended>
   : Data<Episode>;
 
-type GetEpisodeByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
+type GetEpisodeByLanguage = Data<TranslationHelper>;
 
 type GetEpisodesByPage = DataLink<Episode[]>;
 
 type GetLists = DataLink<List[]>;
 type GetListById = Data<List>;
 type GetListByIdExtended = Data<ListExtended>;
+type GetListByLanguage = Data<TranslationHelper[]>;
 type GetListBySlug = Data<List>;
 
 type GetMovie<O extends MovieOptions> = O['extended'] extends true
@@ -702,6 +703,12 @@ export class TheTVDB extends Base {
   public async getListByIdExtended(id: string): Promise<GetListByIdExtended> {
     this.validateInput(id, 'Required list id');
     return await this.fetcher<GetListByIdExtended>(this.api + '/v4/lists/' + id + '/extended');
+  }
+
+  public async getListByLanguage(id: string, language: string): Promise<GetListByLanguage> {
+    this.validateInput(id, 'Required list id');
+    this.validateInput(language, 'Required language');
+    return await this.fetcher<GetListByLanguage>(`${this.api}/v4/lists/${id}/translations/${language}`);
   }
 
   public async getListBySlug(slug: string): Promise<GetListBySlug> {
