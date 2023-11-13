@@ -38,11 +38,11 @@ List of endpoints from [TheTVDB API V4](https://thetvdb.github.io/v4-api/).
 | `/genres/{id}`                               | :white_check_mark: |
 | `/inspiration/types`                         | :white_check_mark: |
 | `/languages`                                 | :white_check_mark: |
-| `/lists`                                     |       :soon:       |
-| `/lists/{id}`                                |       :soon:       |
-| `/lists/slug/{slug}`                         |       :soon:       |
-| `/lists/{id}/extended`                       |       :soon:       |
-| `/lists/{id}/translations/{language}`        |       :soon:       |
+| `/lists`                                     | :white_check_mark: |
+| `/lists/{id}`                                | :white_check_mark: |
+| `/lists/slug/{slug}`                         | :white_check_mark: |
+| `/lists/{id}/extended`                       | :white_check_mark: |
+| `/lists/{id}/translations/{language}`        | :white_check_mark: |
 | `/movies`                                    | :white_check_mark: |
 | `/movies/{id}`                               | :white_check_mark: |
 | `/movies/{id}/extended`                      | :white_check_mark: |
