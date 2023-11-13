@@ -216,6 +216,18 @@ describe('getLists()', () => {
   });
 });
 
+describe('getListById()', () => {
+  it('throws an error if no id is provided', async () => {
+    // @ts-expect-error: expect a parameter id
+    await expect(async () => await client.getListById()).rejects.toThrow('Required list id');
+  });
+
+  test('returns a successful response', async () => {
+    const { data } = await client.getListById('1');
+    expect(data.overview).toBe('The following');
+  });
+});
+
 describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query

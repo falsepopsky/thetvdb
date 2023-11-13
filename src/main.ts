@@ -209,6 +209,7 @@ interface EpisodeMeta extends Episode {
 type EpisodeExtended = Omit<EpisodeMeta, 'translations'>;
 
 interface List extends SharedProps {
+  overview: string;
   url: string;
   isOfficial: boolean;
   aliases: Aliases[];
@@ -506,6 +507,7 @@ type GetEpisodeByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | '
 type GetEpisodesByPage = DataLink<Episode[]>;
 
 type GetLists = DataLink<List[]>;
+type GetListById = Data<List>;
 
 type GetMovie<O extends MovieOptions> = O['extended'] extends true
   ? O['meta'] extends true
@@ -683,6 +685,11 @@ export class TheTVDB extends Base {
       endpoint += `?page=${page}`;
     }
     return await this.fetcher<GetLists>(endpoint);
+  }
+
+  public async getListById(id: string): Promise<GetListById> {
+    this.validateInput(id, 'Required list id');
+    return await this.fetcher<GetListById>(this.api + '/v4/lists/' + id);
   }
 
   public async getMovie<O extends MovieOptions>(options: O): Promise<GetMovie<O>> {

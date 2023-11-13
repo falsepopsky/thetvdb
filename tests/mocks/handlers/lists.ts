@@ -43,8 +43,7 @@ const listIdExtended = {
 // https://api4.thetvdb.com/v4/lists/1
 const listId = {
   data: {
-    overview:
-      'The following is a list of the various media from the Scooby-Doo franchise which includes series, films and specials.',
+    overview: 'The following',
   },
 };
 
