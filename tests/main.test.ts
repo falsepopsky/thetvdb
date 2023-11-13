@@ -194,6 +194,28 @@ describe('getEpisodesByPage()', () => {
   });
 });
 
+describe('getLists()', () => {
+  it('returns a successful response', async () => {
+    const { data } = await client.getLists();
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(1);
+    expect(data[0]?.name).toBe('Scooby-Doo');
+    expect(data[1]?.id).toBe(6);
+    expect(data[1]?.name).toBe('Hermitcraft');
+  });
+
+  it('returns a successful response with query page', async () => {
+    const { data } = await client.getLists('7');
+    expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
+    expect(data[0]?.id).toBe(14372);
+    expect(data[0]?.url).toBe('14372');
+    expect(data[1]?.id).toBe(14373);
+    expect(data[1]?.url).toBe('14373');
+  });
+});
+
 describe('getFilteredMovie()', () => {
   it('throws an error if no country is provided', async () => {
     // @ts-expect-error: Required search query
