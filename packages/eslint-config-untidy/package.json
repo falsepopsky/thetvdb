@@ -1,0 +1,25 @@
+{
+  "name": "eslint-config-untidy",
+  "description": "ESLint configuration",
+  "private": true,
+  "type": "module",
+  "author": "falsepopsky",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "main": "./index.cjs",
+  "exports": "./index.cjs",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-jsdoc": "^46.9.0",
+    "eslint-plugin-n": "^16.3.1",
+    "eslint-plugin-promise": "^6.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.54.0"
+  }
+}
