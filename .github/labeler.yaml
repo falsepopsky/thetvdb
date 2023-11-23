@@ -1,11 +1,12 @@
 "📦 core":
-  - "src/**"
+  - "packages/thetvdb/src/**"
 "📚 docs":
   - "docs/**"
   - "README.md"
+  - "packages/thetvdb/README.md"
 "🧪 tests":
-  - "tests/**"
+  - "packages/thetvdb/tests/**"
 "⚙️ configs":
   - ".prettierrc"
   - "jest.config.js"
-  - ".eslintrc.json"
+  - ".eslintrc.cjs"
