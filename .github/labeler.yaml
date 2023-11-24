@@ -6,6 +6,7 @@
   - "packages/thetvdb/README.md"
 "🧪 tests":
   - "packages/thetvdb/tests/**"
+  - "mocks/**"
 "⚙️ configs":
   - ".prettierrc"
   - "jest.config.js"
