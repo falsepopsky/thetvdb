@@ -1,5 +1,5 @@
 [build.environment]
-  NODE_VERSION = "20.9.0"
+  NODE_VERSION = "20.10.0"
 [build]
   publish = "docs/.vitepress/dist"
   command = "pnpm docs:build"
