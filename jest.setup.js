@@ -1,4 +1,4 @@
-import { server } from './packages/thetvdb/tests/mocks/server.js';
+import { server } from './mocks/server.js';
 
 beforeAll(() => {
   server.listen();
