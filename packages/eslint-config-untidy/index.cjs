@@ -14,7 +14,7 @@ module.exports = {
       env: { jest: true },
       plugins: ['jest'],
       extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-      files: ['tests/*.test.ts'],
+      files: ['packages/thetvdb/tests/*.test.ts'],
       rules: {
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
