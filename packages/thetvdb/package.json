@@ -1,0 +1,52 @@
+{
+  "name": "@untidy/thetvdb",
+  "description": "Client library for TheTVDB API in Node.js",
+  "version": "0.5.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "api",
+    "database",
+    "movies",
+    "series",
+    "thetvdb"
+  ],
+  "author": "falsepopsky",
+  "license": "Apache-2.0",
+  "homepage": "https://untidy-thetvdb.netlify.app/",
+  "scripts": {
+    "dev": "tsx playground.ts",
+    "clean:workspace": "rm -rf node_modules dist",
+    "clean:build": "rm -rf dist",
+    "prebuild": "pnpm run clean:build",
+    "build": "tsc --project tsconfig.build.json",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.4",
+    "dotenv": "^16.3.1",
+    "tsx": "^4.4.0",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": "^18.16.1 || ^20.0.0",
+    "pnpm": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/falsepopsky/thetvdb.git",
+    "directory": "packages/thetvdb"
+  },
+  "bugs": {
+    "url": "https://github.com/falsepopsky/thetvdb/issues"
+  }
+}

@@ -201,7 +201,7 @@ interface EpisodeMeta extends Episode {
   trailers: Trailer[];
   networks: unknown;
   studios: StudiosHelper[];
-  companies: unknown;
+  companies: Company[];
   awards: AwardsHelper[];
   translations: Translations;
 }

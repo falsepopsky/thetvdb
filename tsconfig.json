@@ -21,6 +21,5 @@
     "verbatimModuleSyntax": true,
     "noErrorTruncation": true
   },
-  "include": ["src", "tests"],
-  "exclude": ["node_modules", "examples"]
+  "include": [".eslintrc.cjs", "mocks"]
 }

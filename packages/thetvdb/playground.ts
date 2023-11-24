@@ -1,9 +1,9 @@
 import { config } from 'dotenv';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { TheTVDB } from './index.js';
+import { TheTVDB } from './src/index.js';
 
-const ROOT_DIR = resolve(fileURLToPath(import.meta.url), '../..');
+const ROOT_DIR = resolve(fileURLToPath(import.meta.url), '../../..');
 const ENVFILE = join(ROOT_DIR, '.env');
 
 config({ path: ENVFILE });
