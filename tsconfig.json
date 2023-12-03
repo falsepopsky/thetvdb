@@ -21,5 +21,5 @@
     "verbatimModuleSyntax": true,
     "noErrorTruncation": true
   },
-  "include": [".eslintrc.cjs", "mocks"]
+  "include": [".eslintrc.cjs", "mocks", "environment.d.ts", "playground.ts"]
 }
