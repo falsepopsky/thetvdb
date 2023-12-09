@@ -12,6 +12,9 @@
   "npm.scriptExplorerAction": "open",
   "npm.autoDetect": "on",
   "npm.packageManager": "pnpm",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "jest.autoRun": "off",

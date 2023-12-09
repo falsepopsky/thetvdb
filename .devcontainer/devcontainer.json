@@ -15,8 +15,9 @@
         "esbenp.prettier-vscode",
         "editorconfig.editorconfig",
         "orta.vscode-jest",
-        "pkief.material-icon-theme",
+        "bradlc.vscode-tailwindcss",
         "astro-build.astro-vscode",
+        "pkief.material-icon-theme",
         "github.vscode-github-actions",
         "github.vscode-pull-request-github"
       ]
