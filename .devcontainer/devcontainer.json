@@ -16,6 +16,7 @@
         "editorconfig.editorconfig",
         "orta.vscode-jest",
         "pkief.material-icon-theme",
+        "astro-build.astro-vscode",
         "github.vscode-github-actions",
         "github.vscode-pull-request-github"
       ]
