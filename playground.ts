@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import { TheTVDB } from './packages/thetvdb/src/index.js';
+import { TheTVDB } from './packages/api/src/index.js';
 
 config(); // Load .env file
 
