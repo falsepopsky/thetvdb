@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode colors. */
+:root {
+  --sl-color-accent-low: #002642;
+  --sl-color-accent: #006eb2;
+  --sl-color-accent-high: #9ecef9;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #eeeeed;
+  --sl-color-gray-2: #c2c2c2;
+  --sl-color-gray-3: #8b8b8b;
+  --sl-color-gray-4: #585858;
+  --sl-color-gray-5: #383838;
+  --sl-color-gray-6: #272727;
+  --sl-color-black: #181818;
+  --bg-gradient: radial-gradient(at right center, rgb(24, 24, 27), rgb(17, 24, 39), rgb(24, 24, 27));
+}
+/* Light mode colors. */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #b8dcfc;
+  --sl-color-accent: #0070b5;
+  --sl-color-accent-high: #003559;
+  --sl-color-white: #181818;
+  --sl-color-gray-1: #272727;
+  --sl-color-gray-2: #383838;
+  --sl-color-gray-3: #585858;
+  --sl-color-gray-4: #8b8b8b;
+  --sl-color-gray-5: #c2c2c2;
+  --sl-color-gray-6: #eeeeed;
+  --sl-color-gray-7: #f6f6f6;
+  --sl-color-black: #ffffff;
+  --bg-gradient: linear-gradient(to left top, rgb(156, 163, 175), rgb(212, 212, 212), rgb(226, 232, 240));
+}
+
+[data-has-hero] .page {
+  background: var(--bg-gradient);
+}
+
+[data-has-hero] header {
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}

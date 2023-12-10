@@ -1,0 +1,62 @@
+---
+title: companyById
+---
+
+import Tag from '@components/tag.astro';
+import Details from '@components/details.astro';
+
+<Tag apiPath={'/v4/companies/:id'} />
+
+This method returns a single company record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Companies/getCompany), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| params | type     | Required | Description      |
+| ------ | -------- | :------: | ---------------- |
+| id     | `string` |   Yes    | The company `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.companyById('4');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 4,
+    name: 'Aaj TV',
+    slug: 'aaj-tv',
+    nameTranslations: ['eng'],
+    overviewTranslations: [],
+    aliases: [],
+    country: 'pak',
+    primaryCompanyType: 1,
+    activeDate: null,
+    inactiveDate: null,
+    companyType: {
+      companyTypeId: 1,
+      companyTypeName: 'Network',
+    },
+    parentCompany: {
+      id: null,
+      name: null,
+      relation: {
+        id: null,
+        typeName: null,
+      },
+    },
+    tagOptions: null,
+  },
+};
+```
+
+</Details>

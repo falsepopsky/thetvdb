@@ -1,0 +1,12 @@
+---
+interface Props {
+  summary?: string;
+}
+
+const { summary = "Successful response output" } = Astro.props;
+---
+
+<details class="ring-1 ring-black/5 dark:ring-white/10 open:shadow-lg p-6 rounded-lg">
+  <summary class="text-base/6 font-semibold select-none cursor-pointer">{summary}</summary>
+  <slot />
+</details>

@@ -1,0 +1,46 @@
+---
+title: companiesTypes
+---
+
+import Tag from '@components/tag.astro';
+import Details from '@components/details.astro';
+
+<Tag apiPath={'/v4/companies/types'} />
+
+This method returns a list of companies type records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Companies/getCompanyTypes), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.companiesTypes();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      companyTypeId: 1,
+      companyTypeName: 'Network',
+    },
+    {
+      companyTypeId: 2,
+      companyTypeName: 'Studio',
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

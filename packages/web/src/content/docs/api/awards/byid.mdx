@@ -1,0 +1,41 @@
+---
+title: awardById
+---
+
+import Tag from '@components/tag.astro';
+import Details from '@components/details.astro';
+
+<Tag apiPath={'/v4/awards/:id'} />
+
+This method returns a single award record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Awards/getAward), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| params | type     | Required | Description    |
+| ------ | -------- | :------: | -------------- |
+| id     | `string` |   Yes    | The award `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.awardById('1');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 1,
+    name: 'Academy Awards',
+  },
+};
+```
+
+</Details>

@@ -1,0 +1,67 @@
+---
+title: awardByIdExtended
+---
+
+import Tag from '@components/tag.astro';
+import Details from '@components/details.astro';
+
+<Tag apiPath={'/v4/awards/:id/extended'} />
+
+This method returns a single extended award record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Awards/getAwardExtended), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| params | type     | Required | Description    |
+| ------ | -------- | :------: | -------------- |
+| id     | `string` |   Yes    | The award `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.awardByIdExtended('1');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 1,
+    name: 'Academy Awards',
+    categories: [
+      {
+        id: 1,
+        name: 'Best Picture',
+        allowCoNominees: false,
+        forSeries: false,
+        forMovies: true,
+        award: {
+          id: 1,
+          name: 'Academy Awards',
+        },
+      },
+      {
+        id: 2,
+        name: 'Actor in a Leading Role',
+        allowCoNominees: false,
+        forSeries: false,
+        forMovies: true,
+        award: {
+          id: 1,
+          name: 'Academy Awards',
+        },
+      },
+      // ...
+    ],
+    score: 0,
+  },
+};
+```
+
+</Details>
