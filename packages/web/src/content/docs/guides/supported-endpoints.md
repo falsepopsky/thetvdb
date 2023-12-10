@@ -1,0 +1,87 @@
+---
+title: Endpoints
+description: List of supported endpoints from TheTVDB API V4
+lastUpdated: true
+---
+
+In version 4.7.8 of the official documentation for
+[TheTVDB API V4](https://thetvdb.github.io/v4-api/), the status of each endpoint supported by
+`@untidy/thetvdb` is indicated by the following emojis:
+
+:::note
+
+- &#128683;: This will never be implemented
+- &#128284;: In progress
+- &#10004;: Supported
+
+:::
+
+## List of endpoints
+
+| Endpoint                                  |  Status   |
+| :---------------------------------------- | :-------: |
+| `/login`                                  | &#128683; |
+| `/artwork/:id`                            | &#10004;  |
+| `/artwork/:id/extended`                   | &#10004;  |
+| `/artwork/statuses`                       | &#10004;  |
+| `/awards`                                 | &#10004;  |
+| `/awards/:id`                             | &#10004;  |
+| `/awards/:id/extended`                    | &#10004;  |
+| `/awards/categories/:id`                  | &#10004;  |
+| `/awards/categories/:id/extended`         | &#10004;  |
+| `/characters/:id`                         | &#10004;  |
+| `/companies`                              | &#10004;  |
+| `/companies/types`                        | &#10004;  |
+| `/companies/:id`                          | &#10004;  |
+| `/content/ratings`                        | &#10004;  |
+| `/countries`                              | &#10004;  |
+| `/entities`                               | &#10004;  |
+| `/episodes`                               | &#10004;  |
+| `/episodes/:id`                           | &#10004;  |
+| `/episodes/:id/extended`                  | &#10004;  |
+| `/episodes/:id/translations/:language`    | &#10004;  |
+| `/genders`                                | &#10004;  |
+| `/genres`                                 | &#10004;  |
+| `/genres/:id`                             | &#10004;  |
+| `/inspiration/types`                      | &#10004;  |
+| `/languages`                              | &#10004;  |
+| `/lists`                                  | &#10004;  |
+| `/lists/:id`                              | &#10004;  |
+| `/lists/slug/:slug`                       | &#10004;  |
+| `/lists/:id/extended`                     | &#10004;  |
+| `/lists/:id/translations/:language`       | &#10004;  |
+| `/movies`                                 | &#10004;  |
+| `/movies/:id`                             | &#10004;  |
+| `/movies/:id/extended`                    | &#10004;  |
+| `/movies/filter`                          | &#10004;  |
+| `/movies/slug/:slug`                      | &#10004;  |
+| `/movies/:id/translations/:language`      | &#10004;  |
+| `/movies/statuses`                        | &#10004;  |
+| `/people`                                 | &#10004;  |
+| `/people/:id`                             | &#10004;  |
+| `/people/:id/extended`                    | &#10004;  |
+| `/people/:id/translations/:language`      | &#10004;  |
+| `/people/types`                           | &#10004;  |
+| `/search`                                 | &#10004;  |
+| `/search/remoteid/:remoteId`              | &#128284; |
+| `/seasons`                                | &#10004;  |
+| `/seasons/:id`                            | &#10004;  |
+| `/seasons/:id/extended`                   | &#10004;  |
+| `/seasons/types`                          | &#10004;  |
+| `/seasons/:id/translations/:language`     | &#10004;  |
+| `/series`                                 | &#10004;  |
+| `/series/:id`                             | &#10004;  |
+| `/series/:id/artworks`                    | &#10004;  |
+| `/series/:id/nextAired`                   | &#10004;  |
+| `/series/:id/extended`                    | &#10004;  |
+| `/series/:id/episodes/:season-type`       | &#10004;  |
+| `/series/:id/episodes/:season-type/:lang` | &#10004;  |
+| `/series/filter`                          | &#10004;  |
+| `/series/slug/:slug`                      | &#10004;  |
+| `/series/:id/translations/:language`      | &#10004;  |
+| `/series/statuses`                        | &#10004;  |
+| `/sources/types`                          | &#10004;  |
+| `/updates`                                | &#10004;  |
+| `/user`                                   | &#128683; |
+| `/user/:id`                               | &#128683; |
+| `/user/favorites`                         | &#128683; |
