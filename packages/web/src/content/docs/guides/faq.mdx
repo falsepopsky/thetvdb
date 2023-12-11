@@ -1,0 +1,54 @@
+---
+title: Frequently asked questions
+description: Frequently asked questions for @untidy/thetvdb
+lastUpdated: true
+---
+
+If you have a question that is not addressed in this FAQ section, we encourage you to reach out to
+us by opening an [issue](https://github.com/falsepopsky/thetvdb/issues/new/choose) in our GitHub
+repository.
+
+## Is this an official package?
+
+No, this package is unofficial and is not affiliated with or endorsed by **TheTVDB**. While it utilizes
+the official TheTVDB API endpoints to retrieve information, it is important to note that it is not
+developed or maintained by TheTVDB organization itself.
+
+## Why don't you support CommonJS?
+
+This is a complex question, and it involves several factors. While there are bundlers available that
+can handle both CommonJS (CJS) and ECMAScript Modules (ESM), it often leads to complications. One of
+the challenges is that bundlers may sometimes ship incorrect types due to developer
+misconfigurations or limitations in emitting declaration files correctly. This can require
+additional plugins, configurations, and tools to fix the issues.
+
+Moreover, there is a strong belief in embracing the new standard and moving away from CommonJS. It's
+not that CommonJS is inherently bad, but rather that we prefer to focus on writing modern code
+without the need for additional installations or workarounds. By adopting ESM, we can leverage the
+latest language features, improve code modularity, and benefit from the advancements in the
+JavaScript ecosystem.
+
+We understand that there may be projects or legacy systems still using CommonJS, and we encourage
+developers to consider migrating to ESM when feasible. However, for the purposes of this package, we
+have chosen to prioritize ESM support to align with modern development practices and to streamline
+the development experience.
+
+## Why is a minimum Node.js version of 18.17.0 and 20 required?
+
+Versions below 18.x are no longer maintained and have reached their [end-of-life](https://github.com/nodejs/release#release-schedule). We explicitly support Node.js versions from 18.17.0 onwards, as they are part of the LTS (Long-Term Support) and ensure a stable development environment. The decision to require a minimum Node.js version of 18.17.0 is motivated by the adoption of the new URL parser, named **Ada**. This parser is compliant with the **WHATWG URL** Specification and brings a performance improvement of more than 100% compared to the existing implementation.
+
+It's important to note that odd versions like `19` and `21` are not supported, primarily because they are considered unstable and should not be used in production. By focusing on these LTS versions and avoiding unstable releases, we aim to provide our users with a secure, reliable, and high-quality package that leverages the latest advancements in Node.js.
+
+## Why are some endpoints from the API not supported?
+
+Some endpoints from the API are not supported for various reasons. Each endpoint undergoes
+evaluation for potential implementation, but not all endpoints will be supported.
+
+For instance, let's consider the `/login` endpoint. It is intentionally not supported as I believe
+that handling the authentication process and obtaining the auth token should be left to the
+developer. This allows developers to have more control and flexibility in implementing the
+authentication flow that best fits their application's requirements.
+
+The decision to support or exclude specific endpoints is made to provide a focused and efficient
+package that caters to the most essential functionalities. By streamlining the package in this
+manner, we aim to deliver an optimized development experience for our users.

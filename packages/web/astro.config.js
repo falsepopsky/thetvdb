@@ -22,8 +22,8 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'Getting Started', link: '/guides/getting-started/' },
-            { label: 'FAQ', link: '/guides/faq/' },
             { label: 'Supported Endpoints', link: '/guides/supported-endpoints/' },
+            { label: 'FAQ', link: '/guides/faq/' },
           ],
         },
         {
