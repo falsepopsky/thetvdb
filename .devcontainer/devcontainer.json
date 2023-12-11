@@ -17,6 +17,7 @@
         "orta.vscode-jest",
         "bradlc.vscode-tailwindcss",
         "astro-build.astro-vscode",
+        "unifiedjs.vscode-mdx",
         "pkief.material-icon-theme",
         "github.vscode-github-actions",
         "github.vscode-pull-request-github"

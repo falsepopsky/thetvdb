@@ -20,5 +20,9 @@
   "jest.autoRun": "off",
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*.yml"
+  },
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
