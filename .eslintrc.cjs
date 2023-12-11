@@ -11,7 +11,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json', './packages/web/tsconfig.json', './packages/thetvdb/tsconfig.json'],
+    project: ['./tsconfig.json', './packages/web/tsconfig.json', './packages/api/tsconfig.json'],
   },
   ignorePatterns: ['dist', 'examples', '*.cjs', 'jest.*.js'],
 };
