@@ -3,10 +3,10 @@ interface Props {
   summary?: string;
 }
 
-const { summary = "Successful response output" } = Astro.props;
+const { summary = 'Successful response output' } = Astro.props;
 ---
 
-<details class="ring-1 ring-black/5 dark:ring-white/10 open:shadow-lg p-6 rounded-lg">
-  <summary class="text-base/6 font-semibold select-none cursor-pointer">{summary}</summary>
+<details class="rounded-lg p-6 ring-1 ring-black/5 open:shadow-lg dark:ring-white/10">
+  <summary class="cursor-pointer select-none text-base/6 font-semibold">{summary}</summary>
   <slot />
 </details>
