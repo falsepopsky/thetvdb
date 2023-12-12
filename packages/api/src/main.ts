@@ -543,7 +543,7 @@ type GetPeople<O extends Options> = O['extended'] extends true
 
 type GetPeopleByLanguage = Data<Pick<TranslationHelper, 'name' | 'overview' | 'language'>>;
 type GetPeopleByPage = DataLink<People[]>;
-type GetPeopleTypes = DataLink<AwardsHelper[]>;
+type GetPeopleTypes = Data<AwardsHelper[]>;
 
 type GetSearch = DataLink<Search[]>;
 
