@@ -1,0 +1,46 @@
+---
+title: peopleTypes
+---
+
+import Tag from '@components/tag.astro';
+import Details from '@components/details.astro';
+
+<Tag apiPath={'/v4/people/types'} />
+
+This method returns a list of people types records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/People%20Types/getAllPeopleTypes), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.peopleTypes();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 3,
+      name: 'Actor'
+    },
+    {
+      id: 6,
+      name: 'Creator'
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

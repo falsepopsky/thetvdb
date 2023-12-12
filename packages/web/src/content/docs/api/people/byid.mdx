@@ -1,0 +1,45 @@
+---
+title: peopleById
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/people/:id'} />
+
+This method returns a single people record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/People/getPeopleBase), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| params | type     | Required | Description     |
+| ------ | -------- | :------: | --------------- |
+| id     | `string` |   Yes    | The people `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.peopleById('312388');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 312388,
+    name: 'Chris Pratt',
+    image: 'https://artworks.thetvdb.com/banners/person/312388/primary.jpg',
+    score: 0,
+    nameTranslations: ['eng', 'spa', 'por', 'pt', 'ell', 'pol'],
+    // ...
+  },
+};
+```
+
+</Details>
