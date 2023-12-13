@@ -16,5 +16,5 @@ export default {
   transform: {
     '^.+\\.m?[tj]s?$': '@swc/jest',
   },
-  collectCoverageFrom: ['packages/thetvdb/src/*.ts', '!packages/thetvdb/src/playground.ts'],
+  collectCoverageFrom: ['packages/api/src/*.ts'],
 };
