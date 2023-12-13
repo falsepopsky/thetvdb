@@ -3,9 +3,6 @@
   "description": "ESLint configuration",
   "private": true,
   "type": "module",
-  "author": "falsepopsky",
-  "license": "Apache-2.0",
-  "version": "1.0.0",
   "main": "./index.cjs",
   "exports": "./index.cjs",
   "dependencies": {
@@ -13,7 +10,7 @@
     "@typescript-eslint/parser": "^6.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^27.6.0",
-    "eslint-plugin-jsdoc": "^46.9.0",
+    "eslint-plugin-jsdoc": "^46.9.1",
     "eslint-plugin-n": "^16.4.0",
     "eslint-plugin-promise": "^6.1.1"
   },
