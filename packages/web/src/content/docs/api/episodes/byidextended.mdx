@@ -1,0 +1,79 @@
+---
+title: episodeByIdExtended
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/episodes/:id/extended'} />
+
+This method returns a single extended episode record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Episodes/getEpisodeExtended), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| params      | type      | Required | Description                                     |
+| ----------- | --------- | :------: | ----------------------------------------------- |
+| id          | `string`  |   Yes    | The episode `id`                                |
+| translation | `boolean` | Optional | Include translation information in the response |
+
+## Examples
+
+### Without translations
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.episodeByIdExtended('127396');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 127396,
+    seriesId: 73752,
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Include translations in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.episodeByIdExtended('127396', true);
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 127396,
+    seriesId: 73752,
+    translations: {
+      nameTranslations: [
+        {
+          name: 'Schwarzer Ritter',
+          language: 'deu',
+        },
+        // ...
+      ],
+      // ...
+    },
+    // ...
+  },
+};
+```
+
+</Details>

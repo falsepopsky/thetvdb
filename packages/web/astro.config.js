@@ -90,6 +90,26 @@ export default defineConfig({
               },
             },
             {
+              label: 'Entities',
+              collapsed: true,
+              badge: {
+                text: '/entities/*',
+              },
+              autogenerate: {
+                directory: '/api/entities/',
+              },
+            },
+            {
+              label: 'Episodes',
+              collapsed: true,
+              badge: {
+                text: '/episodes/*',
+              },
+              autogenerate: {
+                directory: '/api/episodes/',
+              },
+            },
+            {
               label: 'People',
               collapsed: true,
               badge: {
