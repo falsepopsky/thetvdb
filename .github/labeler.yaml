@@ -1,11 +1,11 @@
-"📦 core":
-  - "packages/thetvdb/src/**"
+"📦 @untidy/thetvdb":
+  - "packages/api/src/**"
 "📚 docs":
-  - "docs/**"
+  - "packages/web/**"
   - "README.md"
-  - "packages/thetvdb/README.md"
+  - "packages/api/README.md"
 "🧪 tests":
-  - "packages/thetvdb/tests/**"
+  - "packages/api/tests/**"
   - "mocks/**"
 "⚙️ configs":
   - ".prettierrc"
