@@ -30,6 +30,10 @@ export default defineConfig({
           label: 'API',
           items: [
             {
+              label: 'Introduction',
+              link: '/api/',
+            },
+            {
               label: 'Artwork',
               collapsed: true,
               badge: {
@@ -55,9 +59,12 @@ export default defineConfig({
               badge: {
                 text: '/characters/*',
               },
-              autogenerate: {
-                directory: '/api/characters/',
-              },
+              items: [
+                {
+                  label: 'characterById',
+                  link: '/api/characterbyid',
+                },
+              ],
             },
             {
               label: 'Companies',
@@ -75,9 +82,12 @@ export default defineConfig({
               badge: {
                 text: '/content/*',
               },
-              autogenerate: {
-                directory: '/api/content/',
-              },
+              items: [
+                {
+                  label: 'contentRatings',
+                  link: '/api/contentratings',
+                },
+              ],
             },
             {
               label: 'Countries',
@@ -95,9 +105,12 @@ export default defineConfig({
               badge: {
                 text: '/entities/*',
               },
-              autogenerate: {
-                directory: '/api/entities/',
-              },
+              items: [
+                {
+                  label: 'entities',
+                  link: '/api/entities',
+                },
+              ],
             },
             {
               label: 'Episodes',
@@ -107,6 +120,29 @@ export default defineConfig({
               },
               autogenerate: {
                 directory: '/api/episodes/',
+              },
+            },
+            {
+              label: 'Genders',
+              collapsed: true,
+              badge: {
+                text: '/genders/*',
+              },
+              items: [
+                {
+                  label: 'genders',
+                  link: '/api/genders',
+                },
+              ],
+            },
+            {
+              label: 'Genres',
+              collapsed: true,
+              badge: {
+                text: '/genres/*',
+              },
+              autogenerate: {
+                directory: '/api/genres/',
               },
             },
             {
