@@ -81,9 +81,12 @@ export default defineConfig({
             {
               label: 'Countries',
               collapsed: true,
-              autogenerate: {
-                directory: '/api/countries/',
-              },
+              items: [
+                {
+                  label: 'countries',
+                  link: '/api/countries',
+                },
+              ],
             },
             {
               label: 'Entities',
@@ -138,6 +141,13 @@ export default defineConfig({
                   link: '/api/languages',
                 },
               ],
+            },
+            {
+              label: 'Lists',
+              collapsed: true,
+              autogenerate: {
+                directory: '/api/lists/',
+              },
             },
             {
               label: 'People',
