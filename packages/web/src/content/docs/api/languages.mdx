@@ -1,0 +1,44 @@
+---
+title: languages
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/languages'} />
+
+This method returns a list of language records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Languages/getAllLanguages), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.languages();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 'aar',
+      name: 'Afar',
+      nativeName: 'Afaraf',
+      shortCode: null,
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

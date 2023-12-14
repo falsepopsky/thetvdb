@@ -37,7 +37,7 @@ export default defineConfig({
               label: 'Artwork',
               collapsed: true,
               badge: {
-                text: '/artwork/*',
+                text: 'artwork/*',
               },
               autogenerate: {
                 directory: '/api/artwork/',
@@ -47,7 +47,7 @@ export default defineConfig({
               label: 'Awards',
               collapsed: true,
               badge: {
-                text: '/awards/*',
+                text: 'awards/*',
               },
               autogenerate: {
                 directory: '/api/awards/',
@@ -57,7 +57,7 @@ export default defineConfig({
               label: 'Characters',
               collapsed: true,
               badge: {
-                text: '/characters/*',
+                text: 'characters/*',
               },
               items: [
                 {
@@ -70,7 +70,7 @@ export default defineConfig({
               label: 'Companies',
               collapsed: true,
               badge: {
-                text: '/companies/*',
+                text: 'companies/*',
               },
               autogenerate: {
                 directory: '/api/companies/',
@@ -80,7 +80,7 @@ export default defineConfig({
               label: 'Content',
               collapsed: true,
               badge: {
-                text: '/content/*',
+                text: 'content/*',
               },
               items: [
                 {
@@ -93,7 +93,7 @@ export default defineConfig({
               label: 'Countries',
               collapsed: true,
               badge: {
-                text: '/countries/*',
+                text: 'countries/*',
               },
               autogenerate: {
                 directory: '/api/countries/',
@@ -103,7 +103,7 @@ export default defineConfig({
               label: 'Entities',
               collapsed: true,
               badge: {
-                text: '/entities/*',
+                text: 'entities/*',
               },
               items: [
                 {
@@ -116,7 +116,7 @@ export default defineConfig({
               label: 'Episodes',
               collapsed: true,
               badge: {
-                text: '/episodes/*',
+                text: 'episodes/*',
               },
               autogenerate: {
                 directory: '/api/episodes/',
@@ -126,7 +126,7 @@ export default defineConfig({
               label: 'Genders',
               collapsed: true,
               badge: {
-                text: '/genders/*',
+                text: 'genders/*',
               },
               items: [
                 {
@@ -139,17 +139,43 @@ export default defineConfig({
               label: 'Genres',
               collapsed: true,
               badge: {
-                text: '/genres/*',
+                text: 'genres/*',
               },
               autogenerate: {
                 directory: '/api/genres/',
               },
             },
             {
+              label: 'Inspiration',
+              collapsed: true,
+              badge: {
+                text: 'inspiration/*',
+              },
+              items: [
+                {
+                  label: 'inspirationTypes',
+                  link: '/api/inspirationtypes',
+                },
+              ],
+            },
+            {
+              label: 'Languages',
+              collapsed: true,
+              badge: {
+                text: 'languages/*',
+              },
+              items: [
+                {
+                  label: 'languages',
+                  link: '/api/languages',
+                },
+              ],
+            },
+            {
               label: 'People',
               collapsed: true,
               badge: {
-                text: '/people/*',
+                text: 'people/*',
               },
               autogenerate: {
                 directory: '/api/people/',
