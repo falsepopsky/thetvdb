@@ -1,0 +1,56 @@
+---
+title: movieBySlug
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/movies/slug/:slug'} />
+
+This method returns a single movie record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Movies/getMovieBaseBySlug), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description      |
+| ------ | -------- | :------: | ---------------- |
+| slug   | `string` |   Yes    | The movie `slug` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.movieBySlug('macross-do-you-remember-love');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 12586,
+    name: '超時空要塞マクロス 愛・おぼえていますか',
+    slug: 'macross-do-you-remember-love',
+    image: 'https://artworks.thetvdb.com/banners/movies/12586/posters/12586.jpg',
+    nameTranslations: ['ita', 'jpn', 'zho', 'kor', 'nld', 'deu', 'spa', 'fra', 'por', 'hun', 'eng', 'rus'],
+    overviewTranslations: ['ita', 'jpn', 'zho', 'kor', 'nld', 'deu', 'spa', 'fra', 'por', 'hun', 'eng', 'rus', 'rus'],
+    aliases: [],
+    score: 488,
+    runtime: 114,
+    status: {
+      id: 5,
+      name: 'Released',
+      recordType: 'movie',
+      keepUpdated: true,
+    },
+    lastUpdated: '2023-05-15 02:16:07',
+    year: '1984',
+  },
+};
+```
+
+</Details>
