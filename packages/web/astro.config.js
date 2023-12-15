@@ -150,6 +150,13 @@ export default defineConfig({
               },
             },
             {
+              label: 'Movies',
+              collapsed: true,
+              autogenerate: {
+                directory: '/api/movies/',
+              },
+            },
+            {
               label: 'People',
               collapsed: true,
               autogenerate: {

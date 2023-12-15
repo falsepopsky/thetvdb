@@ -6,13 +6,14 @@ interface Props {
 const { apiPath } = Astro.props;
 ---
 
-<div class="flex items-center gap-x-3">
+<div class="flex items-center gap-x-2">
   <span
-    class="rounded-lg bg-emerald-400/10 px-1.5 font-mono text-[0.625rem] font-semibold leading-6 text-emerald-500 ring-1 ring-inset ring-emerald-300 dark:text-emerald-400 dark:ring-emerald-400/30">
+    class="rounded-lg bg-emerald-400/10 px-1.5 py-1 font-mono text-xs/5 font-normal text-emerald-500 dark:text-emerald-400">
     GET
   </span>
   <span class="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-600"></span>
-  <span class="bg-[--sl-color-accent] px-1 font-mono text-xs text-[--sl-color-black] dark:bg-[--sl-color-accent-high]">
+  <span
+    class="rounded-md bg-gray-100 px-1.5 py-1 font-mono text-xs ring-1 ring-inset ring-zinc-300 dark:bg-zinc-800/40 dark:text-[--sl-color-white] dark:ring-zinc-800">
     {apiPath}
   </span>
 </div>
