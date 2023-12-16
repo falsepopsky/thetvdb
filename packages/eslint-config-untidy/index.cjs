@@ -12,7 +12,7 @@ module.exports = {
       env: { jest: true },
       plugins: ['jest'],
       extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-      files: ['packages/thetvdb/tests/*.test.ts'],
+      files: ['packages/api/tests/*.test.ts'],
       rules: {
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       extends: ['plugin:jsdoc/recommended-typescript-error'],
-      files: ['packages/thetvdb/src/refactor.ts'],
+      files: ['packages/api/src/refactor.ts'],
       rules: {
         'jsdoc/require-jsdoc': [
           'error',
