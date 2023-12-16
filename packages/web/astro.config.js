@@ -163,6 +163,27 @@ export default defineConfig({
                 directory: '/api/people/',
               },
             },
+            {
+              label: 'Search',
+              collapsed: true,
+              autogenerate: {
+                directory: '/api/search/',
+              },
+            },
+            {
+              label: 'Seasons',
+              collapsed: true,
+              autogenerate: {
+                directory: '/api/seasons/',
+              },
+            },
+            {
+              label: 'Series',
+              collapsed: true,
+              autogenerate: {
+                directory: '/api/series/',
+              },
+            },
           ],
         },
       ],
