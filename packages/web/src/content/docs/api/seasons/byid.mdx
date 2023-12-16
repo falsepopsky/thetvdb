@@ -1,0 +1,61 @@
+---
+title: seasonById
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/seasons/:id'} />
+
+This method returns a single season record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Seasons/getSeasonBase), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description     |
+| ------ | -------- | :------: | --------------- |
+| id     | `string` |   Yes    | The season `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.seasonById('6365');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 6365,
+    seriesId: 73752,
+    type: {
+      id: 1,
+      name: 'Aired Order',
+      type: 'official',
+      alternateName: null,
+    },
+    number: 1,
+    nameTranslations: [],
+    overviewTranslations: ['rus'],
+    image: 'https://artworks.thetvdb.com/banners/seasons/24394-1.jpg',
+    imageType: 7,
+    companies: {
+      studio: null,
+      network: null,
+      production: null,
+      distributor: null,
+      special_effects: null,
+    },
+    lastUpdated: '2023-05-04 17:19:35',
+    year: '1997',
+  },
+};
+```
+
+</Details>

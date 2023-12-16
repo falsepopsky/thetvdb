@@ -1,0 +1,101 @@
+---
+title: seasons
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/seasons'} />
+
+This method returns a list of seasons records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Seasons/getAllSeasons), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description                         |
+| ------ | -------- | :------: | ----------------------------------- |
+| page   | `string` | Optional | Restrict results to a specific page |
+
+## Examples
+
+### Without parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.seasons();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 10,
+      seriesId: 70327,
+      type: {
+        id: 1,
+        name: 'Aired Order',
+        type: 'official',
+        alternateName: null,
+      },
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/seasons?page=0',
+    next: 'https://api4.thetvdb.com/v4/seasons?page=1',
+    total_items: 637758,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restricted results to page 1264
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.seasons('1264');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 2076890,
+      seriesId: 438028,
+      type: {
+        id: 3,
+        name: 'Absolute Order',
+        type: 'absolute',
+        alternateName: null,
+      },
+      number: 1,
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/seasons?page=1263',
+    self: 'https://api4.thetvdb.com/v4/seasons?page=1264',
+    next: 'https://api4.thetvdb.com/v4/seasons?page=1265',
+    total_items: 637758,
+    page_size: 500,
+  },
+};
+```
+
+</Details>

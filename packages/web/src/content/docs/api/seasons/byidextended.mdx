@@ -1,0 +1,89 @@
+---
+title: seasonByIdExtended
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/seasons/:id/extended'} />
+
+This method returns a single extended season record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Seasons/getSeasonExtended), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params      | Type      | Required | Description                                     |
+| ----------- | --------- | :------: | ----------------------------------------------- |
+| id          | `string`  |   Yes    | The season `id`                                 |
+| translation | `boolean` | Optional | Include translation information in the response |
+
+## Examples
+
+### Without translations
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.seasonByIdExtended('6365');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 6365,
+    seriesId: 73752,
+    artwork: [
+      {
+        id: 61184110,
+        image: 'https://artworks.thetvdb.com/banners/seasons/24394-1.jpg',
+        thumbnail: 'https://artworks.thetvdb.com/banners/seasons/24394-1_t.jpg',
+        language: 'eng',
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Include translations in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.seasonByIdExtended('6365', true);
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 6365,
+    seriesId: 73752,
+    translations: {
+      nameTranslations: null,
+      overviewTranslations: [
+        {
+          overview:
+            'Через предательство и кровь к власти пришел новый король. Его демоны-подручные чинят несправедливости до тех пор, пока в город однажды ночью не приходит тяжело вооруженный воин. Весь покрытый оружием, броней и шрамами он называет себя Чёрным Мечником. Размеры его меча могут сравниться только с его ненавистью к королю и его демонам.',
+          language: 'rus',
+        },
+      ],
+      aliases: null,
+    },
+  },
+};
+```
+
+</Details>

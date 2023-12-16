@@ -1,0 +1,43 @@
+---
+title: seasonWithTranslation
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/seasons/:id/translations/:language'} />
+
+This method returns a single season translation record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Seasons/getSeasonTranslation), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params   | Type     | Required | Description           |
+| -------- | -------- | :------: | --------------------- |
+| id       | `string` |   Yes    | The season `id`       |
+| language | `string` |   Yes    | The season `language` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('your token');
+const data = await client.seasonWithTranslation('6365', 'rus');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    overview:
+      'Через предательство и кровь к власти пришел новый король. Его демоны-подручные чинят несправедливости до тех пор, пока в город однажды ночью не приходит тяжело вооруженный воин. Весь покрытый оружием, броней и шрамами он называет себя Чёрным Мечником. Размеры его меча могут сравниться только с его ненавистью к королю и его демонам.',
+    language: 'rus',
+  },
+};
+```
+
+</Details>
