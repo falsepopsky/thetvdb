@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       extends: ['plugin:jsdoc/recommended-typescript-error'],
-      files: ['packages/api/src/refactor.ts'],
+      files: ['packages/api/src/*.ts'],
       rules: {
         'jsdoc/require-jsdoc': [
           'error',
