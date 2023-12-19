@@ -190,7 +190,7 @@ export default defineConfig({
               items: [
                 {
                   label: 'sourcesTypes',
-                  link: '/api/sourcesTypes',
+                  link: '/api/sourcestypes',
                 },
               ],
             },
