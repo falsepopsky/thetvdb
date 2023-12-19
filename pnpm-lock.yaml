@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  esbuild: ^0.19.9
+  esbuild: ^0.19.10
 
 importers:
 
@@ -51,8 +51,8 @@ importers:
         specifier: ^0.5.9
         version: 0.5.9(prettier-plugin-astro@0.12.2)(prettier@3.1.1)
       tsx:
-        specifier: ^4.6.2
-        version: 4.6.2
+        specifier: ^4.7.0
+        version: 4.7.0
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -104,10 +104,10 @@ importers:
         version: 0.15.1(astro@4.0.6)
       '@astrojs/starlight-tailwind':
         specifier: ^2.0.1
-        version: 2.0.1(@astrojs/starlight@0.15.1)(@astrojs/tailwind@5.0.3)(tailwindcss@3.3.7)
+        version: 2.0.1(@astrojs/starlight@0.15.1)(@astrojs/tailwind@5.0.3)(tailwindcss@3.4.0)
       '@astrojs/tailwind':
         specifier: ^5.0.3
-        version: 5.0.3(astro@4.0.6)(tailwindcss@3.3.7)
+        version: 5.0.3(astro@4.0.6)(tailwindcss@3.4.0)
       astro:
         specifier: ^4.0.6
         version: 4.0.6(@types/node@20.10.5)(typescript@5.3.3)
@@ -115,8 +115,8 @@ importers:
         specifier: ^0.33.1
         version: 0.33.1
       tailwindcss:
-        specifier: ^3.3.7
-        version: 3.3.7
+        specifier: ^3.4.0
+        version: 3.4.0
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -264,7 +264,7 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.15.1)(@astrojs/tailwind@5.0.3)(tailwindcss@3.3.7):
+  /@astrojs/starlight-tailwind@2.0.1(@astrojs/starlight@0.15.1)(@astrojs/tailwind@5.0.3)(tailwindcss@3.4.0):
     resolution: {integrity: sha512-niMgFcR7NHcsBVy8UAN3F2gqhmoN5v83st5Hu4YzvUL+6SNwjQmIipXppXdN9+iVneRjPr6PLGzDfI+wnjSBWQ==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
@@ -272,8 +272,8 @@ packages:
       tailwindcss: ^3.3.3
     dependencies:
       '@astrojs/starlight': 0.15.1(astro@4.0.6)
-      '@astrojs/tailwind': 5.0.3(astro@4.0.6)(tailwindcss@3.3.7)
-      tailwindcss: 3.3.7
+      '@astrojs/tailwind': 5.0.3(astro@4.0.6)(tailwindcss@3.4.0)
+      tailwindcss: 3.4.0
     dev: false
 
   /@astrojs/starlight@0.15.1(astro@4.0.6):
@@ -304,7 +304,7 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/tailwind@5.0.3(astro@4.0.6)(tailwindcss@3.3.7):
+  /@astrojs/tailwind@5.0.3(astro@4.0.6)(tailwindcss@3.4.0):
     resolution: {integrity: sha512-p+uFa1PNuV8RxhGkPUFgVq8CUbmS3xr0u5k1An2xKECLotRh7vsrGcPUijHvYOt42URohcg8rIq0CxNoVMhReg==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
@@ -314,7 +314,7 @@ packages:
       autoprefixer: 10.4.16(postcss@8.4.32)
       postcss: 8.4.32
       postcss-load-config: 4.0.2(postcss@8.4.32)
-      tailwindcss: 3.3.7
+      tailwindcss: 3.4.0
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -7749,8 +7749,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /tailwindcss@3.3.7:
-    resolution: {integrity: sha512-pjgQxDZPvyS/nG3ZYkyCvsbONJl7GdOejfm24iMt2ElYQQw8Jc4p0m8RdMp7mznPD0kUhfzwV3zAwa80qI0zmQ==}
+  /tailwindcss@3.4.0:
+    resolution: {integrity: sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -7933,8 +7933,8 @@ packages:
       typescript: 5.3.3
     dev: false
 
-  /tsx@4.6.2:
-    resolution: {integrity: sha512-QPpBdJo+ZDtqZgAnq86iY/PD2KYCUPSUGIunHdGwyII99GKH+f3z3FZ8XNFLSGQIA4I365ui8wnQpl8OKLqcsg==}
+  /tsx@4.7.0:
+    resolution: {integrity: sha512-I+t79RYPlEYlHn9a+KzwrvEwhJg35h/1zHsLC2JXvhC2mdynMv6Zxzvhv5EMV6VF5qJlLlkSnMVvdZV3PSIGcg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
