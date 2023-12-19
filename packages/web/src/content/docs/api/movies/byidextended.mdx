@@ -27,7 +27,7 @@ documentation.
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.movieByIdExtended('12586');
 ```
 
@@ -53,7 +53,7 @@ const data = await client.movieByIdExtended('12586');
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.movieByIdExtended('12586', { meta: 'translations' });
 ```
 
@@ -95,7 +95,7 @@ const data = await client.movieByIdExtended('12586', { meta: 'translations' });
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.movieByIdExtended('12586', { short: 'true' });
 ```
 
@@ -122,7 +122,7 @@ const data = await client.movieByIdExtended('12586', { short: 'true' });
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.movieByIdExtended('12586', { meta: 'translations', short: 'true' });
 ```
 

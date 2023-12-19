@@ -33,7 +33,7 @@ documentation.
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.moviesFilter({ country: 'usa', lang: 'eng' });
 ```
 
@@ -69,7 +69,7 @@ const data = await client.moviesFilter({ country: 'usa', lang: 'eng' });
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.moviesFilter({ country: 'usa', lang: 'eng', sort: 'name', year: '2023' });
 ```
 

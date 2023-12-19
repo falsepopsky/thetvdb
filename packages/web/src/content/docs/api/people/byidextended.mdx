@@ -30,7 +30,7 @@ There is a known [bug](https://github.com/thetvdb/v4-api/issues/284) in this end
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.peopleByIdExtended('312388');
 ```
 
@@ -57,7 +57,7 @@ const data = await client.peopleByIdExtended('312388');
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 const data = await client.peopleByIdExtended('312388', true);
 ```
 
