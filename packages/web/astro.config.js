@@ -184,6 +184,26 @@ export default defineConfig({
                 directory: '/api/series/',
               },
             },
+            {
+              label: 'Sources',
+              collapsed: true,
+              items: [
+                {
+                  label: 'sourcesTypes',
+                  link: '/api/sourcesTypes',
+                },
+              ],
+            },
+            {
+              label: 'Updates',
+              collapsed: true,
+              items: [
+                {
+                  label: 'updates',
+                  link: '/api/updates',
+                },
+              ],
+            },
           ],
         },
       ],
