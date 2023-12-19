@@ -1,0 +1,102 @@
+---
+title: updates
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/updates'} />
+
+This method returns a list of updated records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Updates/updates), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| params             | type     | Required | Description                                                  |
+| ------------------ | -------- | :------: | ------------------------------------------------------------ |
+| queryParams        | `object` |   Yes    | Search parameters to restrict the result                     |
+| queryParams.since  | `string` |   Yes    | The timestamp to get updates in epoch Unix format in seconds |
+| queryParams.type   | `string` | Optional | Restrict results to a specific type of entities              |
+| queryParams.action | `string` | Optional | Restrict results to a specific type of action                |
+| queryParams.page   | `string` | Optional | Restrict results to a specific page                          |
+
+## Examples
+
+### With required queryParams parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.updates({ since: '1696118400' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      recordType: '',
+      recordId: 9932019,
+      methodInt: 2,
+      method: 'update',
+      extraInfo: '',
+      userId: 0,
+      timeStamp: 1696118400,
+      entityType: 'episodes',
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/updates?since=1696118400&page=0',
+    next: 'https://api4.thetvdb.com/v4/updates?since=1696118400&page=1',
+    total_items: 1529588,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restriction of results to `page` and `action`
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.updates({ since: '1696118400', action: 'delete', page: '2' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      recordType: '',
+      recordId: 63673925,
+      methodInt: 3,
+      method: 'delete',
+      extraInfo: '',
+      userId: 0,
+      timeStamp: 1696337198,
+      entityType: 'artwork',
+    },
+    // ...
+  ],
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/updates?since=1696118400&action=delete&page=1',
+    self: 'https://api4.thetvdb.com/v4/updates?since=1696118400&action=delete&page=2',
+    next: 'https://api4.thetvdb.com/v4/updates?since=1696118400&action=delete&page=3',
+    total_items: 53306,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
