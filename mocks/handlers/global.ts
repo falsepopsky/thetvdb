@@ -8,5 +8,6 @@ export { entitiesPaths } from './entities.js';
 export { episodesPaths } from './episodes.js';
 export { gendersPaths } from './genders.js';
 export { genresPaths } from './genres.js';
+export { inspirationPaths } from './inspiration.js';
 export { sourcesTypesPaths } from './sources.js';
 export { updatesPaths } from './updates.js';
