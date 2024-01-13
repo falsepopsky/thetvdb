@@ -65,7 +65,7 @@ const badRequest = {
   data: null,
 };
 
-export function handleUpdates(url: URL): HttpResponse {
+export function updatesPaths(url: URL): HttpResponse {
   switch (url.href) {
     case 'https://api4.thetvdb.com/v4/updates?since=1699747200&type=artwork&action=update&page=2':
       return HttpResponse.json(sinceTypeActionPage);

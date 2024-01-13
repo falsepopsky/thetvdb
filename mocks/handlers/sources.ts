@@ -23,6 +23,6 @@ const sourcesTypes = {
   ],
 };
 
-export function handleSourcesTypes(): HttpResponse {
+export function sourcesTypesPaths(): HttpResponse {
   return HttpResponse.json(sourcesTypes);
 }
