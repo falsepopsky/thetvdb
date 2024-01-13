@@ -6,5 +6,6 @@ export { contentPaths } from './content.js';
 export { countriesPaths } from './countries.js';
 export { entitiesPaths } from './entities.js';
 export { episodesPaths } from './episodes.js';
+export { gendersPaths } from './genders.js';
 export { sourcesTypesPaths } from './sources.js';
 export { updatesPaths } from './updates.js';
