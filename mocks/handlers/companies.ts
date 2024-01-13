@@ -1,53 +1,112 @@
-import { HttpResponse, http, type HttpHandler } from 'msw';
-
-// https://api4.thetvdb.com/v4/companies
-const companies = {
-  data: [{ id: 48649, name: 'Ananey' }],
-};
+import { HttpResponse } from 'msw';
 
 // https://api4.thetvdb.com/v4/companies?page=94
 const companiesPage = {
+  status: 'success',
   data: [
     {
-      id: 48646,
+      id: 48655,
+      name: 'Quality Control Films',
+      slug: 'quality-control-films',
     },
     {
-      name: 'New Group Productions',
+      id: 48656,
+      name: 'Crime District',
+      slug: 'crime-district',
     },
   ],
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/companies?page=93',
+    self: 'https://api4.thetvdb.com/v4/companies?page=94',
+    next: 'https://api4.thetvdb.com/v4/companies?page=95',
+    total_items: 47531,
+    page_size: 500,
+  },
+};
+
+// https://api4.thetvdb.com/v4/companies
+const companies = {
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: '3sat',
+      slug: '3sat',
+    },
+    {
+      id: 2,
+      name: 'A&E',
+      slug: 'ae',
+    },
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/companies?page=0',
+    next: 'https://api4.thetvdb.com/v4/companies?page=1',
+    total_items: 47531,
+    page_size: 500,
+  },
 };
 
 // https://api4.thetvdb.com/v4/companies/types
-const companiesTypes = {
+const cTypes = {
+  status: 'success',
   data: [
     {
       companyTypeId: 1,
+      companyTypeName: 'Network',
     },
     {
+      companyTypeId: 2,
       companyTypeName: 'Studio',
     },
   ],
 };
 
 // https://api4.thetvdb.com/v4/companies/4
-const companyId = {
-  data: { id: 4, name: 'Aaj TV', country: 'pak' },
+const id = {
+  status: 'success',
+  data: {
+    id: 4,
+    name: 'Aaj TV',
+    slug: 'aaj-tv',
+    nameTranslations: ['eng'],
+    overviewTranslations: [],
+    aliases: [],
+    country: 'pak',
+    primaryCompanyType: 1,
+    activeDate: null,
+    inactiveDate: null,
+    companyType: {
+      companyTypeId: 1,
+      companyTypeName: 'Network',
+    },
+    parentCompany: {
+      id: null,
+      name: null,
+      relation: {
+        id: null,
+        typeName: null,
+      },
+    },
+    tagOptions: null,
+  },
 };
 
-export const companiesHandlers: HttpHandler[] = [
-  http.get<never>('https://api4.thetvdb.com/v4/companies', ({ request }) => {
-    if (request.url === 'https://api4.thetvdb.com/v4/companies?page=94') {
+// https://api4.thetvdb.com/v4/companies/*
+const badRequest = { status: 'failure', message: 'InvalidValueType: cannot make item path', data: null };
+
+export function companiesPaths(url: URL): HttpResponse {
+  switch (url.href) {
+    case 'https://api4.thetvdb.com/v4/companies?page=94':
       return HttpResponse.json(companiesPage);
-    } else {
+    case 'https://api4.thetvdb.com/v4/companies':
       return HttpResponse.json(companies);
-    }
-  }),
-  http.get<never>('https://api4.thetvdb.com/v4/companies/:path', ({ request }) => {
-    switch (request.url) {
-      case 'https://api4.thetvdb.com/v4/companies/types':
-        return HttpResponse.json(companiesTypes);
-      default:
-        return HttpResponse.json(companyId);
-    }
-  }),
-];
+    case 'https://api4.thetvdb.com/v4/companies/types':
+      return HttpResponse.json(cTypes);
+    case 'https://api4.thetvdb.com/v4/companies/4':
+      return HttpResponse.json(id);
+    default:
+      return HttpResponse.json(badRequest, { status: 400 });
+  }
+}

@@ -20,9 +20,9 @@ describe('updates()', () => {
 
     expect(status).toBe('success');
     expect(Array.isArray(data)).toBe(true);
+    expect(data).toHaveLength(2);
     expect(data[0]?.method).toBe('update');
     expect(data[1]?.timeStamp).toBe(1699823038);
-    expect(data).toHaveLength(2);
     expect(links.next).toBe('https://api4.thetvdb.com/v4/updates?since=1699747200&type=artwork&action=update&page=3');
   });
 
