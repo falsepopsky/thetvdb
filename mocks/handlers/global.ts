@@ -10,5 +10,6 @@ export { gendersPaths } from './genders.js';
 export { genresPaths } from './genres.js';
 export { inspirationPaths } from './inspiration.js';
 export { languagesPaths } from './languages.js';
+export { listsPaths } from './lists.js';
 export { sourcesTypesPaths } from './sources.js';
 export { updatesPaths } from './updates.js';
