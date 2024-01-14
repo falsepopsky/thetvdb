@@ -13,5 +13,6 @@ export { languagesPaths } from './languages.js';
 export { listsPaths } from './lists.js';
 export { moviesPaths } from './movies.js';
 export { peoplePaths } from './people.js';
+export { searchPaths } from './search.js';
 export { sourcesTypesPaths } from './sources.js';
 export { updatesPaths } from './updates.js';
