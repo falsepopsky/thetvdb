@@ -15,5 +15,6 @@ export { moviesPaths } from './movies.js';
 export { peoplePaths } from './people.js';
 export { searchPaths } from './search.js';
 export { seasonsPaths } from './seasons.js';
+export { seriesPaths } from './series.js';
 export { sourcesTypesPaths } from './sources.js';
 export { updatesPaths } from './updates.js';
