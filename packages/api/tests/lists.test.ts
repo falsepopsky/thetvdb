@@ -5,7 +5,7 @@ const client = new TheTVDB('fake token');
 describe('listById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.listById()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.listById()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -24,7 +24,7 @@ describe('listByIdExtended()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.listByIdExtended()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -64,7 +64,7 @@ describe('listByIdExtended()', () => {
 describe('listBySlug()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.listBySlug()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.listBySlug()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -81,14 +81,14 @@ describe('listWithTranslation()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.listWithTranslation()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
   it('throws an error if no language is provided', async () => {
     // @ts-expect-error: expect a parameter language
     await expect(async () => await client.listWithTranslation('17')).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 

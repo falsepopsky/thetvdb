@@ -5,7 +5,7 @@ const client = new TheTVDB('fake token');
 describe('awardById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.awardById()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.awardById()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -21,7 +21,7 @@ describe('awardByIdExtended()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.awardByIdExtended()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -44,7 +44,7 @@ describe('awardCategoryById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.awardCategoryById()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -61,7 +61,7 @@ describe('awardCategoryByIdExtended()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.awardCategoryByIdExtended()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 

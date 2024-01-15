@@ -5,7 +5,7 @@ const client = new TheTVDB('fake token');
 describe('search()', () => {
   it('throws an error if no queryParams.query is provided', async () => {
     // @ts-expect-error: expect a parameter queryParams.query
-    await expect(async () => await client.search()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.search()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response with query', async () => {
@@ -59,7 +59,7 @@ describe('searchRemoteId()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.searchRemoteId()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 

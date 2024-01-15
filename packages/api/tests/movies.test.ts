@@ -5,7 +5,7 @@ const client = new TheTVDB('fake token');
 describe('movieById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.movieById()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.movieById()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -23,7 +23,7 @@ describe('movieByIdExtended()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.movieByIdExtended()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -90,7 +90,7 @@ describe('movieByIdExtended()', () => {
 describe('movieBySlug()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.movieBySlug()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.movieBySlug()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -125,14 +125,14 @@ describe('movieWithTranslation()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.movieWithTranslation()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
   it('throws an error if no language is provided', async () => {
     // @ts-expect-error: expect a parameter language
     await expect(async () => await client.movieWithTranslation('2036')).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 

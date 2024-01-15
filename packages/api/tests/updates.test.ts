@@ -7,7 +7,7 @@ describe('updates()', () => {
     await expect(async () => {
       // @ts-expect-error: Expected a parameter queryParams.since
       await client.updates();
-    }).rejects.toThrow('HTTP response status: 400 from thetvdb API');
+    }).rejects.toThrow('HTTP response status 400 from thetvdb API');
   });
 
   it('returns a successful response with since, type, action and page', async () => {

@@ -5,7 +5,7 @@ const client = new TheTVDB('fake token');
 describe('artworkById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.artworkById()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.artworkById()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -22,7 +22,7 @@ describe('artworkByIdExtended()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.artworkByIdExtended()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 

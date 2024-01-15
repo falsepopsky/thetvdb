@@ -5,7 +5,7 @@ const client = new TheTVDB('fake token');
 describe('serieById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.serieById()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.serieById()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -23,7 +23,7 @@ describe('serieByIdArtworks()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.serieByIdArtworks()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -92,7 +92,7 @@ describe('serieByIdExtended()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.serieByIdExtended()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -187,7 +187,7 @@ describe('serieByIdNextAired()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.serieByIdNextAired()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -203,7 +203,7 @@ describe('serieByIdNextAired()', () => {
 describe('serieBySlug()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.serieBySlug()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.serieBySlug()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -229,14 +229,14 @@ describe('serieEpisodes()', () => {
   it('throws an error if no paths.id is provided', async () => {
     // @ts-expect-error: expect a parameter paths.id
     await expect(async () => await client.serieEpisodes({ seasonType: 'default' })).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
   it('throws an error if no paths.seasonType is provided', async () => {
     // @ts-expect-error: expect a parameter paths.seasonType
     await expect(async () => await client.serieEpisodes({ id: '75978' })).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -320,14 +320,14 @@ describe('serieEpisodesWithLanguage()', () => {
   it('throws an error if no paths.id is provided', async () => {
     // @ts-expect-error: expect a parameter paths.id
     await expect(async () => await client.serieEpisodesWithLanguage({ seasonType: 'official' })).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
   it('throws an error if no paths.seasonType is provided', async () => {
     // @ts-expect-error: expect a parameter paths.seasonType
     await expect(async () => await client.serieEpisodesWithLanguage({ id: '78878' })).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
@@ -335,7 +335,7 @@ describe('serieEpisodesWithLanguage()', () => {
     await expect(
       // @ts-expect-error: expect a parameter paths.language
       async () => await client.serieEpisodesWithLanguage({ id: '78878', seasonType: 'official' })
-    ).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    ).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
@@ -400,14 +400,14 @@ describe('serieWithTranslation()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
     await expect(async () => await client.serieWithTranslation()).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 
   it('throws an error if no language is provided', async () => {
     // @ts-expect-error: expect a parameter language
     await expect(async () => await client.serieWithTranslation('78878')).rejects.toThrow(
-      'HTTP response status: 400 from thetvdb API.'
+      'HTTP response status 400 from thetvdb API.'
     );
   });
 

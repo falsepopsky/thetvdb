@@ -48,7 +48,7 @@ describe('companiesTypes()', () => {
 describe('companyById()', () => {
   it('throws an error if no id is provided', async () => {
     // @ts-expect-error: expect a parameter id
-    await expect(async () => await client.companyById()).rejects.toThrow('HTTP response status: 400 from thetvdb API.');
+    await expect(async () => await client.companyById()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 
   it('returns a successful response', async () => {
