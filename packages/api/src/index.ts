@@ -1,24 +1,11 @@
 import { URL } from 'node:url';
 
-/* Check every task BEFORE release 1.0.0
- - [x] Complete other TODOs first.
- - [x] Remove "get" from method names.
- - [ ] Include links to documentation for each method.
- - [x] Ensure method names match their respective endpoints.
- - [x] Use the parameter name "queries" for methods requiring multiple query parameters.
- - [x] Alphabetically sort public methods (A to Z) https://www.online-utility.org/text/sort.jsp.
- - [x] Begin return types with "Get" for all methods.
- - [x] Incorporate the appropriate "Response" or "ResponseLink" in each method's return type.
- - [x] Specify the correct "Type" or "Type[]" in each method's return type.
- - [x] Remove all "console.log" instances.
- */
-
-interface Response<T> {
+export interface Response<T> {
   status: string;
   data: T;
 }
 
-interface ResponseLink<T> extends Response<T> {
+export interface ResponseLink<T> extends Response<T> {
   links: {
     prev: string | null;
     self: string;
@@ -30,11 +17,11 @@ interface ResponseLink<T> extends Response<T> {
 
 // Helpers for properties
 
-type Aliases = Record<'language' | 'name', string>;
+export type Aliases = Record<'language' | 'name', string>;
 
-type CompanyRecord = Record<'studio' | 'network' | 'production' | 'distributor' | 'special_effects', Company[]>;
+export type CompanyRecord = Record<'studio' | 'network' | 'production' | 'distributor' | 'special_effects', Company[]>;
 
-type Entities =
+export type Entities =
   | 'artwork'
   | 'award_nominees'
   | 'companies'
@@ -70,35 +57,35 @@ type Entities =
   | 'translatedseasons'
   | 'translatedseries';
 
-interface IdName {
+export interface IdName {
   id: number;
   name: string;
 }
 
-interface Inspirations extends Record<'type' | 'type_name' | 'url', string> {
+export interface Inspirations extends Record<'type' | 'type_name' | 'url', string> {
   id: number;
 }
 
-type NameImageYear = Record<'name' | 'image' | 'year', string>;
+export type NameImageYear = Record<'name' | 'image' | 'year', string>;
 
-interface ProductionCountries extends IdName {
+export interface ProductionCountries extends IdName {
   country: string;
 }
 
-interface RemoteId {
+export interface RemoteId {
   id: string;
   type: number;
   sourceName: string;
 }
 
-interface SeasonType {
+export interface SeasonType {
   id: number;
   name: string;
   type: string;
   alternateName: string | null;
 }
 
-interface SharedProps {
+export interface SharedProps {
   id: number;
   name: string | null;
   image: string | null;
@@ -106,16 +93,16 @@ interface SharedProps {
   overviewTranslations: string[] | null;
 }
 
-interface StatusHelper extends IdName {
+export interface StatusHelper extends IdName {
   keepUpdated: boolean;
   recordType: string;
 }
 
-interface StudiosHelper extends IdName {
+export interface StudiosHelper extends IdName {
   parentStudio: number;
 }
 
-interface TagOptions {
+export interface TagOptions {
   helpText: string | null;
   id: number;
   name: string;
@@ -123,7 +110,7 @@ interface TagOptions {
   tagName: string;
 }
 
-interface Trailer {
+export interface Trailer {
   id: number;
   language: string;
   name: string;
@@ -131,7 +118,7 @@ interface Trailer {
   runtime: number;
 }
 
-interface TranslationHelper {
+export interface TranslationHelper {
   name: string;
   overview: string;
   language: string;
@@ -141,15 +128,15 @@ interface TranslationHelper {
   tagline?: string;
 }
 
-interface Translations {
+export interface Translations {
   nameTranslations: TranslationHelper[];
   overviewTranslations: TranslationHelper[];
   aliases: string[] | null;
 }
 
-// FROM HERE ENTITY TYPES
+// Entity types
 
-interface Artwork {
+export interface Artwork {
   height: number;
   id: number;
   image: string;
@@ -161,7 +148,7 @@ interface Artwork {
   width: number;
 }
 
-interface ArtworkExtended extends Artwork {
+export interface ArtworkExtended extends Artwork {
   thumbnailWidth: number;
   thumbnailHeight: number;
   updatedAt: number;
@@ -173,7 +160,7 @@ interface ArtworkExtended extends Artwork {
   tagOptions: TagOptions[];
 }
 
-interface ArtworkType {
+export interface ArtworkType {
   height: number;
   id: number;
   imageFormat: string;
@@ -185,7 +172,7 @@ interface ArtworkType {
   width: number;
 }
 
-interface AwardCategory {
+export interface AwardCategory {
   allowCoNominees: boolean;
   award: IdName;
   forMovies: boolean;
@@ -194,7 +181,7 @@ interface AwardCategory {
   id: number;
 }
 
-interface AwardCategoryExtended extends AwardCategory {
+export interface AwardCategoryExtended extends AwardCategory {
   nominees: Array<{
     category: null;
     character: null;
@@ -209,11 +196,11 @@ interface AwardCategoryExtended extends AwardCategory {
   }>;
 }
 
-interface AwardExtended extends IdName {
+export interface AwardExtended extends IdName {
   categories: AwardCategory[];
 }
 
-interface Character extends SharedProps {
+export interface Character extends SharedProps {
   peopleId: number;
   seriesId: number | null;
   series: NameImageYear | null;
@@ -232,7 +219,7 @@ interface Character extends SharedProps {
   personImgURL: string | null;
 }
 
-interface Company extends Omit<SharedProps, 'image'> {
+export interface Company extends Omit<SharedProps, 'image'> {
   activeDate: string;
   aliases: Aliases[];
   companyType: CompanyType;
@@ -251,21 +238,21 @@ interface Company extends Omit<SharedProps, 'image'> {
   tagOptions: TagOptions[];
 }
 
-interface CompanyType {
+export interface CompanyType {
   companyTypeId: number;
   companyTypeName: string;
 }
 
-type ContentRating = Record<'name' | 'country' | 'description' | 'contentType' | 'fullname', string> &
+export type ContentRating = Record<'name' | 'country' | 'description' | 'contentType' | 'fullname', string> &
   Record<'id' | 'order', number>;
 
-type Country = Omit<Language, 'nativeName'>;
+export type Country = Omit<Language, 'nativeName'>;
 
-interface Entity extends IdName {
+export interface Entity extends IdName {
   hasSpecials: boolean;
 }
 
-interface EpisodePage extends Omit<SharedProps, 'nameTranslations' | 'overviewTranslations'> {
+export interface EpisodePage extends Omit<SharedProps, 'nameTranslations' | 'overviewTranslations'> {
   aired: string;
   finaleType: string | null;
   imageType: null;
@@ -281,7 +268,7 @@ interface EpisodePage extends Omit<SharedProps, 'nameTranslations' | 'overviewTr
   seriesId: number;
 }
 
-interface Episode extends SharedProps {
+export interface Episode extends SharedProps {
   aired: string;
   airsAfterSeason?: number;
   airsBeforeSeason?: number;
@@ -300,7 +287,7 @@ interface Episode extends SharedProps {
   year: string;
 }
 
-interface EpisodeExtended extends Episode {
+export interface EpisodeExtended extends Episode {
   productionCode: string;
   nominations: null;
   characters: Character[];
@@ -314,23 +301,23 @@ interface EpisodeExtended extends Episode {
   awards: IdName[];
 }
 
-interface EpisodeExtendedTranslations extends EpisodeExtended {
+export interface EpisodeExtendedTranslations extends EpisodeExtended {
   translations: Translations;
 }
 
-interface Genre extends IdName {
+export interface Genre extends IdName {
   slug: string;
 }
 
-interface Inspiration extends IdName {
+export interface Inspiration extends IdName {
   description: string;
   reference_name: string;
   url: string;
 }
 
-type Language = Record<'id' | 'name' | 'nativeName' | 'shortCode', string>;
+export type Language = Record<'id' | 'name' | 'nativeName' | 'shortCode', string>;
 
-interface List extends SharedProps {
+export interface List extends SharedProps {
   overview: string;
   url: string;
   isOfficial: boolean;
@@ -341,12 +328,12 @@ interface List extends SharedProps {
   tags: null;
 }
 
-interface ListExtended extends Omit<List, 'tags'> {
+export interface ListExtended extends Omit<List, 'tags'> {
   tags: TagOptions[];
   entities: Array<Record<'order' | 'seriesId' | 'movieId', number | null>>;
 }
 
-interface Movie extends SharedProps {
+export interface Movie extends SharedProps {
   aliases: Aliases[];
   lastUpdated: string;
   runtime: number;
@@ -356,7 +343,7 @@ interface Movie extends SharedProps {
   year: string;
 }
 
-interface MovieExtended extends Movie {
+export interface MovieExtended extends Movie {
   trailers: Trailer[];
   genres: Genre[];
   releases: Array<Record<'country' | 'date' | 'detail', string>>;
@@ -382,29 +369,29 @@ interface MovieExtended extends Movie {
   first_release: Record<'country' | 'date' | 'detail', string>;
 }
 
-interface MovieExtendedMeta extends MovieExtended {
+export interface MovieExtendedMeta extends MovieExtended {
   translations: Translations;
 }
 
-interface MovieExtendedMetaShort extends Omit<MovieExtendedMeta, 'characters' | 'artworks' | 'trailers'> {
+export interface MovieExtendedMetaShort extends Omit<MovieExtendedMeta, 'characters' | 'artworks' | 'trailers'> {
   characters: null;
   artworks: null;
   trailers: null;
 }
 
-interface MovieExtendedShort extends Omit<MovieExtended, 'characters' | 'artworks' | 'trailers'> {
+export interface MovieExtendedShort extends Omit<MovieExtended, 'characters' | 'artworks' | 'trailers'> {
   characters: null;
   artworks: null;
   trailers: null;
 }
 
-interface People extends SharedProps {
+export interface People extends SharedProps {
   aliases: Aliases[] | null;
   lastUpdated: string;
   score: number;
 }
 
-interface PeopleExtended extends People {
+export interface PeopleExtended extends People {
   birth: string | null;
   death: string | null;
   birthPlace: string | null;
@@ -417,11 +404,11 @@ interface PeopleExtended extends People {
   slug: string;
 }
 
-interface PeopleExtendedTranslations extends PeopleExtended {
+export interface PeopleExtendedTranslations extends PeopleExtended {
   translations: Translations;
 }
 
-interface SeasonPage extends Omit<SharedProps, 'name'> {
+export interface SeasonPage extends Omit<SharedProps, 'name'> {
   seriesId: number;
   type: SeasonType;
   number: number;
@@ -430,11 +417,11 @@ interface SeasonPage extends Omit<SharedProps, 'name'> {
   lastUpdated: string;
 }
 
-interface Season extends SeasonPage {
+export interface Season extends SeasonPage {
   year: string;
 }
 
-interface SeasonExtended extends Omit<Season, 'companies'> {
+export interface SeasonExtended extends Omit<Season, 'companies'> {
   artwork: Artwork[];
   episodes: Episode[];
   trailers: Trailer[];
@@ -442,11 +429,11 @@ interface SeasonExtended extends Omit<Season, 'companies'> {
   companies: CompanyRecord;
 }
 
-interface SeasonExtendedTranslations extends SeasonExtended {
+export interface SeasonExtendedTranslations extends SeasonExtended {
   translations: Translations;
 }
 
-interface Search {
+export interface Search {
   aliases: string[];
   country: string;
   director: string;
@@ -473,7 +460,7 @@ interface Search {
   year: string;
 }
 
-interface SearchRemote {
+export interface SearchRemote {
   episode?: Episode;
   company?: Company;
   movie?: Movie;
@@ -481,7 +468,7 @@ interface SearchRemote {
   series?: Serie;
 }
 
-interface Serie extends Omit<Movie, 'runtime'> {
+export interface Serie extends Omit<Movie, 'runtime'> {
   averageRuntime: number;
   country: string;
   defaultSeasonType: number;
@@ -495,7 +482,7 @@ interface Serie extends Omit<Movie, 'runtime'> {
   overview: string;
 }
 
-interface SerieExtended extends Serie {
+export interface SerieExtended extends Serie {
   airsDays: Record<string, boolean>;
   airsTime: string;
   artworks: ArtworkExtended[];
@@ -513,7 +500,7 @@ interface SerieExtended extends Serie {
   trailers: Trailer[];
 }
 
-interface SerieArtworks extends Serie {
+export interface SerieArtworks extends Serie {
   airsDays: Record<string, boolean>;
   airsTime: null;
   artworks: ArtworkExtended[];
@@ -528,59 +515,59 @@ interface SerieArtworks extends Serie {
   trailers: null;
 }
 
-interface SerieExtendedTranslations extends SerieExtended {
+export interface SerieExtendedTranslations extends SerieExtended {
   translations: Translations;
 }
 
-interface SerieExtendedEpisodes extends Omit<SerieExtended, 'episodes'> {
+export interface SerieExtendedEpisodes extends Omit<SerieExtended, 'episodes'> {
   episodes: Episode[];
 }
 
-interface SerieExtendedShort extends Omit<SerieExtended, 'artworks' | 'characters'> {
+export interface SerieExtendedShort extends Omit<SerieExtended, 'artworks' | 'characters'> {
   artworks: null;
   characters: null;
 }
 
-interface SerieExtendedShortTranslations extends SerieExtendedShort {
+export interface SerieExtendedShortTranslations extends SerieExtendedShort {
   translations: Translations;
 }
 
-interface SerieExtendedShortEpisodes extends Omit<SerieExtendedShort, 'episodes'> {
+export interface SerieExtendedShortEpisodes extends Omit<SerieExtendedShort, 'episodes'> {
   episodes: Episode[];
 }
 
-interface SerieSeasonType {
+export interface SerieSeasonType {
   series: Serie;
   episodes: Episode[];
 }
 
-interface SerieSeasonTypeLanguage extends Omit<Serie, 'episodes'> {
+export interface SerieSeasonTypeLanguage extends Omit<Serie, 'episodes'> {
   episodes: Episode[];
 }
 
-interface Source extends Genre {
+export interface Source extends Genre {
   postfix: string | null;
   prefix: string | null;
   sort: number;
 }
 
-type Update = Record<'recordType' | 'method' | 'extraInfo' | 'entityType' | 'mergeToType', string> &
+export type Update = Record<'recordType' | 'method' | 'extraInfo' | 'entityType' | 'mergeToType', string> &
   Record<'recordId' | 'methodInt' | 'userId' | 'timeStamp' | 'mergeToId' | 'seriesId', number>;
 
 // Paths parameters for methods
 
-interface PathsSerieEpisodes {
+export interface PathsSerieEpisodes {
   id: string;
   seasonType: string;
 }
 
-interface PathsSerieEpisodesLanguage extends PathsSerieEpisodes {
+export interface PathsSerieEpisodesLanguage extends PathsSerieEpisodes {
   language: string;
 }
 
 // Query parameters for methods
 
-interface QueriesMoviesFilter {
+export interface QueriesMoviesFilter {
   country?: string;
   lang?: string;
   company?: string;
@@ -592,12 +579,12 @@ interface QueriesMoviesFilter {
   page?: string;
 }
 
-interface QueriesMovieExtended {
+export interface QueriesMovieExtended {
   meta?: 'translations';
   short?: 'true' | 'false';
 }
 
-interface QueriesSearch {
+export interface QueriesSearch {
   company?: string;
   country?: string;
   director?: string;
@@ -613,29 +600,29 @@ interface QueriesSearch {
   year?: string;
 }
 
-interface QueriesSerieArtworks {
+export interface QueriesSerieArtworks {
   lang?: string;
   type?: string;
 }
 
-interface QueriesSerieExtended {
+export interface QueriesSerieExtended {
   meta?: 'translations' | 'episodes';
   short?: 'true' | 'false';
 }
 
-interface QueriesSeriesFilter extends Omit<QueriesMoviesFilter, 'sort'> {
+export interface QueriesSeriesFilter extends Omit<QueriesMoviesFilter, 'sort'> {
   sort?: 'score' | 'firstAired' | 'name' | 'lastAired';
   sortType?: 'asc' | 'desc';
 }
 
-interface QueriesSerieEpisodes {
+export interface QueriesSerieEpisodes {
   airDate?: string;
   episodeNumber?: string;
   page?: string;
   season?: string;
 }
 
-interface QueriesUpdates {
+export interface QueriesUpdates {
   since: string;
   type?: Entities;
   action?: 'create' | 'delete' | 'update';
@@ -644,64 +631,66 @@ interface QueriesUpdates {
 
 // Return types for methods
 
-type GetArtwork = Response<Artwork>;
-type GetArtworkExtended = Response<ArtworkExtended>;
-type GetArtworkStatuses = Response<IdName[]>;
-type GetArtworkTypes = Response<ArtworkType[]>;
-type GetAwardsById = Response<IdName>;
-type GetAwardByIdExtended = Response<AwardExtended>;
-type GetAwardCategoryById = Response<AwardCategory>;
-type GetAwardCategoryByIdExtended = Response<AwardCategoryExtended>;
-type GetAwards = Response<IdName[]>;
-type GetCharacterById = Response<Character>;
-type GetCompanies = ResponseLink<Company[]>;
-type GetCompaniesTypes = Response<CompanyType[]>;
-type GetCompanyById = Response<Company>;
-type GetContentRatings = Response<ContentRating[]>;
-type GetCountries = Response<Country[]>;
-type GetEntities = Response<Entity[]>;
-type GetEpisodeById = Response<Episode>;
-type GetEpisodeByIdExtended<T> = T extends true ? Response<EpisodeExtendedTranslations> : Response<EpisodeExtended>;
-type GetEpisodeWithTranslation = Response<TranslationHelper>;
-type GetEpisodes = ResponseLink<EpisodePage[]>;
-type GetGenders = Response<IdName[]>;
-type GetGenreById = Response<Genre>;
-type GetGenres = Response<Genre[]>;
-type GetInspirationTypes = Response<Inspiration[]>;
-type GetLanguages = Response<Language[]>;
-type GetListById = Response<List>;
-type GetListByIdExtended = Response<ListExtended>;
-type GetListBySlug = Response<List>;
-type GetListWithTranslation = Response<TranslationHelper[]>;
-type GetLists = ResponseLink<List[]>;
-type GetMovieById = Response<Movie>;
-type GetMovieByIdExtended<Q extends QueriesMovieExtended> = Q['meta'] extends 'translations'
+export type GetArtwork = Response<Artwork>;
+export type GetArtworkExtended = Response<ArtworkExtended>;
+export type GetArtworkStatuses = Response<IdName[]>;
+export type GetArtworkTypes = Response<ArtworkType[]>;
+export type GetAwardsById = Response<IdName>;
+export type GetAwardByIdExtended = Response<AwardExtended>;
+export type GetAwardCategoryById = Response<AwardCategory>;
+export type GetAwardCategoryByIdExtended = Response<AwardCategoryExtended>;
+export type GetAwards = Response<IdName[]>;
+export type GetCharacterById = Response<Character>;
+export type GetCompanies = ResponseLink<Company[]>;
+export type GetCompaniesTypes = Response<CompanyType[]>;
+export type GetCompanyById = Response<Company>;
+export type GetContentRatings = Response<ContentRating[]>;
+export type GetCountries = Response<Country[]>;
+export type GetEntities = Response<Entity[]>;
+export type GetEpisodeById = Response<Episode>;
+export type GetEpisodeByIdExtended<T> = T extends true
+  ? Response<EpisodeExtendedTranslations>
+  : Response<EpisodeExtended>;
+export type GetEpisodeWithTranslation = Response<TranslationHelper>;
+export type GetEpisodes = ResponseLink<EpisodePage[]>;
+export type GetGenders = Response<IdName[]>;
+export type GetGenreById = Response<Genre>;
+export type GetGenres = Response<Genre[]>;
+export type GetInspirationTypes = Response<Inspiration[]>;
+export type GetLanguages = Response<Language[]>;
+export type GetListById = Response<List>;
+export type GetListByIdExtended = Response<ListExtended>;
+export type GetListBySlug = Response<List>;
+export type GetListWithTranslation = Response<TranslationHelper[]>;
+export type GetLists = ResponseLink<List[]>;
+export type GetMovieById = Response<Movie>;
+export type GetMovieByIdExtended<Q extends QueriesMovieExtended> = Q['meta'] extends 'translations'
   ? Q['short'] extends 'true'
     ? Response<MovieExtendedMetaShort>
     : Response<MovieExtendedMeta>
   : Q['short'] extends 'true'
     ? Response<MovieExtendedShort>
     : Response<MovieExtended>;
-type GetMovieBySlug = Response<Movie>;
-type GetMovieStatuses = Response<StatusHelper[]>;
-type GetMovieWithTranslation = Response<TranslationHelper>;
-type GetMovies = ResponseLink<Movie[]>;
-type GetMoviesFilter = ResponseLink<Movie[]>;
-type GetPeople = ResponseLink<People[]>;
-type GetPeopleById = Response<People>;
-type GetPeopleByIdExtended<T> = T extends true ? Response<PeopleExtendedTranslations> : Response<PeopleExtended>;
-type GetPeopleTypes = Response<IdName[]>;
-type GetPeopleWithTranslation = Response<TranslationHelper>;
-type GetSearch = ResponseLink<Search[]>;
-type GetSearchRemoteId = Response<SearchRemote[]>;
-type GetSeasonById = Response<Season>;
-type GetSeasonByIdExtended<T> = T extends true ? Response<SeasonExtendedTranslations> : Response<SeasonExtended>;
-type GetSeasonTypes = Response<SeasonType[]>;
-type GetSeasonWithTranslation = Response<TranslationHelper>;
-type GetSeasons = ResponseLink<SeasonPage[]>;
-type GetSerieById = Response<Serie>;
-type GetSerieByIdArtworks = Response<SerieArtworks>;
-type GetSerieByIdExtended<Q extends QueriesSerieExtended> = Q['meta'] extends 'translations'
+export type GetMovieBySlug = Response<Movie>;
+export type GetMovieStatuses = Response<StatusHelper[]>;
+export type GetMovieWithTranslation = Response<TranslationHelper>;
+export type GetMovies = ResponseLink<Movie[]>;
+export type GetMoviesFilter = ResponseLink<Movie[]>;
+export type GetPeople = ResponseLink<People[]>;
+export type GetPeopleById = Response<People>;
+export type GetPeopleByIdExtended<T> = T extends true ? Response<PeopleExtendedTranslations> : Response<PeopleExtended>;
+export type GetPeopleTypes = Response<IdName[]>;
+export type GetPeopleWithTranslation = Response<TranslationHelper>;
+export type GetSearch = ResponseLink<Search[]>;
+export type GetSearchRemoteId = Response<SearchRemote[]>;
+export type GetSeasonById = Response<Season>;
+export type GetSeasonByIdExtended<T> = T extends true ? Response<SeasonExtendedTranslations> : Response<SeasonExtended>;
+export type GetSeasonTypes = Response<SeasonType[]>;
+export type GetSeasonWithTranslation = Response<TranslationHelper>;
+export type GetSeasons = ResponseLink<SeasonPage[]>;
+export type GetSerieById = Response<Serie>;
+export type GetSerieByIdArtworks = Response<SerieArtworks>;
+export type GetSerieByIdExtended<Q extends QueriesSerieExtended> = Q['meta'] extends 'translations'
   ? Q['short'] extends 'true'
     ? Response<SerieExtendedShortTranslations>
     : Response<SerieExtendedTranslations>
@@ -712,16 +701,16 @@ type GetSerieByIdExtended<Q extends QueriesSerieExtended> = Q['meta'] extends 't
     : Q['short'] extends 'true'
       ? Response<SerieExtendedShort>
       : Response<SerieExtended>;
-type GetSerieByIdNextAired = Response<Serie>;
-type GetSerieBySlug = Response<Serie>;
-type GetSerieEpisodes = ResponseLink<SerieSeasonType>;
-type GetSerieEpisodesWithLanguage = ResponseLink<SerieSeasonTypeLanguage>;
-type GetSerieStatuses = Response<StatusHelper[]>;
-type GetSerieWithTranslation = Response<TranslationHelper>;
-type GetSeries = ResponseLink<Serie[]>;
-type GetSeriesFilter = ResponseLink<Serie[]>;
-type GetSourcesTypes = Response<Source[]>;
-type GetUpdates = ResponseLink<Update[]>;
+export type GetSerieByIdNextAired = Response<Serie>;
+export type GetSerieBySlug = Response<Serie>;
+export type GetSerieEpisodes = ResponseLink<SerieSeasonType>;
+export type GetSerieEpisodesWithLanguage = ResponseLink<SerieSeasonTypeLanguage>;
+export type GetSerieStatuses = Response<StatusHelper[]>;
+export type GetSerieWithTranslation = Response<TranslationHelper>;
+export type GetSeries = ResponseLink<Serie[]>;
+export type GetSeriesFilter = ResponseLink<Serie[]>;
+export type GetSourcesTypes = Response<Source[]>;
+export type GetUpdates = ResponseLink<Update[]>;
 
 /**
  * Client library for TheTVDB API in Node.js
@@ -799,6 +788,7 @@ export class TheTVDB {
   /**
    * @param id The artwork `id`.
    * @returns Single artwork record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/byid/ Docs}
    */
   public async artworkById(id: string): Promise<GetArtwork> {
     return await this.fetcher<GetArtwork>(`${this.api}/v4/artwork/${id}`);
@@ -807,6 +797,7 @@ export class TheTVDB {
   /**
    * @param id The `artwork` id.
    * @returns Single extended artwork record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/byidextended/ Docs}
    */
   public async artworkByIdExtended(id: string): Promise<GetArtworkExtended> {
     return await this.fetcher<GetArtworkExtended>(`${this.api}/v4/artwork/${id}/extended`);
@@ -814,6 +805,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of artwork status records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/statuses/ Docs}
    */
   public async artworkStatuses(): Promise<GetArtworkStatuses> {
     return await this.fetcher<GetArtworkStatuses>(`${this.api}/v4/artwork/statuses`);
@@ -821,6 +813,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of artwork types records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/types/ Docs}
    */
   public async artworkTypes(): Promise<GetArtworkTypes> {
     return await this.fetcher<GetArtworkTypes>(`${this.api}/v4/artwork/types`);
@@ -829,6 +822,7 @@ export class TheTVDB {
   /**
    * @param id The award `id`.
    * @returns Single award record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/byid/ Docs}
    */
   public async awardById(id: string): Promise<GetAwardsById> {
     return await this.fetcher<GetAwardsById>(`${this.api}/v4/awards/${id}`);
@@ -837,6 +831,7 @@ export class TheTVDB {
   /**
    * @param id The award `id`.
    * @returns Single extended award record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/byidextended/ Docs}
    */
   public async awardByIdExtended(id: string): Promise<GetAwardByIdExtended> {
     return await this.fetcher<GetAwardByIdExtended>(`${this.api}/v4/awards/${id}/extended`);
@@ -845,6 +840,7 @@ export class TheTVDB {
   /**
    * @param id The award category `id`.
    * @returns Single award category record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/categorybyid/ Docs}
    */
   public async awardCategoryById(id: string): Promise<GetAwardCategoryById> {
     return await this.fetcher<GetAwardCategoryById>(`${this.api}/v4/awards/categories/${id}`);
@@ -853,6 +849,7 @@ export class TheTVDB {
   /**
    * @param id The award category `id`.
    * @returns Single extended award category record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/categorybyidextended/ Docs}
    */
   public async awardCategoryByIdExtended(id: string): Promise<GetAwardCategoryByIdExtended> {
     return await this.fetcher<GetAwardCategoryByIdExtended>(`${this.api}/v4/awards/categories/${id}/extended`);
@@ -860,6 +857,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of awards records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/awards/ Docs}
    */
   public async awards(): Promise<GetAwards> {
     return await this.fetcher<GetAwards>(`${this.api}/v4/awards`);
@@ -868,6 +866,7 @@ export class TheTVDB {
   /**
    * @param id The character `id`.
    * @returns Single character record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/characterbyid/ Docs}
    */
   public async characterById(id: string): Promise<GetCharacterById> {
     return await this.fetcher<GetCharacterById>(`${this.api}/v4/characters/${id}`);
@@ -876,6 +875,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of companies records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/companies/companies/ Docs}
    */
   public async companies(page?: string): Promise<GetCompanies> {
     let endpoint = this.api + '/v4/companies';
@@ -887,6 +887,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of companies type records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/companies/types/ Docs}
    */
   public async companiesTypes(): Promise<GetCompaniesTypes> {
     return await this.fetcher<GetCompaniesTypes>(`${this.api}/v4/companies/types`);
@@ -895,6 +896,7 @@ export class TheTVDB {
   /**
    * @param id The company `id`.
    * @returns Single company record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/companies/byid/ Docs}
    */
   public async companyById(id: string): Promise<GetCompanyById> {
     return await this.fetcher<GetCompanyById>(`${this.api}/v4/companies/${id}`);
@@ -902,6 +904,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of content ratings records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/contentratings/ Docs}
    */
   public async contentRatings(): Promise<GetContentRatings> {
     return await this.fetcher<GetContentRatings>(`${this.api}/v4/content/ratings`);
@@ -909,6 +912,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of country records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/countries/ Docs}
    */
   public async countries(): Promise<GetCountries> {
     return await this.fetcher<GetCountries>(`${this.api}/v4/countries`);
@@ -916,6 +920,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of entity types records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/entities/ Docs}
    */
   public async entities(): Promise<GetEntities> {
     return await this.fetcher<GetEntities>(`${this.api}/v4/entities`);
@@ -924,6 +929,7 @@ export class TheTVDB {
   /**
    * @param id The episode `id`.
    * @returns Single episode record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/byid/ Docs}
    */
   public async episodeById(id: string): Promise<GetEpisodeById> {
     return await this.fetcher<GetEpisodeById>(`${this.api}/v4/episodes/${id}`);
@@ -935,6 +941,7 @@ export class TheTVDB {
    *   Set to `true` to include the `translations` property in the record.
    *   Defaults to `false` if not provided.
    * @returns Single extended episode record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/byidextended/ Docs}
    */
   public async episodeByIdExtended<T extends boolean = false>(
     id: string,
@@ -951,6 +958,7 @@ export class TheTVDB {
    * @param id The episode `id`.
    * @param language The episode `language`.
    * @returns Single episode translation record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/translations/ Docs}
    */
   public async episodeWithTranslation(id: string, language: string): Promise<GetEpisodeWithTranslation> {
     return await this.fetcher<GetEpisodeWithTranslation>(`${this.api}/v4/episodes/${id}/translations/${language}`);
@@ -959,6 +967,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of episode records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/episodes/ Docs}
    */
   public async episodes(page?: string): Promise<GetEpisodes> {
     let endpoint = this.api + '/v4/episodes';
@@ -970,6 +979,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of gender records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/genders/ Docs}
    */
   public async genders(): Promise<GetGenders> {
     return await this.fetcher<GetGenders>(`${this.api}/v4/genders`);
@@ -978,6 +988,7 @@ export class TheTVDB {
   /**
    * @param id The genre `id`.
    * @returns Single genre record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/genres/byid/ Docs}
    */
   public async genreById(id: string): Promise<GetGenreById> {
     return await this.fetcher<GetGenreById>(`${this.api}/v4/genres/${id}`);
@@ -985,6 +996,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of genre records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/genres/genres/ Docs}
    */
   public async genres(): Promise<GetGenres> {
     return await this.fetcher<GetGenres>(`${this.api}/v4/genres`);
@@ -992,6 +1004,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of inspiration types records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/inspirationtypes/ Docs}
    */
   public async inspirationTypes(): Promise<GetInspirationTypes> {
     return await this.fetcher<GetInspirationTypes>(`${this.api}/v4/inspiration/types`);
@@ -999,6 +1012,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of language records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/languages/ Docs}
    */
   public async languages(): Promise<GetLanguages> {
     return await this.fetcher<GetLanguages>(`${this.api}/v4/languages`);
@@ -1007,6 +1021,7 @@ export class TheTVDB {
   /**
    * @param id The list `id`.
    * @returns Single list record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/byid/ Docs}
    */
   public async listById(id: string): Promise<GetListById> {
     return await this.fetcher<GetListById>(`${this.api}/v4/lists/${id}`);
@@ -1015,6 +1030,7 @@ export class TheTVDB {
   /**
    * @param id The list `id`.
    * @returns Single extended list record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/byidextended/ Docs}
    */
   public async listByIdExtended(id: string): Promise<GetListByIdExtended> {
     return await this.fetcher<GetListByIdExtended>(`${this.api}/v4/lists/${id}/extended`);
@@ -1023,6 +1039,7 @@ export class TheTVDB {
   /**
    * @param slug The list `slug`.
    * @returns Single list record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/slug/ Docs}
    */
   public async listBySlug(slug: string): Promise<GetListBySlug> {
     return await this.fetcher<GetListBySlug>(`${this.api}/v4/lists/slug/${slug}`);
@@ -1032,6 +1049,7 @@ export class TheTVDB {
    * @param id The list `id`.
    * @param language The list `language`.
    * @returns Single list translation record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/translations/ Docs}
    */
   public async listWithTranslation(id: string, language: string): Promise<GetListWithTranslation> {
     return await this.fetcher<GetListWithTranslation>(`${this.api}/v4/lists/${id}/translations/${language}`);
@@ -1040,6 +1058,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of list records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/lists/ Docs}
    */
   public async lists(page?: string): Promise<GetLists> {
     let endpoint = `${this.api}/v4/lists`;
@@ -1052,6 +1071,7 @@ export class TheTVDB {
   /**
    * @param id The movie `id`
    * @returns Single movie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/byid/ Docs}
    */
   public async movieById(id: string): Promise<GetMovieById> {
     return await this.fetcher<GetMovieById>(`${this.api}/v4/movies/${id}`);
@@ -1061,6 +1081,7 @@ export class TheTVDB {
    * @param id The movie `id`
    * @param queries An object containing search parameters to restrict the result.
    * @returns Single extended movie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/byidextended/ Docs}
    */
   public async movieByIdExtended<Q extends QueriesMovieExtended>(
     id: string,
@@ -1068,13 +1089,13 @@ export class TheTVDB {
   ): Promise<GetMovieByIdExtended<Q>> {
     const url = this.createURL(`/v4/movies/${id}/extended`);
     const endpoint = this.createQuery(url, queries);
-
     return await this.fetcher<GetMovieByIdExtended<Q>>(endpoint);
   }
 
   /**
    * @param slug The movie `slug`.
    * @returns Single movie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/slug/ Docs}
    */
   public async movieBySlug(slug: string): Promise<GetMovieBySlug> {
     return await this.fetcher<GetMovieBySlug>(`${this.api}/v4/movies/slug/${slug}`);
@@ -1082,6 +1103,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of movie status records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/statuses/ Docs}
    */
   public async movieStatuses(): Promise<GetMovieStatuses> {
     return await this.fetcher<GetMovieStatuses>(`${this.api}/v4/movies/statuses`);
@@ -1091,6 +1113,7 @@ export class TheTVDB {
    * @param id The movie `id`.
    * @param language The movie `language`.
    * @returns Single movie translation record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/translations/ Docs}
    */
   public async movieWithTranslation(id: string, language: string): Promise<GetMovieWithTranslation> {
     return await this.fetcher<GetMovieWithTranslation>(`${this.api}/v4/movies/${id}/translations/${language}`);
@@ -1099,6 +1122,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of movie records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/movies/ Docs}
    */
   public async movies(page?: string): Promise<GetMovies> {
     let endpoint = `${this.api}/v4/movies`;
@@ -1111,6 +1135,7 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of movie records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/filter/ Docs}
    */
   public async moviesFilter(queries?: QueriesMoviesFilter): Promise<GetMoviesFilter> {
     const url = this.createURL('/v4/movies/filter');
@@ -1121,6 +1146,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of people records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/people/people/ Docs}
    */
   public async people(page?: string): Promise<GetPeople> {
     let endpoint = `${this.api}/v4/people`;
@@ -1133,6 +1159,7 @@ export class TheTVDB {
   /**
    * @param id The people `id`
    * @returns Single people record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/people/byid/ Docs}
    */
   public async peopleById(id: string): Promise<GetPeopleById> {
     return await this.fetcher<GetPeopleById>(`${this.api}/v4/people/${id}`);
@@ -1144,6 +1171,7 @@ export class TheTVDB {
    *   Set to `true` to include the `translations` property in the record.
    *   Defaults to `false` if not provided.
    * @returns Single extended people record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/people/byidextended/ Docs}
    */
   public async peopleByIdExtended<T extends boolean = false>(
     id: string,
@@ -1158,6 +1186,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of people types records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/people/types/ Docs}
    */
   public async peopleTypes(): Promise<GetPeopleTypes> {
     return await this.fetcher<GetPeopleTypes>(`${this.api}/v4/people/types`);
@@ -1167,6 +1196,7 @@ export class TheTVDB {
    * @param id The people `id`.
    * @param language The people `language`.
    * @returns Single people translation record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/people/translations/ Docs}
    */
   public async peopleWithTranslation(id: string, language: string): Promise<GetPeopleWithTranslation> {
     return await this.fetcher<GetPeopleWithTranslation>(`${this.api}/v4/people/${id}/translations/${language}`);
@@ -1175,6 +1205,7 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of query search records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/search/search/ Docs}
    */
   public async search(queries: QueriesSearch): Promise<GetSearch> {
     const endpoint = this.createURL('/v4/search');
@@ -1185,6 +1216,7 @@ export class TheTVDB {
   /**
    * @param id The remote `id`
    * @returns A list of entity records based on remote id.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/search/remote/ Docs}
    */
   public async searchRemoteId(id: string): Promise<GetSearchRemoteId> {
     return await this.fetcher<GetSearchRemoteId>(`${this.api}/v4/search/remoteid/${id}`);
@@ -1193,6 +1225,7 @@ export class TheTVDB {
   /**
    * @param id The season `id`
    * @returns Single season record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/byid/ Docs}
    */
   public async seasonById(id: string): Promise<GetSeasonById> {
     return await this.fetcher<GetSeasonById>(`${this.api}/v4/seasons/${id}`);
@@ -1204,6 +1237,7 @@ export class TheTVDB {
    *   Set to `true` to include the `translations` property in the record.
    *   Defaults to `false` if not provided.
    * @returns Single extended season record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/byidextended/ Docs}
    */
   public async seasonByIdExtended<T extends boolean = false>(
     id: string,
@@ -1218,6 +1252,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of season types records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/types/ Docs}
    */
   public async seasonTypes(): Promise<GetSeasonTypes> {
     return await this.fetcher<GetSeasonTypes>(`${this.api}/v4/seasons/types`);
@@ -1227,6 +1262,7 @@ export class TheTVDB {
    * @param id The season `id`.
    * @param language The season `language`.
    * @returns Single season translation record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/translations/ Docs}
    */
   public async seasonWithTranslation(id: string, language: string): Promise<GetSeasonWithTranslation> {
     return await this.fetcher<GetSeasonWithTranslation>(`${this.api}/v4/seasons/${id}/translations/${language}`);
@@ -1235,6 +1271,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of seasons records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/seasons/ Docs}
    */
   public async seasons(page?: string): Promise<GetSeasons> {
     let endpoint = `${this.api}/v4/seasons`;
@@ -1247,6 +1284,7 @@ export class TheTVDB {
   /**
    * @param id The serie `id`
    * @returns Single serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byid/ Docs}
    */
   public async serieById(id: string): Promise<GetSerieById> {
     return await this.fetcher<GetSerieById>(`${this.api}/v4/series/${id}`);
@@ -1256,6 +1294,7 @@ export class TheTVDB {
    * @param id The serie `id`
    * @param queries An object containing search parameters to restrict the result.
    * @returns Single serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byidartworks/ Docs}
    */
   public async serieByIdArtworks(id: string, queries?: QueriesSerieArtworks): Promise<GetSerieByIdArtworks> {
     const url = this.createURL(`/v4/series/${id}/artworks`);
@@ -1268,6 +1307,7 @@ export class TheTVDB {
    * @param id The serie `id`
    * @param queries An object containing search parameters to restrict the result.
    * @returns Single extended serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byidextended/ Docs}
    */
   public async serieByIdExtended<Q extends QueriesSerieExtended>(
     id: string,
@@ -1282,6 +1322,7 @@ export class TheTVDB {
   /**
    * @param id The serie `id`
    * @returns Single serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byidnextaired/ Docs}
    */
   public async serieByIdNextAired(id: string): Promise<GetSerieByIdNextAired> {
     return await this.fetcher<GetSerieByIdNextAired>(`${this.api}/v4/series/${id}/nextAired`);
@@ -1290,6 +1331,7 @@ export class TheTVDB {
   /**
    * @param slug The serie `slug`.
    * @returns Single serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/slug/ Docs}
    */
   public async serieBySlug(slug: string): Promise<GetSerieBySlug> {
     return await this.fetcher<GetSerieBySlug>(`${this.api}/v4/series/slug/${slug}`);
@@ -1299,6 +1341,7 @@ export class TheTVDB {
    * @param paths An object containing the `id` and `seasonType` of the serie.
    * @param queries An object containing query parameters to restrict the result.
    * @returns Episodes from the specified season type in a serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/episodes/ Docs}
    */
   public async serieEpisodes(paths: PathsSerieEpisodes, queries?: QueriesSerieEpisodes): Promise<GetSerieEpisodes> {
     const url = this.createURL(`/v4/series/${paths.id}/episodes/${paths.seasonType}`);
@@ -1310,6 +1353,7 @@ export class TheTVDB {
    * @param paths An object containing the `id` and `seasonType` of the serie.
    * @param page Restrict results to a specific page.
    * @returns Episodes from the specified season type and language in a serie record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/episodeslanguage/ Docs}
    */
   public async serieEpisodesWithLanguage(
     paths: PathsSerieEpisodesLanguage,
@@ -1324,6 +1368,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of serie status records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/statuses/ Docs}
    */
   public async serieStatuses(): Promise<GetSerieStatuses> {
     return await this.fetcher<GetSerieStatuses>(`${this.api}/v4/series/statuses`);
@@ -1333,6 +1378,7 @@ export class TheTVDB {
    * @param id The serie `id`.
    * @param language The serie `language`.
    * @returns Single serie translation record.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/translations/ Docs}
    */
   public async serieWithTranslation(id: string, language: string): Promise<GetSerieWithTranslation> {
     return await this.fetcher<GetSerieWithTranslation>(`${this.api}/v4/series/${id}/translations/${language}`);
@@ -1341,6 +1387,7 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of series records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/series/ Docs}
    */
   public async series(page?: string): Promise<GetSeries> {
     let endpoint = `${this.api}/v4/series`;
@@ -1353,6 +1400,7 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of series records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/series/filter/ Docs}
    */
   public async seriesFilter(queries?: QueriesSeriesFilter): Promise<GetSeriesFilter> {
     const url = this.createURL('/v4/series/filter');
@@ -1363,6 +1411,7 @@ export class TheTVDB {
 
   /**
    * @returns A list of source types records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/sourcestypes/ Docs}
    */
   public async sourcesTypes(): Promise<GetSourcesTypes> {
     return await this.fetcher<GetSourcesTypes>(`${this.api}/v4/sources/types`);
@@ -1371,6 +1420,7 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of updated records.
+   * @see {@link https://untidy-thetvdb.netlify.app/api/updates/ Docs}
    */
   public async updates(queries: QueriesUpdates): Promise<GetUpdates> {
     const url = this.createURL('/v4/updates');
