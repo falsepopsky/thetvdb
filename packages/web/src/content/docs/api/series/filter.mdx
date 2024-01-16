@@ -1,0 +1,143 @@
+---
+title: seriesFilter
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/filter'} />
+
+This method returns a list of series records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesFilter), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params                | Type                                                         | Required | Description                              |
+| --------------------- | ------------------------------------------------------------ | :------: | ---------------------------------------- |
+| queries               | `object`                                                     | Optional | Search parameters to restrict the result |
+| queries.country       | `string`                                                     | Optional | Country of origin                        |
+| queries.lang          | `string`                                                     | Optional | Original language                        |
+| queries.company       | `string`                                                     | Optional | Production company `id`                  |
+| queries.contentRating | `string`                                                     | Optional | Content rating `id`                      |
+| queries.genre         | `string`                                                     | Optional | Genre `id`                               |
+| queries.sort          | `string:` **score**, **firstAired**, **name**, **lastAired** | Optional | Sort by results                          |
+| queries.sortType      | `string:` **asc**, **desc**                                  | Optional | Sort by type                             |
+| queries.status        | `string:` **1**, **2**, **3**                                | Optional | Status of the record                     |
+| queries.year          | `string`                                                     | Optional | Release year                             |
+| queries.page          | `string`                                                     | Optional | Resctrict to a specific page             |
+
+## Examples
+
+### Filter without queries
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.seriesFilter();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 70327,
+      name: 'Buffy the Vampire Slayer',
+      slug: 'buffy-the-vampire-slayer',
+      image: 'https://artworks.thetvdb.com/banners/posters/70327-1.jpg',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series/filter?page=0',
+    next: 'https://api4.thetvdb.com/v4/series/filter?page=1',
+    total_items: 149693,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Filter by country and language
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.seriesFilter({ country: 'usa', lang: 'eng' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 70327,
+      name: 'Buffy the Vampire Slayer',
+      slug: 'buffy-the-vampire-slayer',
+      image: 'https://artworks.thetvdb.com/banners/posters/70327-1.jpg',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&page=0',
+    next: 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&page=1',
+    total_items: 37254,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Filter by year and sort
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.seriesFilter({ country: 'usa', lang: 'eng', sort: 'lastAired', year: '2023' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 443245,
+      name: 'Demystifying Channeling',
+      slug: 'demystifying-channeling',
+      image: null,
+      nameTranslations: null,
+      overviewTranslations: null,
+      aliases: null,
+      firstAired: '2023-01-01',
+      lastAired: '2023-01-01',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=lastAired&year=2023&page=0',
+    next: 'https://api4.thetvdb.com/v4/series/filter?country=usa&lang=eng&sort=lastAired&year=2023&page=1',
+    total_items: 1118,
+    page_size: 500,
+  },
+};
+```
+
+</Details>

@@ -1,0 +1,45 @@
+---
+title: serieWithTranslation
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/:id/translations/:language'} />
+
+This method returns a single serie translation record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesTranslation), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params   | Type     | Required | Description          |
+| -------- | -------- | :------: | -------------------- |
+| id       | `string` |   Yes    | The serie `id`       |
+| language | `string` |   Yes    | The serie `language` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieWithTranslation('78878', 'eng');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    name: 'FLCL',
+    overview:
+      "Naota's life is confined to going to school and living with his father and grandfather. The usually tranquil life in Mabase is rudely interrupted by the arrival of Haruhara Haruko, who bursts on the scene by running Naota over with her Vespa scooter and hitting him on the head with a Rickenbacker 4003 bass guitar. Later, Naota is shocked to find Haruko working in his house as a live-in maid. Haruko's search for the alien being Atomsk puts her at odds with Medical Mechanica. At the same time, Naota is being watched by Commander Amarao. The Commander believes Haruko is in love with Atomsk and Medical Mechanica is out to conquer the galaxy. The fortuitous circumstances get Naota involved in a three-way battle between Haruko, Amarao and Medical Mechanica.",
+    language: 'eng',
+    aliases: ['Fooly Cooly', 'FLCL: Progressive', 'FLCL: Alternative', 'FLCL: Grunge', 'FLCL: Shoegaze'],
+  },
+};
+```
+
+</Details>

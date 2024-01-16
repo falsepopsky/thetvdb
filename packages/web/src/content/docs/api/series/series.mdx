@@ -1,0 +1,93 @@
+---
+title: series
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series'} />
+
+This method returns a list of series records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getAllSeries), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description                         |
+| ------ | -------- | :------: | ----------------------------------- |
+| page   | `string` | Optional | Restrict results to a specific page |
+
+## Examples
+
+### Without parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.series();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 70327,
+      name: 'Buffy the Vampire Slayer',
+      slug: 'buffy-the-vampire-slayer',
+      image: '/banners/posters/70327-1.jpg',
+      firstAired: '1997-03-10',
+      lastAired: '2003-05-20',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series?page=0',
+    next: 'https://api4.thetvdb.com/v4/series?page=1',
+    total_items: 148556,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restricted results to page 297
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.series('297');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 443383,
+      name: 'Apple Cider Vinegar',
+      slug: 'apple-cider-vinegar',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/series?page=296',
+    self: 'https://api4.thetvdb.com/v4/series?page=297',
+    next: null,
+    total_items: 148556,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
