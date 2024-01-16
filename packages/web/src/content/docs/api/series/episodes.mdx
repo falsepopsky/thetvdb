@@ -1,0 +1,113 @@
+---
+title: serieEpisodes
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/:id/episodes/:seasonType'} />
+
+This method returns a serie with episodes from the specified season type. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesEpisodes), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params                | Type     | Required | Description                                               |
+| --------------------- | -------- | :------: | --------------------------------------------------------- |
+| paths                 | `object` |   Yes    | Path parameters for retrieving the episodes               |
+| paths.id              | `string` |   Yes    | The serie `id`                                            |
+| paths.seasonType      | `string` |   Yes    | The season `type`                                         |
+| queries               | `object` | Optional | Search parameters to restrict the result                  |
+| queries.airDate       | `string` | Optional | The `air date` of the episode (yyyy-mm-dd)                |
+| queries.episodeNumber | `string` | Optional | Restrict results to a specific episode (requires season). |
+| queries.season        | `string` | Optional | Restrict results to a specific season.                    |
+| queries.page          | `string` | Optional | Restrict results to a specific page.                      |
+
+## Examples
+
+### Without queries parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieEpisodes({ id: '75978', seasonType: 'default' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    series: {
+      id: 75978,
+      name: 'Family Guy',
+      slug: 'family-guy',
+      // ...
+    },
+    episodes: [
+      {
+        id: 181165,
+        seriesId: 75978,
+        name: 'Stewie Griffin: The Untold Story',
+        aired: '2006-05-21',
+        // ...
+      },
+      // ...
+    ],
+  },
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series/75978/episodes/default?page=0',
+    next: null,
+    total_items: 468,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restrict episodes to `airDate` query
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieEpisodes({ id: '75978', seasonType: 'default' }, { airDate: '2024-03-06' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    series: {
+      id: 75978,
+      name: 'Family Guy',
+      // ...
+    },
+    episodes: [
+      {
+        id: 10168117,
+        seriesId: 75978,
+        name: 'TBA',
+        aired: '2024-03-06',
+        // ...
+      },
+    ],
+  },
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series/75978/episodes/default?airDate=2024-03-06&page=0',
+    next: null,
+    total_items: 468,
+    page_size: 500,
+  },
+};
+```
+
+</Details>

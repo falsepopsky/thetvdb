@@ -1,0 +1,45 @@
+---
+title: episodeById
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/episodes/:id'} />
+
+This method returns a single episode record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Episodes/getEpisodeBase), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description      |
+| ------ | -------- | :------: | ---------------- |
+| id     | `string` |   Yes    | The episode `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.episodeById('127396');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 127396,
+    seriesId: 73752,
+    name: '黒い騎士',
+    aired: '1997-10-08',
+    runtime: 24,
+    // ...
+  },
+};
+```
+
+</Details>

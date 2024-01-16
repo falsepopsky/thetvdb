@@ -1,0 +1,100 @@
+---
+title: moviesFilter
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/movies/filter'} />
+
+This method returns a list of movie records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Movies/getMoviesFilter), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params                | Type                                          | Required | Description                              |
+| --------------------- | --------------------------------------------- | :------: | ---------------------------------------- |
+| queries               | `object`                                      | Optional | Search parameters to restrict the result |
+| queries.country       | `string`                                      | Optional | Country of origin                        |
+| queries.lang          | `string`                                      | Optional | Original language                        |
+| queries.company       | `string`                                      | Optional | Production company `id`                  |
+| queries.contentRating | `string`                                      | Optional | Content rating `id`                      |
+| queries.genre         | `string`                                      | Optional | Genre `id`                               |
+| queries.sort          | `string:` **score**, **firstAired**, **name** | Optional | Sort by results                          |
+| queries.status        | `string:` **1**, **2**, **3**                 | Optional | Status of the record                     |
+| queries.year          | `string`                                      | Optional | Release year                             |
+| queries.page          | `string`                                      | Optional | Resctrict to a specific page             |
+
+## Examples
+
+### Filter with required parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.moviesFilter({ country: 'usa', lang: 'eng' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'Alita: Battle Angel',
+      slug: 'alita-battle-angel',
+      image: '/banners/movies/1/posters/2170750.jpg',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&page=0',
+    next: 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&page=1',
+    total_items: 111144,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Filter by year and sort
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.moviesFilter({ country: 'usa', lang: 'eng', sort: 'name', year: '2023' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 350328,
+      name: ' A Really Haunted Loud House',
+      slug: 'a-really-haunted-loud-house',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name&year=2023&page=0',
+    next: 'https://api4.thetvdb.com/v4/movies/filter?country=usa&lang=eng&sort=name&year=2023&page=1',
+    total_items: 1519,
+    page_size: 500,
+  },
+};
+```
+
+</Details>

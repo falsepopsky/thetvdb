@@ -1,0 +1,166 @@
+---
+title: movieByIdExtended
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/movies/:id/extended'} />
+
+This method returns a single extended movie record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Movies/getMovieExtended), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params        | Type                        | Required | Description                              |
+| ------------- | --------------------------- | :------: | ---------------------------------------- |
+| id            | `string`                    |   Yes    | The movie `id`                           |
+| queries       | `object`                    | Optional | Search parameters to restrict the result |
+| queries.meta  | `string`: `translations`    | Optional | Include `translations`                   |
+| queries.short | `string`: `true` or `false` | Optional | Reduce the payload response              |
+
+## Examples
+
+### Without queries parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.movieByIdExtended('12586');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 12586,
+    name: '超時空要塞マクロス 愛・おぼえていますか',
+    slug: 'macross-do-you-remember-love',
+    image: 'https://artworks.thetvdb.com/banners/movies/12586/posters/12586.jpg',
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Include translation information in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.movieByIdExtended('12586', { meta: 'translations' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 12586,
+    translations: {
+      nameTranslations: [
+        {
+          name: 'Macross - Do You Remember Love?',
+          language: 'ita',
+        },
+        // ...
+      ],
+      overviewTranslations: [
+        {
+          overview:
+            '地球に異星人の巨大宇宙船が漂着してから、10年後の2009年。宇宙では男だけのゼントラーディ軍と女だけのメルトランディ軍との、巨人族同士の戦いが続き、その余波を受けて地球は破滅された。修復された巨大宇宙船、マクロスに乗った６万人弱の人々だけが、かろうじて地球を脱出。その中では統合軍の少年パイロット、一条輝と、戦闘管制官の早瀬未沙、そしてアイドル歌手のリン・ミンメイの微妙な三角関係も始まっていた。そしてミンメイの歌が、巨人族の心に文化の記憶を呼び覚ました時、二大勢力はその力のバランスを崩し始めていく……。',
+          language: 'jpn',
+          isPrimary: true,
+        },
+        // ...
+      ],
+      aliases: null,
+    },
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Reduce the payload
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.movieByIdExtended('12586', { short: 'true' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 12586,
+    slug: 'macross-do-you-remember-love',
+    trailers: null,
+    artworks: null,
+    characters: null,
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Reduce the payload and include `translation` in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.movieByIdExtended('12586', { meta: 'translations', short: 'true' });
+```
+
+:::caution
+
+**Please be aware of a known bug:** When using the `meta` and `short` query parameters with this endpoint, the response payload does not decrease as expected. This issue has been reported [here](https://github.com/thetvdb/v4-api/issues/292).
+
+:::
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 12586,
+    translations: {
+      nameTranslations: [
+        {
+          name: 'Macross - Do You Remember Love?',
+          language: 'ita',
+        },
+        // ...
+      ],
+      overviewTranslations: [
+        {
+          overview:
+            '地球に異星人の巨大宇宙船が漂着してから、10年後の2009年。宇宙では男だけのゼントラーディ軍と女だけのメルトランディ軍との、巨人族同士の戦いが続き、その余波を受けて地球は破滅された。修復された巨大宇宙船、マクロスに乗った６万人弱の人々だけが、かろうじて地球を脱出。その中では統合軍の少年パイロット、一条輝と、戦闘管制官の早瀬未沙、そしてアイドル歌手のリン・ミンメイの微妙な三角関係も始まっていた。そしてミンメイの歌が、巨人族の心に文化の記憶を呼び覚ました時、二大勢力はその力のバランスを崩し始めていく……。',
+          language: 'jpn',
+          isPrimary: true,
+        },
+        // ...
+      ],
+      aliases: null,
+    },
+    // ...
+  },
+};
+```
+
+</Details>

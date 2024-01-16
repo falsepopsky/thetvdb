@@ -1,0 +1,46 @@
+---
+title: inspirationTypes
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/inspiration/types'} />
+
+This method returns a list of inspiration types records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/InspirationTypes/getAllInspirationTypes), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.inspirationTypes();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'Historical Event',
+      description:
+        'Do not enter fictional events. Only actual historical events are allowed. Take a broad approach when selecting an event. For example, Flags of Our Fathers should reference <a href="https://en.wikipedia.org/wiki/World_War_II">World War II</a> instead of <a href="https://en.wikipedia.org/wiki/Raising_the_Flag_on_Iwo_Jima">Raising the Flag On Iwo Jima</a>.',
+      reference_name: 'Wikipedia',
+      url: 'https://en.wikipedia.org/wiki/',
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

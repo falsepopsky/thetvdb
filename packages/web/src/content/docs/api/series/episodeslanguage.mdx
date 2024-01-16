@@ -1,0 +1,109 @@
+---
+title: serieEpisodesWithLanguage
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/:id/episodes/:seasonType/:language'} />
+
+This method returns a serie with episodes from the specified season type and language. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesSeasonEpisodesTranslated), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params           | Type     | Required | Description                                 |
+| ---------------- | -------- | :------: | ------------------------------------------- |
+| paths            | `object` |   Yes    | Path parameters for retrieving the episodes |
+| paths.id         | `string` |   Yes    | The serie `id`                              |
+| paths.seasonType | `string` |   Yes    | The season `type`                           |
+| paths.language   | `string` |   Yes    | The serie `language`                        |
+| page             | `string` | Optional | Restrict results to a specific page.        |
+
+## Examples
+
+### Without page parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieEpisodesWithLanguage({ id: '71663', seasonType: 'official', language: 'eng' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 71663,
+    name: 'The Simpsons',
+    episodes: [
+      {
+        id: 4350173,
+        seriesId: 71663,
+        name: 'Good Night',
+        aired: '1987-04-19',
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/series/71663/episodes/official/eng?page=0',
+    next: 'https://api4.thetvdb.com/v4/series/71663/episodes/official/eng?page=1',
+    total_items: 827,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restricted results to page 1
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieEpisodesWithLanguage({ id: '71663', seasonType: 'official', language: 'spa' }, '1');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 71663,
+    name: 'The Simpsons',
+    slug: 'the-simpsons',
+    episodes: [
+      {
+        id: 420653,
+        seriesId: 71663,
+        name: 'En el nombre del abuelo',
+        aired: '2009-03-22',
+        runtime: 25,
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/series/71663/episodes/official/spa?page=0',
+    self: 'https://api4.thetvdb.com/v4/series/71663/episodes/official/spa?page=1',
+    next: null,
+    total_items: 827,
+    page_size: 500,
+  },
+};
+
+```
+
+</Details>

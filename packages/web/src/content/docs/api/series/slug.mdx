@@ -1,0 +1,44 @@
+---
+title: serieBySlug
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/slug/:slug'} />
+
+This method returns a single serie record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesBaseBySlug), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description      |
+| ------ | -------- | :------: | ---------------- |
+| slug   | `string` |   Yes    | The serie `slug` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieBySlug('yu-gi-oh');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 113561,
+    name: '遊☆戯☆王',
+    slug: 'yu-gi-oh',
+    image: 'https://artworks.thetvdb.com/banners/posters/113561-4.jpg',
+    // ...
+  },
+};
+```
+
+</Details>

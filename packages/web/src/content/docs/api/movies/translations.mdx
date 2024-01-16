@@ -1,0 +1,44 @@
+---
+title: movieWithTranslation
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/movies/:id/translations/:language'} />
+
+This method returns a single movie translation record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Movies/getMovieTranslation), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params   | Type     | Required | Description          |
+| -------- | -------- | :------: | -------------------- |
+| id       | `string` |   Yes    | The movie `id`       |
+| language | `string` |   Yes    | The movie `language` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.movieWithTranslation('12586', 'spa');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    name: 'Macross: ¿Recuerdas el amor?',
+    overview:
+      'Una raza alienígena, los Zentraedi, atraviesan la galaxia con destino a la Tierra. Con un ejército de naves que se cuenta por millones y una tecnología mucho más avanzada que la de los humanos, los Zentraedi no necesitarán demasiado tiempo para acabar con la raza humana y recuperar una de sus naves, que se estrelló en el planeta tiempo atrás. Los humanos no tienen mucho donde escoger para escaparse de su aniquilación, así que deciden salvar a los habitantes de la isla donde cayó "Macross", la nave alienígena, usándola para abandonar el planeta, dirigiéndose más allá de los límites del Sistema Solar. Siendo los Zentraedi los nuevos amos del planeta, sólo el tiempo dirá si alguna vez podrán volver a la Tierra y vencerles.',
+    language: 'spa',
+  },
+};
+```
+
+</Details>

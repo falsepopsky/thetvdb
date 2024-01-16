@@ -1,0 +1,42 @@
+---
+title: listBySlug
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/lists/slug/:slug'} />
+
+This method returns a single list record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Lists/getListBySlug), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description     |
+| ------ | -------- | :------: | --------------- |
+| slug   | `string` |   Yes    | The list `slug` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.listBySlug('1001');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 1,
+    name: 'Scooby-Doo',
+    // ...
+  },
+};
+```
+
+</Details>

@@ -10,12 +10,11 @@ export default {
     '^(\\.{1,2}/.*)\\.(m)?js$': '$1',
   },
   extensionsToTreatAsEsm: ['.ts'],
-  setupFiles: ['dotenv/config'],
   setupFilesAfterEnv: ['./jest.setup.js'],
   testTimeout: 5000,
   testMatch: ['**/?(*.)+(spec|test).+(ts|js)'],
   transform: {
     '^.+\\.m?[tj]s?$': '@swc/jest',
   },
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/**/playground.ts'],
+  collectCoverageFrom: ['packages/api/src/*.ts'],
 };

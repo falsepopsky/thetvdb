@@ -1,0 +1,93 @@
+---
+title: lists
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/lists'} />
+
+This method returns a list of list records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Lists/getAllLists), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description                         |
+| ------ | -------- | :------: | ----------------------------------- |
+| page   | `string` | Optional | Restrict results to a specific page |
+
+## Examples
+
+### Without parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.lists();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'Scooby-Doo',
+      overview:
+        'The following is a list of the various media from the Scooby-Doo franchise which includes series, films and specials.',
+      url: '1001',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/lists?page=0',
+    next: 'https://api4.thetvdb.com/v4/lists?page=1',
+    total_items: 4927,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restricted results to page 7
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.lists('7');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 14374,
+      name: 'Chateau',
+      overview: '',
+      url: '14374',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/lists?page=6',
+    self: 'https://api4.thetvdb.com/v4/lists?page=7',
+    next: 'https://api4.thetvdb.com/v4/lists?page=8',
+    total_items: 4969,
+    page_size: 500,
+  },
+};
+```
+
+</Details>

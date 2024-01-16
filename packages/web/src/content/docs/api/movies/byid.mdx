@@ -1,0 +1,43 @@
+---
+title: movieById
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/movies/:id'} />
+
+This method returns a single movie record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Movies/getMovieBase), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description    |
+| ------ | -------- | :------: | -------------- |
+| id     | `string` |   Yes    | The movie `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.movieById('12586');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 12586,
+    name: '超時空要塞マクロス 愛・おぼえていますか',
+    slug: 'macross-do-you-remember-love',
+    // ..
+  },
+};
+```
+
+</Details>

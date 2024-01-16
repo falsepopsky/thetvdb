@@ -1,0 +1,58 @@
+---
+title: artworkTypes
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/artwork/types'} />
+
+This method returns a list of artwork status records. For official documentation of the [endpoint](https://thetvdb.github.io/v4-api/#/Artwork%20Types/getAllArtworkTypes), please refer to the Swagger documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.artworkTypes();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'Banner',
+      recordType: 'series',
+      slug: 'banners',
+      imageFormat: 'JPG',
+      width: 758,
+      height: 140,
+      thumbWidth: 758,
+      thumbHeight: 140,
+    },
+    {
+      id: 2,
+      name: 'Poster',
+      recordType: 'series',
+      slug: 'posters',
+      imageFormat: 'JPG',
+      width: 680,
+      height: 1000,
+      thumbWidth: 340,
+      thumbHeight: 500,
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

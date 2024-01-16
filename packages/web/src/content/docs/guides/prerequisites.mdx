@@ -1,0 +1,22 @@
+---
+title: Prerequisites
+---
+
+To successfully utilize this package, users must meet the following prerequisites:
+
+- **Node.js:** The user must have [Node.js](https://nodejs.org) installed on their system with a
+  minimum version of 18.17.0.
+
+- **ESM:** When consuming this package, add the following line to your `package.json` file:
+
+  ```
+  "type": "module"
+  ```
+
+- **TheTVDB Token:** Obtain a token from the `/login` endpoint of TheTVDB. This token will be required for accessing their API.
+
+  :::tip
+
+  To obtain your token, you first need an API Key from TheTVDB. Then, make a request to the `/login` endpoint to create an authentication token. The token provided by is valid for one month.
+
+  :::

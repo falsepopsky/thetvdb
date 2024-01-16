@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
-      "version": "20.9.0",
+      "version": "20.11.0",
       "nvmVersion": "latest"
     }
   },
@@ -15,6 +15,9 @@
         "esbenp.prettier-vscode",
         "editorconfig.editorconfig",
         "orta.vscode-jest",
+        "bradlc.vscode-tailwindcss",
+        "astro-build.astro-vscode",
+        "unifiedjs.vscode-mdx",
         "pkief.material-icon-theme",
         "github.vscode-github-actions",
         "github.vscode-pull-request-github"

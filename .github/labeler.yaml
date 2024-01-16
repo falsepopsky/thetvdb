@@ -1,11 +1,13 @@
-"📦 core":
-  - "src/**"
+"📦 @untidy/thetvdb":
+  - "packages/api/src/**"
 "📚 docs":
-  - "docs/**"
+  - "packages/web/**"
   - "README.md"
+  - "packages/api/README.md"
 "🧪 tests":
-  - "tests/**"
+  - "packages/api/tests/**"
+  - "mocks/**"
 "⚙️ configs":
   - ".prettierrc"
   - "jest.config.js"
-  - ".eslintrc.json"
+  - ".eslintrc.cjs"

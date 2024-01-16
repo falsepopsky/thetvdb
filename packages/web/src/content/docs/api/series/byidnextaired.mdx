@@ -1,0 +1,44 @@
+---
+title: serieByIdNextAired
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/:id/nextAired'} />
+
+This method returns a single serie record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesNextAired), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description    |
+| ------ | -------- | :------: | -------------- |
+| id     | `string` |   Yes    | The serie `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdNextAired('78878');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 78878,
+    firstAired: '2000-04-26',
+    lastAired: '2023-10-15',
+    nextAired: '',
+    // ...
+  },
+};
+```
+
+</Details>

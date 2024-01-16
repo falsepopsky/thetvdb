@@ -1,72 +1,30 @@
-# @untidy/thetvdb
+# untidy
 
-![thetvdb logo](https://github.com/falsepopsky/thetvdb/blob/main/docs/public/favicon.png)
+Monorepo containing tools for `TheTVDB API`.
 
-## :information_source: About
+![the untidy thetvdb logo](./packages/web/src/assets/favicon.png)
 
-A lightweight and fully-typed client for accessing the TheTVDB API V4 for Node.js. This package
-provides a simple and intuitive interface for querying multiple API endpoints.
+## :package: Packages
 
-> **Note**  
-> This is an unofficial package and is not affiliated with or endorsed by TheTVDB. However, it uses
-> the official TheTVDB API endpoints to retrieve information.
+| packages                                                 | Docs                               |
+| :------------------------------------------------------- | :--------------------------------- |
+| [@untidy/thetvdb](./packages/api/)                       | [Readme](./packages/api/README.md) |
+| [eslint-config-untidy](./packages/eslint-config-untidy/) | `Internal`                         |
+| [@untidy/thetvdb-docs](./packages/web/)                  | `Internal`                         |
 
-## :sparkles: Features
+## :rocket: Contributing
 
-- Access multiple endpoints of the TheTVDB API
-  [(check supported endpoints)](https://github.com/falsepopsky/thetvdb/blob/main/docs/endpoints.md)
-- Built with TypeScript for full typing support
-- Uses the native `fetch` module from Node.js for making HTTP requests
-- ESM only
+For contributing, please refer to our [contributing guidelines](.github/CONTRIBUTING.md).
 
-## :package: Install
+## :book: Code of Conduct
 
-You can install `@untidy/thetvdb` package using your preferred package manager:
+For our code of conduct, please refer to [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
-With npm:
+## :shield: Security
 
-```
-npm install @untidy/thetvdb
-```
-
-With yarn:
-
-```
-yarn add @untidy/thetvdb
-```
-
-With pnpm:
-
-```
-pnpm add @untidy/thetvdb
-```
-
-## :beginner: Usage
-
-`@untidy/thetvdb` is easy to use, simply create an instance of the class with your API token, and
-call any of the available methods to retrieve data from the TheTVDB API.
-
-Example usage:
-
-```javascript
-import { TheTVDB } from '@untidy/thetvdb';
-
-const token = 'your secret jwt token';
-const client = new TheTVDB(token);
-const { data } = await client.getCharacter('64140522');
-
-console.log(data);
-```
-
-## :page_facing_up: Docs
-
-- [API](https://untidy-thetvdb.netlify.app/api)
-- [Supported endpoints](https://untidy-thetvdb.netlify.app/guide/supported-endpoints)
-- [TheTVDB Examples](https://untidy-thetvdb.netlify.app/api/thetvdb)
-- [TheTVDBExtended Examples](https://untidy-thetvdb.netlify.app/api/thetvdb-extended)
+To view our Security Policy, please refer to the [security report system](.github/SECURITY.md).
 
 ## :scroll: License
 
-`@untidy/thetvdb` is licensed under the
-[Apache-2.0](https://github.com/falsepopsky/thetvdb/blob/main/LICENSE) license - © 2023
+`@untidy` and their packages are licensed under the [Apache-2.0](LICENSE) license - © 2024
 [falsepopsky](https://github.com/falsepopsky).

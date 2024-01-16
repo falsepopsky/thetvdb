@@ -1,0 +1,54 @@
+---
+title: searchRemoteId
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/search/remoteid/:id'} />
+
+This method returns a list of entity records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Search/getSearchResultsByRemoteId), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description     |
+| ------ | -------- | :------: | --------------- |
+| id     | `string` |   Yes    | The remote `id` |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.searchRemoteId('42444');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      movie: {
+        id: 14915,
+        name: "Vacanze Di Natale '91",
+        // ...
+      },
+    },
+    {
+      series: {
+        id: 72775,
+        name: '聖闘士星矢',
+        // ...
+      },
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

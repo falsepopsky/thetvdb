@@ -1,0 +1,48 @@
+---
+title: entities
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/entities'} />
+
+This method returns a list of entity types records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Entity%20Types/getEntityTypes), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.entities();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'series',
+      hasSpecials: false,
+    },
+    {
+      id: 2,
+      name: 'season',
+      hasSpecials: false,
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

@@ -1,0 +1,100 @@
+---
+title: companies
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/companies'} />
+
+This method returns a list of companies records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Companies/getAllCompanies), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params | Type     | Required | Description                         |
+| ------ | -------- | :------: | ----------------------------------- |
+| page   | `string` | Optional | Restrict results to a specific page |
+
+## Examples
+
+### Without parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.companies();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: '3sat',
+      slug: '3sat',
+      nameTranslations: ['eng'],
+      overviewTranslations: [],
+      aliases: [],
+      country: 'deu',
+      primaryCompanyType: 1,
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/companies?page=0',
+    next: 'https://api4.thetvdb.com/v4/companies?page=1',
+    total_items: 47500,
+    page_size: 500,
+  },
+};
+```
+
+</Details>
+
+### Restricted results to page 94
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.companies('94');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 48653,
+      name: 'Nutmeg Productions',
+      slug: 'nutmeg-productions',
+      nameTranslations: ['dan', 'eng'],
+      overviewTranslations: [],
+      aliases: [],
+      country: 'dnk',
+      primaryCompanyType: 3,
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: 'https://api4.thetvdb.com/v4/companies?page=93',
+    self: 'https://api4.thetvdb.com/v4/companies?page=94',
+    next: 'https://api4.thetvdb.com/v4/companies?page=95',
+    total_items: 47500,
+    page_size: 500,
+  },
+};
+```
+
+</Details>

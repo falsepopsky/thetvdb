@@ -1,0 +1,236 @@
+---
+title: serieByIdExtended
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/:id/extended'} />
+
+This method returns a single extended serie record. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesExtended), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params        | Type                                       | Required | Description                              |
+| ------------- | ------------------------------------------ | :------: | ---------------------------------------- |
+| id            | `string`                                   |   Yes    | The serie `id`                           |
+| queries       | `object`                                   | Optional | Search parameters to restrict the result |
+| queries.meta  | `string`: **translations** or **episodes** | Optional | Include `translations` or `episodes`     |
+| queries.short | `string`: **true** or **false**            | Optional | Reduce the payload response              |
+
+## Examples
+
+### Without queries parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdExtended('78878');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 78878,
+    name: 'フリクリ',
+    slug: 'flcl',
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Include `translations` property in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdExtended('78878', { meta: 'translations' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 78878,
+    translations: {
+      nameTranslations: [
+        {
+          name: 'FLCL',
+          language: 'deu',
+        },
+        // ...
+      ],
+      overviewTranslations: [
+        {
+          overview:
+            'Noatas ruhiges Leben wird jäh gestört, als sein Bruder als Baseballspieler in die USA geht, dessen Ex-Freundin Naota gegenüber merkwürdige Annäherungsversuche macht und auch noch Haruko auftaucht, die von sich selbst behauptet eine Außerirdische zu sein.',
+          language: 'deu',
+        },
+        // ...
+      ],
+      aliases: ['Fooly Cooly', 'FLCL: Progressive'],
+    },
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Include `episodes` property in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdExtended('78878', { meta: 'episodes' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 78878,
+    episodes: [
+      {
+        id: 8051162,
+        seriesId: 78878,
+        name: 'フリクリ プログレ',
+        aired: '2018-09-28',
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Reduce the payload
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdExtended('327417', { short: 'true' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 327417,
+    name: 'La casa de papel',
+    artworks: null,
+    characters: null,
+    trailers: [
+      {
+        id: 179444,
+        name: 'Trailer',
+        url: 'https://www.youtube.com/watch?v=CEXGstgZMow',
+        language: 'spa',
+        runtime: 0,
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Reduce the payload and include `translations` in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdExtended('78878', { meta: 'translations', short: 'true' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 78878,
+    artworks: null,
+    characters: null,
+    translations: {
+      nameTranslations: [
+        {
+          name: 'FLCL',
+          language: 'deu',
+        },
+        // ...
+      ],
+      overviewTranslations: [
+        {
+          overview:
+            'Noatas ruhiges Leben wird jäh gestört, als sein Bruder als Baseballspieler in die USA geht, dessen Ex-Freundin Naota gegenüber merkwürdige Annäherungsversuche macht und auch noch Haruko auftaucht, die von sich selbst behauptet eine Außerirdische zu sein.',
+          language: 'deu',
+        },
+        // ...
+      ],
+      aliases: ['Fooly Cooly', 'FLCL: Progressive'],
+    },
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Reduce the payload and include `episodes` in the response
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdExtended('78878', { meta: 'episodes', short: 'true' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 78878,
+    episodes: [
+      {
+        id: 8051162,
+        seriesId: 78878,
+        name: 'フリクリ プログレ',
+        aired: '2018-09-28',
+        // ...
+      },
+      // ...
+    ],
+    artworks: null,
+    characters: null,
+    // ...
+  },
+};
+```
+
+</Details>

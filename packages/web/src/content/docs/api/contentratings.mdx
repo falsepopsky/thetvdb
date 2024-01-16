@@ -1,0 +1,47 @@
+---
+title: contentRatings
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/content/ratings'} />
+
+This method returns a list of content ratings records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Content%20Ratings/getAllContentRatings), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.contentRatings();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'ATP',
+      country: 'arg',
+      description: 'Suitable for all audiences',
+      contentType: 'episode',
+      order: 0,
+      fullname: 'ATP',
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

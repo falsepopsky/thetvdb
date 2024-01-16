@@ -1,0 +1,161 @@
+---
+title: serieByIdArtworks
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/series/:id/artworks'} />
+
+This method returns a single serie record with artworks. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Series/getSeriesArtworks), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params       | Type     | Required | Description                              |
+| ------------ | -------- | :------: | ---------------------------------------- |
+| id           | `string` |   Yes    | The serie `id`                           |
+| queries      | `object` | Optional | Search parameters to restrict the result |
+| queries.lang | `string` | Optional | Restrict the `language` for artworks     |
+| queries.type | `string` | Optional | Restrict the `type` for artworks         |
+
+## Examples
+
+### Without queries parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdArtworks('327417');
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 327417,
+    name: 'La casa de papel',
+    artworks: [
+      {
+        id: 62116198,
+        image: 'https://artworks.thetvdb.com/banners/series/327417/backgrounds/5e75f224ac334.jpg',
+        thumbnail: 'https://artworks.thetvdb.com/banners/series/327417/backgrounds/5e75f224ac334_t.jpg',
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+
+```
+
+</Details>
+
+### Restrict artwork selection by `language`
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdArtworks('327417', { lang: 'spa' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 327417,
+    artworks: [
+      {
+        id: 1254142,
+        image: 'https://artworks.thetvdb.com/banners/series/327417/posters/5e824889ad675.jpg',
+        thumbnail: 'https://artworks.thetvdb.com/banners/series/327417/posters/5e824889ad675_t.jpg',
+        language: 'spa',
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Restrict artwork selection by `type`
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdArtworks('327417', { type: '3' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 327417,
+    name: 'La casa de papel',
+    artworks: [
+      {
+        id: 62116198,
+        image: 'https://artworks.thetvdb.com/banners/series/327417/backgrounds/5e75f224ac334.jpg',
+        thumbnail: 'https://artworks.thetvdb.com/banners/series/327417/backgrounds/5e75f224ac334_t.jpg',
+        language: null,
+        type: 3,
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+```
+
+</Details>
+
+### Specifying artwork `type` and `language`
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.serieByIdArtworks('113561', { lang: 'jpn', type: '2' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: {
+    id: 113561,
+    name: '遊☆戯☆王',
+    year: '1998',
+    artworks: [
+      {
+        id: 62971175,
+        image: 'https://artworks.thetvdb.com/banners/v4/series/113561/posters/61e5a3979602d.jpg',
+        thumbnail: 'https://artworks.thetvdb.com/banners/v4/series/113561/posters/61e5a3979602d_t.jpg',
+        language: 'jpn',
+        type: 2,
+        // ...
+      },
+      // ...
+    ],
+    // ...
+  },
+};
+```
+
+</Details>

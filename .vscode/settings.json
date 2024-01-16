@@ -2,9 +2,9 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": true,
-    "source.addMissingImports": true
+    "source.addMissingImports": "always",
+    "source.organizeImports": "always",
+    "source.fixAll": "always"
   },
   "editor.wordWrap": "on",
   "editor.guides.bracketPairs": "active",
@@ -12,10 +12,22 @@
   "npm.scriptExplorerAction": "open",
   "npm.autoDetect": "on",
   "npm.packageManager": "pnpm",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "jest.autoRun": "off",
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*.yml"
+  },
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[mdx]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "never"
+    }
   }
 }

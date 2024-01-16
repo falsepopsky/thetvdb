@@ -1,0 +1,48 @@
+---
+title: genres
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/genres'} />
+
+This method returns a list of genre records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Genres/getAllGenres), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.genres();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 1,
+      name: 'Soap',
+      slug: 'soap',
+    },
+    {
+      id: 2,
+      name: 'Science Fiction',
+      slug: 'science-fiction',
+    },
+    // ...
+  ],
+};
+```
+
+</Details>

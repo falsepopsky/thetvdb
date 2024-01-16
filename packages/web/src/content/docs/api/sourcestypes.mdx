@@ -1,0 +1,47 @@
+---
+title: sourcesTypes
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/sources/types'} />
+
+This method returns a list of source types records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Source%20Types/getAllSourceTypes), please refer to the Swagger
+documentation.
+
+## Parameters
+
+This method does not require any parameters.
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.sourcesTypes();
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      id: 2,
+      name: 'IMDB',
+      slug: 'imdb',
+      prefix: 'https://www.imdb.com/title/',
+      postfix: '/',
+      sort: 4,
+    },
+    // ...
+  ],
+};
+
+```
+
+</Details>

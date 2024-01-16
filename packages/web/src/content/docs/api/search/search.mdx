@@ -1,0 +1,109 @@
+---
+title: search
+---
+
+import Details from '@components/details.astro';
+import Tag from '@components/tag.astro';
+
+<Tag apiPath={'/v4/search'} />
+
+This method returns a list of query search records. For official documentation of the
+[endpoint](https://thetvdb.github.io/v4-api/#/Search/getSearchResults), please refer to the Swagger
+documentation.
+
+## Parameters
+
+| Params              | Type     | Required | Description                                    |
+| ------------------- | -------- | :------: | ---------------------------------------------- |
+| queries             | `object` |   Yes    | Search parameters to restrict the result       |
+| queries.company     | `string` | Optional | Restrict results to a company                  |
+| queries.country     | `string` | Optional | Restrict results to a country                  |
+| queries.director    | `string` | Optional | Restrict results to a director                 |
+| queries.language    | `string` | Optional | Restrict results to a language                 |
+| queries.limit       | `string` | Optional | Limit the list of records                      |
+| queries.network     | `string` | Optional | Restrict results to a specific network         |
+| queries.offset      | `string` | Optional | Offset results                                 |
+| queries.page        | `string` | Optional | Restrict results to a specific page            |
+| queries.primaryType | `string` | Optional | Restrict results to a specific type of company |
+| queries.query       | `string` |   Yes    | Restrict results to a specific title           |
+| queries.remote_id   | `string` | Optional | Restrict results to a specific remote `id`     |
+| queries.type        | `string` | Optional | Restrict results to a type                     |
+| queries.year        | `string` | Optional | Restrict results to a year                     |
+
+## Examples
+
+### With required queries parameters
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.search({ query: 'saint seiya' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      objectID: 'series-426391',
+      aliases: ['Saint Seiya Omega'],
+      country: 'jpn',
+      id: 'series-426391',
+      image_url: 'https://artworks.thetvdb.com/banners/v4/series/426391/posters/64a223400b291.jpg',
+      name: 'Saint Seiya Omega - 聖闘士星矢Ω',
+      first_air_time: '2012-04-01',
+      // ...
+    },
+    // ...
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/search?query=saint%20seiya&limit=50&page=0',
+    next: null,
+    total_items: 17,
+    page_size: 50,
+  },
+};
+```
+
+</Details>
+
+### Restriction of results to `type` and `limit`
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+const data = await client.search({ query: 'yu gi oh', type: 'series', limit: '1' });
+```
+
+<Details>
+
+```js
+{
+  status: 'success',
+  data: [
+    {
+      objectID: 'series-253797',
+      country: 'usa',
+      id: 'series-253797',
+      image_url: 'https://artworks.thetvdb.com/banners/posters/253797-1.jpg',
+      name: 'Yu-Gi-Oh!: The Abridged Series',
+      first_air_time: '2006-07-14',
+      // ...
+    },
+  ],
+  links: {
+    prev: null,
+    self: 'https://api4.thetvdb.com/v4/search?query=yu gi oh&type=series&limit=1&page=0',
+    next: 'https://api4.thetvdb.com/v4/search?query=yu gi oh&type=series&limit=1&page=1',
+    total_items: 12,
+    page_size: 1,
+  },
+};
+```
+
+</Details>
