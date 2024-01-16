@@ -13,26 +13,26 @@ documentation.
 
 ## Parameters
 
-| params                  | type     | Required | Description                                    |
-| ----------------------- | -------- | :------: | ---------------------------------------------- |
-| queryParams             | `object` |   Yes    | Search parameters to restrict the result       |
-| queryParams.company     | `string` | Optional | Restrict results to a company                  |
-| queryParams.country     | `string` | Optional | Restrict results to a country                  |
-| queryParams.director    | `string` | Optional | Restrict results to a director                 |
-| queryParams.language    | `string` | Optional | Restrict results to a language                 |
-| queryParams.limit       | `string` | Optional | Limit the list of records                      |
-| queryParams.network     | `string` | Optional | Restrict results to a specific network         |
-| queryParams.offset      | `string` | Optional | Offset results                                 |
-| queryParams.page        | `string` | Optional | Restrict results to a specific page            |
-| queryParams.primaryType | `string` | Optional | Restrict results to a specific type of company |
-| queryParams.query       | `string` |   Yes    | Restrict results to a specific title           |
-| queryParams.remote_id   | `string` | Optional | Restrict results to a specific remote `id`     |
-| queryParams.type        | `string` | Optional | Restrict results to a type                     |
-| queryParams.year        | `string` | Optional | Restrict results to a year                     |
+| Params              | Type     | Required | Description                                    |
+| ------------------- | -------- | :------: | ---------------------------------------------- |
+| queries             | `object` |   Yes    | Search parameters to restrict the result       |
+| queries.company     | `string` | Optional | Restrict results to a company                  |
+| queries.country     | `string` | Optional | Restrict results to a country                  |
+| queries.director    | `string` | Optional | Restrict results to a director                 |
+| queries.language    | `string` | Optional | Restrict results to a language                 |
+| queries.limit       | `string` | Optional | Limit the list of records                      |
+| queries.network     | `string` | Optional | Restrict results to a specific network         |
+| queries.offset      | `string` | Optional | Offset results                                 |
+| queries.page        | `string` | Optional | Restrict results to a specific page            |
+| queries.primaryType | `string` | Optional | Restrict results to a specific type of company |
+| queries.query       | `string` |   Yes    | Restrict results to a specific title           |
+| queries.remote_id   | `string` | Optional | Restrict results to a specific remote `id`     |
+| queries.type        | `string` | Optional | Restrict results to a type                     |
+| queries.year        | `string` | Optional | Restrict results to a year                     |
 
 ## Examples
 
-### With required queryParams parameters
+### With required queries parameters
 
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';

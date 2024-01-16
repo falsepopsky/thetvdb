@@ -13,17 +13,17 @@ documentation.
 
 ## Parameters
 
-| params             | type     | Required | Description                                                  |
-| ------------------ | -------- | :------: | ------------------------------------------------------------ |
-| queryParams        | `object` |   Yes    | Search parameters to restrict the result                     |
-| queryParams.since  | `string` |   Yes    | The timestamp to get updates in epoch Unix format in seconds |
-| queryParams.type   | `string` | Optional | Restrict results to a specific type of entities              |
-| queryParams.action | `string` | Optional | Restrict results to a specific type of action                |
-| queryParams.page   | `string` | Optional | Restrict results to a specific page                          |
+| Params         | Type     | Required | Description                                                  |
+| -------------- | -------- | :------: | ------------------------------------------------------------ |
+| queries        | `object` |   Yes    | Search parameters to restrict the result                     |
+| queries.since  | `string` |   Yes    | The timestamp to get updates in epoch Unix format in seconds |
+| queries.type   | `string` | Optional | Restrict results to a specific type of entities              |
+| queries.action | `string` | Optional | Restrict results to a specific type of action                |
+| queries.page   | `string` | Optional | Restrict results to a specific page                          |
 
 ## Examples
 
-### With required queryParams parameters
+### With required queries parameters
 
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';

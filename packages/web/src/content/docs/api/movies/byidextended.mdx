@@ -13,16 +13,16 @@ documentation.
 
 ## Parameters
 
-| params            | type                        | Required | Description                              |
-| ----------------- | --------------------------- | :------: | ---------------------------------------- |
-| id                | `string`                    |   Yes    | The movie `id`                           |
-| queryParams       | `object`                    | Optional | Search parameters to restrict the result |
-| queryParams.meta  | `string`: `translations`    | Optional | Include `translation`                    |
-| queryParams.short | `string`: `true` or `false` | Optional | Reduce the payload response              |
+| Params        | Type                        | Required | Description                              |
+| ------------- | --------------------------- | :------: | ---------------------------------------- |
+| id            | `string`                    |   Yes    | The movie `id`                           |
+| queries       | `object`                    | Optional | Search parameters to restrict the result |
+| queries.meta  | `string`: `translations`    | Optional | Include `translations`                   |
+| queries.short | `string`: `true` or `false` | Optional | Reduce the payload response              |
 
 ## Examples
 
-### Without queryParams parameters
+### Without queries parameters
 
 ```js {4}
 import { TheTVDB } from '@untidy/thetvdb';
