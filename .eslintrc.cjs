@@ -13,5 +13,5 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json', './packages/web/tsconfig.json', './packages/api/tsconfig.json'],
   },
-  ignorePatterns: ['dist', 'examples', '*.cjs', 'jest.*.js'],
+  ignorePatterns: ['dist', 'examples', '*.cjs', 'jest.*.js', 'env.d.ts'],
 };
