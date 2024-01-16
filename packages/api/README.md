@@ -2,7 +2,7 @@
 
 ![thetvdb logo](https://github.com/falsepopsky/thetvdb/blob/main/packages/web/src/assets/favicon.png)
 
-## :information_source: About
+## ℹ️ About
 
 A lightweight and fully-typed client for accessing the TheTVDB API V4 for Node.js. This package
 provides a simple and intuitive interface for querying multiple API endpoints.
@@ -11,7 +11,7 @@ provides a simple and intuitive interface for querying multiple API endpoints.
 > This is an unofficial package and is not affiliated with or endorsed by TheTVDB. However, it uses
 > the official TheTVDB API endpoints to retrieve information.
 
-## :sparkles: Features
+## ✨ Features
 
 - Access multiple endpoints of the TheTVDB API
   [(check supported endpoints)](https://untidy-thetvdb.netlify.app/guides/supported-endpoints)
@@ -19,7 +19,7 @@ provides a simple and intuitive interface for querying multiple API endpoints.
 - Uses the native `fetch` module from Node.js for making HTTP requests
 - ESM only
 
-## :package: Install
+## 📦 Install
 
 You can install `@untidy/thetvdb` package using your preferred package manager:
 
@@ -41,7 +41,7 @@ With pnpm:
 pnpm add @untidy/thetvdb
 ```
 
-## :beginner: Usage
+## 🔰 Usage
 
 `@untidy/thetvdb` is easy to use, simply create an instance of the TheTVDB class with your API
 token, and call any of the available methods to retrieve data from the TheTVDB API.
@@ -57,14 +57,14 @@ const { data } = await client.characterById('64140522');
 console.log(data);
 ```
 
-## :page_facing_up: Docs
+## 📄 Docs
 
 - [API](https://untidy-thetvdb.netlify.app/api)
 - [Supported endpoints](https://untidy-thetvdb.netlify.app/guides/supported-endpoints)
 - [Examples](https://untidy-thetvdb.netlify.app/guides/examples)
 
-## :scroll: License
+## 📜 License
 
 `@untidy/thetvdb` is licensed under the
-[Apache-2.0](https://github.com/falsepopsky/thetvdb/blob/main/LICENSE) license - © 2024
-[falsepopsky](https://github.com/falsepopsky).
+[Apache-2.0](https://github.com/falsepopsky/thetvdb/blob/main/packages/api/LICENSE) license - ©
+2023, 2024 [falsepopsky](https://github.com/falsepopsky).
