@@ -1,6 +1,6 @@
 # @untidy/thetvdb
 
-![thetvdb logo](https://github.com/falsepopsky/thetvdb/blob/main/docs/public/favicon.png)
+![thetvdb logo](https://github.com/falsepopsky/thetvdb/blob/main/packages/web/src/assets/favicon.png)
 
 ## :information_source: About
 
@@ -14,7 +14,7 @@ provides a simple and intuitive interface for querying multiple API endpoints.
 ## :sparkles: Features
 
 - Access multiple endpoints of the TheTVDB API
-  [(check supported endpoints)](https://github.com/falsepopsky/thetvdb/blob/main/docs/endpoints.md)
+  [(check supported endpoints)](https://untidy-thetvdb.netlify.app/guides/supported-endpoints)
 - Built with TypeScript for full typing support
 - Uses the native `fetch` module from Node.js for making HTTP requests
 - ESM only
@@ -43,17 +43,16 @@ pnpm add @untidy/thetvdb
 
 ## :beginner: Usage
 
-`@untidy/thetvdb` is easy to use, simply create an instance of the class with your API token, and
-call any of the available methods to retrieve data from the TheTVDB API.
+`@untidy/thetvdb` is easy to use, simply create an instance of the TheTVDB class with your API
+token, and call any of the available methods to retrieve data from the TheTVDB API.
 
 Example usage:
 
 ```javascript
 import { TheTVDB } from '@untidy/thetvdb';
 
-const token = 'your secret jwt token';
-const client = new TheTVDB(token);
-const { data } = await client.getCharacter('64140522');
+const client = new TheTVDB('access token');
+const { data } = await client.characterById('64140522');
 
 console.log(data);
 ```
@@ -61,12 +60,11 @@ console.log(data);
 ## :page_facing_up: Docs
 
 - [API](https://untidy-thetvdb.netlify.app/api)
-- [Supported endpoints](https://untidy-thetvdb.netlify.app/guide/supported-endpoints)
-- [TheTVDB Examples](https://untidy-thetvdb.netlify.app/api/thetvdb)
-- [TheTVDBExtended Examples](https://untidy-thetvdb.netlify.app/api/thetvdb-extended)
+- [Supported endpoints](https://untidy-thetvdb.netlify.app/guides/supported-endpoints)
+- [Examples](https://untidy-thetvdb.netlify.app/guides/examples)
 
 ## :scroll: License
 
 `@untidy/thetvdb` is licensed under the
-[Apache-2.0](https://github.com/falsepopsky/thetvdb/blob/main/LICENSE) license - © 2023
+[Apache-2.0](https://github.com/falsepopsky/thetvdb/blob/main/LICENSE) license - © 2024
 [falsepopsky](https://github.com/falsepopsky).
