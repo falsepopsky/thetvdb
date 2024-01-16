@@ -26,5 +26,5 @@ To view our Security Policy, please refer to the [security report system](.githu
 
 ## :scroll: License
 
-`@untidy` and their packages are licensed under the [Apache-2.0](LICENSE) license - © 2023
+`@untidy` and their packages are licensed under the [Apache-2.0](LICENSE) license - © 2024
 [falsepopsky](https://github.com/falsepopsky).
