@@ -5,22 +5,6 @@ title: Getting Started
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import Details from '@components/details.astro';
 
-## Prerequisites
-
-To successfully utilize this package, users must meet the following prerequisites:
-
-- **Node.js:** The user must have [Node.js](https://nodejs.org) installed on their system with a
-  minimum version of 18.16.1.
-
-- **TheTVDB Token:** Use the token provided by the `/login` endpoint from TheTVDB.
-
-:::note
-
-To obtain your token, you first need an API Key from TheTVDB. Then, make a request to the `/login`
-endpoint to create an authentication token. The token is valid for one month.
-
-:::
-
 ## Installation
 
 Use your preferred package manager
@@ -56,14 +40,14 @@ To get started, simply create an instance of the class with your API token:
 ```js
 import { TheTVDB } from '@untidy/thetvdb';
 
-const client = new TheTVDB('your token');
+const client = new TheTVDB('access token');
 ```
 
 Then, call any of the available methods to retrieve data from TheTVDB API. In this case, we retrieve
 specific character information:
 
 ```js
-const data = await client.getCharacter('64140522');
+const data = await client.characterById('64140522');
 ```
 
 <Details>

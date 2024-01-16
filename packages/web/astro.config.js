@@ -21,9 +21,21 @@ export default defineConfig({
         {
           label: 'Guides',
           items: [
-            { label: 'Getting Started', link: '/guides/getting-started/' },
-            { label: 'Supported Endpoints', link: '/guides/supported-endpoints/' },
-            { label: 'FAQ', link: '/guides/faq/' },
+            { label: 'Getting Started', link: '/guides/getting-started' },
+            {
+              label: 'Prerequisites',
+              link: '/guides/prerequisites',
+              badge: {
+                text: 'Important',
+                variant: 'caution',
+              },
+            },
+            {
+              label: 'Examples',
+              link: '/guides/examples',
+            },
+            { label: 'Supported Endpoints', link: '/guides/supported-endpoints' },
+            { label: 'FAQ', link: '/guides/faq' },
           ],
         },
         {

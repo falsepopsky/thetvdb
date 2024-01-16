@@ -165,11 +165,11 @@ declare module 'astro:content' {
 			? {
 					collection: C;
 					slug: ValidContentEntrySlug<C>;
-			  }
+				}
 			: {
 					collection: C;
 					id: keyof DataEntryMap[C];
-			  }
+				}
 	>;
 	// Allow generic `string` to avoid excessive type errors in the config
 	// if `dev` is not running to update as you edit.
@@ -190,169 +190,477 @@ declare module 'astro:content' {
   slug: "api/artwork/byid";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/artwork/byidextended.mdx": {
 	id: "api/artwork/byidextended.mdx";
   slug: "api/artwork/byidextended";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/artwork/statuses.mdx": {
 	id: "api/artwork/statuses.mdx";
   slug: "api/artwork/statuses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/artwork/types.mdx": {
 	id: "api/artwork/types.mdx";
   slug: "api/artwork/types";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/awards/awards.mdx": {
 	id: "api/awards/awards.mdx";
   slug: "api/awards/awards";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/awards/byid.mdx": {
 	id: "api/awards/byid.mdx";
   slug: "api/awards/byid";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/awards/byidextended.mdx": {
 	id: "api/awards/byidextended.mdx";
   slug: "api/awards/byidextended";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/awards/categorybyid.mdx": {
 	id: "api/awards/categorybyid.mdx";
   slug: "api/awards/categorybyid";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/awards/categorybyidextended.mdx": {
 	id: "api/awards/categorybyidextended.mdx";
   slug: "api/awards/categorybyidextended";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"api/characters/byid.mdx": {
-	id: "api/characters/byid.mdx";
-  slug: "api/characters/byid";
+"api/characterbyid.mdx": {
+	id: "api/characterbyid.mdx";
+  slug: "api/characterbyid";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/companies/byid.mdx": {
 	id: "api/companies/byid.mdx";
   slug: "api/companies/byid";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/companies/companies.mdx": {
 	id: "api/companies/companies.mdx";
   slug: "api/companies/companies";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "api/companies/types.mdx": {
 	id: "api/companies/types.mdx";
   slug: "api/companies/types";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"api/content/ratings.mdx": {
-	id: "api/content/ratings.mdx";
-  slug: "api/content/ratings";
+"api/contentratings.mdx": {
+	id: "api/contentratings.mdx";
+  slug: "api/contentratings";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"api/countries/countries.mdx": {
-	id: "api/countries/countries.mdx";
-  slug: "api/countries/countries";
+"api/countries.mdx": {
+	id: "api/countries.mdx";
+  slug: "api/countries";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"api/entities/entities.mdx": {
-	id: "api/entities/entities.mdx";
-  slug: "api/entities/entities";
+"api/entities.mdx": {
+	id: "api/entities.mdx";
+  slug: "api/entities";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"api/episodes/byid.mdx": {
+	id: "api/episodes/byid.mdx";
+  slug: "api/episodes/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/episodes/byidextended.mdx": {
+	id: "api/episodes/byidextended.mdx";
+  slug: "api/episodes/byidextended";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/episodes/episodes.mdx": {
+	id: "api/episodes/episodes.mdx";
+  slug: "api/episodes/episodes";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/episodes/translations.mdx": {
+	id: "api/episodes/translations.mdx";
+  slug: "api/episodes/translations";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/genders.mdx": {
+	id: "api/genders.mdx";
+  slug: "api/genders";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/genres/byid.mdx": {
+	id: "api/genres/byid.mdx";
+  slug: "api/genres/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/genres/genres.mdx": {
+	id: "api/genres/genres.mdx";
+  slug: "api/genres/genres";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "api/index.mdx": {
 	id: "api/index.mdx";
   slug: "api";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"api/inspirationtypes.mdx": {
+	id: "api/inspirationtypes.mdx";
+  slug: "api/inspirationtypes";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/languages.mdx": {
+	id: "api/languages.mdx";
+  slug: "api/languages";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/lists/byid.mdx": {
+	id: "api/lists/byid.mdx";
+  slug: "api/lists/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/lists/byidextended.mdx": {
+	id: "api/lists/byidextended.mdx";
+  slug: "api/lists/byidextended";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/lists/lists.mdx": {
+	id: "api/lists/lists.mdx";
+  slug: "api/lists/lists";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/lists/slug.mdx": {
+	id: "api/lists/slug.mdx";
+  slug: "api/lists/slug";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/lists/translations.mdx": {
+	id: "api/lists/translations.mdx";
+  slug: "api/lists/translations";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/byid.mdx": {
+	id: "api/movies/byid.mdx";
+  slug: "api/movies/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/byidextended.mdx": {
+	id: "api/movies/byidextended.mdx";
+  slug: "api/movies/byidextended";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/filter.mdx": {
+	id: "api/movies/filter.mdx";
+  slug: "api/movies/filter";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/movies.mdx": {
+	id: "api/movies/movies.mdx";
+  slug: "api/movies/movies";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/slug.mdx": {
+	id: "api/movies/slug.mdx";
+  slug: "api/movies/slug";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/statuses.mdx": {
+	id: "api/movies/statuses.mdx";
+  slug: "api/movies/statuses";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/movies/translations.mdx": {
+	id: "api/movies/translations.mdx";
+  slug: "api/movies/translations";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/people/byid.mdx": {
+	id: "api/people/byid.mdx";
+  slug: "api/people/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/people/byidextended.mdx": {
+	id: "api/people/byidextended.mdx";
+  slug: "api/people/byidextended";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "api/people/people.mdx": {
 	id: "api/people/people.mdx";
   slug: "api/people/people";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"guides/example.mdx": {
-	id: "guides/example.mdx";
-  slug: "guides/example";
+"api/people/translations.mdx": {
+	id: "api/people/translations.mdx";
+  slug: "api/people/translations";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"api/people/types.mdx": {
+	id: "api/people/types.mdx";
+  slug: "api/people/types";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/search/remote.mdx": {
+	id: "api/search/remote.mdx";
+  slug: "api/search/remote";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/search/search.mdx": {
+	id: "api/search/search.mdx";
+  slug: "api/search/search";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/seasons/byid.mdx": {
+	id: "api/seasons/byid.mdx";
+  slug: "api/seasons/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/seasons/byidextended.mdx": {
+	id: "api/seasons/byidextended.mdx";
+  slug: "api/seasons/byidextended";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/seasons/seasons.mdx": {
+	id: "api/seasons/seasons.mdx";
+  slug: "api/seasons/seasons";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/seasons/translations.mdx": {
+	id: "api/seasons/translations.mdx";
+  slug: "api/seasons/translations";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/seasons/types.mdx": {
+	id: "api/seasons/types.mdx";
+  slug: "api/seasons/types";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/byid.mdx": {
+	id: "api/series/byid.mdx";
+  slug: "api/series/byid";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/byidartworks.mdx": {
+	id: "api/series/byidartworks.mdx";
+  slug: "api/series/byidartworks";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/byidextended.mdx": {
+	id: "api/series/byidextended.mdx";
+  slug: "api/series/byidextended";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/byidnextaired.mdx": {
+	id: "api/series/byidnextaired.mdx";
+  slug: "api/series/byidnextaired";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/episodes.mdx": {
+	id: "api/series/episodes.mdx";
+  slug: "api/series/episodes";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/episodeslanguage.mdx": {
+	id: "api/series/episodeslanguage.mdx";
+  slug: "api/series/episodeslanguage";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/filter.mdx": {
+	id: "api/series/filter.mdx";
+  slug: "api/series/filter";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/series.mdx": {
+	id: "api/series/series.mdx";
+  slug: "api/series/series";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/slug.mdx": {
+	id: "api/series/slug.mdx";
+  slug: "api/series/slug";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/statuses.mdx": {
+	id: "api/series/statuses.mdx";
+  slug: "api/series/statuses";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/series/translations.mdx": {
+	id: "api/series/translations.mdx";
+  slug: "api/series/translations";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/sourcestypes.mdx": {
+	id: "api/sourcestypes.mdx";
+  slug: "api/sourcestypes";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"api/updates.mdx": {
+	id: "api/updates.mdx";
+  slug: "api/updates";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "guides/faq.mdx": {
 	id: "guides/faq.mdx";
   slug: "guides/faq";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "guides/getting-started.mdx": {
 	id: "guides/getting-started.mdx";
   slug: "guides/getting-started";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"guides/supported-endpoints.md": {
-	id: "guides/supported-endpoints.md";
+"guides/prerequisites.mdx": {
+	id: "guides/prerequisites.mdx";
+  slug: "guides/prerequisites";
+  body: string;
+  collection: "docs";
+  data: any
+} & { render(): Render[".mdx"] };
+"guides/supported-endpoints.mdx": {
+	id: "guides/supported-endpoints.mdx";
   slug: "guides/supported-endpoints";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".md"] };
+  data: any
+} & { render(): Render[".mdx"] };
 "index.mdx": {
 	id: "index.mdx";
   slug: "index";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
-"reference/example.md": {
-	id: "reference/example.md";
-  slug: "reference/example";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".md"] };
 };
 
 	};
@@ -363,5 +671,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = typeof import("../src/content/config");
+	type ContentConfig = never;
 }
