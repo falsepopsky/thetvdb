@@ -3,9 +3,9 @@ import { TheTVDB } from '../src/index.js';
 describe('updates()', () => {
   const client = new TheTVDB('fake token');
 
-  it('throws an error if the queryParams since is not provided', async () => {
+  it('throws an error if the queries since is not provided', async () => {
     await expect(async () => {
-      // @ts-expect-error: Expected a parameter queryParams.since
+      // @ts-expect-error: Expected a parameter queries.since
       await client.updates();
     }).rejects.toThrow('HTTP response status 400 from thetvdb API');
   });

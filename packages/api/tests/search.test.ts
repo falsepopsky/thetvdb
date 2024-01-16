@@ -3,8 +3,8 @@ import { TheTVDB } from '../src/index.js';
 const client = new TheTVDB('fake token');
 
 describe('search()', () => {
-  it('throws an error if no queryParams.query is provided', async () => {
-    // @ts-expect-error: expect a parameter queryParams.query
+  it('throws an error if no queries.query is provided', async () => {
+    // @ts-expect-error: expect a parameter queries.query
     await expect(async () => await client.search()).rejects.toThrow('HTTP response status 400 from thetvdb API.');
   });
 

@@ -249,8 +249,8 @@ describe('serieEpisodes()', () => {
     expect(data.series.episodes).toBeNull();
     expect(Array.isArray(data.series.nameTranslations)).toBe(true);
     expect(data.series.nameTranslations).toHaveLength(2);
-    expect(data.series.nameTranslations[0]).toBe('ces');
-    expect(data.series.nameTranslations[1]).toBe('dan');
+    expect(data.series.nameTranslations?.[0]).toBe('ces');
+    expect(data.series.nameTranslations?.[1]).toBe('dan');
     expect(data.episodes[0]?.id).toBe(181165);
     expect(data.episodes[0]?.name).toBe('Stewie Griffin: The Untold Story');
     expect(links.prev).toBeNull();
@@ -452,7 +452,7 @@ describe('series()', () => {
 });
 
 describe('seriesFilter()', () => {
-  it('returns a successful response without queryParams', async () => {
+  it('returns a successful response without queries', async () => {
     const { status, data, links } = await client.seriesFilter();
 
     expect(status).toBe('success');

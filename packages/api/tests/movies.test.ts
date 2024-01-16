@@ -174,7 +174,7 @@ describe('movies()', () => {
 });
 
 describe('moviesFilter()', () => {
-  it('returns a successful response without queryParams', async () => {
+  it('returns a successful response without queries', async () => {
     const { status, data, links } = await client.moviesFilter();
 
     expect(status).toBe('success');
