@@ -2,4 +2,65 @@
 title: Introduction
 ---
 
-Under construction
+This package provides the `TheTVDB` class, which facilitates interaction with various endpoints of TheTVDB API.
+
+## Parameters
+
+To instantiate the TheTVDB class, provide your valid TVDB API token:
+
+| Params | Type     | Required | Description         |
+| ------ | -------- | :------: | ------------------- |
+| token  | `string` |   Yes    | Your TVDB API token |
+
+## Throws exceptions
+
+The package throws exceptions in two key scenarios:
+
+- Token
+  :::danger[Error]
+
+  Thrown when a `token` is not provided during class instantiation.
+
+  :::
+
+- Response.ok
+
+  > For more information about the `ok` property, refer to the official documentation:
+  > https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
+
+  :::danger[RangeError]
+
+  Thrown when a response from `TheTVDB API` indicates an issue (response.ok is false).
+
+  Potential causes include:
+
+  - Incorrect query or path parameters
+  - Authorization errors
+  - Server-side problems
+
+  :::
+
+## Best Practices
+
+When making requests with this package, we strongly recommend using try-catch blocks to gracefully handle potential exceptions arising from asynchronous operations. This practice promotes application stability and provides opportunities for informative error messaging.
+
+```ts
+interface TVDBErrorCause {
+  status: number;
+  resJSON: unknown;
+}
+
+try {
+  const client = new TheTVDB('access token');
+  const { data } = await client.artworkById('63237874');
+} catch (error: unknown) {
+  if (error instanceof RangeError) {
+    // Handle errors based on the response status
+    if ((error.cause as TVDBErrorCause).status === 401) {
+      console.log('Received Unauthorized response');
+    }
+  } else {
+    console.error('Caught other error type:', error);
+  }
+}
+```

@@ -619,6 +619,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"api/token.mdx": {
+	id: "api/token.mdx";
+  slug: "api/token";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "api/updates.mdx": {
 	id: "api/updates.mdx";
   slug: "api/updates";
@@ -673,7 +680,7 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
