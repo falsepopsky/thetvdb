@@ -50,6 +50,14 @@ export default defineConfig({
               },
             },
             {
+              label: 'Update your token',
+              link: '/api/token',
+              badge: {
+                text: 'New',
+                variant: 'note',
+              },
+            },
+            {
               label: 'Artwork',
               collapsed: true,
               autogenerate: {

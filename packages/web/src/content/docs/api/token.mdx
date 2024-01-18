@@ -1,0 +1,20 @@
+---
+title: updateToken
+---
+
+This method refreshes the `Bearer token` used for API calls to TheTVDB API.
+
+## Parameters
+
+| Params | Type     | Required | Description                |
+| ------ | -------- | :------: | -------------------------- |
+| token  | `string` |   Yes    | The new `token` for making |
+
+## Example
+
+```js {4}
+import { TheTVDB } from '@untidy/thetvdb';
+
+const client = new TheTVDB('access token');
+client.updateToken('new access token');
+```
