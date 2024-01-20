@@ -8,6 +8,7 @@
   "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   "overrides": [
     { "files": "*.md", "options": { "printWidth": 100, "proseWrap": "always" } },
+    { "files": "*.json", "options": { "trailingComma": "none" } },
     { "files": "*.yaml", "options": { "singleQuote": false, "printWidth": 100, "proseWrap": "never" } },
     { "files": "*.astro", "options": { "parser": "astro", "astroAllowShorthand": true } }
   ]
