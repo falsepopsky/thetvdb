@@ -1,13 +1,19 @@
 "📦 @untidy/thetvdb":
-  - "packages/api/src/**"
+  - changed-files:
+      - any-glob-to-any-file: packages/api/src/**
 "📚 docs":
-  - "packages/web/**"
-  - "README.md"
-  - "packages/api/README.md"
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/web/**
+          - README.md
+          - packages/api/README.md
 "🧪 tests":
-  - "packages/api/tests/**"
-  - "mocks/**"
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/api/tests/**
+          - mocks/**
 "⚙️ configs":
-  - ".prettierrc"
-  - "jest.config.js"
-  - ".eslintrc.cjs"
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".prettierrc"
+          - ".eslintrc.cjs"
