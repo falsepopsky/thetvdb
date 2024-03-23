@@ -19,7 +19,8 @@
     "skipLibCheck": true,
     "lib": ["es2023"],
     "verbatimModuleSyntax": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "types": ["vitest/globals"]
   },
-  "include": [".eslintrc.cjs", "mocks", "environment.d.ts", "playground.ts"]
+  "include": [".eslintrc.cjs", "mocks", "environment.d.ts", "vitest.*.ts", "playground.ts"]
 }
