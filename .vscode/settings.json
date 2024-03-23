@@ -17,7 +17,6 @@
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "jest.autoRun": "off",
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*.yml"
   },

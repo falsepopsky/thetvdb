@@ -27,11 +27,11 @@
     "clean:build": "rm -rf dist",
     "prebuild": "pnpm run clean:build",
     "build": "tsc --project tsconfig.build.json",
-    "test": "jest --coverage"
+    "test": "vitest --coverage"
   },
   "devDependencies": {
-    "@types/node": "^20.11.5",
-    "typescript": "^5.3.3"
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
   },
   "engines": {
     "node": "^18.17.0 || ^20.0.0"

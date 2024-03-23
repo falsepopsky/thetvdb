@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
-      "version": "20.11.0",
+      "version": "20.11.1",
       "nvmVersion": "latest"
     }
   },
@@ -12,15 +12,14 @@
     "vscode": {
       "extensions": [
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
         "editorconfig.editorconfig",
-        "orta.vscode-jest",
+        "esbenp.prettier-vscode",
         "bradlc.vscode-tailwindcss",
         "astro-build.astro-vscode",
         "unifiedjs.vscode-mdx",
-        "pkief.material-icon-theme",
         "github.vscode-github-actions",
-        "github.vscode-pull-request-github"
+        "github.vscode-pull-request-github",
+        "vitest.explorer"
       ]
     }
   },
