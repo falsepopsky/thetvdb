@@ -93,6 +93,7 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'error',
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
     '@typescript-eslint/no-import-type-side-effects': 'error',
+    '@typescript-eslint/restrict-template-expressions': 'off',
     'n/no-missing-import': 'off',
   },
   reportUnusedDisableDirectives: true,
