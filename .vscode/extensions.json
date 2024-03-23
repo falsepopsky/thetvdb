@@ -1,11 +1,11 @@
 {
   "recommendations": [
-    "astro-build.astro-vscode",
-    "unifiedjs.vscode-mdx",
     "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "editorconfig.editorconfig",
-    "orta.vscode-jest"
+    "astro-build.astro-vscode",
+    "unifiedjs.vscode-mdx",
+    "vitest.explorer"
   ]
 }
