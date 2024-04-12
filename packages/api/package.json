@@ -22,7 +22,7 @@
   ],
   "author": "falsepopsky",
   "license": "Apache-2.0",
-  "homepage": "https://untidy-thetvdb.netlify.app/",
+  "homepage": "https://falsepopsky.github.io/thetvdb",
   "scripts": {
     "clean:build": "rm -rf dist",
     "prebuild": "pnpm run clean:build",
