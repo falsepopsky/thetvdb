@@ -17,9 +17,6 @@
   },
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*.yml"
-  },
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
