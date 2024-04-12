@@ -1,4 +1,0 @@
-[build]
-  publish = "packages/web/dist"
-  command = "pnpm docs:build"
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ./packages/web/"
