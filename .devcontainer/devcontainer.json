@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
-      "version": "20.11.1",
+      "version": "20.12.2",
       "nvmVersion": "latest"
     }
   },
@@ -17,9 +17,9 @@
         "bradlc.vscode-tailwindcss",
         "astro-build.astro-vscode",
         "unifiedjs.vscode-mdx",
+        "vitest.explorer",
         "github.vscode-github-actions",
-        "github.vscode-pull-request-github",
-        "vitest.explorer"
+        "github.vscode-pull-request-github"
       ]
     }
   },
