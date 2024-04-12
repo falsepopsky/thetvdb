@@ -3,6 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
+  site: 'https://falsepopsky.github.io',
+  base: 'thetvdb',
   integrations: [
     tailwind({ applyBaseStyles: false }),
     starlight({
