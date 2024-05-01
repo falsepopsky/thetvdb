@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  PNPM_VERSION: 8.15.6
+  PNPM_VERSION: 9.0.6
 
 jobs:
   lint:
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["18.19.0", "20.11.0"]
+        node-version: ["18.19.0", "20.11.0", "22.0.0"]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4.1.1
