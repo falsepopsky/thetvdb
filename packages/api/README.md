@@ -14,7 +14,7 @@ provides a simple and intuitive interface for querying multiple API endpoints.
 ## ✨ Features
 
 - Access multiple endpoints of the TheTVDB API
-  [(check supported endpoints)](https://untidy-thetvdb.netlify.app/guides/supported-endpoints)
+  [(check supported endpoints)](https://falsepopsky.github.io/thetvdb/guides/supported-endpoints/)
 - Built with TypeScript for full typing support
 - Uses the native `fetch` module from Node.js for making HTTP requests
 - ESM only
@@ -59,9 +59,9 @@ console.log(data);
 
 ## 📄 Docs
 
-- [API](https://untidy-thetvdb.netlify.app/api)
-- [Supported endpoints](https://untidy-thetvdb.netlify.app/guides/supported-endpoints)
-- [Examples](https://untidy-thetvdb.netlify.app/guides/examples)
+- [API](https://falsepopsky.github.io/thetvdb/api/)
+- [Supported endpoints](https://falsepopsky.github.io/thetvdb/guides/supported-endpoints/)
+- [Examples](https://falsepopsky.github.io/thetvdb/guides/examples/)
 
 ## 📜 License
 
