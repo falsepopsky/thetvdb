@@ -1,5 +1,17 @@
 # @untidy/thetvdb
 
+## 1.1.0
+
+### Minor Changes
+
+- 6bc6234: feat: support new node version 22.x
+
+### Patch Changes
+
+- 76f6130: replace homepage url
+- d087895: fix: update links from readme to new site.
+  fix: remove links in jsdocs.
+
 ## 1.0.0
 
 ### Major Changes
@@ -14,19 +26,19 @@
   movie's extended record, they would write something like this:
 
   ```js
-  import { TheTVDB } from '@untidy/thetvdb';
+  import { TheTVDB } from "@untidy/thetvdb";
 
-  const client = new TheTVDB('access token');
-  await client.getMovie({ id: '3646', extended: true });
+  const client = new TheTVDB("access token");
+  await client.getMovie({ id: "3646", extended: true });
   ```
 
   Now, with the new rewrite, there's no need to specify the `extended` argument or even the `id`.
 
   ```js
-  import { TheTVDB } from '@untidy/thetvdb';
+  import { TheTVDB } from "@untidy/thetvdb";
 
-  const client = new TheTVDB('access token');
-  await client.movieByIdExtended('12586');
+  const client = new TheTVDB("access token");
+  await client.movieByIdExtended("12586");
   ```
 
   These changes streamline the code and provide a more intuitive and concise syntax for accessing
