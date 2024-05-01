@@ -15,8 +15,6 @@ export interface ResponseLink<T> extends Response<T> {
   };
 }
 
-// Helpers for properties
-
 export type Aliases = Record<'language' | 'name', string>;
 
 export type CompanyRecord = Record<'studio' | 'network' | 'production' | 'distributor' | 'special_effects', Company[]>;
@@ -554,8 +552,6 @@ export interface Source extends Genre {
 export type Update = Record<'recordType' | 'method' | 'extraInfo' | 'entityType' | 'mergeToType', string> &
   Record<'recordId' | 'methodInt' | 'userId' | 'timeStamp' | 'mergeToId' | 'seriesId', number>;
 
-// Paths parameters for methods
-
 export interface PathsSerieEpisodes {
   id: string;
   seasonType: string;
@@ -564,8 +560,6 @@ export interface PathsSerieEpisodes {
 export interface PathsSerieEpisodesLanguage extends PathsSerieEpisodes {
   language: string;
 }
-
-// Query parameters for methods
 
 export interface QueriesMoviesFilter {
   country?: string;
@@ -628,8 +622,6 @@ export interface QueriesUpdates {
   action?: 'create' | 'delete' | 'update';
   page?: string;
 }
-
-// Return types for methods
 
 export type GetArtwork = Response<Artwork>;
 export type GetArtworkExtended = Response<ArtworkExtended>;
@@ -788,7 +780,6 @@ export class TheTVDB {
   /**
    * @param id The artwork `id`.
    * @returns Single artwork record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/byid/ Docs}
    */
   public async artworkById(id: string): Promise<GetArtwork> {
     return await this.fetcher<GetArtwork>(`${this.api}/v4/artwork/${id}`);
@@ -797,7 +788,6 @@ export class TheTVDB {
   /**
    * @param id The `artwork` id.
    * @returns Single extended artwork record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/byidextended/ Docs}
    */
   public async artworkByIdExtended(id: string): Promise<GetArtworkExtended> {
     return await this.fetcher<GetArtworkExtended>(`${this.api}/v4/artwork/${id}/extended`);
@@ -805,7 +795,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of artwork status records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/statuses/ Docs}
    */
   public async artworkStatuses(): Promise<GetArtworkStatuses> {
     return await this.fetcher<GetArtworkStatuses>(`${this.api}/v4/artwork/statuses`);
@@ -813,7 +802,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of artwork types records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/artwork/types/ Docs}
    */
   public async artworkTypes(): Promise<GetArtworkTypes> {
     return await this.fetcher<GetArtworkTypes>(`${this.api}/v4/artwork/types`);
@@ -822,7 +810,6 @@ export class TheTVDB {
   /**
    * @param id The award `id`.
    * @returns Single award record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/byid/ Docs}
    */
   public async awardById(id: string): Promise<GetAwardsById> {
     return await this.fetcher<GetAwardsById>(`${this.api}/v4/awards/${id}`);
@@ -831,7 +818,6 @@ export class TheTVDB {
   /**
    * @param id The award `id`.
    * @returns Single extended award record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/byidextended/ Docs}
    */
   public async awardByIdExtended(id: string): Promise<GetAwardByIdExtended> {
     return await this.fetcher<GetAwardByIdExtended>(`${this.api}/v4/awards/${id}/extended`);
@@ -840,7 +826,6 @@ export class TheTVDB {
   /**
    * @param id The award category `id`.
    * @returns Single award category record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/categorybyid/ Docs}
    */
   public async awardCategoryById(id: string): Promise<GetAwardCategoryById> {
     return await this.fetcher<GetAwardCategoryById>(`${this.api}/v4/awards/categories/${id}`);
@@ -849,7 +834,6 @@ export class TheTVDB {
   /**
    * @param id The award category `id`.
    * @returns Single extended award category record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/categorybyidextended/ Docs}
    */
   public async awardCategoryByIdExtended(id: string): Promise<GetAwardCategoryByIdExtended> {
     return await this.fetcher<GetAwardCategoryByIdExtended>(`${this.api}/v4/awards/categories/${id}/extended`);
@@ -857,7 +841,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of awards records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/awards/awards/ Docs}
    */
   public async awards(): Promise<GetAwards> {
     return await this.fetcher<GetAwards>(`${this.api}/v4/awards`);
@@ -866,7 +849,6 @@ export class TheTVDB {
   /**
    * @param id The character `id`.
    * @returns Single character record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/characterbyid/ Docs}
    */
   public async characterById(id: string): Promise<GetCharacterById> {
     return await this.fetcher<GetCharacterById>(`${this.api}/v4/characters/${id}`);
@@ -875,7 +857,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of companies records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/companies/companies/ Docs}
    */
   public async companies(page?: string): Promise<GetCompanies> {
     let endpoint = this.api + '/v4/companies';
@@ -887,7 +868,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of companies type records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/companies/types/ Docs}
    */
   public async companiesTypes(): Promise<GetCompaniesTypes> {
     return await this.fetcher<GetCompaniesTypes>(`${this.api}/v4/companies/types`);
@@ -896,7 +876,6 @@ export class TheTVDB {
   /**
    * @param id The company `id`.
    * @returns Single company record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/companies/byid/ Docs}
    */
   public async companyById(id: string): Promise<GetCompanyById> {
     return await this.fetcher<GetCompanyById>(`${this.api}/v4/companies/${id}`);
@@ -904,7 +883,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of content ratings records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/contentratings/ Docs}
    */
   public async contentRatings(): Promise<GetContentRatings> {
     return await this.fetcher<GetContentRatings>(`${this.api}/v4/content/ratings`);
@@ -912,7 +890,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of country records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/countries/ Docs}
    */
   public async countries(): Promise<GetCountries> {
     return await this.fetcher<GetCountries>(`${this.api}/v4/countries`);
@@ -920,7 +897,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of entity types records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/entities/ Docs}
    */
   public async entities(): Promise<GetEntities> {
     return await this.fetcher<GetEntities>(`${this.api}/v4/entities`);
@@ -929,7 +905,6 @@ export class TheTVDB {
   /**
    * @param id The episode `id`.
    * @returns Single episode record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/byid/ Docs}
    */
   public async episodeById(id: string): Promise<GetEpisodeById> {
     return await this.fetcher<GetEpisodeById>(`${this.api}/v4/episodes/${id}`);
@@ -941,7 +916,6 @@ export class TheTVDB {
    *   Set to `true` to include the `translations` property in the record.
    *   Defaults to `false` if not provided.
    * @returns Single extended episode record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/byidextended/ Docs}
    */
   public async episodeByIdExtended<T extends boolean = false>(
     id: string,
@@ -958,7 +932,6 @@ export class TheTVDB {
    * @param id The episode `id`.
    * @param language The episode `language`.
    * @returns Single episode translation record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/translations/ Docs}
    */
   public async episodeWithTranslation(id: string, language: string): Promise<GetEpisodeWithTranslation> {
     return await this.fetcher<GetEpisodeWithTranslation>(`${this.api}/v4/episodes/${id}/translations/${language}`);
@@ -967,7 +940,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of episode records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/episodes/episodes/ Docs}
    */
   public async episodes(page?: string): Promise<GetEpisodes> {
     let endpoint = this.api + '/v4/episodes';
@@ -979,7 +951,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of gender records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/genders/ Docs}
    */
   public async genders(): Promise<GetGenders> {
     return await this.fetcher<GetGenders>(`${this.api}/v4/genders`);
@@ -988,7 +959,6 @@ export class TheTVDB {
   /**
    * @param id The genre `id`.
    * @returns Single genre record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/genres/byid/ Docs}
    */
   public async genreById(id: string): Promise<GetGenreById> {
     return await this.fetcher<GetGenreById>(`${this.api}/v4/genres/${id}`);
@@ -996,7 +966,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of genre records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/genres/genres/ Docs}
    */
   public async genres(): Promise<GetGenres> {
     return await this.fetcher<GetGenres>(`${this.api}/v4/genres`);
@@ -1004,7 +973,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of inspiration types records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/inspirationtypes/ Docs}
    */
   public async inspirationTypes(): Promise<GetInspirationTypes> {
     return await this.fetcher<GetInspirationTypes>(`${this.api}/v4/inspiration/types`);
@@ -1012,7 +980,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of language records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/languages/ Docs}
    */
   public async languages(): Promise<GetLanguages> {
     return await this.fetcher<GetLanguages>(`${this.api}/v4/languages`);
@@ -1021,7 +988,6 @@ export class TheTVDB {
   /**
    * @param id The list `id`.
    * @returns Single list record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/byid/ Docs}
    */
   public async listById(id: string): Promise<GetListById> {
     return await this.fetcher<GetListById>(`${this.api}/v4/lists/${id}`);
@@ -1030,7 +996,6 @@ export class TheTVDB {
   /**
    * @param id The list `id`.
    * @returns Single extended list record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/byidextended/ Docs}
    */
   public async listByIdExtended(id: string): Promise<GetListByIdExtended> {
     return await this.fetcher<GetListByIdExtended>(`${this.api}/v4/lists/${id}/extended`);
@@ -1039,7 +1004,6 @@ export class TheTVDB {
   /**
    * @param slug The list `slug`.
    * @returns Single list record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/slug/ Docs}
    */
   public async listBySlug(slug: string): Promise<GetListBySlug> {
     return await this.fetcher<GetListBySlug>(`${this.api}/v4/lists/slug/${slug}`);
@@ -1049,7 +1013,6 @@ export class TheTVDB {
    * @param id The list `id`.
    * @param language The list `language`.
    * @returns Single list translation record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/translations/ Docs}
    */
   public async listWithTranslation(id: string, language: string): Promise<GetListWithTranslation> {
     return await this.fetcher<GetListWithTranslation>(`${this.api}/v4/lists/${id}/translations/${language}`);
@@ -1058,7 +1021,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of list records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/lists/lists/ Docs}
    */
   public async lists(page?: string): Promise<GetLists> {
     let endpoint = `${this.api}/v4/lists`;
@@ -1071,7 +1033,6 @@ export class TheTVDB {
   /**
    * @param id The movie `id`
    * @returns Single movie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/byid/ Docs}
    */
   public async movieById(id: string): Promise<GetMovieById> {
     return await this.fetcher<GetMovieById>(`${this.api}/v4/movies/${id}`);
@@ -1081,7 +1042,6 @@ export class TheTVDB {
    * @param id The movie `id`
    * @param queries An object containing search parameters to restrict the result.
    * @returns Single extended movie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/byidextended/ Docs}
    */
   public async movieByIdExtended<Q extends QueriesMovieExtended>(
     id: string,
@@ -1095,7 +1055,6 @@ export class TheTVDB {
   /**
    * @param slug The movie `slug`.
    * @returns Single movie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/slug/ Docs}
    */
   public async movieBySlug(slug: string): Promise<GetMovieBySlug> {
     return await this.fetcher<GetMovieBySlug>(`${this.api}/v4/movies/slug/${slug}`);
@@ -1103,7 +1062,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of movie status records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/statuses/ Docs}
    */
   public async movieStatuses(): Promise<GetMovieStatuses> {
     return await this.fetcher<GetMovieStatuses>(`${this.api}/v4/movies/statuses`);
@@ -1113,7 +1071,6 @@ export class TheTVDB {
    * @param id The movie `id`.
    * @param language The movie `language`.
    * @returns Single movie translation record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/translations/ Docs}
    */
   public async movieWithTranslation(id: string, language: string): Promise<GetMovieWithTranslation> {
     return await this.fetcher<GetMovieWithTranslation>(`${this.api}/v4/movies/${id}/translations/${language}`);
@@ -1122,7 +1079,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of movie records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/movies/ Docs}
    */
   public async movies(page?: string): Promise<GetMovies> {
     let endpoint = `${this.api}/v4/movies`;
@@ -1135,7 +1091,6 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of movie records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/movies/filter/ Docs}
    */
   public async moviesFilter(queries?: QueriesMoviesFilter): Promise<GetMoviesFilter> {
     const url = this.createURL('/v4/movies/filter');
@@ -1146,7 +1101,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of people records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/people/people/ Docs}
    */
   public async people(page?: string): Promise<GetPeople> {
     let endpoint = `${this.api}/v4/people`;
@@ -1159,7 +1113,6 @@ export class TheTVDB {
   /**
    * @param id The people `id`
    * @returns Single people record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/people/byid/ Docs}
    */
   public async peopleById(id: string): Promise<GetPeopleById> {
     return await this.fetcher<GetPeopleById>(`${this.api}/v4/people/${id}`);
@@ -1171,7 +1124,6 @@ export class TheTVDB {
    *   Set to `true` to include the `translations` property in the record.
    *   Defaults to `false` if not provided.
    * @returns Single extended people record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/people/byidextended/ Docs}
    */
   public async peopleByIdExtended<T extends boolean = false>(
     id: string,
@@ -1186,7 +1138,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of people types records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/people/types/ Docs}
    */
   public async peopleTypes(): Promise<GetPeopleTypes> {
     return await this.fetcher<GetPeopleTypes>(`${this.api}/v4/people/types`);
@@ -1196,7 +1147,6 @@ export class TheTVDB {
    * @param id The people `id`.
    * @param language The people `language`.
    * @returns Single people translation record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/people/translations/ Docs}
    */
   public async peopleWithTranslation(id: string, language: string): Promise<GetPeopleWithTranslation> {
     return await this.fetcher<GetPeopleWithTranslation>(`${this.api}/v4/people/${id}/translations/${language}`);
@@ -1205,7 +1155,6 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of query search records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/search/search/ Docs}
    */
   public async search(queries: QueriesSearch): Promise<GetSearch> {
     const endpoint = this.createURL('/v4/search');
@@ -1216,7 +1165,6 @@ export class TheTVDB {
   /**
    * @param id The remote `id`
    * @returns A list of entity records based on remote id.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/search/remote/ Docs}
    */
   public async searchRemoteId(id: string): Promise<GetSearchRemoteId> {
     return await this.fetcher<GetSearchRemoteId>(`${this.api}/v4/search/remoteid/${id}`);
@@ -1225,7 +1173,6 @@ export class TheTVDB {
   /**
    * @param id The season `id`
    * @returns Single season record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/byid/ Docs}
    */
   public async seasonById(id: string): Promise<GetSeasonById> {
     return await this.fetcher<GetSeasonById>(`${this.api}/v4/seasons/${id}`);
@@ -1237,7 +1184,6 @@ export class TheTVDB {
    *   Set to `true` to include the `translations` property in the record.
    *   Defaults to `false` if not provided.
    * @returns Single extended season record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/byidextended/ Docs}
    */
   public async seasonByIdExtended<T extends boolean = false>(
     id: string,
@@ -1252,7 +1198,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of season types records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/types/ Docs}
    */
   public async seasonTypes(): Promise<GetSeasonTypes> {
     return await this.fetcher<GetSeasonTypes>(`${this.api}/v4/seasons/types`);
@@ -1262,7 +1207,6 @@ export class TheTVDB {
    * @param id The season `id`.
    * @param language The season `language`.
    * @returns Single season translation record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/translations/ Docs}
    */
   public async seasonWithTranslation(id: string, language: string): Promise<GetSeasonWithTranslation> {
     return await this.fetcher<GetSeasonWithTranslation>(`${this.api}/v4/seasons/${id}/translations/${language}`);
@@ -1271,7 +1215,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of seasons records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/seasons/seasons/ Docs}
    */
   public async seasons(page?: string): Promise<GetSeasons> {
     let endpoint = `${this.api}/v4/seasons`;
@@ -1284,7 +1227,6 @@ export class TheTVDB {
   /**
    * @param id The serie `id`
    * @returns Single serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byid/ Docs}
    */
   public async serieById(id: string): Promise<GetSerieById> {
     return await this.fetcher<GetSerieById>(`${this.api}/v4/series/${id}`);
@@ -1294,7 +1236,6 @@ export class TheTVDB {
    * @param id The serie `id`
    * @param queries An object containing search parameters to restrict the result.
    * @returns Single serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byidartworks/ Docs}
    */
   public async serieByIdArtworks(id: string, queries?: QueriesSerieArtworks): Promise<GetSerieByIdArtworks> {
     const url = this.createURL(`/v4/series/${id}/artworks`);
@@ -1307,7 +1248,6 @@ export class TheTVDB {
    * @param id The serie `id`
    * @param queries An object containing search parameters to restrict the result.
    * @returns Single extended serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byidextended/ Docs}
    */
   public async serieByIdExtended<Q extends QueriesSerieExtended>(
     id: string,
@@ -1322,7 +1262,6 @@ export class TheTVDB {
   /**
    * @param id The serie `id`
    * @returns Single serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/byidnextaired/ Docs}
    */
   public async serieByIdNextAired(id: string): Promise<GetSerieByIdNextAired> {
     return await this.fetcher<GetSerieByIdNextAired>(`${this.api}/v4/series/${id}/nextAired`);
@@ -1331,7 +1270,6 @@ export class TheTVDB {
   /**
    * @param slug The serie `slug`.
    * @returns Single serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/slug/ Docs}
    */
   public async serieBySlug(slug: string): Promise<GetSerieBySlug> {
     return await this.fetcher<GetSerieBySlug>(`${this.api}/v4/series/slug/${slug}`);
@@ -1341,7 +1279,6 @@ export class TheTVDB {
    * @param paths An object containing the `id` and `seasonType` of the serie.
    * @param queries An object containing query parameters to restrict the result.
    * @returns Episodes from the specified season type in a serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/episodes/ Docs}
    */
   public async serieEpisodes(paths: PathsSerieEpisodes, queries?: QueriesSerieEpisodes): Promise<GetSerieEpisodes> {
     const url = this.createURL(`/v4/series/${paths.id}/episodes/${paths.seasonType}`);
@@ -1353,7 +1290,6 @@ export class TheTVDB {
    * @param paths An object containing the `id` and `seasonType` of the serie.
    * @param page Restrict results to a specific page.
    * @returns Episodes from the specified season type and language in a serie record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/episodeslanguage/ Docs}
    */
   public async serieEpisodesWithLanguage(
     paths: PathsSerieEpisodesLanguage,
@@ -1368,7 +1304,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of serie status records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/statuses/ Docs}
    */
   public async serieStatuses(): Promise<GetSerieStatuses> {
     return await this.fetcher<GetSerieStatuses>(`${this.api}/v4/series/statuses`);
@@ -1378,7 +1313,6 @@ export class TheTVDB {
    * @param id The serie `id`.
    * @param language The serie `language`.
    * @returns Single serie translation record.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/translations/ Docs}
    */
   public async serieWithTranslation(id: string, language: string): Promise<GetSerieWithTranslation> {
     return await this.fetcher<GetSerieWithTranslation>(`${this.api}/v4/series/${id}/translations/${language}`);
@@ -1387,7 +1321,6 @@ export class TheTVDB {
   /**
    * @param page Restrict results to a specific page.
    * @returns A list of series records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/series/ Docs}
    */
   public async series(page?: string): Promise<GetSeries> {
     let endpoint = `${this.api}/v4/series`;
@@ -1400,7 +1333,6 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of series records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/series/filter/ Docs}
    */
   public async seriesFilter(queries?: QueriesSeriesFilter): Promise<GetSeriesFilter> {
     const url = this.createURL('/v4/series/filter');
@@ -1411,7 +1343,6 @@ export class TheTVDB {
 
   /**
    * @returns A list of source types records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/sourcestypes/ Docs}
    */
   public async sourcesTypes(): Promise<GetSourcesTypes> {
     return await this.fetcher<GetSourcesTypes>(`${this.api}/v4/sources/types`);
@@ -1420,7 +1351,6 @@ export class TheTVDB {
   /**
    * @param queries An object containing query parameters to restrict the result.
    * @returns A list of updated records.
-   * @see {@link https://untidy-thetvdb.netlify.app/api/updates/ Docs}
    */
   public async updates(queries: QueriesUpdates): Promise<GetUpdates> {
     const url = this.createURL('/v4/updates');
