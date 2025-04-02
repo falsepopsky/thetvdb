@@ -180,7 +180,7 @@ export interface AwardCategory {
 }
 
 export interface AwardCategoryExtended extends AwardCategory {
-  nominees: Array<{
+  nominees: {
     category: null;
     character: null;
     details: string;
@@ -191,7 +191,7 @@ export interface AwardCategoryExtended extends AwardCategory {
     name: null;
     series: Serie | null;
     year: string;
-  }>;
+  }[];
 }
 
 export interface AwardExtended extends IdName {
@@ -328,7 +328,7 @@ export interface List extends SharedProps {
 
 export interface ListExtended extends Omit<List, 'tags'> {
   tags: TagOptions[];
-  entities: Array<Record<'order' | 'seriesId' | 'movieId', number | null>>;
+  entities: Record<'order' | 'seriesId' | 'movieId', number | null>[];
 }
 
 export interface Movie extends SharedProps {
@@ -344,7 +344,7 @@ export interface Movie extends SharedProps {
 export interface MovieExtended extends Movie {
   trailers: Trailer[];
   genres: Genre[];
-  releases: Array<Record<'country' | 'date' | 'detail', string>>;
+  releases: Record<'country' | 'date' | 'detail', string>[];
   artworks: Artwork[];
   remoteIds: RemoteId[];
   characters: Character[];
@@ -396,7 +396,7 @@ export interface PeopleExtended extends People {
   remoteIds: RemoteId[];
   gender: number;
   characters: Character[];
-  biographies: Array<Record<'biography' | 'language', string>>;
+  biographies: Record<'biography' | 'language', string>[];
   awards: IdName[];
   tagOptions: TagOptions[];
   slug: string;
