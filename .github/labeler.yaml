@@ -16,4 +16,4 @@
   - changed-files:
       - any-glob-to-any-file:
           - ".prettierrc"
-          - ".eslintrc.cjs"
+          - "eslint.config.js"

@@ -22,5 +22,5 @@
     "noErrorTruncation": true,
     "types": ["vitest/globals"]
   },
-  "include": [".eslintrc.cjs", "mocks", "environment.d.ts", "vitest.*.ts", "playground.ts"]
+  "include": ["eslint.config.js", "mocks", "environment.d.ts", "vitest.*.ts", "playground.ts"]
 }

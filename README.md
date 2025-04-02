@@ -6,11 +6,10 @@ Monorepo containing tools for `TheTVDB API`.
 
 ## :package: Packages
 
-| packages                                                 | Docs                               |
-| :------------------------------------------------------- | :--------------------------------- |
-| [@untidy/thetvdb](./packages/api/)                       | [Readme](./packages/api/README.md) |
-| [eslint-config-untidy](./packages/eslint-config-untidy/) | `Internal`                         |
-| [@untidy/thetvdb-docs](./packages/web/)                  | `Internal`                         |
+| packages                                | Docs                               |
+| :-------------------------------------- | :--------------------------------- |
+| [@untidy/thetvdb](./packages/api/)      | [Readme](./packages/api/README.md) |
+| [@untidy/thetvdb-docs](./packages/web/) | `Internal`                         |
 
 ## :rocket: Contributing
 
